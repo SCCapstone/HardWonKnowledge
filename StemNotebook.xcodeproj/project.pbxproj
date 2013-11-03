@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C75EF9F318245CFB00C9A725 /* PaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EF9F218245CFB00C9A725 /* PaintView.m */; };
+		C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C75EF9F418246AAE00C9A725 /* SideBarView.xib */; };
+		C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EF9F718246B3D00C9A725 /* SideBarView.m */; };
 		C762B69F181DB7B500EB3674 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B69E181DB7B500EB3674 /* UIKit.framework */; };
 		C762B6A1181DB7B500EB3674 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B6A0181DB7B500EB3674 /* Foundation.framework */; };
 		C762B6A3181DB7B500EB3674 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B6A2181DB7B500EB3674 /* CoreGraphics.framework */; };
@@ -21,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C75EF9F118245CFB00C9A725 /* PaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaintView.h; path = ../PaintView.h; sourceTree = "<group>"; };
+		C75EF9F218245CFB00C9A725 /* PaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintView.m; path = ../PaintView.m; sourceTree = "<group>"; };
+		C75EF9F418246AAE00C9A725 /* SideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarView.xib; sourceTree = "<group>"; };
+		C75EF9F618246B3D00C9A725 /* SideBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarView.h; sourceTree = "<group>"; };
+		C75EF9F718246B3D00C9A725 /* SideBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarView.m; sourceTree = "<group>"; };
 		C762B69B181DB7B500EB3674 /* StemNotebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StemNotebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C762B69E181DB7B500EB3674 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C762B6A0181DB7B500EB3674 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,11 +91,16 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
+				C75EF9F118245CFB00C9A725 /* PaintView.h */,
+				C75EF9F218245CFB00C9A725 /* PaintView.m */,
 				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
 				C762B6B6181DB7B500EB3674 /* ViewController.h */,
 				C762B6B7181DB7B500EB3674 /* ViewController.m */,
 				C762B6B9181DB7B500EB3674 /* ViewController.xib */,
+				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
+				C75EF9F618246B3D00C9A725 /* SideBarView.h */,
+				C75EF9F718246B3D00C9A725 /* SideBarView.m */,
 				C762B6A5181DB7B500EB3674 /* Supporting Files */,
 			);
 			path = StemNotebook;
@@ -159,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C762B6A9181DB7B500EB3674 /* InfoPlist.strings in Resources */,
+				C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */,
 				C762B6B1181DB7B500EB3674 /* Default.png in Resources */,
 				C762B6B3181DB7B500EB3674 /* Default@2x.png in Resources */,
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
@@ -174,7 +188,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C762B6AB181DB7B500EB3674 /* main.m in Sources */,
+				C75EF9F318245CFB00C9A725 /* PaintView.m in Sources */,
 				C762B6AF181DB7B500EB3674 /* AppDelegate.m in Sources */,
+				C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */,
 				C762B6B8181DB7B500EB3674 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +316,7 @@
 				C762B6C0181DB7B500EB3674 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
