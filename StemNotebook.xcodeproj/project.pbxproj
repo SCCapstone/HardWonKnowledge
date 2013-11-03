@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
+		1684F96C1826FB5100E26CD2 /* PaintSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */; };
 		C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C75EF9F418246AAE00C9A725 /* SideBarView.xib */; };
 		C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EF9F718246B3D00C9A725 /* SideBarView.m */; };
 		C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EF9FA1826E8E600C9A725 /* PaintView.m */; };
@@ -24,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
+		1684F96A1826FB5100E26CD2 /* PaintSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintSubmenuView.h; sourceTree = "<group>"; };
+		1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintSubmenuView.m; sourceTree = "<group>"; };
 		C75EF9F418246AAE00C9A725 /* SideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarView.xib; sourceTree = "<group>"; };
 		C75EF9F618246B3D00C9A725 /* SideBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarView.h; sourceTree = "<group>"; };
 		C75EF9F718246B3D00C9A725 /* SideBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarView.m; sourceTree = "<group>"; };
@@ -99,9 +104,12 @@
 				C762B6B7181DB7B500EB3674 /* ViewController.m */,
 				C762B6B9181DB7B500EB3674 /* ViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
+				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
 				C75EF9F618246B3D00C9A725 /* SideBarView.h */,
 				C75EF9F718246B3D00C9A725 /* SideBarView.m */,
 				C762B6A5181DB7B500EB3674 /* Supporting Files */,
+				1684F96A1826FB5100E26CD2 /* PaintSubmenuView.h */,
+				1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */,
 			);
 			path = StemNotebook;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 				C762B6B3181DB7B500EB3674 /* Default@2x.png in Resources */,
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* ViewController.xib in Resources */,
+				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +201,7 @@
 				C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */,
 				C762B6B8181DB7B500EB3674 /* ViewController.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
+				1684F96C1826FB5100E26CD2 /* PaintSubmenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
