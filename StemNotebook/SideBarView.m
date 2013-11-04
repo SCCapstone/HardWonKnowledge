@@ -10,9 +10,6 @@
 
 @implementation SideBarView
 
-{
-    UIBezierPath *path; // (3)
-}
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {
     if (self = [super initWithCoder:aDecoder])
