@@ -10,13 +10,17 @@
 
 @implementation PaintSubmenuView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    if (self = [super initWithCoder:aDecoder])
+    {
+        UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"PaintSubmenuView" owner:self options:nil] objectAtIndex:0];
+        [self addSubview:firstViewUIView];
     }
     return self;
+}
+- (IBAction)doButton:(id)sender {
+    NSLog(@"Button Pressed");
 }
 
 /*
