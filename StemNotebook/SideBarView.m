@@ -19,38 +19,11 @@
     {
         UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"SideBarView" owner:self options:nil] objectAtIndex:0];
         [self addSubview:firstViewUIView];
-        [self setMultipleTouchEnabled:NO]; // (2)
-        path = [UIBezierPath bezierPath];
-        [path setLineWidth:20.0];
+
     }
     return self;
 }
-- (void)drawRect:(CGRect)rect // (5)
-{
-    [[UIColor redColor] setStroke];
-    [path stroke];
-}
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    [path moveToPoint:p];
-}
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    [path addLineToPoint:p]; // (4)
-    [self setNeedsDisplay];
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self touchesMoved:touches withEvent:event];
-}
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self touchesEnded:touches withEvent:event];
-}
+
 
 
 /*
