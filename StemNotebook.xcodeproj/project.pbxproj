@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6C1598218286058001C413F /* TestPutCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPutCode.h; sourceTree = "<group>"; };
 		C762B69B181DB7B500EB3674 /* StemNotebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StemNotebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C762B69E181DB7B500EB3674 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C762B6A0181DB7B500EB3674 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +90,7 @@
 				C762B6B7181DB7B500EB3674 /* ViewController.m */,
 				C762B6B9181DB7B500EB3674 /* ViewController.xib */,
 				C762B6A5181DB7B500EB3674 /* Supporting Files */,
+				B6C1598218286058001C413F /* TestPutCode.h */,
 			);
 			path = StemNotebook;
 			sourceTree = "<group>";
@@ -300,6 +302,7 @@
 				C762B6C0181DB7B500EB3674 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
