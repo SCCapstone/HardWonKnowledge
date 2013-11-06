@@ -1,27 +1,27 @@
 //
-//  PaintSubmenuView.m
+//  MenuSubmenu.m
 //  StemNotebook
 //
-//  Created by Jacob on 11/3/13.
+//  Created by Colton Waters on 11/6/13.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 
-#import "PaintSubmenuView.h"
+#import "MenuSubmenuView.h"
 
-@implementation PaintSubmenuView
+@implementation MenuSubmenuView
+
 
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"PaintSubmenuView" owner:self options:nil] objectAtIndex:0];
+        UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"MenuSubmenuView" owner:self options:nil] objectAtIndex:0];
         [self addSubview:firstViewUIView];
     }
     return self;
 }
-
-- (IBAction)doButton:(id)sender {
-    NSLog(@"Button Pressed");
+- (IBAction)DoButton:(id)sender {
+    NSLog(@"NewButtonPressed");
 }
 
 /*
