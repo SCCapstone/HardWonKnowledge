@@ -7,6 +7,7 @@
 //
 
 #import "NotebookViewController.h"
+#import "PaintView.h"
 
 @interface NotebookViewController ()
 
@@ -20,7 +21,7 @@
 
 //Called when the view loads
 - (void)viewDidLoad
-{
+{    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self.SubmenuView addSubview:self.paintSubmenu];

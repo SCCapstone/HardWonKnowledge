@@ -9,5 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface PaintView : UIView
+{
+    CGPoint lastPoint;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat brush;
+    BOOL swipe;
+    UIImageView *drawImage;
+}
 
 @end
