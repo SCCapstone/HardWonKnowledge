@@ -10,7 +10,7 @@
 
 @implementation SideBarView
 
-- (id)initWithCoder:(NSCoder *)aDecoder // (1)
+- (id)initWithCoder:(NSCoder *)aDecoder //Instantiated in interface builder, so initWithCoder used
 {
     if (self = [super initWithCoder:aDecoder])
     {
