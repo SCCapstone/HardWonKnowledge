@@ -10,18 +10,22 @@
 
 @implementation PaintSubmenuView
 
-- (id)initWithCoder:(NSCoder *)aDecoder // (1)
+@synthesize delegate;
+
+//initialized in code, so initWithFrame is used
+- (id)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithCoder:aDecoder])
+    if (self = [super initWithFrame:frame])
     {
-        UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"PaintSubmenuView" owner:self options:nil] objectAtIndex:0];
-        [self addSubview:firstViewUIView];
+        UIView *paintSubmenuViewIB = [[[NSBundle mainBundle] loadNibNamed:@"PaintSubmenuView" owner:self options:nil] objectAtIndex:0];
+        [self addSubview:paintSubmenuViewIB];
     }
     return self;
 }
 
 - (IBAction)doButton:(id)sender {
     NSLog(@"Button Pressed");
+    [self.delegate PaintViewButtonPressed];
 }
 
 /*
