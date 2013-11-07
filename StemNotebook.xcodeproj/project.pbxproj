@@ -21,14 +21,15 @@
 		C762B6B1181DB7B500EB3674 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B0181DB7B500EB3674 /* Default.png */; };
 		C762B6B3181DB7B500EB3674 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B2181DB7B500EB3674 /* Default@2x.png */; };
 		C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B4181DB7B500EB3674 /* Default-568h@2x.png */; };
-		C762B6B8181DB7B500EB3674 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C762B6B7181DB7B500EB3674 /* ViewController.m */; };
-		C762B6BB181DB7B500EB3674 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B9181DB7B500EB3674 /* ViewController.xib */; };
+		C762B6B8181DB7B500EB3674 /* NotebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C762B6B7181DB7B500EB3674 /* NotebookViewController.m */; };
+		C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
 		1684F96A1826FB5100E26CD2 /* PaintSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintSubmenuView.h; sourceTree = "<group>"; };
 		1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintSubmenuView.m; sourceTree = "<group>"; };
+		C72B07D0182B0309003B9494 /* NotebookViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookViewDelegate.h; sourceTree = "<group>"; };
 		C75EF9F418246AAE00C9A725 /* SideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarView.xib; sourceTree = "<group>"; };
 		C75EF9F618246B3D00C9A725 /* SideBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarView.h; sourceTree = "<group>"; };
 		C75EF9F718246B3D00C9A725 /* SideBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarView.m; sourceTree = "<group>"; };
@@ -47,9 +48,9 @@
 		C762B6B0181DB7B500EB3674 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C762B6B2181DB7B500EB3674 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C762B6B4181DB7B500EB3674 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C762B6B6181DB7B500EB3674 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C762B6B7181DB7B500EB3674 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C762B6BA181DB7B500EB3674 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		C762B6B6181DB7B500EB3674 /* NotebookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotebookViewController.h; sourceTree = "<group>"; };
+		C762B6B7181DB7B500EB3674 /* NotebookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotebookViewController.m; sourceTree = "<group>"; };
+		C762B6BA181DB7B500EB3674 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NotebookViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +67,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C72B07D1182B325E003B9494 /* IB Files */ = {
+			isa = PBXGroup;
+			children = (
+				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
+				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
+				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
+			);
+			name = "IB Files";
+			sourceTree = "<group>";
+		};
+		C72B07D2182B3283003B9494 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C75EF9F91826E8E600C9A725 /* PaintView.h */,
+				C75EF9FA1826E8E600C9A725 /* PaintView.m */,
+				C75EF9F618246B3D00C9A725 /* SideBarView.h */,
+				C75EF9F718246B3D00C9A725 /* SideBarView.m */,
+				1684F96A1826FB5100E26CD2 /* PaintSubmenuView.h */,
+				1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C72B07D3182B3290003B9494 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C762B6B6181DB7B500EB3674 /* NotebookViewController.h */,
+				C762B6B7181DB7B500EB3674 /* NotebookViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		C762B692181DB7B500EB3674 = {
 			isa = PBXGroup;
 			children = (
@@ -96,20 +129,13 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
-				C75EF9F91826E8E600C9A725 /* PaintView.h */,
-				C75EF9FA1826E8E600C9A725 /* PaintView.m */,
+				C72B07D0182B0309003B9494 /* NotebookViewDelegate.h */,
+				C72B07D2182B3283003B9494 /* Views */,
 				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
-				C762B6B6181DB7B500EB3674 /* ViewController.h */,
-				C762B6B7181DB7B500EB3674 /* ViewController.m */,
-				C762B6B9181DB7B500EB3674 /* ViewController.xib */,
-				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
-				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
-				C75EF9F618246B3D00C9A725 /* SideBarView.h */,
-				C75EF9F718246B3D00C9A725 /* SideBarView.m */,
+				C72B07D3182B3290003B9494 /* View Controllers */,
+				C72B07D1182B325E003B9494 /* IB Files */,
 				C762B6A5181DB7B500EB3674 /* Supporting Files */,
-				1684F96A1826FB5100E26CD2 /* PaintSubmenuView.h */,
-				1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */,
 			);
 			path = StemNotebook;
 			sourceTree = "<group>";
@@ -184,7 +210,7 @@
 				C762B6B1181DB7B500EB3674 /* Default.png in Resources */,
 				C762B6B3181DB7B500EB3674 /* Default@2x.png in Resources */,
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
-				C762B6BB181DB7B500EB3674 /* ViewController.xib in Resources */,
+				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,7 +225,7 @@
 				C762B6AB181DB7B500EB3674 /* main.m in Sources */,
 				C762B6AF181DB7B500EB3674 /* AppDelegate.m in Sources */,
 				C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */,
-				C762B6B8181DB7B500EB3674 /* ViewController.m in Sources */,
+				C762B6B8181DB7B500EB3674 /* NotebookViewController.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				1684F96C1826FB5100E26CD2 /* PaintSubmenuView.m in Sources */,
 			);
@@ -216,12 +242,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		C762B6B9181DB7B500EB3674 /* ViewController.xib */ = {
+		C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C762B6BA181DB7B500EB3674 /* en */,
 			);
-			name = ViewController.xib;
+			name = NotebookViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
