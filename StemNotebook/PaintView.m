@@ -67,8 +67,6 @@
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
-    
     if(!swipe)
     {
         UIGraphicsBeginImageContext(self.frame.size);
