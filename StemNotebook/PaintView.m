@@ -8,47 +8,86 @@
 
 #import "PaintView.h"
 
+
 @implementation PaintView
 
-{
-    UIBezierPath *path; // (3)
-}
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        [self setMultipleTouchEnabled:NO]; // (2)
-        [self setBackgroundColor:[UIColor whiteColor]];
-        path = [UIBezierPath bezierPath];
-        [path setLineWidth:20.0];
-    }
-    return self;
+        [self setMultipleTouchEnabled:NO]; // (2)        
+        drawImage = [[UIImageView alloc] initWithImage:nil];
+        drawImage.frame = self.frame;
+        [self addSubview:drawImage];
+        self.backgroundColor = [UIColor whiteColor];
+        red=0.0/255.0;
+        blue = 0.0;
+        green = 0.0;
+        brush = 10.0;
 }
-- (void)drawRect:(CGRect)rect // (5)
-{
-    [[UIColor redColor] setStroke];
-    [path stroke];
+    return self;
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    swipe =NO;
     UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    [path moveToPoint:p];
+    lastPoint = [touch locationInView:self];
+    //lastPoint.y -= 20;
+    lastPoint.x -=200;
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    swipe = YES;
     UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    [path addLineToPoint:p]; // (4)
-    [self setNeedsDisplay];
+    CGPoint currentPoint = [touch locationInView:self];
+    //currentPoint.y -= 20;
+    currentPoint.x -= 200;
+    
+    UIGraphicsBeginImageContext(self.frame.size);
+    
+//This is what needs to be changed to fix the window size v
+    [drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+//This is what needs to be changed to fix the window size ^
+    
+    
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
+    CGContextBeginPath(UIGraphicsGetCurrentContext());
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    lastPoint = currentPoint;
+    
+    
+    
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self touchesMoved:touches withEvent:event];
+    UITouch *touch = [touches anyObject];
+    
+    if(!swipe)
+    {
+        UIGraphicsBeginImageContext(self.frame.size);
+        
+//It shows up here too v
+        [drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+//It shows up here too ^
+        
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        CGContextFlush(UIGraphicsGetCurrentContext());
+        drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
 }
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self touchesEnded:touches withEvent:event];
-}
+
 
 @end
