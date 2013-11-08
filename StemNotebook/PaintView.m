@@ -17,7 +17,7 @@
     {
         [self setMultipleTouchEnabled:NO]; // (2)        
         drawImage = [[UIImageView alloc] initWithImage:nil];
-        drawImage.frame = self.frame;
+        drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
         [self addSubview:drawImage];
         self.backgroundColor = [UIColor whiteColor];
         red=0.0/255.0;
@@ -33,7 +33,7 @@
     UITouch *touch = [touches anyObject];
     lastPoint = [touch locationInView:self];
     //lastPoint.y -= 20;
-    lastPoint.x -=200;
+    //lastPoint.x -=200;
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -41,7 +41,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint currentPoint = [touch locationInView:self];
     //currentPoint.y -= 20;
-    currentPoint.x -= 200;
+    //currentPoint.x -= 200;
     
     UIGraphicsBeginImageContext(self.frame.size);
     
@@ -85,6 +85,13 @@
         drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
+}
+
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
+{
+    red = newRed;
+    blue = newBlue;
+    green = newGreen;
 }
 
 
