@@ -28,7 +28,15 @@
 - (IBAction)doButton:(id)sender {
     NSLog(@"Button Pressed");
     [self.delegate PaintViewButtonPressed];
+    [self.delegate changeColorWithRed:255 Blue:255 Green:255];
+
 }
+
+- (IBAction)Red:(id)sender {
+    [self.delegate changeColorWithRed:255 Blue:255 Green:255];
+
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
