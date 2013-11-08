@@ -7,7 +7,6 @@
 //
 
 #import "NotebookViewController.h"
-#import "PaintView.h"
 
 @interface NotebookViewController ()
 
@@ -48,8 +47,17 @@
     if (!paintSubmenu) {
         CGRect paintSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
         self.paintSubmenu = [[PaintSubmenuView alloc] initWithFrame:paintSubmenuFrame];
+        self.paintSubmenu.delegate = self;
     }
     return paintSubmenu;
 }
+
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
+{
+    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen];
+    NSLog(@"Change Color Called");
+}
+
+
 
 @end
