@@ -16,5 +16,6 @@
 //Views that the NotebookViewController will control
 @property (strong, nonatomic) IBOutlet UIView *SubmenuView; //IBOutlet created from interface builder
 @property (strong, nonatomic) PaintSubmenuView *paintSubmenu;
+@property (strong, nonatomic) IBOutlet PaintView *paintView;
 
 @end
