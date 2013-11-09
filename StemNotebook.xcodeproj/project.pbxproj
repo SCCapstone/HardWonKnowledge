@@ -29,6 +29,7 @@
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
 		1684F96A1826FB5100E26CD2 /* PaintSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintSubmenuView.h; sourceTree = "<group>"; };
 		1684F96B1826FB5100E26CD2 /* PaintSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintSubmenuView.m; sourceTree = "<group>"; };
+		C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookViewDelegate.h; sourceTree = "<group>"; };
 		C75EF9F418246AAE00C9A725 /* SideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarView.xib; sourceTree = "<group>"; };
 		C75EF9F618246B3D00C9A725 /* SideBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarView.h; sourceTree = "<group>"; };
 		C75EF9F718246B3D00C9A725 /* SideBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarView.m; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
+				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
 				C72B07D2182B3283003B9494 /* Views */,
 				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
