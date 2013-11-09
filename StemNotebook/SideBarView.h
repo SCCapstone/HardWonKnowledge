@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NotebookViewDelegate.h"
 
 @interface SideBarView: UIView
+
+@property (nonatomic, strong) id <NotebookViewDelegate> delegate;
 
 @end
