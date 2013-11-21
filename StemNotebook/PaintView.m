@@ -94,5 +94,10 @@
     green = newGreen;
 }
 
+- (void)changeBrushWithNumber:(float)number
+{
+    brush = number;
+}
+
 
 @end

@@ -131,8 +131,8 @@
 			children = (
 				C72B07D0182B0309003B9494 /* NotebookViewDelegate.h */,
 				C72B07D2182B3283003B9494 /* Views */,
-				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
+				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
 				C72B07D3182B3290003B9494 /* View Controllers */,
 				C72B07D1182B325E003B9494 /* IB Files */,
 				C762B6A5181DB7B500EB3674 /* Supporting Files */,

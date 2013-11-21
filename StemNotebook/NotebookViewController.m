@@ -58,6 +58,11 @@
     NSLog(@"Change Color Called");
 }
 
+- (void)changeBrushWithNumber:(float)number
+{
+    [self.paintView changeBrushWithNumber:number];
+}
+
 
 
 @end

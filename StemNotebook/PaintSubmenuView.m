@@ -33,8 +33,33 @@
 }
 
 - (IBAction)Red:(id)sender {
-    [self.delegate changeColorWithRed:255 Blue:255 Green:255];
+    [self.delegate changeColorWithRed:255 Blue:0 Green:0];
 
+}
+
+- (IBAction)Blue:(id)sender {
+    [self.delegate changeColorWithRed:0 Blue:255 Green:0];   
+ 
+}
+- (IBAction)Green:(id)sender {
+    [self.delegate changeColorWithRed:0 Blue:0 Green:255];
+}
+- (IBAction)Black:(id)sender {
+    [self.delegate changeColorWithRed:0 Blue:0 Green:0];
+}
+
+- (IBAction)White:(id)sender {
+    [self.delegate changeColorWithRed:255 Blue:255 Green:255];
+}
+- (IBAction)Small:(id)sender {
+    [self.delegate changeBrushWithNumber:2.5];
+}
+- (IBAction)Normal:(id)sender {
+    [self.delegate changeBrushWithNumber:10];
+}
+
+- (IBAction)Large:(id)sender {
+    [self.delegate changeBrushWithNumber:20];
 }
 
 
