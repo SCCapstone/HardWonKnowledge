@@ -12,5 +12,6 @@
 
 - (void)PaintViewButtonPressed;
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen;
+- (void)changeBrushWithNumber:(float)number;
 
 @end
