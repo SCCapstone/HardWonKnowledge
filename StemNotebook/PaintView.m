@@ -15,9 +15,12 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        [self setMultipleTouchEnabled:NO]; // (2)        
-        drawImage = [[UIImageView alloc] initWithImage:nil];
-        drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        [self setMultipleTouchEnabled:NO]; // (2)
+        drawImage = [aDecoder decodeObjectForKey:@"Draw Image"];
+        if (!drawImage) {
+            drawImage = [[UIImageView alloc] initWithImage:nil];
+            drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        }
         [self addSubview:drawImage];
         self.backgroundColor = [UIColor whiteColor];
         red=0.0/255.0;
@@ -92,6 +95,12 @@
     red = newRed;
     blue = newBlue;
     green = newGreen;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:drawImage forKey:@"drawImage"];
 }
 
 

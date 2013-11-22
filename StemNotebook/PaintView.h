@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaintView : UIView
+@interface PaintView : UIView <NSCoding>
 {
     CGPoint lastPoint;
     CGFloat red;
