@@ -17,6 +17,7 @@
 //Synthesize getters and setters for all views
 @synthesize SubmenuView;
 @synthesize paintSubmenu;
+@synthesize menuSubmenu;
 
 //Called when the view loads
 - (void)viewDidLoad
@@ -52,6 +53,16 @@
     return paintSubmenu;
 }
 
+- (MenuSubmenuView *)menuSubmenu
+{
+    if (!menuSubmenu) {
+        CGRect paintSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.menuSubmenu = [[MenuSubmenuView alloc] initWithFrame:paintSubmenuFrame];
+        self.menuSubmenu.delegate = self;
+    }
+    return menuSubmenu;
+}
+
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
 {
     [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen];
@@ -62,6 +73,19 @@
 {
     [self.SubmenuView addSubview:self.paintSubmenu];
 
+}
+
+- (void)showMenuSubmenu
+{
+    [self.SubmenuView addSubview:self.menuSubmenu];
+}
+
+- (void)encodePaintView
+{
+    if ([NSKeyedArchiver archiveRootObject:self.paintView toFile:@"Documents/notebook1"])
+        NSLog(@"Encoded and Archived");
+    else
+        NSLog(@"BAD");
 }
 
 @end
