@@ -23,6 +23,8 @@
 		C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B4181DB7B500EB3674 /* Default-568h@2x.png */; };
 		C762B6B8181DB7B500EB3674 /* NotebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C762B6B7181DB7B500EB3674 /* NotebookViewController.m */; };
 		C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */; };
+		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
+		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,9 @@
 		C762B6B6181DB7B500EB3674 /* NotebookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotebookViewController.h; sourceTree = "<group>"; };
 		C762B6B7181DB7B500EB3674 /* NotebookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotebookViewController.m; sourceTree = "<group>"; };
 		C762B6BA181DB7B500EB3674 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NotebookViewController.xib; sourceTree = "<group>"; };
+		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
+		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
+		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +75,7 @@
 		C72B07D1182B325E003B9494 /* IB Files */ = {
 			isa = PBXGroup;
 			children = (
+				C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */,
 				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
 				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
@@ -80,6 +86,8 @@
 		C72B07D2182B3283003B9494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C7E4479018400E7F0059A65F /* MenuSubmenuView.h */,
+				C7E4479118400E7F0059A65F /* MenuSubmenuView.m */,
 				C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */,
 				C74921E3182DB5AA0041F997 /* PaintSubmenuView.m */,
 				C75EF9F91826E8E600C9A725 /* PaintView.h */,
@@ -208,6 +216,7 @@
 				C762B6A9181DB7B500EB3674 /* InfoPlist.strings in Resources */,
 				C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */,
 				C762B6B1181DB7B500EB3674 /* Default.png in Resources */,
+				C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */,
 				C762B6B3181DB7B500EB3674 /* Default@2x.png in Resources */,
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
@@ -224,6 +233,7 @@
 			files = (
 				C762B6AB181DB7B500EB3674 /* main.m in Sources */,
 				C762B6AF181DB7B500EB3674 /* AppDelegate.m in Sources */,
+				C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */,
 				C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */,
 				C762B6B8181DB7B500EB3674 /* NotebookViewController.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
