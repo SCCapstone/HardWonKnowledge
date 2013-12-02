@@ -90,6 +90,9 @@
 
 -(void)encodePaintView
 {
-
+    if ([NSKeyedArchiver archiveRootObject:self.paintView toFile:@"Documents/notebook1"])
+        NSLog(@"Encoded and Archived");
+    else
+        NSLog(@"BAD");
 }
 @end
