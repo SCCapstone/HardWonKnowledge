@@ -23,8 +23,6 @@
     return self;
 }
 
-//Method called when button is pressed.
-//Should be replaced with relevant methods when UI is more fleshed out
 - (IBAction)doButton:(id)sender {
     NSLog(@"Button Pressed");
     [self.delegate PaintViewButtonPressed];

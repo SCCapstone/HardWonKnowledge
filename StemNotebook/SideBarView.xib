@@ -87,7 +87,17 @@
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<bool key="usesAutoincrementingIDs">NO</bool>
-			<array class="NSMutableArray" key="connectionRecords"/>
+			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">paintButtonPressed:</string>
+						<reference key="source" ref="947166521"/>
+						<reference key="destination" ref="73192383"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<string key="id">CVe-51-Win</string>
+				</object>
+			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
