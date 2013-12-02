@@ -17,6 +17,7 @@
 //Synthesize getters and setters for all views
 @synthesize SubmenuView;
 @synthesize paintSubmenu;
+@synthesize menuSubmenu;
 
 //Called when the view loads
 - (void)viewDidLoad
@@ -50,6 +51,16 @@
         self.paintSubmenu.delegate = self;
     }
     return paintSubmenu;
+}
+
+- (MenuSubmenuView *)menuSubmenu
+{
+    if (!menuSubmenu) {
+        CGRect paintSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.menuSubmenu = [[MenuSubmenuView alloc] initWithFrame:paintSubmenuFrame];
+        self.menuSubmenu.delegate = self;
+    }
+    return menuSubmenu;
 }
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
