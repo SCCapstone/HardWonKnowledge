@@ -21,6 +21,9 @@
     return self;
 }
 
+- (IBAction)paintButtonPressed:(id)sender {
+    [self.delegate showPaintSubmenu];
+}
 
 
 /*

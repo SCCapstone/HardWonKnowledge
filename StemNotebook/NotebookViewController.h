@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIView *SubmenuView; //IBOutlet created from interface builder
 @property (strong, nonatomic) PaintSubmenuView *paintSubmenu;
 @property (strong, nonatomic) IBOutlet PaintView *paintView;
+@property (strong, nonatomic) IBOutlet SideBarView *sideBarView;
 
 @end
