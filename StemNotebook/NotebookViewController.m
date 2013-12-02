@@ -68,8 +68,4 @@
 {
     [self.paintView changeBrushWithNumber:number];
 }
-
-
-}
-
 @end
