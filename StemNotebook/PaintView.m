@@ -16,7 +16,7 @@
     if (self = [super initWithCoder:aDecoder])
     {
         [self setMultipleTouchEnabled:NO]; // (2)
-        drawImage = [aDecoder decodeObjectForKey:@"Draw Image"];
+        drawImage = [aDecoder decodeObjectForKey:@"drawImage"];
         if (!drawImage) {
             drawImage = [[UIImageView alloc] initWithImage:nil];
             drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);

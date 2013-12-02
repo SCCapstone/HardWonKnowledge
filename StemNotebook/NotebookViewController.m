@@ -82,10 +82,17 @@
 
 - (void)encodePaintView
 {
-    if ([NSKeyedArchiver archiveRootObject:self.paintView toFile:@"Documents/notebook1"])
-        NSLog(@"Encoded and Archived");
-    else
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
+    
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:self.paintView forKey:@"paintView"];
+    [archiver finishEncoding];
+    if (![data writeToFile:viewPath atomically:YES])
         NSLog(@"BAD");
+
 }
 
 @end
