@@ -58,6 +58,12 @@
     NSLog(@"Change Color Called");
 }
 
+- (void)showPaintSubmenu
+{
+    [self.SubmenuView addSubview:self.paintSubmenu];
+    
+}
+
 - (void)changeBrushWithNumber:(float)number
 {
     [self.paintView changeBrushWithNumber:number];
