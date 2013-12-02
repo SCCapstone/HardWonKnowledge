@@ -99,5 +99,11 @@
     brush = number;
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:drawImage forKey:@"drawImage"];
+}
+
 
 @end
