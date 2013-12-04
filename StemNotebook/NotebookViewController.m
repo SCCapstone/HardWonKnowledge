@@ -90,6 +90,7 @@
 
 -(void)encodePaintView
 {
+    NSLog(@"Encode Paint View");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
@@ -100,6 +101,5 @@
     [archiver finishEncoding];
     if (![data writeToFile:viewPath atomically:YES])
         NSLog(@"BAD");
-
 }
 @end
