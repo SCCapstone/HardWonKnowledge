@@ -56,8 +56,8 @@
 - (MenuSubmenuView *)menuSubmenu
 {
     if (!menuSubmenu) {
-        CGRect paintSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
-        self.menuSubmenu = [[MenuSubmenuView alloc] initWithFrame:paintSubmenuFrame];
+        CGRect menuSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.menuSubmenu = [[MenuSubmenuView alloc] initWithFrame:menuSubmenuFrame];
         self.menuSubmenu.delegate = self;
     }
     return menuSubmenu;
@@ -72,15 +72,23 @@
 - (void)showPaintSubmenu
 {
     [self.SubmenuView addSubview:self.paintSubmenu];
-
+    [self.paintSubmenu setHidden:FALSE];
+    [self.menuSubmenu setHidden:TRUE];
 }
 
 - (void)showMenuSubmenu
 {
     [self.SubmenuView addSubview:self.menuSubmenu];
+    [self.menuSubmenu setHidden:FALSE];
+    [self.paintSubmenu setHidden:TRUE];
 }
 
-- (void)encodePaintView
+- (void)changeBrushWithNumber:(float)number
+{
+    [self.paintView changeBrushWithNumber:number];
+}
+
+-(void)encodePaintView
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
@@ -94,5 +102,4 @@
         NSLog(@"BAD");
 
 }
-
 @end

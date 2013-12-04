@@ -97,6 +97,11 @@
     green = newGreen;
 }
 
+- (void)changeBrushWithNumber:(float)number
+{
+    brush = number;
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
