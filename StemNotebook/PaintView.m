@@ -2,7 +2,7 @@
 //  PaintView.m
 //  StemNotebook
 //
-//  Created by Colton Waters on 11/1/13.
+//  Created by Colton Waters and Jacob Wood on 11/1/13.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 

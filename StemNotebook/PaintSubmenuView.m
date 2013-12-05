@@ -2,7 +2,7 @@
 //  PaintSubmenuView.m
 //  StemNotebook
 //
-//  Created by Jacob on 11/3/13.
+//  Created by Jacob Wood on 11/3/13.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  StemNotebook
 //
-//  Created by Colton Waters on 10/27/13.
+//  Created by Colton Waters and Jacob Wood on 10/27/13.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 

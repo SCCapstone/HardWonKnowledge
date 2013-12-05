@@ -2,7 +2,7 @@
 //  NotebookViewDelegate.h
 //  StemNotebook
 //
-//  Created by Colton Waters on 11/6/13.
+//  Created by Colton Waters and Jacob Wood on 11/6/13.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 
@@ -17,4 +17,7 @@
 - (void)showMenuSubmenu;
 - (void)encodePaintView;
 - (void)decodePaintView;
+- (void)uploadButtonClicked;
+- (void)loginButtonClicked;
+
 @end
