@@ -9,17 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface PaintView : UIView <NSCoding>
-{
-    CGPoint lastPoint;
-    CGFloat red;
-    CGFloat green;
-    CGFloat blue;
-    CGFloat brush;
-    BOOL swipe;
-    UIImageView *drawImage;
-}
+
+    @property CGPoint lastPoint;
+    @property CGFloat red;
+    @property CGFloat green;
+    @property CGFloat blue;
+    @property CGFloat brush;
+    @property BOOL swipe;
+    @property (strong, nonatomic) UIImageView *drawImage;
+
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen;
 - (void)changeBrushWithNumber:(float)number;
+- (void)saveImageView;
+- (void)loadImageView;
 
 @end
