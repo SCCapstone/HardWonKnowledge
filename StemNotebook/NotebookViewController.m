@@ -25,6 +25,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
+    [self.SubmenuView addSubview:self.paintSubmenu];
+    [self.paintSubmenu setHidden:FALSE];
+    [self.menuSubmenu setHidden:TRUE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,9 +66,9 @@
     return menuSubmenu;
 }
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
-    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen];
+    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
     NSLog(@"Change Color Called");
 }
 
@@ -91,7 +94,7 @@
 -(void)encodePaintView
 {
     [self.paintView saveImageView];
-    /*NSLog(@"Encode Paint View");
+    NSLog(@"Encode Paint View");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
@@ -102,13 +105,13 @@
     [archiver finishEncoding];
     if (![data writeToFile:viewPath atomically:YES])
         NSLog(@"BAD");
-     */
+     
 }
 
 -(void)decodePaintView
 {
     [self.paintView loadImageView];
-    /*NSLog(@"Decode Paint View");
+    NSLog(@"Decode Paint View");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
@@ -118,6 +121,6 @@
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
     self.paintView = [unarchiver decodeObjectForKey:@"paintView"];
     [unarchiver finishDecoding];
-     */
+     
 }
 @end

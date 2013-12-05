@@ -15,6 +15,7 @@
 @synthesize red;
 @synthesize blue;
 @synthesize green;
+@synthesize alpha;
 @synthesize swipe;
 @synthesize brush;
 @synthesize drawImage;
@@ -30,9 +31,11 @@
         self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
         [self addSubview:self.drawImage];
         self.backgroundColor = [UIColor whiteColor];
-        self.red=0.0/255.0;
+        self.red=0.0;
         self.blue = 0.0;
         self.green = 0.0;
+        self.alpha = 1.0;
+        
         self.brush = 10.0;
     }
     return self;
@@ -54,14 +57,12 @@
     
     UIGraphicsBeginImageContext(self.frame.size);
     
-//This is what needs to be changed to fix the window size v
     [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
-//This is what needs to be changed to fix the window size ^
     
     
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
     CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, 1.0);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
     CGContextBeginPath(UIGraphicsGetCurrentContext());
     CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
     CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
@@ -84,7 +85,7 @@
         
         CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, 1.0);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
         CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
         CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
         CGContextStrokePath(UIGraphicsGetCurrentContext());
@@ -94,12 +95,14 @@
     }
 }
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
     self.red = newRed;
     self.blue = newBlue;
     self.green = newGreen;
+    self.alpha = newAlpha;
 }
+
 
 - (void)changeBrushWithNumber:(float)number
 {
