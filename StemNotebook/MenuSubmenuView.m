@@ -28,6 +28,12 @@
 - (IBAction)decodePaintView:(id)sender {
     [self.delegate decodePaintView];
 }
+- (IBAction)uploadButtonClicked:(id)sender {
+    [self.delegate uploadButtonClicked];
+}
+- (IBAction)LogInButtonClicked:(id)sender {
+    [self.delegate loginButtonClicked];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

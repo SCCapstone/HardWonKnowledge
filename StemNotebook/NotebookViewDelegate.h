@@ -17,4 +17,7 @@
 - (void)showMenuSubmenu;
 - (void)encodePaintView;
 - (void)decodePaintView;
+- (void)uploadButtonClicked;
+- (void)loginButtonClicked;
+
 @end
