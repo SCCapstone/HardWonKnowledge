@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
+		C71981AA1850138E00D502E3 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */; };
+		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
+		C71981AC1850138E00D502E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A81850138E00D502E3 /* Security.framework */; };
+		C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A91850138E00D502E3 /* SystemConfiguration.framework */; };
+		C71981AF185014B300D502E3 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */; };
+		C71981B2185015C800D502E3 /* GTLDrive_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = C71981B0185015C800D502E3 /* GTLDrive_Sources.m */; };
 		C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74921E3182DB5AA0041F997 /* PaintSubmenuView.m */; };
 		C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C75EF9F418246AAE00C9A725 /* SideBarView.xib */; };
 		C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EF9F718246B3D00C9A725 /* SideBarView.m */; };
@@ -29,6 +35,13 @@
 
 /* Begin PBXFileReference section */
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
+		C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
+		C71981A71850138E00D502E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C71981A81850138E00D502E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C71981A91850138E00D502E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GTMOAuth2ViewTouch.xib; sourceTree = "<group>"; };
+		C71981B0185015C800D502E3 /* GTLDrive_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLDrive_Sources.m; sourceTree = "<group>"; };
+		C71981B1185015C800D502E3 /* GTLDrive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLDrive.h; sourceTree = "<group>"; };
 		C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookViewDelegate.h; sourceTree = "<group>"; };
 		C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintSubmenuView.h; sourceTree = "<group>"; };
 		C74921E3182DB5AA0041F997 /* PaintSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintSubmenuView.m; sourceTree = "<group>"; };
@@ -63,6 +76,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71981AA1850138E00D502E3 /* libGTLTouchStaticLib.a in Frameworks */,
+				C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */,
+				C71981AC1850138E00D502E3 /* Security.framework in Frameworks */,
+				C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */,
 				C762B69F181DB7B500EB3674 /* UIKit.framework in Frameworks */,
 				C762B6A1181DB7B500EB3674 /* Foundation.framework in Frameworks */,
 				C762B6A3181DB7B500EB3674 /* CoreGraphics.framework in Frameworks */,
@@ -127,6 +144,10 @@
 		C762B69D181DB7B500EB3674 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */,
+				C71981A71850138E00D502E3 /* MobileCoreServices.framework */,
+				C71981A81850138E00D502E3 /* Security.framework */,
+				C71981A91850138E00D502E3 /* SystemConfiguration.framework */,
 				C762B69E181DB7B500EB3674 /* UIKit.framework */,
 				C762B6A0181DB7B500EB3674 /* Foundation.framework */,
 				C762B6A2181DB7B500EB3674 /* CoreGraphics.framework */,
@@ -137,6 +158,8 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
+				C71981B0185015C800D502E3 /* GTLDrive_Sources.m */,
+				C71981B1185015C800D502E3 /* GTLDrive.h */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
 				C72B07D2182B3283003B9494 /* Views */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
@@ -151,6 +174,7 @@
 		C762B6A5181DB7B500EB3674 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */,
 				C762B6A6181DB7B500EB3674 /* StemNotebook-Info.plist */,
 				C762B6A7181DB7B500EB3674 /* InfoPlist.strings */,
 				C762B6AA181DB7B500EB3674 /* main.m */,
@@ -213,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71981AF185014B300D502E3 /* GTMOAuth2ViewTouch.xib in Resources */,
 				C762B6A9181DB7B500EB3674 /* InfoPlist.strings in Resources */,
 				C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */,
 				C762B6B1181DB7B500EB3674 /* Default.png in Resources */,
@@ -232,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C762B6AB181DB7B500EB3674 /* main.m in Sources */,
+				C71981B2185015C800D502E3 /* GTLDrive_Sources.m in Sources */,
 				C762B6AF181DB7B500EB3674 /* AppDelegate.m in Sources */,
 				C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */,
 				C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */,
@@ -328,7 +354,12 @@
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "../google-api-objectivec-client-read-only/Source\n/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source\n/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source\n/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source\n/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -340,7 +371,12 @@
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "../google-api-objectivec-client-read-only/Source\n/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source\n/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source\n/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source\n/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
