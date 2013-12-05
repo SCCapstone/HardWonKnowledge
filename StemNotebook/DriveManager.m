@@ -78,7 +78,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.driveService executeQuery:query
                   completionHandler:^(GTLServiceTicket *ticket,
                                       GTLDriveFile *insertedFile, NSError *error) {
-                      //[waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
                       NSLog(@"Done");
                       if (error == nil)
                       {
