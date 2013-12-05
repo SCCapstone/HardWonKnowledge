@@ -17,6 +17,7 @@
 //Synthesize getters and setters for all views
 @synthesize SubmenuView;
 @synthesize paintSubmenu;
+@synthesize menuSubmenu;
 
 //Called when the view loads
 - (void)viewDidLoad
@@ -52,6 +53,16 @@
     return paintSubmenu;
 }
 
+- (MenuSubmenuView *)menuSubmenu
+{
+    if (!menuSubmenu) {
+        CGRect menuSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.menuSubmenu = [[MenuSubmenuView alloc] initWithFrame:menuSubmenuFrame];
+        self.menuSubmenu.delegate = self;
+    }
+    return menuSubmenu;
+}
+
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
 {
     [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen];
@@ -61,7 +72,15 @@
 - (void)showPaintSubmenu
 {
     [self.SubmenuView addSubview:self.paintSubmenu];
-    
+    [self.paintSubmenu setHidden:FALSE];
+    [self.menuSubmenu setHidden:TRUE];
+}
+
+- (void)showMenuSubmenu
+{
+    [self.SubmenuView addSubview:self.menuSubmenu];
+    [self.menuSubmenu setHidden:FALSE];
+    [self.paintSubmenu setHidden:TRUE];
 }
 
 - (void)changeBrushWithNumber:(float)number
@@ -69,6 +88,40 @@
     [self.paintView changeBrushWithNumber:number];
 }
 
+<<<<<<< HEAD
 
+=======
+-(void)encodePaintView
+{
+    [self.paintView saveImageView];
+    /*NSLog(@"Encode Paint View");
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
+    
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:self.paintView forKey:@"paintView"];
+    [archiver finishEncoding];
+    if (![data writeToFile:viewPath atomically:YES])
+        NSLog(@"BAD");
+     */
+}
+>>>>>>> develop
 
+-(void)decodePaintView
+{
+    [self.paintView loadImageView];
+    /*NSLog(@"Decode Paint View");
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
+    NSData *codedData = [[NSData alloc] initWithContentsOfFile:viewPath];
+    if (codedData == nil) return;
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
+    self.paintView = [unarchiver decodeObjectForKey:@"paintView"];
+    [unarchiver finishDecoding];
+     */
+}
 @end
