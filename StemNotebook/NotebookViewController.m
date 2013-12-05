@@ -88,13 +88,10 @@
     [self.paintView changeBrushWithNumber:number];
 }
 
-<<<<<<< HEAD
-
-=======
 -(void)encodePaintView
 {
     [self.paintView saveImageView];
-    /*NSLog(@"Encode Paint View");
+    NSLog(@"Encode Paint View");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
@@ -105,14 +102,13 @@
     [archiver finishEncoding];
     if (![data writeToFile:viewPath atomically:YES])
         NSLog(@"BAD");
-     */
+     
 }
->>>>>>> develop
 
 -(void)decodePaintView
 {
     [self.paintView loadImageView];
-    /*NSLog(@"Decode Paint View");
+    NSLog(@"Decode Paint View");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook1.nbf"];
@@ -122,6 +118,6 @@
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
     self.paintView = [unarchiver decodeObjectForKey:@"paintView"];
     [unarchiver finishDecoding];
-     */
+     
 }
 @end

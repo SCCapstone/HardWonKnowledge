@@ -30,7 +30,7 @@
         self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
         [self addSubview:self.drawImage];
         self.backgroundColor = [UIColor whiteColor];
-        self.red=0.0/255.0;
+        self.red=0.0;
         self.blue = 0.0;
         self.green = 0.0;
         self.brush = 10.0;
@@ -54,9 +54,7 @@
     
     UIGraphicsBeginImageContext(self.frame.size);
     
-//This is what needs to be changed to fix the window size v
     [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
-//This is what needs to be changed to fix the window size ^
     
     
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
