@@ -25,6 +25,9 @@
 - (IBAction)encodePaintView:(id)sender {
     [self.delegate encodePaintView];
 }
+- (IBAction)decodePaintView:(id)sender {
+    [self.delegate decodePaintView];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

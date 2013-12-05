@@ -16,5 +16,6 @@
 - (void)showPaintSubmenu;
 - (void)showMenuSubmenu;
 - (void)encodePaintView;
+- (void)decodePaintView;
 
 @end
