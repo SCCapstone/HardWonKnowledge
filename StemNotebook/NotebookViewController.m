@@ -25,6 +25,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
+    [self.SubmenuView addSubview:self.paintSubmenu];
+    [self.paintSubmenu setHidden:FALSE];
+    [self.menuSubmenu setHidden:TRUE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,9 +66,9 @@
     return menuSubmenu;
 }
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
-    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen];
+    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
     NSLog(@"Change Color Called");
 }
 
