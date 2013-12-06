@@ -235,6 +235,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = HardWonKnowledge;
+				TargetAttributes = {
+					C762B69A181DB7B500EB3674 = {
+						DevelopmentTeam = VT9937V7SF;
+					};
+				};
 			};
 			buildConfigurationList = C762B696181DB7B500EB3674 /* Build configuration list for PBXProject "StemNotebook" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -372,6 +377,8 @@
 		C762B6BF181DB7B500EB3674 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
@@ -381,6 +388,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -389,6 +397,8 @@
 		C762B6C0181DB7B500EB3674 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
@@ -398,6 +408,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "/Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};
