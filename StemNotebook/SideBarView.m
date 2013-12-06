@@ -21,6 +21,12 @@
     return self;
 }
 
+- (IBAction)paintButtonPressed:(id)sender {
+    [self.delegate showPaintSubmenu];
+}
+- (IBAction)menuButtonPressed:(id)sender {
+    [self.delegate showMenuSubmenu];
+}
 
 
 /*
