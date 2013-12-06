@@ -77,7 +77,7 @@
 }
 
 - (IBAction)Large:(id)sender {
-    [self.delegate changeBrushWithNumber:20];
+    [self.delegate changeBrushWithNumber:30];
 }
 
 
