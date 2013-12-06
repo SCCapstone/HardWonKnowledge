@@ -20,8 +20,9 @@
     @property (strong, nonatomic) UIImageView *drawImage;
 
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen;
 - (void)changeBrushWithNumber:(float)number;
+//- (void)changeAlphaWithNumber:(float)number;
 - (void)saveImageView;
 - (void)loadImageView;
 

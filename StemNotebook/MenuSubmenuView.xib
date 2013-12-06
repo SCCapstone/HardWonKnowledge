@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">13A603</string>
+		<string key="IBDocument.SystemVersion">12F45</string>
 		<string key="IBDocument.InterfaceBuilderVersion">4514</string>
-		<string key="IBDocument.AppKitVersion">1265</string>
-		<string key="IBDocument.HIToolboxVersion">695.00</string>
+		<string key="IBDocument.AppKitVersion">1187.40</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">3747</string>
@@ -207,7 +207,6 @@
 						<string key="id">1</string>
 						<reference key="object" ref="646892346"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="522712822"/>
 							<object class="IBNSLayoutConstraint" id="489520295">
 								<reference key="firstItem" ref="646892346"/>
 								<int key="firstAttribute">6</int>
@@ -364,6 +363,7 @@
 							<reference ref="261231873"/>
 							<reference ref="15104479"/>
 							<reference ref="326745312"/>
+							<reference ref="522712822"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -486,6 +486,30 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MenuSubmenuView</string>
 					<string key="superclassName">UIView</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="LogInButtonClicked:">id</string>
+						<string key="decodePaintView:">id</string>
+						<string key="encodePaintView:">id</string>
+						<string key="uploadButtonClicked:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="LogInButtonClicked:">
+							<string key="name">LogInButtonClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="decodePaintView:">
+							<string key="name">decodePaintView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="encodePaintView:">
+							<string key="name">encodePaintView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="uploadButtonClicked:">
+							<string key="name">uploadButtonClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MenuSubmenuView.h</string>

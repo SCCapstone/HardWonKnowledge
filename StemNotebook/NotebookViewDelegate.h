@@ -11,8 +11,9 @@
 @protocol NotebookViewDelegate <NSObject>
 
 - (void)PaintViewButtonPressed;
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen;
 - (void)changeBrushWithNumber:(float)number;
+//- (void)changeAlphaWithNumber:(float)number;
 - (void)showPaintSubmenu;
 - (void)showMenuSubmenu;
 - (void)encodePaintView;

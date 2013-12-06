@@ -74,9 +74,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return menuSubmenu;
 }
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
 {
-    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
+    [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen];
     NSLog(@"Change Color Called");
 }
 
@@ -98,6 +98,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 {
     [self.paintView changeBrushWithNumber:number];
 }
+//- (void)changeAlphaWithNumber:(float)number
+//{
+//    [self.paintView changeAlphaWithNumber:number];
+//}
 
 -(void)encodePaintView
 {

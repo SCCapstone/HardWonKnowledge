@@ -95,12 +95,11 @@
     }
 }
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
 {
     self.red = newRed;
     self.blue = newBlue;
     self.green = newGreen;
-    self.alpha = newAlpha;
 }
 
 
@@ -108,6 +107,11 @@
 {
     self.brush = number;
 }
+
+//- (void)changeAlphaWithNumber:(float)number
+//{
+//    self.alpha = number;
+//}
 
 - (void)saveImageView
 {
