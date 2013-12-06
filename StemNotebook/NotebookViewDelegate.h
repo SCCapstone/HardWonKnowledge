@@ -19,5 +19,6 @@
 - (void)decodePaintView;
 - (void)uploadButtonClicked;
 - (void)loginButtonClicked;
+- (void)logoutButtonClicked;
 
 @end

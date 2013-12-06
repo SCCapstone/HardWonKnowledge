@@ -34,6 +34,9 @@
 - (IBAction)LogInButtonClicked:(id)sender {
     [self.delegate loginButtonClicked];
 }
+- (IBAction)logoutButtonClicked:(id)sender {
+    [self.delegate logoutButtonClicked];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
