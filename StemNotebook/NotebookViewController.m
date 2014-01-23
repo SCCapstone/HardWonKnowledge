@@ -23,6 +23,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize paintSubmenu;
 @synthesize menuSubmenu;
 
+@synthesize notebook;
+
 //Called when the view loads
 - (void)viewDidLoad
 {    
@@ -32,6 +34,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
+    self.paintView = [self.notebook getCurrentPage];
+    [self.paintView setHidden:FALSE];
+    [[self.notebook getCurrentPage]setHidden:FALSE];
     self.driveService = [[GTLServiceDrive alloc] init];
     self.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                          clientID:kClientID
@@ -93,6 +98,26 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.menuSubmenu setHidden:FALSE];
     [self.paintSubmenu setHidden:TRUE];
 }
+
+
+- (void)nextPage
+{
+    [self.paintView setHidden:TRUE];
+    [self.notebook pageFoward];
+    [self.SubmenuView addSubview:self.paintView];
+    self.paintView =[self.notebook getCurrentPage];
+    [self.paintView setHidden:FALSE];
+    NSLog(@"next");
+}
+- (void)previousPage
+{
+    [self.paintView setHidden:TRUE];
+    [self.notebook pageBack];
+    self.paintView =[self.notebook getCurrentPage];
+    [self.paintView setHidden:FALSE];
+}
+
+
 
 - (void)changeBrushWithNumber:(float)number
 {
@@ -253,5 +278,30 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         self.driveService.authorizer = authResult;
     }
 }
+
+
+
+
+
+
+
+- (NSArray *)createBook:(NSInteger)number
+{
+    NSMutableArray *book = [NSMutableArray array];
+    for(NSInteger i = 0; i < number; i++)
+    {
+        PaintView *view = [[PaintView alloc] init];
+        // any setup you want to do would go here, e.g.:
+        // view.backgroundColor = [UIColor blueColor];
+        [book addObject:view];
+    }
+    return book;
+}
+
+
+
+
+
+
 
 @end

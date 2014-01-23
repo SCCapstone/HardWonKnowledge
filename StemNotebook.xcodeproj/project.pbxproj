@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
+		16B785631891D11A00658BF8 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B785621891D11A00658BF8 /* Notebook.m */; };
 		C71981AA1850138E00D502E3 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */; };
 		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
 		C71981AC1850138E00D502E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A81850138E00D502E3 /* Security.framework */; };
@@ -36,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
+		16B785611891D11A00658BF8 /* Notebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notebook.h; sourceTree = "<group>"; };
+		16B785621891D11A00658BF8 /* Notebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notebook.m; sourceTree = "<group>"; };
 		C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		C71981A71850138E00D502E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C71981A81850138E00D502E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -170,6 +173,8 @@
 				C72B07D3182B3290003B9494 /* View Controllers */,
 				C72B07D1182B325E003B9494 /* IB Files */,
 				C762B6A5181DB7B500EB3674 /* Supporting Files */,
+				16B785611891D11A00658BF8 /* Notebook.h */,
+				16B785621891D11A00658BF8 /* Notebook.m */,
 			);
 			path = StemNotebook;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B785631891D11A00658BF8 /* Notebook.m in Sources */,
 				C762B6AB181DB7B500EB3674 /* main.m in Sources */,
 				C71981B2185015C800D502E3 /* GTLDrive_Sources.m in Sources */,
 				C762B6AF181DB7B500EB3674 /* AppDelegate.m in Sources */,
