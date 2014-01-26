@@ -32,7 +32,111 @@
 		C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF899E1850D4DC00F6A093 /* DriveManager.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
+		CB0B39671895D78800E639D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB0B38E61895D78700E639D0 /* .gitignore */; };
+		CB0B39681895D78800E639D0 /* AQGridView.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = CB0B38EA1895D78700E639D0 /* AQGridView.xcworkspace */; };
+		CB0B39691895D78800E639D0 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38F01895D78700E639D0 /* AQGridView.m */; };
+		CB0B396A1895D78800E639D0 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38F21895D78700E639D0 /* AQGridViewAnimatorItem.m */; };
+		CB0B396B1895D78800E639D0 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38F51895D78700E639D0 /* AQGridViewCell.m */; };
+		CB0B396C1895D78800E639D0 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38F71895D78700E639D0 /* AQGridViewController.m */; };
+		CB0B396D1895D78800E639D0 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38F91895D78700E639D0 /* AQGridViewData.m */; };
+		CB0B396E1895D78800E639D0 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38FB1895D78700E639D0 /* AQGridViewUpdateInfo.m */; };
+		CB0B396F1895D78800E639D0 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38FD1895D78700E639D0 /* AQGridViewUpdateItem.m */; };
+		CB0B39701895D78800E639D0 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B38FF1895D78700E639D0 /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		CB0B39711895D78800E639D0 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39011895D78700E639D0 /* NSIndexSet+AQIsSetContiguous.m */; };
+		CB0B39721895D78800E639D0 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39031895D78700E639D0 /* UIColor+AQGridView.m */; };
+		CB0B39731895D78800E639D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39061895D78700E639D0 /* .gitignore */; };
+		CB0B39741895D78800E639D0 /* ExpanderDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39091895D78700E639D0 /* ExpanderDemoAppDelegate.m */; };
+		CB0B39751895D78800E639D0 /* ExpanderDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B390B1895D78700E639D0 /* ExpanderDemoViewController.m */; };
+		CB0B39761895D78800E639D0 /* ExpandFromGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B390D1895D78700E639D0 /* ExpandFromGridViewCell.m */; };
+		CB0B39771895D78800E639D0 /* ExpandingGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B390F1895D78700E639D0 /* ExpandingGridViewController.m */; };
+		CB0B39781895D78800E639D0 /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39111895D78700E639D0 /* ImageGridViewCell.m */; };
+		CB0B39791895D78800E639D0 /* ExpanderDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39121895D78700E639D0 /* ExpanderDemoViewController.xib */; };
+		CB0B397A1895D78800E639D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39141895D78700E639D0 /* InfoPlist.strings */; };
+		CB0B397B1895D78800E639D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39161895D78700E639D0 /* MainWindow.xib */; };
+		CB0B397C1895D78800E639D0 /* ExpanderDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39181895D78700E639D0 /* ExpanderDemo-Info.plist */; };
+		CB0B397D1895D78800E639D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B391D1895D78700E639D0 /* main.m */; };
+		CB0B397E1895D78800E639D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB0B391F1895D78700E639D0 /* .gitignore */; };
+		CB0B397F1895D78800E639D0 /* ImageDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39221895D78700E639D0 /* ImageDemoAppDelegate.m */; };
+		CB0B39801895D78800E639D0 /* ImageDemoCellChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39241895D78700E639D0 /* ImageDemoCellChooser.m */; };
+		CB0B39811895D78800E639D0 /* ImageDemoFilledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39261895D78700E639D0 /* ImageDemoFilledCell.m */; };
+		CB0B39821895D78800E639D0 /* ImageDemoGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39281895D78700E639D0 /* ImageDemoGridViewCell.m */; };
+		CB0B39831895D78800E639D0 /* ImageDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B392A1895D78700E639D0 /* ImageDemoViewController.m */; };
+		CB0B39841895D78800E639D0 /* ImageDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB0B392B1895D78700E639D0 /* ImageDemo-Info.plist */; };
+		CB0B39851895D78800E639D0 /* ImageDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39301895D78700E639D0 /* ImageDemoViewController.xib */; };
+		CB0B39861895D78800E639D0 /* 3D-simplicity.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39321895D78700E639D0 /* 3D-simplicity.png */; };
+		CB0B39871895D78800E639D0 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39331895D78700E639D0 /* AppleTV-esque_by-mikelcroft_nl-1440.png */; };
+		CB0B39881895D78800E639D0 /* batman_surfing_on_superman.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39341895D78700E639D0 /* batman_surfing_on_superman.png */; };
+		CB0B39891895D78800E639D0 /* coffee-break_.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39351895D78700E639D0 /* coffee-break_.png */; };
+		CB0B398A1895D78800E639D0 /* colorful_1440x900.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39361895D78700E639D0 /* colorful_1440x900.png */; };
+		CB0B398B1895D78800E639D0 /* Composition53.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39371895D78700E639D0 /* Composition53.png */; };
+		CB0B398C1895D78800E639D0 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39381895D78700E639D0 /* Dragon.png */; };
+		CB0B398D1895D78800E639D0 /* eclipse.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39391895D78700E639D0 /* eclipse.png */; };
+		CB0B398E1895D78800E639D0 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B393A1895D78700E639D0 /* face.png */; };
+		CB0B398F1895D78800E639D0 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B393B1895D78700E639D0 /* focus.png */; };
+		CB0B39901895D78800E639D0 /* gbo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B393C1895D78700E639D0 /* gbo.png */; };
+		CB0B39911895D78800E639D0 /* Green_Plant_(2560x1600).png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B393D1895D78700E639D0 /* Green_Plant_(2560x1600).png */; };
+		CB0B39921895D78800E639D0 /* grounded.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B393E1895D78700E639D0 /* grounded.png */; };
+		CB0B39931895D78800E639D0 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B393F1895D78700E639D0 /* happy.png */; };
+		CB0B39941895D78800E639D0 /* LeatherHoles-Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39401895D78700E639D0 /* LeatherHoles-Apple.png */; };
+		CB0B39951895D78800E639D0 /* Let_it_snow_by_mj_coffeeholick.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39411895D78700E639D0 /* Let_it_snow_by_mj_coffeeholick.png */; };
+		CB0B39961895D78800E639D0 /* Luxury_Apple_by_Stratification.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39421895D78700E639D0 /* Luxury_Apple_by_Stratification.png */; };
+		CB0B39971895D78800E639D0 /* MacMini.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39431895D78700E639D0 /* MacMini.png */; };
+		CB0B39981895D78800E639D0 /* SlaveKingGod.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39441895D78700E639D0 /* SlaveKingGod.png */; };
+		CB0B39991895D78800E639D0 /* Snow_Leopard_by_vladstudio.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39451895D78700E639D0 /* Snow_Leopard_by_vladstudio.png */; };
+		CB0B399A1895D78800E639D0 /* Space Fold.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39461895D78700E639D0 /* Space Fold.png */; };
+		CB0B399B1895D78800E639D0 /* Stormcloud_Schmeisser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39471895D78700E639D0 /* Stormcloud_Schmeisser.png */; };
+		CB0B399C1895D78800E639D0 /* tiamat.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39481895D78700E639D0 /* tiamat.png */; };
+		CB0B399D1895D78800E639D0 /* WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39491895D78700E639D0 /* WTF.png */; };
+		CB0B399E1895D78800E639D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B394A1895D78700E639D0 /* main.m */; };
+		CB0B399F1895D78800E639D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0B394B1895D78700E639D0 /* MainWindow.xib */; };
+		CB0B39A01895D78800E639D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB0B394D1895D78700E639D0 /* .gitignore */; };
+		CB0B39A11895D78800E639D0 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B394E1895D78700E639D0 /* background.png */; };
+		CB0B39A21895D78800E639D0 /* SpringBoardAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39511895D78700E639D0 /* SpringBoardAppDelegate.m */; };
+		CB0B39A31895D78800E639D0 /* SpringBoardIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39531895D78700E639D0 /* SpringBoardIconCell.m */; };
+		CB0B39A41895D78800E639D0 /* SpringBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39551895D78700E639D0 /* SpringBoardViewController.m */; };
+		CB0B39A51895D78800E639D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0B39561895D78700E639D0 /* main.m */; };
+		CB0B39A61895D78800E639D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39571895D78700E639D0 /* MainWindow.xib */; };
+		CB0B39A71895D78800E639D0 /* SpringBoard-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39581895D78700E639D0 /* SpringBoard-Info.plist */; };
+		CB0B39A81895D78800E639D0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CB0B395D1895D78800E639D0 /* LICENSE */; };
+		CB0B39A91895D78800E639D0 /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = CB0B395E1895D78800E639D0 /* README.textile */; };
+		CB0B39AA1895D78800E639D0 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39601895D78800E639D0 /* AQGridSelection.png */; };
+		CB0B39AB1895D78800E639D0 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39611895D78800E639D0 /* AQGridSelectionGray.png */; };
+		CB0B39AC1895D78800E639D0 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39621895D78800E639D0 /* AQGridSelectionGrayBlue.png */; };
+		CB0B39AD1895D78800E639D0 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39631895D78800E639D0 /* AQGridSelectionGreen.png */; };
+		CB0B39AE1895D78800E639D0 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39641895D78800E639D0 /* AQGridSelectionRed.png */; };
+		CB0B39AF1895D78800E639D0 /* embed_png.sh in Resources */ = {isa = PBXBuildFile; fileRef = CB0B39661895D78800E639D0 /* embed_png.sh */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CB0B39B11895D78800E639D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0B38E71895D78700E639D0 /* AQGridView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = AQGridView;
+		};
+		CB0B39B41895D78800E639D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0B39191895D78700E639D0 /* ExpanderDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 38D6F06912197E62006909B6;
+			remoteInfo = ExpanderDemo;
+		};
+		CB0B39B71895D78800E639D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0B392C1895D78700E639D0 /* ImageDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = ImageDemo;
+		};
+		CB0B39BA1895D78800E639D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0B39591895D78700E639D0 /* SpringBoard.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = SpringBoard;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
@@ -72,6 +176,113 @@
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
+		CB0B38E61895D78700E639D0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CB0B38E71895D78700E639D0 /* AQGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = AQGridView.xcodeproj; sourceTree = "<group>"; };
+		CB0B38EA1895D78700E639D0 /* AQGridView.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = AQGridView.xcworkspace; sourceTree = "<group>"; };
+		CB0B38EB1895D78700E639D0 /* AQGridView_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView_Prefix.pch; sourceTree = "<group>"; };
+		CB0B38ED1895D78700E639D0 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
+		CB0B38EE1895D78700E639D0 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
+		CB0B38EF1895D78700E639D0 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView.h; sourceTree = "<group>"; };
+		CB0B38F01895D78700E639D0 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridView.m; sourceTree = "<group>"; };
+		CB0B38F11895D78700E639D0 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
+		CB0B38F21895D78700E639D0 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
+		CB0B38F31895D78700E639D0 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
+		CB0B38F41895D78700E639D0 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewCell.h; sourceTree = "<group>"; };
+		CB0B38F51895D78700E639D0 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewCell.m; sourceTree = "<group>"; };
+		CB0B38F61895D78700E639D0 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewController.h; sourceTree = "<group>"; };
+		CB0B38F71895D78700E639D0 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewController.m; sourceTree = "<group>"; };
+		CB0B38F81895D78700E639D0 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewData.h; sourceTree = "<group>"; };
+		CB0B38F91895D78700E639D0 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewData.m; sourceTree = "<group>"; };
+		CB0B38FA1895D78700E639D0 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
+		CB0B38FB1895D78700E639D0 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
+		CB0B38FC1895D78700E639D0 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateItem.h; sourceTree = "<group>"; };
+		CB0B38FD1895D78700E639D0 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateItem.m; sourceTree = "<group>"; };
+		CB0B38FE1895D78700E639D0 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
+		CB0B38FF1895D78700E639D0 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
+		CB0B39001895D78700E639D0 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
+		CB0B39011895D78700E639D0 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
+		CB0B39021895D78700E639D0 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
+		CB0B39031895D78700E639D0 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		CB0B39061895D78700E639D0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CB0B39081895D78700E639D0 /* ExpanderDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpanderDemoAppDelegate.h; sourceTree = "<group>"; };
+		CB0B39091895D78700E639D0 /* ExpanderDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpanderDemoAppDelegate.m; sourceTree = "<group>"; };
+		CB0B390A1895D78700E639D0 /* ExpanderDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpanderDemoViewController.h; sourceTree = "<group>"; };
+		CB0B390B1895D78700E639D0 /* ExpanderDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpanderDemoViewController.m; sourceTree = "<group>"; };
+		CB0B390C1895D78700E639D0 /* ExpandFromGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandFromGridViewCell.h; sourceTree = "<group>"; };
+		CB0B390D1895D78700E639D0 /* ExpandFromGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandFromGridViewCell.m; sourceTree = "<group>"; };
+		CB0B390E1895D78700E639D0 /* ExpandingGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingGridViewController.h; sourceTree = "<group>"; };
+		CB0B390F1895D78700E639D0 /* ExpandingGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandingGridViewController.m; sourceTree = "<group>"; };
+		CB0B39101895D78700E639D0 /* ImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGridViewCell.h; sourceTree = "<group>"; };
+		CB0B39111895D78700E639D0 /* ImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridViewCell.m; sourceTree = "<group>"; };
+		CB0B39131895D78700E639D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ExpanderDemoViewController.xib; sourceTree = "<group>"; };
+		CB0B39151895D78700E639D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB0B39171895D78700E639D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		CB0B39181895D78700E639D0 /* ExpanderDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ExpanderDemo-Info.plist"; sourceTree = "<group>"; };
+		CB0B39191895D78700E639D0 /* ExpanderDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ExpanderDemo.xcodeproj; sourceTree = "<group>"; };
+		CB0B391C1895D78700E639D0 /* ExpanderDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpanderDemo_Prefix.pch; sourceTree = "<group>"; };
+		CB0B391D1895D78700E639D0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB0B391F1895D78700E639D0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CB0B39211895D78700E639D0 /* ImageDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoAppDelegate.h; sourceTree = "<group>"; };
+		CB0B39221895D78700E639D0 /* ImageDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoAppDelegate.m; sourceTree = "<group>"; };
+		CB0B39231895D78700E639D0 /* ImageDemoCellChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoCellChooser.h; sourceTree = "<group>"; };
+		CB0B39241895D78700E639D0 /* ImageDemoCellChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoCellChooser.m; sourceTree = "<group>"; };
+		CB0B39251895D78700E639D0 /* ImageDemoFilledCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoFilledCell.h; sourceTree = "<group>"; };
+		CB0B39261895D78700E639D0 /* ImageDemoFilledCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoFilledCell.m; sourceTree = "<group>"; };
+		CB0B39271895D78700E639D0 /* ImageDemoGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoGridViewCell.h; sourceTree = "<group>"; };
+		CB0B39281895D78700E639D0 /* ImageDemoGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoGridViewCell.m; sourceTree = "<group>"; };
+		CB0B39291895D78700E639D0 /* ImageDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoViewController.h; sourceTree = "<group>"; };
+		CB0B392A1895D78700E639D0 /* ImageDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoViewController.m; sourceTree = "<group>"; };
+		CB0B392B1895D78700E639D0 /* ImageDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ImageDemo-Info.plist"; sourceTree = "<group>"; };
+		CB0B392C1895D78700E639D0 /* ImageDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ImageDemo.xcodeproj; sourceTree = "<group>"; };
+		CB0B392F1895D78700E639D0 /* ImageDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemo_Prefix.pch; sourceTree = "<group>"; };
+		CB0B39301895D78700E639D0 /* ImageDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageDemoViewController.xib; sourceTree = "<group>"; };
+		CB0B39321895D78700E639D0 /* 3D-simplicity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3D-simplicity.png"; sourceTree = "<group>"; };
+		CB0B39331895D78700E639D0 /* AppleTV-esque_by-mikelcroft_nl-1440.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleTV-esque_by-mikelcroft_nl-1440.png"; sourceTree = "<group>"; };
+		CB0B39341895D78700E639D0 /* batman_surfing_on_superman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batman_surfing_on_superman.png; sourceTree = "<group>"; };
+		CB0B39351895D78700E639D0 /* coffee-break_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coffee-break_.png"; sourceTree = "<group>"; };
+		CB0B39361895D78700E639D0 /* colorful_1440x900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorful_1440x900.png; sourceTree = "<group>"; };
+		CB0B39371895D78700E639D0 /* Composition53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Composition53.png; sourceTree = "<group>"; };
+		CB0B39381895D78700E639D0 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dragon.png; sourceTree = "<group>"; };
+		CB0B39391895D78700E639D0 /* eclipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eclipse.png; sourceTree = "<group>"; };
+		CB0B393A1895D78700E639D0 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
+		CB0B393B1895D78700E639D0 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = focus.png; sourceTree = "<group>"; };
+		CB0B393C1895D78700E639D0 /* gbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbo.png; sourceTree = "<group>"; };
+		CB0B393D1895D78700E639D0 /* Green_Plant_(2560x1600).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green_Plant_(2560x1600).png"; sourceTree = "<group>"; };
+		CB0B393E1895D78700E639D0 /* grounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grounded.png; sourceTree = "<group>"; };
+		CB0B393F1895D78700E639D0 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy.png; sourceTree = "<group>"; };
+		CB0B39401895D78700E639D0 /* LeatherHoles-Apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LeatherHoles-Apple.png"; sourceTree = "<group>"; };
+		CB0B39411895D78700E639D0 /* Let_it_snow_by_mj_coffeeholick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Let_it_snow_by_mj_coffeeholick.png; sourceTree = "<group>"; };
+		CB0B39421895D78700E639D0 /* Luxury_Apple_by_Stratification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Luxury_Apple_by_Stratification.png; sourceTree = "<group>"; };
+		CB0B39431895D78700E639D0 /* MacMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MacMini.png; sourceTree = "<group>"; };
+		CB0B39441895D78700E639D0 /* SlaveKingGod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SlaveKingGod.png; sourceTree = "<group>"; };
+		CB0B39451895D78700E639D0 /* Snow_Leopard_by_vladstudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snow_Leopard_by_vladstudio.png; sourceTree = "<group>"; };
+		CB0B39461895D78700E639D0 /* Space Fold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Space Fold.png"; sourceTree = "<group>"; };
+		CB0B39471895D78700E639D0 /* Stormcloud_Schmeisser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stormcloud_Schmeisser.png; sourceTree = "<group>"; };
+		CB0B39481895D78700E639D0 /* tiamat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiamat.png; sourceTree = "<group>"; };
+		CB0B39491895D78700E639D0 /* WTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WTF.png; sourceTree = "<group>"; };
+		CB0B394A1895D78700E639D0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB0B394B1895D78700E639D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		CB0B394D1895D78700E639D0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CB0B394E1895D78700E639D0 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		CB0B39501895D78700E639D0 /* SpringBoardAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardAppDelegate.h; sourceTree = "<group>"; };
+		CB0B39511895D78700E639D0 /* SpringBoardAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardAppDelegate.m; sourceTree = "<group>"; };
+		CB0B39521895D78700E639D0 /* SpringBoardIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardIconCell.h; sourceTree = "<group>"; };
+		CB0B39531895D78700E639D0 /* SpringBoardIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardIconCell.m; sourceTree = "<group>"; };
+		CB0B39541895D78700E639D0 /* SpringBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardViewController.h; sourceTree = "<group>"; };
+		CB0B39551895D78700E639D0 /* SpringBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardViewController.m; sourceTree = "<group>"; };
+		CB0B39561895D78700E639D0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB0B39571895D78700E639D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		CB0B39581895D78700E639D0 /* SpringBoard-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SpringBoard-Info.plist"; sourceTree = "<group>"; };
+		CB0B39591895D78700E639D0 /* SpringBoard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpringBoard.xcodeproj; sourceTree = "<group>"; };
+		CB0B395C1895D78800E639D0 /* SpringBoard_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoard_Prefix.pch; sourceTree = "<group>"; };
+		CB0B395D1895D78800E639D0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CB0B395E1895D78800E639D0 /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
+		CB0B39601895D78800E639D0 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelection.png; sourceTree = "<group>"; };
+		CB0B39611895D78800E639D0 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGray.png; sourceTree = "<group>"; };
+		CB0B39621895D78800E639D0 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
+		CB0B39631895D78800E639D0 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGreen.png; sourceTree = "<group>"; };
+		CB0B39641895D78800E639D0 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CB0B39661895D78800E639D0 /* embed_png.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = embed_png.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +372,7 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
+				CB0B38E51895D78700E639D0 /* AQGridView */,
 				C7AF899C1850D4B000F6A093 /* Api Provided Files */,
 				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
@@ -207,6 +419,241 @@
 			name = "Api Provided Files";
 			sourceTree = "<group>";
 		};
+		CB0B38E51895D78700E639D0 /* AQGridView */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B38E61895D78700E639D0 /* .gitignore */,
+				CB0B38E71895D78700E639D0 /* AQGridView.xcodeproj */,
+				CB0B38EA1895D78700E639D0 /* AQGridView.xcworkspace */,
+				CB0B38EB1895D78700E639D0 /* AQGridView_Prefix.pch */,
+				CB0B38EC1895D78700E639D0 /* Classes */,
+				CB0B39041895D78700E639D0 /* Examples */,
+				CB0B395D1895D78800E639D0 /* LICENSE */,
+				CB0B395E1895D78800E639D0 /* README.textile */,
+				CB0B395F1895D78800E639D0 /* Resources */,
+				CB0B39651895D78800E639D0 /* Scripts */,
+			);
+			name = AQGridView;
+			path = ../../../Documents/AQGridView;
+			sourceTree = "<group>";
+		};
+		CB0B38E81895D78700E639D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39B21895D78800E639D0 /* libAQGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB0B38EC1895D78700E639D0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B38ED1895D78700E639D0 /* AQGridView+CellLayout.h */,
+				CB0B38EE1895D78700E639D0 /* AQGridView+CellLocationDelegation.h */,
+				CB0B38EF1895D78700E639D0 /* AQGridView.h */,
+				CB0B38F01895D78700E639D0 /* AQGridView.m */,
+				CB0B38F11895D78700E639D0 /* AQGridViewAnimatorItem.h */,
+				CB0B38F21895D78700E639D0 /* AQGridViewAnimatorItem.m */,
+				CB0B38F31895D78700E639D0 /* AQGridViewCell+AQGridViewCellPrivate.h */,
+				CB0B38F41895D78700E639D0 /* AQGridViewCell.h */,
+				CB0B38F51895D78700E639D0 /* AQGridViewCell.m */,
+				CB0B38F61895D78700E639D0 /* AQGridViewController.h */,
+				CB0B38F71895D78700E639D0 /* AQGridViewController.m */,
+				CB0B38F81895D78700E639D0 /* AQGridViewData.h */,
+				CB0B38F91895D78700E639D0 /* AQGridViewData.m */,
+				CB0B38FA1895D78700E639D0 /* AQGridViewUpdateInfo.h */,
+				CB0B38FB1895D78700E639D0 /* AQGridViewUpdateInfo.m */,
+				CB0B38FC1895D78700E639D0 /* AQGridViewUpdateItem.h */,
+				CB0B38FD1895D78700E639D0 /* AQGridViewUpdateItem.m */,
+				CB0B38FE1895D78700E639D0 /* NSIndexSet+AQIndexesOutsideSet.h */,
+				CB0B38FF1895D78700E639D0 /* NSIndexSet+AQIndexesOutsideSet.m */,
+				CB0B39001895D78700E639D0 /* NSIndexSet+AQIsSetContiguous.h */,
+				CB0B39011895D78700E639D0 /* NSIndexSet+AQIsSetContiguous.m */,
+				CB0B39021895D78700E639D0 /* UIColor+AQGridView.h */,
+				CB0B39031895D78700E639D0 /* UIColor+AQGridView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CB0B39041895D78700E639D0 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39051895D78700E639D0 /* ExpanderDemo */,
+				CB0B391E1895D78700E639D0 /* ImageDemo */,
+				CB0B394C1895D78700E639D0 /* SpringBoard */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		CB0B39051895D78700E639D0 /* ExpanderDemo */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39061895D78700E639D0 /* .gitignore */,
+				CB0B39071895D78700E639D0 /* Classes */,
+				CB0B39121895D78700E639D0 /* ExpanderDemoViewController.xib */,
+				CB0B39141895D78700E639D0 /* InfoPlist.strings */,
+				CB0B39161895D78700E639D0 /* MainWindow.xib */,
+				CB0B39181895D78700E639D0 /* ExpanderDemo-Info.plist */,
+				CB0B39191895D78700E639D0 /* ExpanderDemo.xcodeproj */,
+				CB0B391C1895D78700E639D0 /* ExpanderDemo_Prefix.pch */,
+				CB0B391D1895D78700E639D0 /* main.m */,
+			);
+			path = ExpanderDemo;
+			sourceTree = "<group>";
+		};
+		CB0B39071895D78700E639D0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39081895D78700E639D0 /* ExpanderDemoAppDelegate.h */,
+				CB0B39091895D78700E639D0 /* ExpanderDemoAppDelegate.m */,
+				CB0B390A1895D78700E639D0 /* ExpanderDemoViewController.h */,
+				CB0B390B1895D78700E639D0 /* ExpanderDemoViewController.m */,
+				CB0B390C1895D78700E639D0 /* ExpandFromGridViewCell.h */,
+				CB0B390D1895D78700E639D0 /* ExpandFromGridViewCell.m */,
+				CB0B390E1895D78700E639D0 /* ExpandingGridViewController.h */,
+				CB0B390F1895D78700E639D0 /* ExpandingGridViewController.m */,
+				CB0B39101895D78700E639D0 /* ImageGridViewCell.h */,
+				CB0B39111895D78700E639D0 /* ImageGridViewCell.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CB0B391A1895D78700E639D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39B51895D78800E639D0 /* ExpanderDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB0B391E1895D78700E639D0 /* ImageDemo */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B391F1895D78700E639D0 /* .gitignore */,
+				CB0B39201895D78700E639D0 /* Classes */,
+				CB0B392B1895D78700E639D0 /* ImageDemo-Info.plist */,
+				CB0B392C1895D78700E639D0 /* ImageDemo.xcodeproj */,
+				CB0B392F1895D78700E639D0 /* ImageDemo_Prefix.pch */,
+				CB0B39301895D78700E639D0 /* ImageDemoViewController.xib */,
+				CB0B39311895D78700E639D0 /* Images */,
+				CB0B394A1895D78700E639D0 /* main.m */,
+				CB0B394B1895D78700E639D0 /* MainWindow.xib */,
+			);
+			path = ImageDemo;
+			sourceTree = "<group>";
+		};
+		CB0B39201895D78700E639D0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39211895D78700E639D0 /* ImageDemoAppDelegate.h */,
+				CB0B39221895D78700E639D0 /* ImageDemoAppDelegate.m */,
+				CB0B39231895D78700E639D0 /* ImageDemoCellChooser.h */,
+				CB0B39241895D78700E639D0 /* ImageDemoCellChooser.m */,
+				CB0B39251895D78700E639D0 /* ImageDemoFilledCell.h */,
+				CB0B39261895D78700E639D0 /* ImageDemoFilledCell.m */,
+				CB0B39271895D78700E639D0 /* ImageDemoGridViewCell.h */,
+				CB0B39281895D78700E639D0 /* ImageDemoGridViewCell.m */,
+				CB0B39291895D78700E639D0 /* ImageDemoViewController.h */,
+				CB0B392A1895D78700E639D0 /* ImageDemoViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CB0B392D1895D78700E639D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39B81895D78800E639D0 /* ImageDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB0B39311895D78700E639D0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39321895D78700E639D0 /* 3D-simplicity.png */,
+				CB0B39331895D78700E639D0 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
+				CB0B39341895D78700E639D0 /* batman_surfing_on_superman.png */,
+				CB0B39351895D78700E639D0 /* coffee-break_.png */,
+				CB0B39361895D78700E639D0 /* colorful_1440x900.png */,
+				CB0B39371895D78700E639D0 /* Composition53.png */,
+				CB0B39381895D78700E639D0 /* Dragon.png */,
+				CB0B39391895D78700E639D0 /* eclipse.png */,
+				CB0B393A1895D78700E639D0 /* face.png */,
+				CB0B393B1895D78700E639D0 /* focus.png */,
+				CB0B393C1895D78700E639D0 /* gbo.png */,
+				CB0B393D1895D78700E639D0 /* Green_Plant_(2560x1600).png */,
+				CB0B393E1895D78700E639D0 /* grounded.png */,
+				CB0B393F1895D78700E639D0 /* happy.png */,
+				CB0B39401895D78700E639D0 /* LeatherHoles-Apple.png */,
+				CB0B39411895D78700E639D0 /* Let_it_snow_by_mj_coffeeholick.png */,
+				CB0B39421895D78700E639D0 /* Luxury_Apple_by_Stratification.png */,
+				CB0B39431895D78700E639D0 /* MacMini.png */,
+				CB0B39441895D78700E639D0 /* SlaveKingGod.png */,
+				CB0B39451895D78700E639D0 /* Snow_Leopard_by_vladstudio.png */,
+				CB0B39461895D78700E639D0 /* Space Fold.png */,
+				CB0B39471895D78700E639D0 /* Stormcloud_Schmeisser.png */,
+				CB0B39481895D78700E639D0 /* tiamat.png */,
+				CB0B39491895D78700E639D0 /* WTF.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		CB0B394C1895D78700E639D0 /* SpringBoard */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B394D1895D78700E639D0 /* .gitignore */,
+				CB0B394E1895D78700E639D0 /* background.png */,
+				CB0B394F1895D78700E639D0 /* Classes */,
+				CB0B39561895D78700E639D0 /* main.m */,
+				CB0B39571895D78700E639D0 /* MainWindow.xib */,
+				CB0B39581895D78700E639D0 /* SpringBoard-Info.plist */,
+				CB0B39591895D78700E639D0 /* SpringBoard.xcodeproj */,
+				CB0B395C1895D78800E639D0 /* SpringBoard_Prefix.pch */,
+			);
+			path = SpringBoard;
+			sourceTree = "<group>";
+		};
+		CB0B394F1895D78700E639D0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39501895D78700E639D0 /* SpringBoardAppDelegate.h */,
+				CB0B39511895D78700E639D0 /* SpringBoardAppDelegate.m */,
+				CB0B39521895D78700E639D0 /* SpringBoardIconCell.h */,
+				CB0B39531895D78700E639D0 /* SpringBoardIconCell.m */,
+				CB0B39541895D78700E639D0 /* SpringBoardViewController.h */,
+				CB0B39551895D78700E639D0 /* SpringBoardViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CB0B395A1895D78700E639D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39BB1895D78800E639D0 /* SpringBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB0B395F1895D78800E639D0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39601895D78800E639D0 /* AQGridSelection.png */,
+				CB0B39611895D78800E639D0 /* AQGridSelectionGray.png */,
+				CB0B39621895D78800E639D0 /* AQGridSelectionGrayBlue.png */,
+				CB0B39631895D78800E639D0 /* AQGridSelectionGreen.png */,
+				CB0B39641895D78800E639D0 /* AQGridSelectionRed.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CB0B39651895D78800E639D0 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B39661895D78800E639D0 /* embed_png.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,12 +698,61 @@
 			mainGroup = C762B692181DB7B500EB3674;
 			productRefGroup = C762B69C181DB7B500EB3674 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CB0B38E81895D78700E639D0 /* Products */;
+					ProjectRef = CB0B38E71895D78700E639D0 /* AQGridView.xcodeproj */;
+				},
+				{
+					ProductGroup = CB0B391A1895D78700E639D0 /* Products */;
+					ProjectRef = CB0B39191895D78700E639D0 /* ExpanderDemo.xcodeproj */;
+				},
+				{
+					ProductGroup = CB0B392D1895D78700E639D0 /* Products */;
+					ProjectRef = CB0B392C1895D78700E639D0 /* ImageDemo.xcodeproj */;
+				},
+				{
+					ProductGroup = CB0B395A1895D78700E639D0 /* Products */;
+					ProjectRef = CB0B39591895D78700E639D0 /* SpringBoard.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C762B69A181DB7B500EB3674 /* StemNotebook */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CB0B39B21895D78800E639D0 /* libAQGridView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAQGridView.a;
+			remoteRef = CB0B39B11895D78800E639D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB0B39B51895D78800E639D0 /* ExpanderDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ExpanderDemo.app;
+			remoteRef = CB0B39B41895D78800E639D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB0B39B81895D78800E639D0 /* ImageDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ImageDemo.app;
+			remoteRef = CB0B39B71895D78800E639D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB0B39BB1895D78800E639D0 /* SpringBoard.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SpringBoard.app;
+			remoteRef = CB0B39BA1895D78800E639D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C762B699181DB7B500EB3674 /* Resources */ = {
@@ -272,6 +768,53 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
+				CB0B39671895D78800E639D0 /* .gitignore in Resources */,
+				CB0B39681895D78800E639D0 /* AQGridView.xcworkspace in Resources */,
+				CB0B39731895D78800E639D0 /* .gitignore in Resources */,
+				CB0B39791895D78800E639D0 /* ExpanderDemoViewController.xib in Resources */,
+				CB0B397A1895D78800E639D0 /* InfoPlist.strings in Resources */,
+				CB0B397B1895D78800E639D0 /* MainWindow.xib in Resources */,
+				CB0B397C1895D78800E639D0 /* ExpanderDemo-Info.plist in Resources */,
+				CB0B397E1895D78800E639D0 /* .gitignore in Resources */,
+				CB0B39841895D78800E639D0 /* ImageDemo-Info.plist in Resources */,
+				CB0B39851895D78800E639D0 /* ImageDemoViewController.xib in Resources */,
+				CB0B39861895D78800E639D0 /* 3D-simplicity.png in Resources */,
+				CB0B39871895D78800E639D0 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */,
+				CB0B39881895D78800E639D0 /* batman_surfing_on_superman.png in Resources */,
+				CB0B39891895D78800E639D0 /* coffee-break_.png in Resources */,
+				CB0B398A1895D78800E639D0 /* colorful_1440x900.png in Resources */,
+				CB0B398B1895D78800E639D0 /* Composition53.png in Resources */,
+				CB0B398C1895D78800E639D0 /* Dragon.png in Resources */,
+				CB0B398D1895D78800E639D0 /* eclipse.png in Resources */,
+				CB0B398E1895D78800E639D0 /* face.png in Resources */,
+				CB0B398F1895D78800E639D0 /* focus.png in Resources */,
+				CB0B39901895D78800E639D0 /* gbo.png in Resources */,
+				CB0B39911895D78800E639D0 /* Green_Plant_(2560x1600).png in Resources */,
+				CB0B39921895D78800E639D0 /* grounded.png in Resources */,
+				CB0B39931895D78800E639D0 /* happy.png in Resources */,
+				CB0B39941895D78800E639D0 /* LeatherHoles-Apple.png in Resources */,
+				CB0B39951895D78800E639D0 /* Let_it_snow_by_mj_coffeeholick.png in Resources */,
+				CB0B39961895D78800E639D0 /* Luxury_Apple_by_Stratification.png in Resources */,
+				CB0B39971895D78800E639D0 /* MacMini.png in Resources */,
+				CB0B39981895D78800E639D0 /* SlaveKingGod.png in Resources */,
+				CB0B39991895D78800E639D0 /* Snow_Leopard_by_vladstudio.png in Resources */,
+				CB0B399A1895D78800E639D0 /* Space Fold.png in Resources */,
+				CB0B399B1895D78800E639D0 /* Stormcloud_Schmeisser.png in Resources */,
+				CB0B399C1895D78800E639D0 /* tiamat.png in Resources */,
+				CB0B399D1895D78800E639D0 /* WTF.png in Resources */,
+				CB0B399F1895D78800E639D0 /* MainWindow.xib in Resources */,
+				CB0B39A01895D78800E639D0 /* .gitignore in Resources */,
+				CB0B39A11895D78800E639D0 /* background.png in Resources */,
+				CB0B39A61895D78800E639D0 /* MainWindow.xib in Resources */,
+				CB0B39A71895D78800E639D0 /* SpringBoard-Info.plist in Resources */,
+				CB0B39A81895D78800E639D0 /* LICENSE in Resources */,
+				CB0B39A91895D78800E639D0 /* README.textile in Resources */,
+				CB0B39AA1895D78800E639D0 /* AQGridSelection.png in Resources */,
+				CB0B39AB1895D78800E639D0 /* AQGridSelectionGray.png in Resources */,
+				CB0B39AC1895D78800E639D0 /* AQGridSelectionGrayBlue.png in Resources */,
+				CB0B39AD1895D78800E639D0 /* AQGridSelectionGreen.png in Resources */,
+				CB0B39AE1895D78800E639D0 /* AQGridSelectionRed.png in Resources */,
+				CB0B39AF1895D78800E639D0 /* embed_png.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +834,32 @@
 				C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */,
+				CB0B39691895D78800E639D0 /* AQGridView.m in Sources */,
+				CB0B396A1895D78800E639D0 /* AQGridViewAnimatorItem.m in Sources */,
+				CB0B396B1895D78800E639D0 /* AQGridViewCell.m in Sources */,
+				CB0B396C1895D78800E639D0 /* AQGridViewController.m in Sources */,
+				CB0B396D1895D78800E639D0 /* AQGridViewData.m in Sources */,
+				CB0B396E1895D78800E639D0 /* AQGridViewUpdateInfo.m in Sources */,
+				CB0B396F1895D78800E639D0 /* AQGridViewUpdateItem.m in Sources */,
+				CB0B39701895D78800E639D0 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
+				CB0B39711895D78800E639D0 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				CB0B39721895D78800E639D0 /* UIColor+AQGridView.m in Sources */,
+				CB0B39741895D78800E639D0 /* ExpanderDemoAppDelegate.m in Sources */,
+				CB0B39751895D78800E639D0 /* ExpanderDemoViewController.m in Sources */,
+				CB0B39761895D78800E639D0 /* ExpandFromGridViewCell.m in Sources */,
+				CB0B39771895D78800E639D0 /* ExpandingGridViewController.m in Sources */,
+				CB0B39781895D78800E639D0 /* ImageGridViewCell.m in Sources */,
+				CB0B397D1895D78800E639D0 /* main.m in Sources */,
+				CB0B397F1895D78800E639D0 /* ImageDemoAppDelegate.m in Sources */,
+				CB0B39801895D78800E639D0 /* ImageDemoCellChooser.m in Sources */,
+				CB0B39811895D78800E639D0 /* ImageDemoFilledCell.m in Sources */,
+				CB0B39821895D78800E639D0 /* ImageDemoGridViewCell.m in Sources */,
+				CB0B39831895D78800E639D0 /* ImageDemoViewController.m in Sources */,
+				CB0B399E1895D78800E639D0 /* main.m in Sources */,
+				CB0B39A21895D78800E639D0 /* SpringBoardAppDelegate.m in Sources */,
+				CB0B39A31895D78800E639D0 /* SpringBoardIconCell.m in Sources */,
+				CB0B39A41895D78800E639D0 /* SpringBoardViewController.m in Sources */,
+				CB0B39A51895D78800E639D0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +880,30 @@
 				C762B6BA181DB7B500EB3674 /* en */,
 			);
 			name = NotebookViewController.xib;
+			sourceTree = "<group>";
+		};
+		CB0B39121895D78700E639D0 /* ExpanderDemoViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB0B39131895D78700E639D0 /* en */,
+			);
+			name = ExpanderDemoViewController.xib;
+			sourceTree = "<group>";
+		};
+		CB0B39141895D78700E639D0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB0B39151895D78700E639D0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CB0B39161895D78700E639D0 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB0B39171895D78700E639D0 /* en */,
+			);
+			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
