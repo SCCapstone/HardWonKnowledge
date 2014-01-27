@@ -372,7 +372,7 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
-				CB0B38E51895D78700E639D0 /* AQGridView */,
+				CB0B39BC1895D90000E639D0 /* Bookshelf */,
 				C7AF899C1850D4B000F6A093 /* Api Provided Files */,
 				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
@@ -652,6 +652,14 @@
 				CB0B39661895D78800E639D0 /* embed_png.sh */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		CB0B39BC1895D90000E639D0 /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B38E51895D78700E639D0 /* AQGridView */,
+			);
+			name = Bookshelf;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
