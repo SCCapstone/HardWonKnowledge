@@ -33,7 +33,7 @@
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 			<object class="IBUIView" id="646892346">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIButton" id="522712822">
@@ -41,7 +41,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 20}, {78, 44}}</string>
 						<reference key="NSSuperview" ref="646892346"/>
-						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="326745312"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -76,7 +76,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 71}, {79, 44}}</string>
 						<reference key="NSSuperview" ref="646892346"/>
-						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="15104479"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -95,7 +95,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 122}, {78, 44}}</string>
 						<reference key="NSSuperview" ref="646892346"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -114,7 +113,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{680, 20}, {68, 44}}</string>
 						<reference key="NSSuperview" ref="646892346"/>
-						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="261231873"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -128,10 +127,26 @@
 						<reference key="IBUIFontDescription" ref="810882881"/>
 						<reference key="IBUIFont" ref="196848326"/>
 					</object>
+					<object class="IBUIButton" id="22270643">
+						<reference key="NSNextResponder" ref="646892346"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{674, 71}, {81, 44}}</string>
+						<reference key="NSSuperview" ref="646892346"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<reference key="IBUINormalTitleColor" ref="358354866"/>
+						<reference key="IBUIHighlightedTitleColor" ref="761913917"/>
+						<string key="IBUINormalTitle">Log Out</string>
+						<reference key="IBUINormalTitleShadowColor" ref="751632014"/>
+						<reference key="IBUIFontDescription" ref="810882881"/>
+						<reference key="IBUIFont" ref="196848326"/>
+					</object>
 				</array>
 				<string key="NSFrameSize">{768, 256}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="522712822"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -182,6 +197,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<string key="id">PQx-w6-EDe</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">logoutButtonClicked:</string>
+						<reference key="source" ref="22270643"/>
+						<reference key="destination" ref="991348919"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<string key="id">Nab-DH-qnP</string>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -435,6 +459,22 @@
 						<reference key="object" ref="243538017"/>
 						<reference key="parent" ref="646892346"/>
 					</object>
+					<object class="IBObjectRecord">
+						<string key="id">qcb-YH-gfn</string>
+						<reference key="object" ref="22270643"/>
+						<array class="NSMutableArray" key="children"/>
+						<reference key="parent" ref="646892346"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">zzo-nr-Vra</string>
+						<reference key="object" ref="976489475"/>
+						<reference key="parent" ref="646892346"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">b1R-UO-0lL</string>
+						<reference key="object" ref="686933050"/>
+						<reference key="parent" ref="646892346"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -456,6 +496,8 @@
 					<reference ref="394331331"/>
 					<reference ref="243538017"/>
 					<reference ref="489520295"/>
+					<reference ref="686933050"/>
+					<reference ref="976489475"/>
 				</array>
 				<boolean value="NO" key="1.showNotes"/>
 				<string key="6s7-zm-EWC.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -469,12 +511,16 @@
 				<boolean value="NO" key="Tei-cQ-QwG.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="Zcx-O7-aqd.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="aI4-Qt-N2q.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="b1R-UO-0lL.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="d5v-Vt-sTS.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<boolean value="NO" key="d5v-Vt-sTS.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="gN0-4j-EVx.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="laP-97-a8Z.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<boolean value="NO" key="laP-97-a8Z.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
+				<string key="qcb-YH-gfn.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<boolean value="NO" key="qcb-YH-gfn.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="wh8-Mj-Slg.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="zzo-nr-Vra.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>

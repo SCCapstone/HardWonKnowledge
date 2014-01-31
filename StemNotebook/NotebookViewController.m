@@ -150,8 +150,12 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 
 - (void)loginButtonClicked
 {
-    if (!self.isAuthorized) {
+    if (![self isAuthorized])
+    {
         // Sign in.
+        
+        
+        
         SEL finishedSelector = @selector(viewController:finishedWithAuth:error:);
         GTMOAuth2ViewControllerTouch *authViewController =
         [[GTMOAuth2ViewControllerTouch alloc] initWithScope:kGTLAuthScopeDriveFile
@@ -162,8 +166,23 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                            finishedSelector:finishedSelector];
         [self presentModalViewController:authViewController
                                 animated:YES];
+    } else {
+        [self showAlert:@"Logged In" message:@"You are already logged in."];
     }
 
+}
+
+- (void)logoutButtonClicked
+{
+    if ([self isAuthorized])
+    {
+        [GTMOAuth2ViewControllerTouch removeAuthFromKeychainForName:kKeychainItemName];
+        [[self driveService] setAuthorizer:nil];
+        [self showAlert:@"Log Out" message:@"You have been logged out."];
+    } else {
+        [self showAlert:@"Not Logged In" message:@"You are currently  not logged in."];
+
+    }
 }
 
 - (BOOL)isAuthorized
@@ -268,6 +287,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
       finishedWithAuth:(GTMOAuth2Authentication *)authResult
                  error:(NSError *)error
 {
+    [self dismissModalViewControllerAnimated:YES];
     if (error != nil)
     {
         [self showAlert:@"Authentication Error" message:error.localizedDescription];
@@ -275,6 +295,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     }
     else
     {
+        
         self.driveService.authorizer = authResult;
     }
 }
