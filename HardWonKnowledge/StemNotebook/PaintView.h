@@ -22,9 +22,8 @@
     @property (nonatomic) int current;
 
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen;
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
-//- (void)changeAlphaWithNumber:(float)number;
 - (void)saveImageView;
 - (void)loadImageView;
 - (void)nextPage;

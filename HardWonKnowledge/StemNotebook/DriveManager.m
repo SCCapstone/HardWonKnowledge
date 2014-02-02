@@ -148,6 +148,46 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   }];
 }
 
+- (GTLDriveFileList *)listDriveFiles {
+    NSString *search = @"title contains 'Stem Notebook Upload'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    __block GTLDriveFileList *list = nil;
+    [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            //Good
+            for (GTLDriveFile *file in files) {
+                NSLog(@"Drive File: %@",file.title);
+            }
+            list = files;
+        } else {
+            NSLog (@"An Error has occurred: %@", error);
+        }
+    }];
+    return list;
+}
+
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file
+{
+    //Get Download Path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
+    
+    //Setup HTTP Fetcher
+    GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
+    fetcher.downloadPath = viewPath;
+    
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error == nil) {
+            //Save file to disk
+            NSLog(@"Retrieved file content");
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+    return viewPath;
+}
 
 - (UIAlertView*)showWaitIndicator:(NSString *)title
 {

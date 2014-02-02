@@ -105,11 +105,12 @@
     }
 }
 
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
     self.red = newRed;
     self.blue = newBlue;
     self.green = newGreen;
+    self.alpha = newAlpha;
 }
 
 
@@ -118,11 +119,7 @@
     self.brush = number;
 }
 
-//- (void)changeAlphaWithNumber:(float)number
-//{
-//    self.alpha = number;
-//}
-
+//save the notebook to a file
 - (void)saveImageView
 {
     NSLog(@"Save Image View Called");

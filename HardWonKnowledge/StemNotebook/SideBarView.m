@@ -27,12 +27,13 @@
 - (IBAction)menuButtonPressed:(id)sender {
     [self.delegate showMenuSubmenu];
 }
-- (IBAction)nextPage:(id)sender {
+- (IBAction)nextButtonPressed:(id)sender {
     [self.delegate nextPage];
 }
-- (IBAction)previousPage:(id)sender {
+- (IBAction)previousButtonPressed:(id)sender {
     [self.delegate previousPage];
 }
+
 
 
 /*

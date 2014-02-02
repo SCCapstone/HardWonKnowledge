@@ -14,7 +14,7 @@
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "NotebookViewDelegate.h"
 #import "GTLDrive.h"
-#import "Notebook.h"
+#import "DriveManager.h"
 
 @interface NotebookViewController : UIViewController <NotebookViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -25,6 +25,6 @@
 @property (strong, nonatomic) IBOutlet PaintView *paintView;
 @property (strong, nonatomic) IBOutlet SideBarView *sideBarView;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
-@property (strong, nonatomic) Notebook *notebook;
+@property (nonatomic, retain) DriveManager *driveManager;
 
 @end

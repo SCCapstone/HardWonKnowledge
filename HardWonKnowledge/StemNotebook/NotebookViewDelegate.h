@@ -11,16 +11,23 @@
 @protocol NotebookViewDelegate <NSObject>
 
 - (void)PaintViewButtonPressed;
-- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen;
+- (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
-//- (void)changeAlphaWithNumber:(float)number;
+
+
+
+-(void)nextPage;
+-(void)previousPage;
+
+
+
+
 - (void)showPaintSubmenu;
 - (void)showMenuSubmenu;
 - (void)encodePaintView;
 - (void)decodePaintView;
 - (void)uploadButtonClicked;
 - (void)loginButtonClicked;
-- (void)nextPage;
-- (void)previousPage;
+- (void)logoutButtonClicked;
 
 @end
