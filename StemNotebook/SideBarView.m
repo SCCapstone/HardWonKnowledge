@@ -27,14 +27,9 @@
 - (IBAction)menuButtonPressed:(id)sender {
     [self.delegate showMenuSubmenu];
 }
-
-
-
-
 - (IBAction)nextButtonPressed:(id)sender {
     [self.delegate nextPage];
 }
-
 - (IBAction)previousButtonPressed:(id)sender {
     [self.delegate previousPage];
 }

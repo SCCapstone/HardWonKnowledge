@@ -99,11 +99,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView changeBrushWithNumber:number];
 }
 
-
-
-
-
-
 - (void)nextPage
 {
     [self.paintView nextPage];
@@ -113,13 +108,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 {
     [self.paintView previousPage];
 }
-
-
-
-
-
-
-
 
 -(void)encodePaintView
 {

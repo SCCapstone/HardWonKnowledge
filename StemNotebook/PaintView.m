@@ -27,7 +27,6 @@
     
     if (self = [super initWithCoder:aDecoder])
     {
-        
         [self setMultipleTouchEnabled:NO]; // (2)
         current = 0;
         
@@ -39,27 +38,8 @@
             [pages addObject:drawImage];
         }
         
-        
-        
-        
-        
-        
-        
-        //self.drawImage = [[UIImageView alloc] initWithImage:nil];
-        //self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        
-        
-        //[self addSubview:[pages objectAtIndex:current]];
-        
         self.drawImage = [pages objectAtIndex:current];
         [self addSubview:self.drawImage];
-        
-        
-        
-        
-        
-        
-        
         self.backgroundColor = [UIColor whiteColor];
         self.red=0.0;
         self.blue = 0.0;
@@ -89,8 +69,6 @@
     
     [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     
-    
-    
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
     CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
@@ -99,20 +77,8 @@
     CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
     CGContextStrokePath(UIGraphicsGetCurrentContext());
     
-    
-   
     self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    
-  //  [pages objectAtIndex:current].image;
-    
-    
-    //[pages objectAtIndex:current].image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    
-    
-    
     UIGraphicsEndImageContext();
-    
     self.lastPoint = currentPoint;
     
     
@@ -187,32 +153,35 @@
 
 -(void)nextPage
 {
-    current = current +1 %25;
-    //[self addSubview:[pages objectAtIndex:current]];
-    //self.drawImage = [pages objectAtIndex:current];
-    
-    
-    [self.drawImage setHidden:TRUE];
-    self.drawImage = [pages objectAtIndex:current];
-    [self addSubview:self.drawImage];
-    [self.drawImage setHidden:FALSE];
-    
-    
-    
-    
+    current = current +1;
+    if(current <25)
+    {
+        [self.drawImage setHidden:TRUE];
+        self.drawImage = [pages objectAtIndex:current];
+        [self addSubview:self.drawImage];
+        [self.drawImage setHidden:FALSE];
+    }
+    else
+    {
+        current = 24;
+    }
 }
 
 -(void)previousPage
 {
-    current = current -1 %25;
-    //[self addSubview:[pages objectAtIndex:current]];
-    //self.drawImage = [pages objectAtIndex:current];
+    current = current -1;
     
-    
-    [self.drawImage setHidden:TRUE];
-    self.drawImage = [pages objectAtIndex:current];
-    [self addSubview:self.drawImage];
-    [self.drawImage setHidden:FALSE];
+    if(current >= 0)
+    {
+        [self.drawImage setHidden:TRUE];
+        self.drawImage = [pages objectAtIndex:current];
+        [self addSubview:self.drawImage];
+        [self.drawImage setHidden:FALSE];
+    }
+    else
+    {
+        current = 0;
+    }    
     
 }
 
