@@ -18,11 +18,15 @@
     @property CGFloat brush;
     @property BOOL swipe;
     @property (strong, nonatomic) UIImageView *drawImage;
+    @property (strong, nonatomic) NSMutableArray *pages;
+    @property (nonatomic) int current;
 
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
 - (void)saveImageView;
 - (void)loadImageView;
+- (void)nextPage;
+- (void)previousPage;
 
 @end

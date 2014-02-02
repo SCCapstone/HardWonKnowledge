@@ -29,6 +29,18 @@
 }
 
 
+
+
+- (IBAction)nextButtonPressed:(id)sender {
+    [self.delegate nextPage];
+}
+
+- (IBAction)previousButtonPressed:(id)sender {
+    [self.delegate previousPage];
+}
+
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -19,6 +19,8 @@
 @synthesize swipe;
 @synthesize brush;
 @synthesize drawImage;
+@synthesize pages;
+@synthesize current;
 
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {
@@ -27,9 +29,37 @@
     {
         
         [self setMultipleTouchEnabled:NO]; // (2)
-        self.drawImage = [[UIImageView alloc] initWithImage:nil];
-        self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        current = 0;
+        
+        self.pages = [[NSMutableArray alloc] init];
+        for(int i = 0; i<25; i++)
+        {
+            self.drawImage = [[UIImageView alloc] initWithImage:nil];
+            self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+            [pages addObject:drawImage];
+        }
+        
+        
+        
+        
+        
+        
+        
+        //self.drawImage = [[UIImageView alloc] initWithImage:nil];
+        //self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        
+        
+        //[self addSubview:[pages objectAtIndex:current]];
+        
+        self.drawImage = [pages objectAtIndex:current];
         [self addSubview:self.drawImage];
+        
+        
+        
+        
+        
+        
+        
         self.backgroundColor = [UIColor whiteColor];
         self.red=0.0;
         self.blue = 0.0;
@@ -60,6 +90,7 @@
     [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     
     
+    
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
     CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
@@ -67,7 +98,19 @@
     CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
     CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
     CGContextStrokePath(UIGraphicsGetCurrentContext());
+    
+    
+   
     self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+  //  [pages objectAtIndex:current].image;
+    
+    
+    //[pages objectAtIndex:current].image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    
+    
+    
     UIGraphicsEndImageContext();
     
     self.lastPoint = currentPoint;
@@ -141,5 +184,36 @@
     [unarchiver finishDecoding];
 }
 
+
+-(void)nextPage
+{
+    current = current +1 %25;
+    //[self addSubview:[pages objectAtIndex:current]];
+    //self.drawImage = [pages objectAtIndex:current];
+    
+    
+    [self.drawImage setHidden:TRUE];
+    self.drawImage = [pages objectAtIndex:current];
+    [self addSubview:self.drawImage];
+    [self.drawImage setHidden:FALSE];
+    
+    
+    
+    
+}
+
+-(void)previousPage
+{
+    current = current -1 %25;
+    //[self addSubview:[pages objectAtIndex:current]];
+    //self.drawImage = [pages objectAtIndex:current];
+    
+    
+    [self.drawImage setHidden:TRUE];
+    self.drawImage = [pages objectAtIndex:current];
+    [self addSubview:self.drawImage];
+    [self.drawImage setHidden:FALSE];
+    
+}
 
 @end
