@@ -120,16 +120,32 @@
 
 - (void)saveImageView
 {
+    NSLog(@"Save Image View Called");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
     
+//    NSMutableData *data = [[NSMutableData alloc] init];
+//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//    [archiver encodeObject:self.drawImage.image forKey:@"drawImage"];
+//    [archiver finishEncoding];
+//    if (![data writeToFile:viewPath atomically:YES])
+//        NSLog(@"BAD");
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [archiver encodeObject:self.drawImage.image forKey:@"drawImage"];
+    
+    for (int i = 0; i < 25; i++) {
+        UIImageView *imv = [self.pages objectAtIndex:i];
+        if (imv.image != nil) {
+            [archiver encodeObject:imv.image forKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
+            NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+        }
+    }
     [archiver finishEncoding];
     if (![data writeToFile:viewPath atomically:YES])
         NSLog(@"BAD");
+
+    
 }
 
 - (void)loadImageView
@@ -143,11 +159,19 @@
     
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
     UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:@"drawImage"];
-    if (newImage)
-        self. drawImage.image = newImage;
-    else
-        NSLog(@"Bad Image");
+    for (int i = 0; i<25; i++) {
+        UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
+        NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+        UIImageView *v = [self.pages objectAtIndex:i];
+        v.image = newImage;
+    }
     [unarchiver finishDecoding];
+    //Reset to page 1
+    current = 0;
+    [self.drawImage setHidden:TRUE];
+    self.drawImage = [pages objectAtIndex:current];
+    [self addSubview:self.drawImage];
+    [self.drawImage setHidden:FALSE];
 }
 
 
