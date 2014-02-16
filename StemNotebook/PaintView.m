@@ -123,44 +123,60 @@
 - (void)saveImageView
 {
     NSLog(@"Save Image View Called");
+    
+    //setup path for file
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
     
+    //variable for data to be written
     NSMutableData *data = [[NSMutableData alloc] init];
+    
+    //setup archiver for data
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     
+    //archive images
     for (int i = 0; i < 25; i++) {
         UIImageView *imv = [self.pages objectAtIndex:i];
         if (imv.image != nil) {
             [archiver encodeObject:imv.image forKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
-            NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+            //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
         }
     }
+    
     [archiver finishEncoding];
+    
+    //write to file
     if (![data writeToFile:viewPath atomically:YES])
-        NSLog(@"BAD");
+        NSLog(@"Failed to write data to file!");
 }
 
 //load the notebook from a file
 - (void)loadImageView
 {
     NSLog(@"Decode Paint View");
+    
+    //setup path for file
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
+    
+    //get data from file
     NSData *codedData = [[NSData alloc] initWithContentsOfFile:viewPath];
     if (codedData == nil) return;
     
+    //unarchive data
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-    UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:@"drawImage"];
+    
+    //get images from archive
     for (int i = 0; i<25; i++) {
         UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
-        NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+        //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
         UIImageView *v = [self.pages objectAtIndex:i];
         v.image = newImage;
     }
     [unarchiver finishDecoding];
+    
     //Reset to page 1
     current = 0;
     [self.drawImage setHidden:TRUE];
