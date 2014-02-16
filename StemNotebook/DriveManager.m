@@ -12,6 +12,7 @@ static NSString *const kKeychainItemName = @"Stem Notebook";
 static NSString *const kClientID = @"279186473369-fq4ejbk5ovj6kdt68e039q8571ip5oqu.apps.googleusercontent.com";
 static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 
+
 @implementation DriveManager
 
 + (DriveManager*) getDriveManager;
@@ -26,6 +27,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                                                                              clientID:kClientID
                                                                                          clientSecret:kClientSecret];
     });
+    NSLog(@"Drive Manager Initialized");
     return sharedInstance;
 }
 
@@ -46,6 +48,57 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return authController;
 }
 
+- (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
+      finishedWithAuth:(GTMOAuth2Authentication *)authResult
+                 error:(NSError *)error
+{
+    [self.cont dismissModalViewControllerAnimated:YES];
+    self.cont = nil;
+    if (error != nil)
+    {
+        [self showAlert:@"Authentication Error" message:error.localizedDescription];
+        self.driveService.authorizer = nil;
+    }
+    else
+    {
+        
+        self.driveService.authorizer = authResult;
+    }
+}
+
+
+- (void)loginFromViewController:(UIViewController *)controller
+{
+    self.cont = controller;
+    if (![self isAuthorized]) {
+        // Sign in.
+        SEL finishedSelector = @selector(viewController:finishedWithAuth:error:);
+        GTMOAuth2ViewControllerTouch *authViewController =
+        [[GTMOAuth2ViewControllerTouch alloc] initWithScope:kGTLAuthScopeDriveFile
+                                                   clientID:kClientID
+                                               clientSecret:kClientSecret
+                                           keychainItemName:kKeychainItemName
+                                                   delegate:self
+                                           finishedSelector:finishedSelector];
+        [self.cont presentModalViewController:authViewController
+                                animated:YES];
+    } else {
+        [self showAlert:@"Logged In" message:@"You are already logged in."];
+    }
+}
+
+- (void) logout
+{
+    if ([self isAuthorized]) {
+        [GTMOAuth2ViewControllerTouch removeAuthFromKeychainForName:kKeychainItemName];
+        [[self driveService] setAuthorizer:nil];
+        [self showAlert:@"Log Out" message:@"You have been logged out."];
+    } else {
+        [self showAlert:@"Not Logged In" message:@"You are currently  not logged in."];
+ 
+    }
+}
+
 - (void)uploadNotebook:(NSString*)filepath
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -56,13 +109,13 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     file.descriptionProperty = @"Uploaded from StemNotebook App";
     file.mimeType = @"application/octet-stream";
     
-
+    
     NSData *data = nil;
     if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
     {
         data = [[NSFileManager defaultManager] contentsAtPath:filepath];
     }
-        else
+    else
     {
         NSLog(@"File not exits");
     }
@@ -126,5 +179,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                              otherButtonTitles: nil];
     [alert show];
 }
+
+
+
 
 @end

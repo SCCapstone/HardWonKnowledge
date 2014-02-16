@@ -22,6 +22,7 @@
 @synthesize pages;
 @synthesize current;
 
+//Initialize the view
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {
     
@@ -118,6 +119,7 @@
     self.brush = number;
 }
 
+//save the notebook to a file
 - (void)saveImageView
 {
     NSLog(@"Save Image View Called");
@@ -140,6 +142,7 @@
         NSLog(@"BAD");
 }
 
+//load the notebook from a file
 - (void)loadImageView
 {
     NSLog(@"Decode Paint View");
@@ -166,7 +169,7 @@
     [self.drawImage setHidden:FALSE];
 }
 
-
+//move to next page
 -(void)nextPage
 {
     current = current +1;
@@ -183,6 +186,7 @@
     }
 }
 
+//move to previous page
 -(void)previousPage
 {
     current = current -1;
