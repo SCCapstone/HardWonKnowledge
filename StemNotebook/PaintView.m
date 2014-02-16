@@ -125,12 +125,6 @@
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
     
-//    NSMutableData *data = [[NSMutableData alloc] init];
-//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//    [archiver encodeObject:self.drawImage.image forKey:@"drawImage"];
-//    [archiver finishEncoding];
-//    if (![data writeToFile:viewPath atomically:YES])
-//        NSLog(@"BAD");
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     
@@ -144,8 +138,6 @@
     [archiver finishEncoding];
     if (![data writeToFile:viewPath atomically:YES])
         NSLog(@"BAD");
-
-    
 }
 
 - (void)loadImageView
