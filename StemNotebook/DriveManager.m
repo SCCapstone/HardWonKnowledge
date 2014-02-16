@@ -52,7 +52,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
       finishedWithAuth:(GTMOAuth2Authentication *)authResult
                  error:(NSError *)error
 {
-    [self.cont dismissModalViewControllerAnimated:YES];
+    [self.cont dismissViewControllerAnimated:YES completion:nil];
     self.cont = nil;
     if (error != nil)
     {
@@ -80,8 +80,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                            keychainItemName:kKeychainItemName
                                                    delegate:self
                                            finishedSelector:finishedSelector];
-        [self.cont presentModalViewController:authViewController
-                                animated:YES];
+        [self.cont presentViewController:authViewController
+                                animated:YES completion:nil];
     } else {
         [self showAlert:@"Logged In" message:@"You are already logged in."];
     }
