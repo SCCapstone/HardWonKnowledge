@@ -389,7 +389,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** /Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -409,7 +409,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** /Users/coltonwaters/School/CapstoneProject/google-api-objectivec-client-read-only/Source/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
