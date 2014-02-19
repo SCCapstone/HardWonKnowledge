@@ -33,118 +33,79 @@
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
 		CB3DFED01895E26B00CD0013 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE4F1895E26B00CD0013 /* .gitignore */; };
-		CB3DFED11895E26B00CD0013 /* AQGridView.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE531895E26B00CD0013 /* AQGridView.xcworkspace */; };
-		CB3DFED21895E26B00CD0013 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE591895E26B00CD0013 /* AQGridView.m */; };
-		CB3DFED31895E26B00CD0013 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE5B1895E26B00CD0013 /* AQGridViewAnimatorItem.m */; };
-		CB3DFED41895E26B00CD0013 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE5E1895E26B00CD0013 /* AQGridViewCell.m */; };
-		CB3DFED51895E26B00CD0013 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE601895E26B00CD0013 /* AQGridViewController.m */; };
-		CB3DFED61895E26B00CD0013 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE621895E26B00CD0013 /* AQGridViewData.m */; };
-		CB3DFED71895E26B00CD0013 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE641895E26B00CD0013 /* AQGridViewUpdateInfo.m */; };
-		CB3DFED81895E26B00CD0013 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE661895E26B00CD0013 /* AQGridViewUpdateItem.m */; };
-		CB3DFED91895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE681895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.m */; };
-		CB3DFEDA1895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE6A1895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.m */; };
-		CB3DFEDB1895E26B00CD0013 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE6C1895E26B00CD0013 /* UIColor+AQGridView.m */; };
-		CB3DFEDC1895E26B00CD0013 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE6F1895E26B00CD0013 /* .gitignore */; };
-		CB3DFEDD1895E26B00CD0013 /* ExpanderDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE721895E26B00CD0013 /* ExpanderDemoAppDelegate.m */; };
-		CB3DFEDE1895E26B00CD0013 /* ExpanderDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE741895E26B00CD0013 /* ExpanderDemoViewController.m */; };
-		CB3DFEDF1895E26B00CD0013 /* ExpandFromGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE761895E26B00CD0013 /* ExpandFromGridViewCell.m */; };
-		CB3DFEE01895E26B00CD0013 /* ExpandingGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE781895E26B00CD0013 /* ExpandingGridViewController.m */; };
-		CB3DFEE11895E26B00CD0013 /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE7A1895E26B00CD0013 /* ImageGridViewCell.m */; };
-		CB3DFEE21895E26B00CD0013 /* ExpanderDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE7B1895E26B00CD0013 /* ExpanderDemoViewController.xib */; };
-		CB3DFEE31895E26B00CD0013 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE7D1895E26B00CD0013 /* InfoPlist.strings */; };
-		CB3DFEE41895E26B00CD0013 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE7F1895E26B00CD0013 /* MainWindow.xib */; };
-		CB3DFEE51895E26B00CD0013 /* ExpanderDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE811895E26B00CD0013 /* ExpanderDemo-Info.plist */; };
-		CB3DFEE61895E26B00CD0013 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE861895E26B00CD0013 /* main.m */; };
-		CB3DFEE71895E26B00CD0013 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE881895E26B00CD0013 /* .gitignore */; };
-		CB3DFEE81895E26B00CD0013 /* ImageDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE8B1895E26B00CD0013 /* ImageDemoAppDelegate.m */; };
-		CB3DFEE91895E26B00CD0013 /* ImageDemoCellChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE8D1895E26B00CD0013 /* ImageDemoCellChooser.m */; };
-		CB3DFEEA1895E26B00CD0013 /* ImageDemoFilledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE8F1895E26B00CD0013 /* ImageDemoFilledCell.m */; };
-		CB3DFEEB1895E26B00CD0013 /* ImageDemoGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE911895E26B00CD0013 /* ImageDemoGridViewCell.m */; };
-		CB3DFEEC1895E26B00CD0013 /* ImageDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFE931895E26B00CD0013 /* ImageDemoViewController.m */; };
-		CB3DFEED1895E26B00CD0013 /* ImageDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE941895E26B00CD0013 /* ImageDemo-Info.plist */; };
-		CB3DFEEE1895E26B00CD0013 /* ImageDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE991895E26B00CD0013 /* ImageDemoViewController.xib */; };
-		CB3DFEEF1895E26B00CD0013 /* 3D-simplicity.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE9B1895E26B00CD0013 /* 3D-simplicity.png */; };
-		CB3DFEF01895E26B00CD0013 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE9C1895E26B00CD0013 /* AppleTV-esque_by-mikelcroft_nl-1440.png */; };
-		CB3DFEF11895E26B00CD0013 /* batman_surfing_on_superman.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE9D1895E26B00CD0013 /* batman_surfing_on_superman.png */; };
-		CB3DFEF21895E26B00CD0013 /* coffee-break_.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE9E1895E26B00CD0013 /* coffee-break_.png */; };
-		CB3DFEF31895E26B00CD0013 /* colorful_1440x900.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFE9F1895E26B00CD0013 /* colorful_1440x900.png */; };
-		CB3DFEF41895E26B00CD0013 /* Composition53.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA01895E26B00CD0013 /* Composition53.png */; };
-		CB3DFEF51895E26B00CD0013 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA11895E26B00CD0013 /* Dragon.png */; };
-		CB3DFEF61895E26B00CD0013 /* eclipse.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA21895E26B00CD0013 /* eclipse.png */; };
-		CB3DFEF71895E26B00CD0013 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA31895E26B00CD0013 /* face.png */; };
-		CB3DFEF81895E26B00CD0013 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA41895E26B00CD0013 /* focus.png */; };
-		CB3DFEF91895E26B00CD0013 /* gbo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA51895E26B00CD0013 /* gbo.png */; };
-		CB3DFEFA1895E26B00CD0013 /* Green_Plant_(2560x1600).png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA61895E26B00CD0013 /* Green_Plant_(2560x1600).png */; };
-		CB3DFEFB1895E26B00CD0013 /* grounded.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA71895E26B00CD0013 /* grounded.png */; };
-		CB3DFEFC1895E26B00CD0013 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA81895E26B00CD0013 /* happy.png */; };
-		CB3DFEFD1895E26B00CD0013 /* LeatherHoles-Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEA91895E26B00CD0013 /* LeatherHoles-Apple.png */; };
-		CB3DFEFE1895E26B00CD0013 /* Let_it_snow_by_mj_coffeeholick.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEAA1895E26B00CD0013 /* Let_it_snow_by_mj_coffeeholick.png */; };
-		CB3DFEFF1895E26B00CD0013 /* Luxury_Apple_by_Stratification.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEAB1895E26B00CD0013 /* Luxury_Apple_by_Stratification.png */; };
-		CB3DFF001895E26B00CD0013 /* MacMini.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEAC1895E26B00CD0013 /* MacMini.png */; };
-		CB3DFF011895E26B00CD0013 /* SlaveKingGod.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEAD1895E26B00CD0013 /* SlaveKingGod.png */; };
-		CB3DFF021895E26B00CD0013 /* Snow_Leopard_by_vladstudio.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEAE1895E26B00CD0013 /* Snow_Leopard_by_vladstudio.png */; };
-		CB3DFF031895E26B00CD0013 /* Space Fold.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEAF1895E26B00CD0013 /* Space Fold.png */; };
-		CB3DFF041895E26B00CD0013 /* Stormcloud_Schmeisser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEB01895E26B00CD0013 /* Stormcloud_Schmeisser.png */; };
-		CB3DFF051895E26B00CD0013 /* tiamat.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEB11895E26B00CD0013 /* tiamat.png */; };
-		CB3DFF061895E26B00CD0013 /* WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEB21895E26B00CD0013 /* WTF.png */; };
-		CB3DFF071895E26B00CD0013 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFEB31895E26B00CD0013 /* main.m */; };
-		CB3DFF081895E26B00CD0013 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEB41895E26B00CD0013 /* MainWindow.xib */; };
-		CB3DFF091895E26B00CD0013 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEB61895E26B00CD0013 /* .gitignore */; };
-		CB3DFF0A1895E26B00CD0013 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEB71895E26B00CD0013 /* background.png */; };
-		CB3DFF0B1895E26B00CD0013 /* SpringBoardAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFEBA1895E26B00CD0013 /* SpringBoardAppDelegate.m */; };
-		CB3DFF0C1895E26B00CD0013 /* SpringBoardIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFEBC1895E26B00CD0013 /* SpringBoardIconCell.m */; };
-		CB3DFF0D1895E26B00CD0013 /* SpringBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFEBE1895E26B00CD0013 /* SpringBoardViewController.m */; };
-		CB3DFF0E1895E26B00CD0013 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DFEBF1895E26B00CD0013 /* main.m */; };
-		CB3DFF0F1895E26B00CD0013 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEC01895E26B00CD0013 /* MainWindow.xib */; };
-		CB3DFF101895E26B00CD0013 /* SpringBoard-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEC11895E26B00CD0013 /* SpringBoard-Info.plist */; };
-		CB3DFF111895E26B00CD0013 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEC61895E26B00CD0013 /* LICENSE */; };
-		CB3DFF121895E26B00CD0013 /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEC71895E26B00CD0013 /* README.textile */; };
-		CB3DFF131895E26B00CD0013 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFEC91895E26B00CD0013 /* AQGridSelection.png */; };
-		CB3DFF141895E26B00CD0013 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFECA1895E26B00CD0013 /* AQGridSelectionGray.png */; };
-		CB3DFF151895E26B00CD0013 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFECB1895E26B00CD0013 /* AQGridSelectionGrayBlue.png */; };
-		CB3DFF161895E26B00CD0013 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFECC1895E26B00CD0013 /* AQGridSelectionGreen.png */; };
-		CB3DFF171895E26B00CD0013 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFECD1895E26B00CD0013 /* AQGridSelectionRed.png */; };
-		CB3DFF181895E26B00CD0013 /* embed_png.sh in Resources */ = {isa = PBXBuildFile; fileRef = CB3DFECF1895E26B00CD0013 /* embed_png.sh */; };
-		CB3DFF271895E31200CD0013 /* libAQGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3DFF1B1895E26C00CD0013 /* libAQGridView.a */; };
+		CBF5578F18B3FF4B005C7047 /* ImageDemoAppDelegate.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5573F18B3FF4B005C7047 /* ImageDemoAppDelegate.h */; };
+		CBF5579018B3FF4B005C7047 /* ImageDemoAppDelegate.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574018B3FF4B005C7047 /* ImageDemoAppDelegate.m */; };
+		CBF5579118B3FF4B005C7047 /* ImageDemoViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574118B3FF4B005C7047 /* ImageDemoViewController.h */; };
+		CBF5579218B3FF4B005C7047 /* ImageDemoViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574218B3FF4B005C7047 /* ImageDemoViewController.m */; };
+		CBF5579318B3FF4B005C7047 /* ImageDemoGridViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574318B3FF4B005C7047 /* ImageDemoGridViewCell.h */; };
+		CBF5579418B3FF4B005C7047 /* ImageDemoGridViewCell.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574418B3FF4B005C7047 /* ImageDemoGridViewCell.m */; };
+		CBF5579518B3FF4B005C7047 /* ImageDemoFilledCell.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574518B3FF4B005C7047 /* ImageDemoFilledCell.h */; };
+		CBF5579618B3FF4B005C7047 /* ImageDemoFilledCell.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574618B3FF4B005C7047 /* ImageDemoFilledCell.m */; };
+		CBF5579718B3FF4B005C7047 /* ImageDemoCellChooser.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574718B3FF4B005C7047 /* ImageDemoCellChooser.h */; };
+		CBF5579818B3FF4B005C7047 /* ImageDemoCellChooser.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574818B3FF4B005C7047 /* ImageDemoCellChooser.m */; };
+		CBF5579918B3FF4B005C7047 /* AQGridView+CellLayout.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574918B3FF4B005C7047 /* AQGridView+CellLayout.h */; };
+		CBF5579A18B3FF4B005C7047 /* AQGridView+CellLocationDelegation.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574A18B3FF4B005C7047 /* AQGridView+CellLocationDelegation.h */; };
+		CBF5579B18B3FF4B005C7047 /* AQGridView.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574B18B3FF4B005C7047 /* AQGridView.h */; };
+		CBF5579C18B3FF4B005C7047 /* AQGridView.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574C18B3FF4B005C7047 /* AQGridView.m */; };
+		CBF5579D18B3FF4B005C7047 /* AQGridViewCell+AQGridViewCellPrivate.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574D18B3FF4B005C7047 /* AQGridViewCell+AQGridViewCellPrivate.h */; };
+		CBF5579E18B3FF4B005C7047 /* AQGridViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574E18B3FF4B005C7047 /* AQGridViewCell.h */; };
+		CBF5579F18B3FF4B005C7047 /* AQGridViewCell.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5574F18B3FF4B005C7047 /* AQGridViewCell.m */; };
+		CBF557A018B3FF4B005C7047 /* AQGridViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575018B3FF4B005C7047 /* AQGridViewController.h */; };
+		CBF557A118B3FF4B005C7047 /* AQGridViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575118B3FF4B005C7047 /* AQGridViewController.m */; };
+		CBF557A218B3FF4B005C7047 /* AQGridViewData.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575218B3FF4B005C7047 /* AQGridViewData.h */; };
+		CBF557A318B3FF4B005C7047 /* AQGridViewData.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575318B3FF4B005C7047 /* AQGridViewData.m */; };
+		CBF557A418B3FF4B005C7047 /* AQGridViewUpdateInfo.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575418B3FF4B005C7047 /* AQGridViewUpdateInfo.h */; };
+		CBF557A518B3FF4B005C7047 /* AQGridViewUpdateInfo.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575518B3FF4B005C7047 /* AQGridViewUpdateInfo.m */; };
+		CBF557A618B3FF4B005C7047 /* AQGridViewUpdateItem.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575618B3FF4B005C7047 /* AQGridViewUpdateItem.h */; };
+		CBF557A718B3FF4B005C7047 /* AQGridViewUpdateItem.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575718B3FF4B005C7047 /* AQGridViewUpdateItem.m */; };
+		CBF557A818B3FF4B005C7047 /* AQGridViewAnimatorItem.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575818B3FF4B005C7047 /* AQGridViewAnimatorItem.h */; };
+		CBF557A918B3FF4B005C7047 /* AQGridViewAnimatorItem.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575918B3FF4B005C7047 /* AQGridViewAnimatorItem.m */; };
+		CBF557AA18B3FF4B005C7047 /* UIColor+AQGridView.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575A18B3FF4B005C7047 /* UIColor+AQGridView.h */; };
+		CBF557AB18B3FF4B005C7047 /* UIColor+AQGridView.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575B18B3FF4B005C7047 /* UIColor+AQGridView.m */; };
+		CBF557AC18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575C18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.h */; };
+		CBF557AD18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575D18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.m */; };
+		CBF557AE18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.h in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575E18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.h */; };
+		CBF557AF18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5575F18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		CBF557B018B3FF4B005C7047 /* ImageDemo_Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576218B3FF4B005C7047 /* ImageDemo_Prefix.pch */; };
+		CBF557B118B3FF4B005C7047 /* main.m in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576318B3FF4B005C7047 /* main.m */; };
+		CBF557B218B3FF4B005C7047 /* 3D-simplicity.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576518B3FF4B005C7047 /* 3D-simplicity.png */; };
+		CBF557B318B3FF4B005C7047 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576618B3FF4B005C7047 /* AppleTV-esque_by-mikelcroft_nl-1440.png */; };
+		CBF557B418B3FF4B005C7047 /* batman_surfing_on_superman.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576718B3FF4B005C7047 /* batman_surfing_on_superman.png */; };
+		CBF557B518B3FF4B005C7047 /* coffee-break_.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576818B3FF4B005C7047 /* coffee-break_.png */; };
+		CBF557B618B3FF4B005C7047 /* colorful_1440x900.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576918B3FF4B005C7047 /* colorful_1440x900.png */; };
+		CBF557B718B3FF4B005C7047 /* Composition53.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576A18B3FF4B005C7047 /* Composition53.png */; };
+		CBF557B818B3FF4B005C7047 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576B18B3FF4B005C7047 /* Dragon.png */; };
+		CBF557B918B3FF4B005C7047 /* eclipse.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576C18B3FF4B005C7047 /* eclipse.png */; };
+		CBF557BA18B3FF4B005C7047 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576D18B3FF4B005C7047 /* face.png */; };
+		CBF557BB18B3FF4B005C7047 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576E18B3FF4B005C7047 /* focus.png */; };
+		CBF557BC18B3FF4B005C7047 /* gbo.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5576F18B3FF4B005C7047 /* gbo.png */; };
+		CBF557BD18B3FF4B005C7047 /* Green_Plant_(2560x1600).png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577018B3FF4B005C7047 /* Green_Plant_(2560x1600).png */; };
+		CBF557BE18B3FF4B005C7047 /* grounded.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577118B3FF4B005C7047 /* grounded.png */; };
+		CBF557BF18B3FF4B005C7047 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577218B3FF4B005C7047 /* happy.png */; };
+		CBF557C018B3FF4B005C7047 /* LeatherHoles-Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577318B3FF4B005C7047 /* LeatherHoles-Apple.png */; };
+		CBF557C118B3FF4B005C7047 /* Let_it_snow_by_mj_coffeeholick.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577418B3FF4B005C7047 /* Let_it_snow_by_mj_coffeeholick.png */; };
+		CBF557C218B3FF4B005C7047 /* Luxury_Apple_by_Stratification.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577518B3FF4B005C7047 /* Luxury_Apple_by_Stratification.png */; };
+		CBF557C318B3FF4B005C7047 /* MacMini.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577618B3FF4B005C7047 /* MacMini.png */; };
+		CBF557C418B3FF4B005C7047 /* SlaveKingGod.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577718B3FF4B005C7047 /* SlaveKingGod.png */; };
+		CBF557C518B3FF4B005C7047 /* Snow_Leopard_by_vladstudio.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577818B3FF4B005C7047 /* Snow_Leopard_by_vladstudio.png */; };
+		CBF557C618B3FF4B005C7047 /* Space Fold.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577918B3FF4B005C7047 /* Space Fold.png */; };
+		CBF557C718B3FF4B005C7047 /* Stormcloud_Schmeisser.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577A18B3FF4B005C7047 /* Stormcloud_Schmeisser.png */; };
+		CBF557C818B3FF4B005C7047 /* tiamat.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577B18B3FF4B005C7047 /* tiamat.png */; };
+		CBF557C918B3FF4B005C7047 /* WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577C18B3FF4B005C7047 /* WTF.png */; };
+		CBF557CA18B3FF4B005C7047 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577E18B3FF4B005C7047 /* AQGridSelection.png */; };
+		CBF557CB18B3FF4B005C7047 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5577F18B3FF4B005C7047 /* AQGridSelectionGray.png */; };
+		CBF557CC18B3FF4B005C7047 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578018B3FF4B005C7047 /* AQGridSelectionGrayBlue.png */; };
+		CBF557CD18B3FF4B005C7047 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578118B3FF4B005C7047 /* AQGridSelectionGreen.png */; };
+		CBF557CE18B3FF4B005C7047 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578218B3FF4B005C7047 /* AQGridSelectionRed.png */; };
+		CBF557CF18B3FF4B005C7047 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578418B3FF4B005C7047 /* MainWindow.xib */; };
+		CBF557D018B3FF4B005C7047 /* ImageDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578518B3FF4B005C7047 /* ImageDemoViewController.xib */; };
+		CBF557D118B3FF4B005C7047 /* ImageDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578618B3FF4B005C7047 /* ImageDemo-Info.plist */; };
+		CBF557D218B3FF4B005C7047 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF5578818B3FF4B005C7047 /* UIKit.framework */; };
+		CBF557D318B3FF4B005C7047 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF5578918B3FF4B005C7047 /* Foundation.framework */; };
+		CBF557D418B3FF4B005C7047 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF5578A18B3FF4B005C7047 /* CoreGraphics.framework */; };
+		CBF557D518B3FF4B005C7047 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF5578B18B3FF4B005C7047 /* QuartzCore.framework */; };
+		CBF557D618B3FF4B005C7047 /* ImageDemo.app in Resources */ = {isa = PBXBuildFile; fileRef = CBF5578D18B3FF4B005C7047 /* ImageDemo.app */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CB3DFF1A1895E26C00CD0013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB3DFE501895E26B00CD0013 /* AQGridView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = AQGridView;
-		};
-		CB3DFF1D1895E26C00CD0013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB3DFE821895E26B00CD0013 /* ExpanderDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 38D6F06912197E62006909B6;
-			remoteInfo = ExpanderDemo;
-		};
-		CB3DFF201895E26C00CD0013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB3DFE951895E26B00CD0013 /* ImageDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
-			remoteInfo = ImageDemo;
-		};
-		CB3DFF231895E26C00CD0013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB3DFEC21895E26B00CD0013 /* SpringBoard.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
-			remoteInfo = SpringBoard;
-		};
-		CB3DFF251895E30000CD0013 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB3DFE501895E26B00CD0013 /* AQGridView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = AQGridView;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
@@ -185,112 +146,78 @@
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
 		CB3DFE4F1895E26B00CD0013 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		CB3DFE501895E26B00CD0013 /* AQGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = AQGridView.xcodeproj; sourceTree = "<group>"; };
-		CB3DFE531895E26B00CD0013 /* AQGridView.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = AQGridView.xcworkspace; sourceTree = "<group>"; };
-		CB3DFE541895E26B00CD0013 /* AQGridView_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView_Prefix.pch; sourceTree = "<group>"; };
-		CB3DFE561895E26B00CD0013 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
-		CB3DFE571895E26B00CD0013 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
-		CB3DFE581895E26B00CD0013 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView.h; sourceTree = "<group>"; };
-		CB3DFE591895E26B00CD0013 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridView.m; sourceTree = "<group>"; };
-		CB3DFE5A1895E26B00CD0013 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
-		CB3DFE5B1895E26B00CD0013 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
-		CB3DFE5C1895E26B00CD0013 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
-		CB3DFE5D1895E26B00CD0013 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewCell.h; sourceTree = "<group>"; };
-		CB3DFE5E1895E26B00CD0013 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewCell.m; sourceTree = "<group>"; };
-		CB3DFE5F1895E26B00CD0013 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewController.h; sourceTree = "<group>"; };
-		CB3DFE601895E26B00CD0013 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewController.m; sourceTree = "<group>"; };
-		CB3DFE611895E26B00CD0013 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewData.h; sourceTree = "<group>"; };
-		CB3DFE621895E26B00CD0013 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewData.m; sourceTree = "<group>"; };
-		CB3DFE631895E26B00CD0013 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
-		CB3DFE641895E26B00CD0013 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
-		CB3DFE651895E26B00CD0013 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateItem.h; sourceTree = "<group>"; };
-		CB3DFE661895E26B00CD0013 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateItem.m; sourceTree = "<group>"; };
-		CB3DFE671895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
-		CB3DFE681895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
-		CB3DFE691895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
-		CB3DFE6A1895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
-		CB3DFE6B1895E26B00CD0013 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
-		CB3DFE6C1895E26B00CD0013 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
-		CB3DFE6F1895E26B00CD0013 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		CB3DFE711895E26B00CD0013 /* ExpanderDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpanderDemoAppDelegate.h; sourceTree = "<group>"; };
-		CB3DFE721895E26B00CD0013 /* ExpanderDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpanderDemoAppDelegate.m; sourceTree = "<group>"; };
-		CB3DFE731895E26B00CD0013 /* ExpanderDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpanderDemoViewController.h; sourceTree = "<group>"; };
-		CB3DFE741895E26B00CD0013 /* ExpanderDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpanderDemoViewController.m; sourceTree = "<group>"; };
-		CB3DFE751895E26B00CD0013 /* ExpandFromGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandFromGridViewCell.h; sourceTree = "<group>"; };
-		CB3DFE761895E26B00CD0013 /* ExpandFromGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandFromGridViewCell.m; sourceTree = "<group>"; };
-		CB3DFE771895E26B00CD0013 /* ExpandingGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingGridViewController.h; sourceTree = "<group>"; };
-		CB3DFE781895E26B00CD0013 /* ExpandingGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandingGridViewController.m; sourceTree = "<group>"; };
-		CB3DFE791895E26B00CD0013 /* ImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGridViewCell.h; sourceTree = "<group>"; };
-		CB3DFE7A1895E26B00CD0013 /* ImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridViewCell.m; sourceTree = "<group>"; };
-		CB3DFE7C1895E26B00CD0013 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ExpanderDemoViewController.xib; sourceTree = "<group>"; };
-		CB3DFE7E1895E26B00CD0013 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CB3DFE801895E26B00CD0013 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		CB3DFE811895E26B00CD0013 /* ExpanderDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ExpanderDemo-Info.plist"; sourceTree = "<group>"; };
-		CB3DFE821895E26B00CD0013 /* ExpanderDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ExpanderDemo.xcodeproj; sourceTree = "<group>"; };
-		CB3DFE851895E26B00CD0013 /* ExpanderDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpanderDemo_Prefix.pch; sourceTree = "<group>"; };
-		CB3DFE861895E26B00CD0013 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CB3DFE881895E26B00CD0013 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		CB3DFE8A1895E26B00CD0013 /* ImageDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoAppDelegate.h; sourceTree = "<group>"; };
-		CB3DFE8B1895E26B00CD0013 /* ImageDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoAppDelegate.m; sourceTree = "<group>"; };
-		CB3DFE8C1895E26B00CD0013 /* ImageDemoCellChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoCellChooser.h; sourceTree = "<group>"; };
-		CB3DFE8D1895E26B00CD0013 /* ImageDemoCellChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoCellChooser.m; sourceTree = "<group>"; };
-		CB3DFE8E1895E26B00CD0013 /* ImageDemoFilledCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoFilledCell.h; sourceTree = "<group>"; };
-		CB3DFE8F1895E26B00CD0013 /* ImageDemoFilledCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoFilledCell.m; sourceTree = "<group>"; };
-		CB3DFE901895E26B00CD0013 /* ImageDemoGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoGridViewCell.h; sourceTree = "<group>"; };
-		CB3DFE911895E26B00CD0013 /* ImageDemoGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoGridViewCell.m; sourceTree = "<group>"; };
-		CB3DFE921895E26B00CD0013 /* ImageDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemoViewController.h; sourceTree = "<group>"; };
-		CB3DFE931895E26B00CD0013 /* ImageDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDemoViewController.m; sourceTree = "<group>"; };
-		CB3DFE941895E26B00CD0013 /* ImageDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ImageDemo-Info.plist"; sourceTree = "<group>"; };
-		CB3DFE951895E26B00CD0013 /* ImageDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ImageDemo.xcodeproj; sourceTree = "<group>"; };
-		CB3DFE981895E26B00CD0013 /* ImageDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDemo_Prefix.pch; sourceTree = "<group>"; };
-		CB3DFE991895E26B00CD0013 /* ImageDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageDemoViewController.xib; sourceTree = "<group>"; };
-		CB3DFE9B1895E26B00CD0013 /* 3D-simplicity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3D-simplicity.png"; sourceTree = "<group>"; };
-		CB3DFE9C1895E26B00CD0013 /* AppleTV-esque_by-mikelcroft_nl-1440.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleTV-esque_by-mikelcroft_nl-1440.png"; sourceTree = "<group>"; };
-		CB3DFE9D1895E26B00CD0013 /* batman_surfing_on_superman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batman_surfing_on_superman.png; sourceTree = "<group>"; };
-		CB3DFE9E1895E26B00CD0013 /* coffee-break_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coffee-break_.png"; sourceTree = "<group>"; };
-		CB3DFE9F1895E26B00CD0013 /* colorful_1440x900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorful_1440x900.png; sourceTree = "<group>"; };
-		CB3DFEA01895E26B00CD0013 /* Composition53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Composition53.png; sourceTree = "<group>"; };
-		CB3DFEA11895E26B00CD0013 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dragon.png; sourceTree = "<group>"; };
-		CB3DFEA21895E26B00CD0013 /* eclipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eclipse.png; sourceTree = "<group>"; };
-		CB3DFEA31895E26B00CD0013 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
-		CB3DFEA41895E26B00CD0013 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = focus.png; sourceTree = "<group>"; };
-		CB3DFEA51895E26B00CD0013 /* gbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbo.png; sourceTree = "<group>"; };
-		CB3DFEA61895E26B00CD0013 /* Green_Plant_(2560x1600).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green_Plant_(2560x1600).png"; sourceTree = "<group>"; };
-		CB3DFEA71895E26B00CD0013 /* grounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grounded.png; sourceTree = "<group>"; };
-		CB3DFEA81895E26B00CD0013 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy.png; sourceTree = "<group>"; };
-		CB3DFEA91895E26B00CD0013 /* LeatherHoles-Apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LeatherHoles-Apple.png"; sourceTree = "<group>"; };
-		CB3DFEAA1895E26B00CD0013 /* Let_it_snow_by_mj_coffeeholick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Let_it_snow_by_mj_coffeeholick.png; sourceTree = "<group>"; };
-		CB3DFEAB1895E26B00CD0013 /* Luxury_Apple_by_Stratification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Luxury_Apple_by_Stratification.png; sourceTree = "<group>"; };
-		CB3DFEAC1895E26B00CD0013 /* MacMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MacMini.png; sourceTree = "<group>"; };
-		CB3DFEAD1895E26B00CD0013 /* SlaveKingGod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SlaveKingGod.png; sourceTree = "<group>"; };
-		CB3DFEAE1895E26B00CD0013 /* Snow_Leopard_by_vladstudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snow_Leopard_by_vladstudio.png; sourceTree = "<group>"; };
-		CB3DFEAF1895E26B00CD0013 /* Space Fold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Space Fold.png"; sourceTree = "<group>"; };
-		CB3DFEB01895E26B00CD0013 /* Stormcloud_Schmeisser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stormcloud_Schmeisser.png; sourceTree = "<group>"; };
-		CB3DFEB11895E26B00CD0013 /* tiamat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiamat.png; sourceTree = "<group>"; };
-		CB3DFEB21895E26B00CD0013 /* WTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WTF.png; sourceTree = "<group>"; };
-		CB3DFEB31895E26B00CD0013 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CB3DFEB41895E26B00CD0013 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		CB3DFEB61895E26B00CD0013 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		CB3DFEB71895E26B00CD0013 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		CB3DFEB91895E26B00CD0013 /* SpringBoardAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardAppDelegate.h; sourceTree = "<group>"; };
-		CB3DFEBA1895E26B00CD0013 /* SpringBoardAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardAppDelegate.m; sourceTree = "<group>"; };
-		CB3DFEBB1895E26B00CD0013 /* SpringBoardIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardIconCell.h; sourceTree = "<group>"; };
-		CB3DFEBC1895E26B00CD0013 /* SpringBoardIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardIconCell.m; sourceTree = "<group>"; };
-		CB3DFEBD1895E26B00CD0013 /* SpringBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardViewController.h; sourceTree = "<group>"; };
-		CB3DFEBE1895E26B00CD0013 /* SpringBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardViewController.m; sourceTree = "<group>"; };
-		CB3DFEBF1895E26B00CD0013 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CB3DFEC01895E26B00CD0013 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		CB3DFEC11895E26B00CD0013 /* SpringBoard-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SpringBoard-Info.plist"; sourceTree = "<group>"; };
-		CB3DFEC21895E26B00CD0013 /* SpringBoard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpringBoard.xcodeproj; sourceTree = "<group>"; };
-		CB3DFEC51895E26B00CD0013 /* SpringBoard_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoard_Prefix.pch; sourceTree = "<group>"; };
-		CB3DFEC61895E26B00CD0013 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		CB3DFEC71895E26B00CD0013 /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
-		CB3DFEC91895E26B00CD0013 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelection.png; sourceTree = "<group>"; };
-		CB3DFECA1895E26B00CD0013 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGray.png; sourceTree = "<group>"; };
-		CB3DFECB1895E26B00CD0013 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
-		CB3DFECC1895E26B00CD0013 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionGreen.png; sourceTree = "<group>"; };
-		CB3DFECD1895E26B00CD0013 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AQGridSelectionRed.png; sourceTree = "<group>"; };
-		CB3DFECF1895E26B00CD0013 /* embed_png.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = embed_png.sh; sourceTree = "<group>"; };
+		CBF5573F18B3FF4B005C7047 /* ImageDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoAppDelegate.h; sourceTree = "<group>"; };
+		CBF5574018B3FF4B005C7047 /* ImageDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoAppDelegate.m; sourceTree = "<group>"; };
+		CBF5574118B3FF4B005C7047 /* ImageDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoViewController.h; sourceTree = "<group>"; };
+		CBF5574218B3FF4B005C7047 /* ImageDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoViewController.m; sourceTree = "<group>"; };
+		CBF5574318B3FF4B005C7047 /* ImageDemoGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoGridViewCell.h; sourceTree = "<group>"; };
+		CBF5574418B3FF4B005C7047 /* ImageDemoGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoGridViewCell.m; sourceTree = "<group>"; };
+		CBF5574518B3FF4B005C7047 /* ImageDemoFilledCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoFilledCell.h; sourceTree = "<group>"; };
+		CBF5574618B3FF4B005C7047 /* ImageDemoFilledCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoFilledCell.m; sourceTree = "<group>"; };
+		CBF5574718B3FF4B005C7047 /* ImageDemoCellChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoCellChooser.h; sourceTree = "<group>"; };
+		CBF5574818B3FF4B005C7047 /* ImageDemoCellChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemoCellChooser.m; sourceTree = "<group>"; };
+		CBF5574918B3FF4B005C7047 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
+		CBF5574A18B3FF4B005C7047 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
+		CBF5574B18B3FF4B005C7047 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridView.h; sourceTree = "<group>"; };
+		CBF5574C18B3FF4B005C7047 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridView.m; sourceTree = "<group>"; };
+		CBF5574D18B3FF4B005C7047 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
+		CBF5574E18B3FF4B005C7047 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewCell.h; sourceTree = "<group>"; };
+		CBF5574F18B3FF4B005C7047 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewCell.m; sourceTree = "<group>"; };
+		CBF5575018B3FF4B005C7047 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewController.h; sourceTree = "<group>"; };
+		CBF5575118B3FF4B005C7047 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewController.m; sourceTree = "<group>"; };
+		CBF5575218B3FF4B005C7047 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewData.h; sourceTree = "<group>"; };
+		CBF5575318B3FF4B005C7047 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewData.m; sourceTree = "<group>"; };
+		CBF5575418B3FF4B005C7047 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
+		CBF5575518B3FF4B005C7047 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
+		CBF5575618B3FF4B005C7047 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewUpdateItem.h; sourceTree = "<group>"; };
+		CBF5575718B3FF4B005C7047 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewUpdateItem.m; sourceTree = "<group>"; };
+		CBF5575818B3FF4B005C7047 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
+		CBF5575918B3FF4B005C7047 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
+		CBF5575A18B3FF4B005C7047 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
+		CBF5575B18B3FF4B005C7047 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		CBF5575C18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
+		CBF5575D18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
+		CBF5575E18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
+		CBF5575F18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
+		CBF5576218B3FF4B005C7047 /* ImageDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = ImageDemo_Prefix.pch; sourceTree = "<group>"; };
+		CBF5576318B3FF4B005C7047 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = main.m; sourceTree = "<group>"; };
+		CBF5576518B3FF4B005C7047 /* 3D-simplicity.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "3D-simplicity.png"; sourceTree = "<group>"; };
+		CBF5576618B3FF4B005C7047 /* AppleTV-esque_by-mikelcroft_nl-1440.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AppleTV-esque_by-mikelcroft_nl-1440.png"; sourceTree = "<group>"; };
+		CBF5576718B3FF4B005C7047 /* batman_surfing_on_superman.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = batman_surfing_on_superman.png; sourceTree = "<group>"; };
+		CBF5576818B3FF4B005C7047 /* coffee-break_.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coffee-break_.png"; sourceTree = "<group>"; };
+		CBF5576918B3FF4B005C7047 /* colorful_1440x900.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = colorful_1440x900.png; sourceTree = "<group>"; };
+		CBF5576A18B3FF4B005C7047 /* Composition53.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = Composition53.png; sourceTree = "<group>"; };
+		CBF5576B18B3FF4B005C7047 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dragon.png; sourceTree = "<group>"; };
+		CBF5576C18B3FF4B005C7047 /* eclipse.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = eclipse.png; sourceTree = "<group>"; };
+		CBF5576D18B3FF4B005C7047 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = face.png; sourceTree = "<group>"; };
+		CBF5576E18B3FF4B005C7047 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = focus.png; sourceTree = "<group>"; };
+		CBF5576F18B3FF4B005C7047 /* gbo.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = gbo.png; sourceTree = "<group>"; };
+		CBF5577018B3FF4B005C7047 /* Green_Plant_(2560x1600).png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Green_Plant_(2560x1600).png"; sourceTree = "<group>"; };
+		CBF5577118B3FF4B005C7047 /* grounded.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = grounded.png; sourceTree = "<group>"; };
+		CBF5577218B3FF4B005C7047 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = happy.png; sourceTree = "<group>"; };
+		CBF5577318B3FF4B005C7047 /* LeatherHoles-Apple.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeatherHoles-Apple.png"; sourceTree = "<group>"; };
+		CBF5577418B3FF4B005C7047 /* Let_it_snow_by_mj_coffeeholick.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = Let_it_snow_by_mj_coffeeholick.png; sourceTree = "<group>"; };
+		CBF5577518B3FF4B005C7047 /* Luxury_Apple_by_Stratification.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = Luxury_Apple_by_Stratification.png; sourceTree = "<group>"; };
+		CBF5577618B3FF4B005C7047 /* MacMini.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = MacMini.png; sourceTree = "<group>"; };
+		CBF5577718B3FF4B005C7047 /* SlaveKingGod.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = SlaveKingGod.png; sourceTree = "<group>"; };
+		CBF5577818B3FF4B005C7047 /* Snow_Leopard_by_vladstudio.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snow_Leopard_by_vladstudio.png; sourceTree = "<group>"; };
+		CBF5577918B3FF4B005C7047 /* Space Fold.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Space Fold.png"; sourceTree = "<group>"; };
+		CBF5577A18B3FF4B005C7047 /* Stormcloud_Schmeisser.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stormcloud_Schmeisser.png; sourceTree = "<group>"; };
+		CBF5577B18B3FF4B005C7047 /* tiamat.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = tiamat.png; sourceTree = "<group>"; };
+		CBF5577C18B3FF4B005C7047 /* WTF.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = WTF.png; sourceTree = "<group>"; };
+		CBF5577E18B3FF4B005C7047 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = AQGridSelection.png; path = ../../Resources/AQGridSelection.png; sourceTree = "<group>"; };
+		CBF5577F18B3FF4B005C7047 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = AQGridSelectionGray.png; path = ../../Resources/AQGridSelectionGray.png; sourceTree = "<group>"; };
+		CBF5578018B3FF4B005C7047 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = AQGridSelectionGrayBlue.png; path = ../../Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
+		CBF5578118B3FF4B005C7047 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = AQGridSelectionGreen.png; path = ../../Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
+		CBF5578218B3FF4B005C7047 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = AQGridSelectionRed.png; path = ../../Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CBF5578418B3FF4B005C7047 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file; path = MainWindow.xib; sourceTree = "<group>"; };
+		CBF5578518B3FF4B005C7047 /* ImageDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ImageDemoViewController.xib; sourceTree = "<group>"; };
+		CBF5578618B3FF4B005C7047 /* ImageDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "ImageDemo-Info.plist"; sourceTree = "<group>"; };
+		CBF5578818B3FF4B005C7047 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = "<absolute>"; };
+		CBF5578918B3FF4B005C7047 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		CBF5578A18B3FF4B005C7047 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = "<absolute>"; };
+		CBF5578B18B3FF4B005C7047 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		CBF5578D18B3FF4B005C7047 /* ImageDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = ImageDemo.app; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,7 +225,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3DFF271895E31200CD0013 /* libAQGridView.a in Frameworks */,
 				C71981AA1850138E00D502E3 /* libGTLTouchStaticLib.a in Frameworks */,
 				C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */,
 				C71981AC1850138E00D502E3 /* Security.framework in Frameworks */,
@@ -306,6 +232,10 @@
 				C762B69F181DB7B500EB3674 /* UIKit.framework in Frameworks */,
 				C762B6A1181DB7B500EB3674 /* Foundation.framework in Frameworks */,
 				C762B6A3181DB7B500EB3674 /* CoreGraphics.framework in Frameworks */,
+				CBF557D218B3FF4B005C7047 /* UIKit.framework in Frameworks */,
+				CBF557D318B3FF4B005C7047 /* Foundation.framework in Frameworks */,
+				CBF557D418B3FF4B005C7047 /* CoreGraphics.framework in Frameworks */,
+				CBF557D518B3FF4B005C7047 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,234 +370,150 @@
 			isa = PBXGroup;
 			children = (
 				CB3DFE4F1895E26B00CD0013 /* .gitignore */,
-				CB3DFE501895E26B00CD0013 /* AQGridView.xcodeproj */,
-				CB3DFE531895E26B00CD0013 /* AQGridView.xcworkspace */,
-				CB3DFE541895E26B00CD0013 /* AQGridView_Prefix.pch */,
-				CB3DFE551895E26B00CD0013 /* Classes */,
-				CB3DFE6D1895E26B00CD0013 /* Examples */,
-				CB3DFEC61895E26B00CD0013 /* LICENSE */,
-				CB3DFEC71895E26B00CD0013 /* README.textile */,
-				CB3DFEC81895E26B00CD0013 /* Resources */,
-				CB3DFECE1895E26B00CD0013 /* Scripts */,
+				CBF5576118B3FF4B005C7047 /* Classes */,
+				CBF5576418B3FF4B005C7047 /* Other Sources */,
+				CBF5578718B3FF4B005C7047 /* Resources */,
+				CBF5578C18B3FF4B005C7047 /* Frameworks */,
+				CBF5578E18B3FF4B005C7047 /* Products */,
 			);
 			path = AQGridView;
 			sourceTree = "<group>";
 		};
-		CB3DFE511895E26B00CD0013 /* Products */ = {
+		CBF5576018B3FF4B005C7047 /* GridView */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFF1B1895E26C00CD0013 /* libAQGridView.a */,
+				CBF5574918B3FF4B005C7047 /* AQGridView+CellLayout.h */,
+				CBF5574A18B3FF4B005C7047 /* AQGridView+CellLocationDelegation.h */,
+				CBF5574B18B3FF4B005C7047 /* AQGridView.h */,
+				CBF5574C18B3FF4B005C7047 /* AQGridView.m */,
+				CBF5574D18B3FF4B005C7047 /* AQGridViewCell+AQGridViewCellPrivate.h */,
+				CBF5574E18B3FF4B005C7047 /* AQGridViewCell.h */,
+				CBF5574F18B3FF4B005C7047 /* AQGridViewCell.m */,
+				CBF5575018B3FF4B005C7047 /* AQGridViewController.h */,
+				CBF5575118B3FF4B005C7047 /* AQGridViewController.m */,
+				CBF5575218B3FF4B005C7047 /* AQGridViewData.h */,
+				CBF5575318B3FF4B005C7047 /* AQGridViewData.m */,
+				CBF5575418B3FF4B005C7047 /* AQGridViewUpdateInfo.h */,
+				CBF5575518B3FF4B005C7047 /* AQGridViewUpdateInfo.m */,
+				CBF5575618B3FF4B005C7047 /* AQGridViewUpdateItem.h */,
+				CBF5575718B3FF4B005C7047 /* AQGridViewUpdateItem.m */,
+				CBF5575818B3FF4B005C7047 /* AQGridViewAnimatorItem.h */,
+				CBF5575918B3FF4B005C7047 /* AQGridViewAnimatorItem.m */,
+				CBF5575A18B3FF4B005C7047 /* UIColor+AQGridView.h */,
+				CBF5575B18B3FF4B005C7047 /* UIColor+AQGridView.m */,
+				CBF5575C18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.h */,
+				CBF5575D18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.m */,
+				CBF5575E18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.h */,
+				CBF5575F18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.m */,
 			);
-			name = Products;
+			name = GridView;
+			path = ../../../Classes;
 			sourceTree = "<group>";
 		};
-		CB3DFE551895E26B00CD0013 /* Classes */ = {
+		CBF5576118B3FF4B005C7047 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFE561895E26B00CD0013 /* AQGridView+CellLayout.h */,
-				CB3DFE571895E26B00CD0013 /* AQGridView+CellLocationDelegation.h */,
-				CB3DFE581895E26B00CD0013 /* AQGridView.h */,
-				CB3DFE591895E26B00CD0013 /* AQGridView.m */,
-				CB3DFE5A1895E26B00CD0013 /* AQGridViewAnimatorItem.h */,
-				CB3DFE5B1895E26B00CD0013 /* AQGridViewAnimatorItem.m */,
-				CB3DFE5C1895E26B00CD0013 /* AQGridViewCell+AQGridViewCellPrivate.h */,
-				CB3DFE5D1895E26B00CD0013 /* AQGridViewCell.h */,
-				CB3DFE5E1895E26B00CD0013 /* AQGridViewCell.m */,
-				CB3DFE5F1895E26B00CD0013 /* AQGridViewController.h */,
-				CB3DFE601895E26B00CD0013 /* AQGridViewController.m */,
-				CB3DFE611895E26B00CD0013 /* AQGridViewData.h */,
-				CB3DFE621895E26B00CD0013 /* AQGridViewData.m */,
-				CB3DFE631895E26B00CD0013 /* AQGridViewUpdateInfo.h */,
-				CB3DFE641895E26B00CD0013 /* AQGridViewUpdateInfo.m */,
-				CB3DFE651895E26B00CD0013 /* AQGridViewUpdateItem.h */,
-				CB3DFE661895E26B00CD0013 /* AQGridViewUpdateItem.m */,
-				CB3DFE671895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.h */,
-				CB3DFE681895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.m */,
-				CB3DFE691895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.h */,
-				CB3DFE6A1895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.m */,
-				CB3DFE6B1895E26B00CD0013 /* UIColor+AQGridView.h */,
-				CB3DFE6C1895E26B00CD0013 /* UIColor+AQGridView.m */,
+				CBF5573F18B3FF4B005C7047 /* ImageDemoAppDelegate.h */,
+				CBF5574018B3FF4B005C7047 /* ImageDemoAppDelegate.m */,
+				CBF5574118B3FF4B005C7047 /* ImageDemoViewController.h */,
+				CBF5574218B3FF4B005C7047 /* ImageDemoViewController.m */,
+				CBF5574318B3FF4B005C7047 /* ImageDemoGridViewCell.h */,
+				CBF5574418B3FF4B005C7047 /* ImageDemoGridViewCell.m */,
+				CBF5574518B3FF4B005C7047 /* ImageDemoFilledCell.h */,
+				CBF5574618B3FF4B005C7047 /* ImageDemoFilledCell.m */,
+				CBF5574718B3FF4B005C7047 /* ImageDemoCellChooser.h */,
+				CBF5574818B3FF4B005C7047 /* ImageDemoCellChooser.m */,
+				CBF5576018B3FF4B005C7047 /* GridView */,
 			);
-			path = Classes;
+			name = Classes;
+			path = Examples/ImageDemo/Classes;
 			sourceTree = "<group>";
 		};
-		CB3DFE6D1895E26B00CD0013 /* Examples */ = {
+		CBF5576418B3FF4B005C7047 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFE6E1895E26B00CD0013 /* ExpanderDemo */,
-				CB3DFE871895E26B00CD0013 /* ImageDemo */,
-				CB3DFEB51895E26B00CD0013 /* SpringBoard */,
+				CBF5576218B3FF4B005C7047 /* ImageDemo_Prefix.pch */,
+				CBF5576318B3FF4B005C7047 /* main.m */,
 			);
-			path = Examples;
+			name = "Other Sources";
+			path = Examples/ImageDemo;
 			sourceTree = "<group>";
 		};
-		CB3DFE6E1895E26B00CD0013 /* ExpanderDemo */ = {
+		CBF5577D18B3FF4B005C7047 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFE6F1895E26B00CD0013 /* .gitignore */,
-				CB3DFE701895E26B00CD0013 /* Classes */,
-				CB3DFE7B1895E26B00CD0013 /* ExpanderDemoViewController.xib */,
-				CB3DFE7D1895E26B00CD0013 /* InfoPlist.strings */,
-				CB3DFE7F1895E26B00CD0013 /* MainWindow.xib */,
-				CB3DFE811895E26B00CD0013 /* ExpanderDemo-Info.plist */,
-				CB3DFE821895E26B00CD0013 /* ExpanderDemo.xcodeproj */,
-				CB3DFE851895E26B00CD0013 /* ExpanderDemo_Prefix.pch */,
-				CB3DFE861895E26B00CD0013 /* main.m */,
-			);
-			path = ExpanderDemo;
-			sourceTree = "<group>";
-		};
-		CB3DFE701895E26B00CD0013 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFE711895E26B00CD0013 /* ExpanderDemoAppDelegate.h */,
-				CB3DFE721895E26B00CD0013 /* ExpanderDemoAppDelegate.m */,
-				CB3DFE731895E26B00CD0013 /* ExpanderDemoViewController.h */,
-				CB3DFE741895E26B00CD0013 /* ExpanderDemoViewController.m */,
-				CB3DFE751895E26B00CD0013 /* ExpandFromGridViewCell.h */,
-				CB3DFE761895E26B00CD0013 /* ExpandFromGridViewCell.m */,
-				CB3DFE771895E26B00CD0013 /* ExpandingGridViewController.h */,
-				CB3DFE781895E26B00CD0013 /* ExpandingGridViewController.m */,
-				CB3DFE791895E26B00CD0013 /* ImageGridViewCell.h */,
-				CB3DFE7A1895E26B00CD0013 /* ImageGridViewCell.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		CB3DFE831895E26B00CD0013 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFF1E1895E26C00CD0013 /* ExpanderDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CB3DFE871895E26B00CD0013 /* ImageDemo */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFE881895E26B00CD0013 /* .gitignore */,
-				CB3DFE891895E26B00CD0013 /* Classes */,
-				CB3DFE941895E26B00CD0013 /* ImageDemo-Info.plist */,
-				CB3DFE951895E26B00CD0013 /* ImageDemo.xcodeproj */,
-				CB3DFE981895E26B00CD0013 /* ImageDemo_Prefix.pch */,
-				CB3DFE991895E26B00CD0013 /* ImageDemoViewController.xib */,
-				CB3DFE9A1895E26B00CD0013 /* Images */,
-				CB3DFEB31895E26B00CD0013 /* main.m */,
-				CB3DFEB41895E26B00CD0013 /* MainWindow.xib */,
-			);
-			path = ImageDemo;
-			sourceTree = "<group>";
-		};
-		CB3DFE891895E26B00CD0013 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFE8A1895E26B00CD0013 /* ImageDemoAppDelegate.h */,
-				CB3DFE8B1895E26B00CD0013 /* ImageDemoAppDelegate.m */,
-				CB3DFE8C1895E26B00CD0013 /* ImageDemoCellChooser.h */,
-				CB3DFE8D1895E26B00CD0013 /* ImageDemoCellChooser.m */,
-				CB3DFE8E1895E26B00CD0013 /* ImageDemoFilledCell.h */,
-				CB3DFE8F1895E26B00CD0013 /* ImageDemoFilledCell.m */,
-				CB3DFE901895E26B00CD0013 /* ImageDemoGridViewCell.h */,
-				CB3DFE911895E26B00CD0013 /* ImageDemoGridViewCell.m */,
-				CB3DFE921895E26B00CD0013 /* ImageDemoViewController.h */,
-				CB3DFE931895E26B00CD0013 /* ImageDemoViewController.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		CB3DFE961895E26B00CD0013 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFF211895E26C00CD0013 /* ImageDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CB3DFE9A1895E26B00CD0013 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFE9B1895E26B00CD0013 /* 3D-simplicity.png */,
-				CB3DFE9C1895E26B00CD0013 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
-				CB3DFE9D1895E26B00CD0013 /* batman_surfing_on_superman.png */,
-				CB3DFE9E1895E26B00CD0013 /* coffee-break_.png */,
-				CB3DFE9F1895E26B00CD0013 /* colorful_1440x900.png */,
-				CB3DFEA01895E26B00CD0013 /* Composition53.png */,
-				CB3DFEA11895E26B00CD0013 /* Dragon.png */,
-				CB3DFEA21895E26B00CD0013 /* eclipse.png */,
-				CB3DFEA31895E26B00CD0013 /* face.png */,
-				CB3DFEA41895E26B00CD0013 /* focus.png */,
-				CB3DFEA51895E26B00CD0013 /* gbo.png */,
-				CB3DFEA61895E26B00CD0013 /* Green_Plant_(2560x1600).png */,
-				CB3DFEA71895E26B00CD0013 /* grounded.png */,
-				CB3DFEA81895E26B00CD0013 /* happy.png */,
-				CB3DFEA91895E26B00CD0013 /* LeatherHoles-Apple.png */,
-				CB3DFEAA1895E26B00CD0013 /* Let_it_snow_by_mj_coffeeholick.png */,
-				CB3DFEAB1895E26B00CD0013 /* Luxury_Apple_by_Stratification.png */,
-				CB3DFEAC1895E26B00CD0013 /* MacMini.png */,
-				CB3DFEAD1895E26B00CD0013 /* SlaveKingGod.png */,
-				CB3DFEAE1895E26B00CD0013 /* Snow_Leopard_by_vladstudio.png */,
-				CB3DFEAF1895E26B00CD0013 /* Space Fold.png */,
-				CB3DFEB01895E26B00CD0013 /* Stormcloud_Schmeisser.png */,
-				CB3DFEB11895E26B00CD0013 /* tiamat.png */,
-				CB3DFEB21895E26B00CD0013 /* WTF.png */,
+				CBF5576518B3FF4B005C7047 /* 3D-simplicity.png */,
+				CBF5576618B3FF4B005C7047 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
+				CBF5576718B3FF4B005C7047 /* batman_surfing_on_superman.png */,
+				CBF5576818B3FF4B005C7047 /* coffee-break_.png */,
+				CBF5576918B3FF4B005C7047 /* colorful_1440x900.png */,
+				CBF5576A18B3FF4B005C7047 /* Composition53.png */,
+				CBF5576B18B3FF4B005C7047 /* Dragon.png */,
+				CBF5576C18B3FF4B005C7047 /* eclipse.png */,
+				CBF5576D18B3FF4B005C7047 /* face.png */,
+				CBF5576E18B3FF4B005C7047 /* focus.png */,
+				CBF5576F18B3FF4B005C7047 /* gbo.png */,
+				CBF5577018B3FF4B005C7047 /* Green_Plant_(2560x1600).png */,
+				CBF5577118B3FF4B005C7047 /* grounded.png */,
+				CBF5577218B3FF4B005C7047 /* happy.png */,
+				CBF5577318B3FF4B005C7047 /* LeatherHoles-Apple.png */,
+				CBF5577418B3FF4B005C7047 /* Let_it_snow_by_mj_coffeeholick.png */,
+				CBF5577518B3FF4B005C7047 /* Luxury_Apple_by_Stratification.png */,
+				CBF5577618B3FF4B005C7047 /* MacMini.png */,
+				CBF5577718B3FF4B005C7047 /* SlaveKingGod.png */,
+				CBF5577818B3FF4B005C7047 /* Snow_Leopard_by_vladstudio.png */,
+				CBF5577918B3FF4B005C7047 /* Space Fold.png */,
+				CBF5577A18B3FF4B005C7047 /* Stormcloud_Schmeisser.png */,
+				CBF5577B18B3FF4B005C7047 /* tiamat.png */,
+				CBF5577C18B3FF4B005C7047 /* WTF.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
 		};
-		CB3DFEB51895E26B00CD0013 /* SpringBoard */ = {
+		CBF5578318B3FF4B005C7047 /* GridView */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFEB61895E26B00CD0013 /* .gitignore */,
-				CB3DFEB71895E26B00CD0013 /* background.png */,
-				CB3DFEB81895E26B00CD0013 /* Classes */,
-				CB3DFEBF1895E26B00CD0013 /* main.m */,
-				CB3DFEC01895E26B00CD0013 /* MainWindow.xib */,
-				CB3DFEC11895E26B00CD0013 /* SpringBoard-Info.plist */,
-				CB3DFEC21895E26B00CD0013 /* SpringBoard.xcodeproj */,
-				CB3DFEC51895E26B00CD0013 /* SpringBoard_Prefix.pch */,
+				CBF5577E18B3FF4B005C7047 /* AQGridSelection.png */,
+				CBF5577F18B3FF4B005C7047 /* AQGridSelectionGray.png */,
+				CBF5578018B3FF4B005C7047 /* AQGridSelectionGrayBlue.png */,
+				CBF5578118B3FF4B005C7047 /* AQGridSelectionGreen.png */,
+				CBF5578218B3FF4B005C7047 /* AQGridSelectionRed.png */,
 			);
-			path = SpringBoard;
+			name = GridView;
 			sourceTree = "<group>";
 		};
-		CB3DFEB81895E26B00CD0013 /* Classes */ = {
+		CBF5578718B3FF4B005C7047 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFEB91895E26B00CD0013 /* SpringBoardAppDelegate.h */,
-				CB3DFEBA1895E26B00CD0013 /* SpringBoardAppDelegate.m */,
-				CB3DFEBB1895E26B00CD0013 /* SpringBoardIconCell.h */,
-				CB3DFEBC1895E26B00CD0013 /* SpringBoardIconCell.m */,
-				CB3DFEBD1895E26B00CD0013 /* SpringBoardViewController.h */,
-				CB3DFEBE1895E26B00CD0013 /* SpringBoardViewController.m */,
+				CBF5577D18B3FF4B005C7047 /* Images */,
+				CBF5578318B3FF4B005C7047 /* GridView */,
+				CBF5578418B3FF4B005C7047 /* MainWindow.xib */,
+				CBF5578518B3FF4B005C7047 /* ImageDemoViewController.xib */,
+				CBF5578618B3FF4B005C7047 /* ImageDemo-Info.plist */,
 			);
-			path = Classes;
+			name = Resources;
+			path = Examples/ImageDemo;
 			sourceTree = "<group>";
 		};
-		CB3DFEC31895E26B00CD0013 /* Products */ = {
+		CBF5578C18B3FF4B005C7047 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CB3DFF241895E26C00CD0013 /* SpringBoard.app */,
+				CBF5578818B3FF4B005C7047 /* UIKit.framework */,
+				CBF5578918B3FF4B005C7047 /* Foundation.framework */,
+				CBF5578A18B3FF4B005C7047 /* CoreGraphics.framework */,
+				CBF5578B18B3FF4B005C7047 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			path = Examples/ImageDemo;
+			sourceTree = "<group>";
+		};
+		CBF5578E18B3FF4B005C7047 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBF5578D18B3FF4B005C7047 /* ImageDemo.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CB3DFEC81895E26B00CD0013 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFEC91895E26B00CD0013 /* AQGridSelection.png */,
-				CB3DFECA1895E26B00CD0013 /* AQGridSelectionGray.png */,
-				CB3DFECB1895E26B00CD0013 /* AQGridSelectionGrayBlue.png */,
-				CB3DFECC1895E26B00CD0013 /* AQGridSelectionGreen.png */,
-				CB3DFECD1895E26B00CD0013 /* AQGridSelectionRed.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		CB3DFECE1895E26B00CD0013 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				CB3DFECF1895E26B00CD0013 /* embed_png.sh */,
-			);
-			path = Scripts;
+			path = Examples/ImageDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -684,7 +530,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CB3DFF261895E30000CD0013 /* PBXTargetDependency */,
 			);
 			name = StemNotebook;
 			productName = StemNotebook;
@@ -715,61 +560,12 @@
 			mainGroup = C762B692181DB7B500EB3674;
 			productRefGroup = C762B69C181DB7B500EB3674 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = CB3DFE511895E26B00CD0013 /* Products */;
-					ProjectRef = CB3DFE501895E26B00CD0013 /* AQGridView.xcodeproj */;
-				},
-				{
-					ProductGroup = CB3DFE831895E26B00CD0013 /* Products */;
-					ProjectRef = CB3DFE821895E26B00CD0013 /* ExpanderDemo.xcodeproj */;
-				},
-				{
-					ProductGroup = CB3DFE961895E26B00CD0013 /* Products */;
-					ProjectRef = CB3DFE951895E26B00CD0013 /* ImageDemo.xcodeproj */;
-				},
-				{
-					ProductGroup = CB3DFEC31895E26B00CD0013 /* Products */;
-					ProjectRef = CB3DFEC21895E26B00CD0013 /* SpringBoard.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C762B69A181DB7B500EB3674 /* StemNotebook */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		CB3DFF1B1895E26C00CD0013 /* libAQGridView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAQGridView.a;
-			remoteRef = CB3DFF1A1895E26C00CD0013 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CB3DFF1E1895E26C00CD0013 /* ExpanderDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ExpanderDemo.app;
-			remoteRef = CB3DFF1D1895E26C00CD0013 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CB3DFF211895E26C00CD0013 /* ImageDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ImageDemo.app;
-			remoteRef = CB3DFF201895E26C00CD0013 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CB3DFF241895E26C00CD0013 /* SpringBoard.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = SpringBoard.app;
-			remoteRef = CB3DFF231895E26C00CD0013 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C762B699181DB7B500EB3674 /* Resources */ = {
@@ -786,52 +582,74 @@
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
 				CB3DFED01895E26B00CD0013 /* .gitignore in Resources */,
-				CB3DFED11895E26B00CD0013 /* AQGridView.xcworkspace in Resources */,
-				CB3DFEDC1895E26B00CD0013 /* .gitignore in Resources */,
-				CB3DFEE21895E26B00CD0013 /* ExpanderDemoViewController.xib in Resources */,
-				CB3DFEE31895E26B00CD0013 /* InfoPlist.strings in Resources */,
-				CB3DFEE41895E26B00CD0013 /* MainWindow.xib in Resources */,
-				CB3DFEE51895E26B00CD0013 /* ExpanderDemo-Info.plist in Resources */,
-				CB3DFEE71895E26B00CD0013 /* .gitignore in Resources */,
-				CB3DFEED1895E26B00CD0013 /* ImageDemo-Info.plist in Resources */,
-				CB3DFEEE1895E26B00CD0013 /* ImageDemoViewController.xib in Resources */,
-				CB3DFEEF1895E26B00CD0013 /* 3D-simplicity.png in Resources */,
-				CB3DFEF01895E26B00CD0013 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */,
-				CB3DFEF11895E26B00CD0013 /* batman_surfing_on_superman.png in Resources */,
-				CB3DFEF21895E26B00CD0013 /* coffee-break_.png in Resources */,
-				CB3DFEF31895E26B00CD0013 /* colorful_1440x900.png in Resources */,
-				CB3DFEF41895E26B00CD0013 /* Composition53.png in Resources */,
-				CB3DFEF51895E26B00CD0013 /* Dragon.png in Resources */,
-				CB3DFEF61895E26B00CD0013 /* eclipse.png in Resources */,
-				CB3DFEF71895E26B00CD0013 /* face.png in Resources */,
-				CB3DFEF81895E26B00CD0013 /* focus.png in Resources */,
-				CB3DFEF91895E26B00CD0013 /* gbo.png in Resources */,
-				CB3DFEFA1895E26B00CD0013 /* Green_Plant_(2560x1600).png in Resources */,
-				CB3DFEFB1895E26B00CD0013 /* grounded.png in Resources */,
-				CB3DFEFC1895E26B00CD0013 /* happy.png in Resources */,
-				CB3DFEFD1895E26B00CD0013 /* LeatherHoles-Apple.png in Resources */,
-				CB3DFEFE1895E26B00CD0013 /* Let_it_snow_by_mj_coffeeholick.png in Resources */,
-				CB3DFEFF1895E26B00CD0013 /* Luxury_Apple_by_Stratification.png in Resources */,
-				CB3DFF001895E26B00CD0013 /* MacMini.png in Resources */,
-				CB3DFF011895E26B00CD0013 /* SlaveKingGod.png in Resources */,
-				CB3DFF021895E26B00CD0013 /* Snow_Leopard_by_vladstudio.png in Resources */,
-				CB3DFF031895E26B00CD0013 /* Space Fold.png in Resources */,
-				CB3DFF041895E26B00CD0013 /* Stormcloud_Schmeisser.png in Resources */,
-				CB3DFF051895E26B00CD0013 /* tiamat.png in Resources */,
-				CB3DFF061895E26B00CD0013 /* WTF.png in Resources */,
-				CB3DFF081895E26B00CD0013 /* MainWindow.xib in Resources */,
-				CB3DFF091895E26B00CD0013 /* .gitignore in Resources */,
-				CB3DFF0A1895E26B00CD0013 /* background.png in Resources */,
-				CB3DFF0F1895E26B00CD0013 /* MainWindow.xib in Resources */,
-				CB3DFF101895E26B00CD0013 /* SpringBoard-Info.plist in Resources */,
-				CB3DFF111895E26B00CD0013 /* LICENSE in Resources */,
-				CB3DFF121895E26B00CD0013 /* README.textile in Resources */,
-				CB3DFF131895E26B00CD0013 /* AQGridSelection.png in Resources */,
-				CB3DFF141895E26B00CD0013 /* AQGridSelectionGray.png in Resources */,
-				CB3DFF151895E26B00CD0013 /* AQGridSelectionGrayBlue.png in Resources */,
-				CB3DFF161895E26B00CD0013 /* AQGridSelectionGreen.png in Resources */,
-				CB3DFF171895E26B00CD0013 /* AQGridSelectionRed.png in Resources */,
-				CB3DFF181895E26B00CD0013 /* embed_png.sh in Resources */,
+				CBF5578F18B3FF4B005C7047 /* ImageDemoAppDelegate.h in Resources */,
+				CBF5579018B3FF4B005C7047 /* ImageDemoAppDelegate.m in Resources */,
+				CBF5579118B3FF4B005C7047 /* ImageDemoViewController.h in Resources */,
+				CBF5579218B3FF4B005C7047 /* ImageDemoViewController.m in Resources */,
+				CBF5579318B3FF4B005C7047 /* ImageDemoGridViewCell.h in Resources */,
+				CBF5579418B3FF4B005C7047 /* ImageDemoGridViewCell.m in Resources */,
+				CBF5579518B3FF4B005C7047 /* ImageDemoFilledCell.h in Resources */,
+				CBF5579618B3FF4B005C7047 /* ImageDemoFilledCell.m in Resources */,
+				CBF5579718B3FF4B005C7047 /* ImageDemoCellChooser.h in Resources */,
+				CBF5579818B3FF4B005C7047 /* ImageDemoCellChooser.m in Resources */,
+				CBF5579918B3FF4B005C7047 /* AQGridView+CellLayout.h in Resources */,
+				CBF5579A18B3FF4B005C7047 /* AQGridView+CellLocationDelegation.h in Resources */,
+				CBF5579B18B3FF4B005C7047 /* AQGridView.h in Resources */,
+				CBF5579C18B3FF4B005C7047 /* AQGridView.m in Resources */,
+				CBF5579D18B3FF4B005C7047 /* AQGridViewCell+AQGridViewCellPrivate.h in Resources */,
+				CBF5579E18B3FF4B005C7047 /* AQGridViewCell.h in Resources */,
+				CBF5579F18B3FF4B005C7047 /* AQGridViewCell.m in Resources */,
+				CBF557A018B3FF4B005C7047 /* AQGridViewController.h in Resources */,
+				CBF557A118B3FF4B005C7047 /* AQGridViewController.m in Resources */,
+				CBF557A218B3FF4B005C7047 /* AQGridViewData.h in Resources */,
+				CBF557A318B3FF4B005C7047 /* AQGridViewData.m in Resources */,
+				CBF557A418B3FF4B005C7047 /* AQGridViewUpdateInfo.h in Resources */,
+				CBF557A518B3FF4B005C7047 /* AQGridViewUpdateInfo.m in Resources */,
+				CBF557A618B3FF4B005C7047 /* AQGridViewUpdateItem.h in Resources */,
+				CBF557A718B3FF4B005C7047 /* AQGridViewUpdateItem.m in Resources */,
+				CBF557A818B3FF4B005C7047 /* AQGridViewAnimatorItem.h in Resources */,
+				CBF557A918B3FF4B005C7047 /* AQGridViewAnimatorItem.m in Resources */,
+				CBF557AA18B3FF4B005C7047 /* UIColor+AQGridView.h in Resources */,
+				CBF557AB18B3FF4B005C7047 /* UIColor+AQGridView.m in Resources */,
+				CBF557AC18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.h in Resources */,
+				CBF557AD18B3FF4B005C7047 /* NSIndexSet+AQIsSetContiguous.m in Resources */,
+				CBF557AE18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.h in Resources */,
+				CBF557AF18B3FF4B005C7047 /* NSIndexSet+AQIndexesOutsideSet.m in Resources */,
+				CBF557B018B3FF4B005C7047 /* ImageDemo_Prefix.pch in Resources */,
+				CBF557B118B3FF4B005C7047 /* main.m in Resources */,
+				CBF557B218B3FF4B005C7047 /* 3D-simplicity.png in Resources */,
+				CBF557B318B3FF4B005C7047 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */,
+				CBF557B418B3FF4B005C7047 /* batman_surfing_on_superman.png in Resources */,
+				CBF557B518B3FF4B005C7047 /* coffee-break_.png in Resources */,
+				CBF557B618B3FF4B005C7047 /* colorful_1440x900.png in Resources */,
+				CBF557B718B3FF4B005C7047 /* Composition53.png in Resources */,
+				CBF557B818B3FF4B005C7047 /* Dragon.png in Resources */,
+				CBF557B918B3FF4B005C7047 /* eclipse.png in Resources */,
+				CBF557BA18B3FF4B005C7047 /* face.png in Resources */,
+				CBF557BB18B3FF4B005C7047 /* focus.png in Resources */,
+				CBF557BC18B3FF4B005C7047 /* gbo.png in Resources */,
+				CBF557BD18B3FF4B005C7047 /* Green_Plant_(2560x1600).png in Resources */,
+				CBF557BE18B3FF4B005C7047 /* grounded.png in Resources */,
+				CBF557BF18B3FF4B005C7047 /* happy.png in Resources */,
+				CBF557C018B3FF4B005C7047 /* LeatherHoles-Apple.png in Resources */,
+				CBF557C118B3FF4B005C7047 /* Let_it_snow_by_mj_coffeeholick.png in Resources */,
+				CBF557C218B3FF4B005C7047 /* Luxury_Apple_by_Stratification.png in Resources */,
+				CBF557C318B3FF4B005C7047 /* MacMini.png in Resources */,
+				CBF557C418B3FF4B005C7047 /* SlaveKingGod.png in Resources */,
+				CBF557C518B3FF4B005C7047 /* Snow_Leopard_by_vladstudio.png in Resources */,
+				CBF557C618B3FF4B005C7047 /* Space Fold.png in Resources */,
+				CBF557C718B3FF4B005C7047 /* Stormcloud_Schmeisser.png in Resources */,
+				CBF557C818B3FF4B005C7047 /* tiamat.png in Resources */,
+				CBF557C918B3FF4B005C7047 /* WTF.png in Resources */,
+				CBF557CA18B3FF4B005C7047 /* AQGridSelection.png in Resources */,
+				CBF557CB18B3FF4B005C7047 /* AQGridSelectionGray.png in Resources */,
+				CBF557CC18B3FF4B005C7047 /* AQGridSelectionGrayBlue.png in Resources */,
+				CBF557CD18B3FF4B005C7047 /* AQGridSelectionGreen.png in Resources */,
+				CBF557CE18B3FF4B005C7047 /* AQGridSelectionRed.png in Resources */,
+				CBF557CF18B3FF4B005C7047 /* MainWindow.xib in Resources */,
+				CBF557D018B3FF4B005C7047 /* ImageDemoViewController.xib in Resources */,
+				CBF557D118B3FF4B005C7047 /* ImageDemo-Info.plist in Resources */,
+				CBF557D618B3FF4B005C7047 /* ImageDemo.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,44 +669,10 @@
 				C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */,
-				CB3DFED21895E26B00CD0013 /* AQGridView.m in Sources */,
-				CB3DFED31895E26B00CD0013 /* AQGridViewAnimatorItem.m in Sources */,
-				CB3DFED41895E26B00CD0013 /* AQGridViewCell.m in Sources */,
-				CB3DFED51895E26B00CD0013 /* AQGridViewController.m in Sources */,
-				CB3DFED61895E26B00CD0013 /* AQGridViewData.m in Sources */,
-				CB3DFED71895E26B00CD0013 /* AQGridViewUpdateInfo.m in Sources */,
-				CB3DFED81895E26B00CD0013 /* AQGridViewUpdateItem.m in Sources */,
-				CB3DFED91895E26B00CD0013 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
-				CB3DFEDA1895E26B00CD0013 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
-				CB3DFEDB1895E26B00CD0013 /* UIColor+AQGridView.m in Sources */,
-				CB3DFEDD1895E26B00CD0013 /* ExpanderDemoAppDelegate.m in Sources */,
-				CB3DFEDE1895E26B00CD0013 /* ExpanderDemoViewController.m in Sources */,
-				CB3DFEDF1895E26B00CD0013 /* ExpandFromGridViewCell.m in Sources */,
-				CB3DFEE01895E26B00CD0013 /* ExpandingGridViewController.m in Sources */,
-				CB3DFEE11895E26B00CD0013 /* ImageGridViewCell.m in Sources */,
-				CB3DFEE61895E26B00CD0013 /* main.m in Sources */,
-				CB3DFEE81895E26B00CD0013 /* ImageDemoAppDelegate.m in Sources */,
-				CB3DFEE91895E26B00CD0013 /* ImageDemoCellChooser.m in Sources */,
-				CB3DFEEA1895E26B00CD0013 /* ImageDemoFilledCell.m in Sources */,
-				CB3DFEEB1895E26B00CD0013 /* ImageDemoGridViewCell.m in Sources */,
-				CB3DFEEC1895E26B00CD0013 /* ImageDemoViewController.m in Sources */,
-				CB3DFF071895E26B00CD0013 /* main.m in Sources */,
-				CB3DFF0B1895E26B00CD0013 /* SpringBoardAppDelegate.m in Sources */,
-				CB3DFF0C1895E26B00CD0013 /* SpringBoardIconCell.m in Sources */,
-				CB3DFF0D1895E26B00CD0013 /* SpringBoardViewController.m in Sources */,
-				CB3DFF0E1895E26B00CD0013 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CB3DFF261895E30000CD0013 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AQGridView;
-			targetProxy = CB3DFF251895E30000CD0013 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C762B6A7181DB7B500EB3674 /* InfoPlist.strings */ = {
@@ -905,30 +689,6 @@
 				C762B6BA181DB7B500EB3674 /* en */,
 			);
 			name = NotebookViewController.xib;
-			sourceTree = "<group>";
-		};
-		CB3DFE7B1895E26B00CD0013 /* ExpanderDemoViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB3DFE7C1895E26B00CD0013 /* en */,
-			);
-			name = ExpanderDemoViewController.xib;
-			sourceTree = "<group>";
-		};
-		CB3DFE7D1895E26B00CD0013 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB3DFE7E1895E26B00CD0013 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CB3DFE7F1895E26B00CD0013 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB3DFE801895E26B00CD0013 /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
