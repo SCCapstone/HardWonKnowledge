@@ -167,6 +167,27 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return list;
 }
 
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file
+{
+    //Get Download Path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
+    
+    //Setup HTTP Fetcher
+    GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
+    fetcher.downloadPath = viewPath;
+    
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error == nil) {
+            //Save file to disk
+            NSLog(@"Retrieved file content");
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+    return viewPath;
+}
 
 - (UIAlertView*)showWaitIndicator:(NSString *)title
 {
