@@ -148,6 +148,25 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   }];
 }
 
+- (GTLDriveFileList *)listDriveFiles {
+    NSString *search = @"title contains 'Stem Notebook Upload'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    __block GTLDriveFileList *list = nil;
+    [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            //Good
+            for (GTLDriveFile *file in files) {
+                NSLog(@"Drive File: %@",file.title);
+            }
+            list = files;
+        } else {
+            NSLog (@"An Error has occurred: %@", error);
+        }
+    }];
+    return list;
+}
+
 
 - (UIAlertView*)showWaitIndicator:(NSString *)title
 {
