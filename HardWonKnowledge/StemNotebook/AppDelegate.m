@@ -3,12 +3,13 @@
 //  StemNotebook
 //
 //  Created by Colton Waters and Jacob Wood on 10/27/13.
+//  Modified by Keneequa Brown on 2/23/14.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
-#import "NotebookViewController.h"
+#import "../Bookshelf/Classes/UserLoginViewController.h"
 
 @implementation AppDelegate
 
@@ -16,7 +17,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[NotebookViewController alloc] initWithNibName:@"NotebookViewController" bundle:nil];
+    self.viewController = [[UserLoginViewController alloc] initWithNibName:@"UserLoginViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
