@@ -1,0 +1,4 @@
+stu1 pass1 
+stu2 pass2 
+admin 12345
+stu3 pass3

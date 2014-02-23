@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
-		C71981AA1850138E00D502E3 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */; };
 		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
 		C71981AC1850138E00D502E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A81850138E00D502E3 /* Security.framework */; };
 		C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A91850138E00D502E3 /* SystemConfiguration.framework */; };
@@ -32,6 +31,56 @@
 		C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF899E1850D4DC00F6A093 /* DriveManager.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
+		CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */; };
+		CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */; };
+		CB9CD34B18BA9C8E00DF6754 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD33518BA9C8E00DF6754 /* AQGridView.m */; };
+		CB9CD34C18BA9C8E00DF6754 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD33918BA9C8E00DF6754 /* AQGridViewAnimatorItem.m */; };
+		CB9CD34D18BA9C8E00DF6754 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD33B18BA9C8E00DF6754 /* AQGridViewCell.m */; };
+		CB9CD34E18BA9C8E00DF6754 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD33E18BA9C8E00DF6754 /* AQGridViewController.m */; };
+		CB9CD34F18BA9C8E00DF6754 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD34018BA9C8E00DF6754 /* AQGridViewData.m */; };
+		CB9CD35018BA9C8E00DF6754 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD34218BA9C8E00DF6754 /* AQGridViewUpdateInfo.m */; };
+		CB9CD35118BA9C8E00DF6754 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD34418BA9C8E00DF6754 /* AQGridViewUpdateItem.m */; };
+		CB9CD35218BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD34618BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		CB9CD35318BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD34818BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.m */; };
+		CB9CD35418BA9C8E00DF6754 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD34A18BA9C8E00DF6754 /* UIColor+AQGridView.m */; };
+		CB9CD36118BA9CAF00DF6754 /* BookshelfGridCellChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD35618BA9CAF00DF6754 /* BookshelfGridCellChooser.m */; };
+		CB9CD36218BA9CAF00DF6754 /* BookshelfGridFilledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD35818BA9CAF00DF6754 /* BookshelfGridFilledCell.m */; };
+		CB9CD36318BA9CAF00DF6754 /* BookshelfGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD35A18BA9CAF00DF6754 /* BookshelfGridViewCell.m */; };
+		CB9CD36418BA9CAF00DF6754 /* BookshelfGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD35C18BA9CAF00DF6754 /* BookshelfGridViewController.m */; };
+		CB9CD36518BA9CAF00DF6754 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD35E18BA9CAF00DF6754 /* UserLoginViewController.m */; };
+		CB9CD36618BA9CAF00DF6754 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD35F18BA9CAF00DF6754 /* UserLoginViewController.xib */; };
+		CB9CD36718BA9CAF00DF6754 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36018BA9CAF00DF6754 /* users.txt */; };
+		CB9CD38218BA9CFD00DF6754 /* 3D-simplicity.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36A18BA9CFC00DF6754 /* 3D-simplicity.png */; };
+		CB9CD38318BA9CFD00DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36B18BA9CFC00DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */; };
+		CB9CD38418BA9CFD00DF6754 /* batman_surfing_on_superman.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36C18BA9CFD00DF6754 /* batman_surfing_on_superman.png */; };
+		CB9CD38518BA9CFD00DF6754 /* coffee-break_.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36D18BA9CFD00DF6754 /* coffee-break_.png */; };
+		CB9CD38618BA9CFD00DF6754 /* colorful_1440x900.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36E18BA9CFD00DF6754 /* colorful_1440x900.png */; };
+		CB9CD38718BA9CFD00DF6754 /* Composition53.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD36F18BA9CFD00DF6754 /* Composition53.png */; };
+		CB9CD38818BA9CFD00DF6754 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37018BA9CFD00DF6754 /* Dragon.png */; };
+		CB9CD38918BA9CFD00DF6754 /* eclipse.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37118BA9CFD00DF6754 /* eclipse.png */; };
+		CB9CD38A18BA9CFD00DF6754 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37218BA9CFD00DF6754 /* face.png */; };
+		CB9CD38B18BA9CFD00DF6754 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37318BA9CFD00DF6754 /* focus.png */; };
+		CB9CD38C18BA9CFD00DF6754 /* gbo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37418BA9CFD00DF6754 /* gbo.png */; };
+		CB9CD38D18BA9CFD00DF6754 /* Green_Plant_(2560x1600).png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37518BA9CFD00DF6754 /* Green_Plant_(2560x1600).png */; };
+		CB9CD38E18BA9CFD00DF6754 /* grounded.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37618BA9CFD00DF6754 /* grounded.png */; };
+		CB9CD38F18BA9CFD00DF6754 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37718BA9CFD00DF6754 /* happy.png */; };
+		CB9CD39018BA9CFD00DF6754 /* LeatherHoles-Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37818BA9CFD00DF6754 /* LeatherHoles-Apple.png */; };
+		CB9CD39118BA9CFD00DF6754 /* Let_it_snow_by_mj_coffeeholick.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37918BA9CFD00DF6754 /* Let_it_snow_by_mj_coffeeholick.png */; };
+		CB9CD39218BA9CFD00DF6754 /* Luxury_Apple_by_Stratification.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37A18BA9CFD00DF6754 /* Luxury_Apple_by_Stratification.png */; };
+		CB9CD39318BA9CFD00DF6754 /* MacMini.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37B18BA9CFD00DF6754 /* MacMini.png */; };
+		CB9CD39418BA9CFD00DF6754 /* SlaveKingGod.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37C18BA9CFD00DF6754 /* SlaveKingGod.png */; };
+		CB9CD39518BA9CFD00DF6754 /* Snow_Leopard_by_vladstudio.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37D18BA9CFD00DF6754 /* Snow_Leopard_by_vladstudio.png */; };
+		CB9CD39618BA9CFD00DF6754 /* Space Fold.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37E18BA9CFD00DF6754 /* Space Fold.png */; };
+		CB9CD39718BA9CFD00DF6754 /* Stormcloud_Schmeisser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD37F18BA9CFD00DF6754 /* Stormcloud_Schmeisser.png */; };
+		CB9CD39818BA9CFD00DF6754 /* tiamat.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD38018BA9CFD00DF6754 /* tiamat.png */; };
+		CB9CD39918BA9CFD00DF6754 /* WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD38118BA9CFD00DF6754 /* WTF.png */; };
+		CB9CD39F18BA9D1E00DF6754 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD39A18BA9D1E00DF6754 /* AQGridSelection.png */; };
+		CB9CD3A018BA9D1E00DF6754 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD39B18BA9D1E00DF6754 /* AQGridSelectionGray.png */; };
+		CB9CD3A118BA9D1E00DF6754 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD39C18BA9D1E00DF6754 /* AQGridSelectionGrayBlue.png */; };
+		CB9CD3A218BA9D1E00DF6754 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD39D18BA9D1E00DF6754 /* AQGridSelectionGreen.png */; };
+		CB9CD3A318BA9D1E00DF6754 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD39E18BA9D1E00DF6754 /* AQGridSelectionRed.png */; };
+		CB9CD3A818BA9D5C00DF6754 /* BookshelfGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3A618BA9D5C00DF6754 /* BookshelfGridViewController.xib */; };
+		CB9CD3A918BA9D5C00DF6754 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3A718BA9D5C00DF6754 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +121,75 @@
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
+		CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
+		CB9CD33418BA9C8E00DF6754 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = ../Bookshelf/AQGridViewClasses/AQGridView.h; sourceTree = "<group>"; };
+		CB9CD33518BA9C8E00DF6754 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridView.m; path = ../Bookshelf/AQGridViewClasses/AQGridView.m; sourceTree = "<group>"; };
+		CB9CD33618BA9C8E00DF6754 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLayout.h"; path = "../Bookshelf/AQGridViewClasses/AQGridView+CellLayout.h"; sourceTree = "<group>"; };
+		CB9CD33718BA9C8E00DF6754 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLocationDelegation.h"; path = "../Bookshelf/AQGridViewClasses/AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
+		CB9CD33818BA9C8E00DF6754 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewAnimatorItem.h; path = ../Bookshelf/AQGridViewClasses/AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
+		CB9CD33918BA9C8E00DF6754 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewAnimatorItem.m; path = ../Bookshelf/AQGridViewClasses/AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
+		CB9CD33A18BA9C8E00DF6754 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewCell.h; path = ../Bookshelf/AQGridViewClasses/AQGridViewCell.h; sourceTree = "<group>"; };
+		CB9CD33B18BA9C8E00DF6754 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewCell.m; path = ../Bookshelf/AQGridViewClasses/AQGridViewCell.m; sourceTree = "<group>"; };
+		CB9CD33C18BA9C8E00DF6754 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridViewCell+AQGridViewCellPrivate.h"; path = "../Bookshelf/AQGridViewClasses/AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
+		CB9CD33D18BA9C8E00DF6754 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewController.h; path = ../Bookshelf/AQGridViewClasses/AQGridViewController.h; sourceTree = "<group>"; };
+		CB9CD33E18BA9C8E00DF6754 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewController.m; path = ../Bookshelf/AQGridViewClasses/AQGridViewController.m; sourceTree = "<group>"; };
+		CB9CD33F18BA9C8E00DF6754 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewData.h; path = ../Bookshelf/AQGridViewClasses/AQGridViewData.h; sourceTree = "<group>"; };
+		CB9CD34018BA9C8E00DF6754 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewData.m; path = ../Bookshelf/AQGridViewClasses/AQGridViewData.m; sourceTree = "<group>"; };
+		CB9CD34118BA9C8E00DF6754 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewUpdateInfo.h; path = ../Bookshelf/AQGridViewClasses/AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
+		CB9CD34218BA9C8E00DF6754 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewUpdateInfo.m; path = ../Bookshelf/AQGridViewClasses/AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
+		CB9CD34318BA9C8E00DF6754 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewUpdateItem.h; path = ../Bookshelf/AQGridViewClasses/AQGridViewUpdateItem.h; sourceTree = "<group>"; };
+		CB9CD34418BA9C8E00DF6754 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewUpdateItem.m; path = ../Bookshelf/AQGridViewClasses/AQGridViewUpdateItem.m; sourceTree = "<group>"; };
+		CB9CD34518BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+AQIndexesOutsideSet.h"; path = "../Bookshelf/AQGridViewClasses/NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
+		CB9CD34618BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+AQIndexesOutsideSet.m"; path = "../Bookshelf/AQGridViewClasses/NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
+		CB9CD34718BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+AQIsSetContiguous.h"; path = "../Bookshelf/AQGridViewClasses/NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
+		CB9CD34818BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+AQIsSetContiguous.m"; path = "../Bookshelf/AQGridViewClasses/NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
+		CB9CD34918BA9C8E00DF6754 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+AQGridView.h"; path = "../Bookshelf/AQGridViewClasses/UIColor+AQGridView.h"; sourceTree = "<group>"; };
+		CB9CD34A18BA9C8E00DF6754 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+AQGridView.m"; path = "../Bookshelf/AQGridViewClasses/UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		CB9CD35518BA9CAF00DF6754 /* BookshelfGridCellChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridCellChooser.h; path = ../Bookshelf/Classes/BookshelfGridCellChooser.h; sourceTree = "<group>"; };
+		CB9CD35618BA9CAF00DF6754 /* BookshelfGridCellChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridCellChooser.m; path = ../Bookshelf/Classes/BookshelfGridCellChooser.m; sourceTree = "<group>"; };
+		CB9CD35718BA9CAF00DF6754 /* BookshelfGridFilledCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridFilledCell.h; path = ../Bookshelf/Classes/BookshelfGridFilledCell.h; sourceTree = "<group>"; };
+		CB9CD35818BA9CAF00DF6754 /* BookshelfGridFilledCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridFilledCell.m; path = ../Bookshelf/Classes/BookshelfGridFilledCell.m; sourceTree = "<group>"; };
+		CB9CD35918BA9CAF00DF6754 /* BookshelfGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewCell.h; path = ../Bookshelf/Classes/BookshelfGridViewCell.h; sourceTree = "<group>"; };
+		CB9CD35A18BA9CAF00DF6754 /* BookshelfGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewCell.m; path = ../Bookshelf/Classes/BookshelfGridViewCell.m; sourceTree = "<group>"; };
+		CB9CD35B18BA9CAF00DF6754 /* BookshelfGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewController.h; path = ../Bookshelf/Classes/BookshelfGridViewController.h; sourceTree = "<group>"; };
+		CB9CD35C18BA9CAF00DF6754 /* BookshelfGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewController.m; path = ../Bookshelf/Classes/BookshelfGridViewController.m; sourceTree = "<group>"; };
+		CB9CD35D18BA9CAF00DF6754 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = ../Bookshelf/Classes/UserLoginViewController.h; sourceTree = "<group>"; };
+		CB9CD35E18BA9CAF00DF6754 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = ../Bookshelf/Classes/UserLoginViewController.m; sourceTree = "<group>"; };
+		CB9CD35F18BA9CAF00DF6754 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = ../Bookshelf/Classes/UserLoginViewController.xib; sourceTree = "<group>"; };
+		CB9CD36018BA9CAF00DF6754 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = ../Bookshelf/Classes/users.txt; sourceTree = "<group>"; };
+		CB9CD36A18BA9CFC00DF6754 /* 3D-simplicity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3D-simplicity.png"; path = "../Bookshelf/Images/3D-simplicity.png"; sourceTree = "<group>"; };
+		CB9CD36B18BA9CFC00DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleTV-esque_by-mikelcroft_nl-1440.png"; path = "../Bookshelf/Images/AppleTV-esque_by-mikelcroft_nl-1440.png"; sourceTree = "<group>"; };
+		CB9CD36C18BA9CFD00DF6754 /* batman_surfing_on_superman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = batman_surfing_on_superman.png; path = ../Bookshelf/Images/batman_surfing_on_superman.png; sourceTree = "<group>"; };
+		CB9CD36D18BA9CFD00DF6754 /* coffee-break_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coffee-break_.png"; path = "../Bookshelf/Images/coffee-break_.png"; sourceTree = "<group>"; };
+		CB9CD36E18BA9CFD00DF6754 /* colorful_1440x900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colorful_1440x900.png; path = ../Bookshelf/Images/colorful_1440x900.png; sourceTree = "<group>"; };
+		CB9CD36F18BA9CFD00DF6754 /* Composition53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Composition53.png; path = ../Bookshelf/Images/Composition53.png; sourceTree = "<group>"; };
+		CB9CD37018BA9CFD00DF6754 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Dragon.png; path = ../Bookshelf/Images/Dragon.png; sourceTree = "<group>"; };
+		CB9CD37118BA9CFD00DF6754 /* eclipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eclipse.png; path = ../Bookshelf/Images/eclipse.png; sourceTree = "<group>"; };
+		CB9CD37218BA9CFD00DF6754 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = face.png; path = ../Bookshelf/Images/face.png; sourceTree = "<group>"; };
+		CB9CD37318BA9CFD00DF6754 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = focus.png; path = ../Bookshelf/Images/focus.png; sourceTree = "<group>"; };
+		CB9CD37418BA9CFD00DF6754 /* gbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gbo.png; path = ../Bookshelf/Images/gbo.png; sourceTree = "<group>"; };
+		CB9CD37518BA9CFD00DF6754 /* Green_Plant_(2560x1600).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green_Plant_(2560x1600).png"; path = "../Bookshelf/Images/Green_Plant_(2560x1600).png"; sourceTree = "<group>"; };
+		CB9CD37618BA9CFD00DF6754 /* grounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grounded.png; path = ../Bookshelf/Images/grounded.png; sourceTree = "<group>"; };
+		CB9CD37718BA9CFD00DF6754 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = happy.png; path = ../Bookshelf/Images/happy.png; sourceTree = "<group>"; };
+		CB9CD37818BA9CFD00DF6754 /* LeatherHoles-Apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeatherHoles-Apple.png"; path = "../Bookshelf/Images/LeatherHoles-Apple.png"; sourceTree = "<group>"; };
+		CB9CD37918BA9CFD00DF6754 /* Let_it_snow_by_mj_coffeeholick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Let_it_snow_by_mj_coffeeholick.png; path = ../Bookshelf/Images/Let_it_snow_by_mj_coffeeholick.png; sourceTree = "<group>"; };
+		CB9CD37A18BA9CFD00DF6754 /* Luxury_Apple_by_Stratification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Luxury_Apple_by_Stratification.png; path = ../Bookshelf/Images/Luxury_Apple_by_Stratification.png; sourceTree = "<group>"; };
+		CB9CD37B18BA9CFD00DF6754 /* MacMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MacMini.png; path = ../Bookshelf/Images/MacMini.png; sourceTree = "<group>"; };
+		CB9CD37C18BA9CFD00DF6754 /* SlaveKingGod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SlaveKingGod.png; path = ../Bookshelf/Images/SlaveKingGod.png; sourceTree = "<group>"; };
+		CB9CD37D18BA9CFD00DF6754 /* Snow_Leopard_by_vladstudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Snow_Leopard_by_vladstudio.png; path = ../Bookshelf/Images/Snow_Leopard_by_vladstudio.png; sourceTree = "<group>"; };
+		CB9CD37E18BA9CFD00DF6754 /* Space Fold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Space Fold.png"; path = "../Bookshelf/Images/Space Fold.png"; sourceTree = "<group>"; };
+		CB9CD37F18BA9CFD00DF6754 /* Stormcloud_Schmeisser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stormcloud_Schmeisser.png; path = ../Bookshelf/Images/Stormcloud_Schmeisser.png; sourceTree = "<group>"; };
+		CB9CD38018BA9CFD00DF6754 /* tiamat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiamat.png; path = ../Bookshelf/Images/tiamat.png; sourceTree = "<group>"; };
+		CB9CD38118BA9CFD00DF6754 /* WTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WTF.png; path = ../Bookshelf/Images/WTF.png; sourceTree = "<group>"; };
+		CB9CD39A18BA9D1E00DF6754 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelection.png; path = ../Bookshelf/Resources/AQGridSelection.png; sourceTree = "<group>"; };
+		CB9CD39B18BA9D1E00DF6754 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGray.png; path = ../Bookshelf/Resources/AQGridSelectionGray.png; sourceTree = "<group>"; };
+		CB9CD39C18BA9D1E00DF6754 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = ../Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
+		CB9CD39D18BA9D1E00DF6754 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGreen.png; path = ../Bookshelf/Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
+		CB9CD39E18BA9D1E00DF6754 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionRed.png; path = ../Bookshelf/Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CB9CD3A518BA9D5C00DF6754 /* Bookshelf_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bookshelf_Prefix.pch; path = ../Bookshelf/Bookshelf_Prefix.pch; sourceTree = "<group>"; };
+		CB9CD3A618BA9D5C00DF6754 /* BookshelfGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookshelfGridViewController.xib; path = ../Bookshelf/BookshelfGridViewController.xib; sourceTree = "<group>"; };
+		CB9CD3A718BA9D5C00DF6754 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../Bookshelf/MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +197,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71981AA1850138E00D502E3 /* libGTLTouchStaticLib.a in Frameworks */,
+				CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */,
+				CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */,
 				C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */,
 				C71981AC1850138E00D502E3 /* Security.framework in Frameworks */,
 				C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */,
@@ -130,6 +249,7 @@
 		C762B692181DB7B500EB3674 = {
 			isa = PBXGroup;
 			children = (
+				CB9CD32F18BA9C3200DF6754 /* Bookshelf */,
 				C762B6A4181DB7B500EB3674 /* StemNotebook */,
 				C762B69D181DB7B500EB3674 /* Frameworks */,
 				C762B69C181DB7B500EB3674 /* Products */,
@@ -148,6 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */,
+				CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */,
+				CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */,
 				C71981A71850138E00D502E3 /* MobileCoreServices.framework */,
 				C71981A81850138E00D502E3 /* Security.framework */,
 				C71981A91850138E00D502E3 /* SystemConfiguration.framework */,
@@ -205,6 +327,120 @@
 				C71981B1185015C800D502E3 /* GTLDrive.h */,
 			);
 			name = "Api Provided Files";
+			sourceTree = "<group>";
+		};
+		CB9CD32F18BA9C3200DF6754 /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD33318BA9C6800DF6754 /* AQGridView */,
+				CB9CD33018BA9C4400DF6754 /* Classes */,
+				CB9CD3A418BA9D3F00DF6754 /* IB */,
+				CB9CD33218BA9C5900DF6754 /* Images */,
+				CB9CD33118BA9C4D00DF6754 /* Selection */,
+			);
+			name = Bookshelf;
+			sourceTree = "<group>";
+		};
+		CB9CD33018BA9C4400DF6754 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD3A518BA9D5C00DF6754 /* Bookshelf_Prefix.pch */,
+				CB9CD35518BA9CAF00DF6754 /* BookshelfGridCellChooser.h */,
+				CB9CD35618BA9CAF00DF6754 /* BookshelfGridCellChooser.m */,
+				CB9CD35718BA9CAF00DF6754 /* BookshelfGridFilledCell.h */,
+				CB9CD35818BA9CAF00DF6754 /* BookshelfGridFilledCell.m */,
+				CB9CD35918BA9CAF00DF6754 /* BookshelfGridViewCell.h */,
+				CB9CD35A18BA9CAF00DF6754 /* BookshelfGridViewCell.m */,
+				CB9CD35B18BA9CAF00DF6754 /* BookshelfGridViewController.h */,
+				CB9CD35C18BA9CAF00DF6754 /* BookshelfGridViewController.m */,
+				CB9CD35D18BA9CAF00DF6754 /* UserLoginViewController.h */,
+				CB9CD35E18BA9CAF00DF6754 /* UserLoginViewController.m */,
+				CB9CD35F18BA9CAF00DF6754 /* UserLoginViewController.xib */,
+				CB9CD36018BA9CAF00DF6754 /* users.txt */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		CB9CD33118BA9C4D00DF6754 /* Selection */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD39A18BA9D1E00DF6754 /* AQGridSelection.png */,
+				CB9CD39B18BA9D1E00DF6754 /* AQGridSelectionGray.png */,
+				CB9CD39C18BA9D1E00DF6754 /* AQGridSelectionGrayBlue.png */,
+				CB9CD39D18BA9D1E00DF6754 /* AQGridSelectionGreen.png */,
+				CB9CD39E18BA9D1E00DF6754 /* AQGridSelectionRed.png */,
+			);
+			name = Selection;
+			sourceTree = "<group>";
+		};
+		CB9CD33218BA9C5900DF6754 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD36A18BA9CFC00DF6754 /* 3D-simplicity.png */,
+				CB9CD36B18BA9CFC00DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
+				CB9CD36C18BA9CFD00DF6754 /* batman_surfing_on_superman.png */,
+				CB9CD36D18BA9CFD00DF6754 /* coffee-break_.png */,
+				CB9CD36E18BA9CFD00DF6754 /* colorful_1440x900.png */,
+				CB9CD36F18BA9CFD00DF6754 /* Composition53.png */,
+				CB9CD37018BA9CFD00DF6754 /* Dragon.png */,
+				CB9CD37118BA9CFD00DF6754 /* eclipse.png */,
+				CB9CD37218BA9CFD00DF6754 /* face.png */,
+				CB9CD37318BA9CFD00DF6754 /* focus.png */,
+				CB9CD37418BA9CFD00DF6754 /* gbo.png */,
+				CB9CD37518BA9CFD00DF6754 /* Green_Plant_(2560x1600).png */,
+				CB9CD37618BA9CFD00DF6754 /* grounded.png */,
+				CB9CD37718BA9CFD00DF6754 /* happy.png */,
+				CB9CD37818BA9CFD00DF6754 /* LeatherHoles-Apple.png */,
+				CB9CD37918BA9CFD00DF6754 /* Let_it_snow_by_mj_coffeeholick.png */,
+				CB9CD37A18BA9CFD00DF6754 /* Luxury_Apple_by_Stratification.png */,
+				CB9CD37B18BA9CFD00DF6754 /* MacMini.png */,
+				CB9CD37C18BA9CFD00DF6754 /* SlaveKingGod.png */,
+				CB9CD37D18BA9CFD00DF6754 /* Snow_Leopard_by_vladstudio.png */,
+				CB9CD37E18BA9CFD00DF6754 /* Space Fold.png */,
+				CB9CD37F18BA9CFD00DF6754 /* Stormcloud_Schmeisser.png */,
+				CB9CD38018BA9CFD00DF6754 /* tiamat.png */,
+				CB9CD38118BA9CFD00DF6754 /* WTF.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		CB9CD33318BA9C6800DF6754 /* AQGridView */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD33418BA9C8E00DF6754 /* AQGridView.h */,
+				CB9CD33518BA9C8E00DF6754 /* AQGridView.m */,
+				CB9CD33618BA9C8E00DF6754 /* AQGridView+CellLayout.h */,
+				CB9CD33718BA9C8E00DF6754 /* AQGridView+CellLocationDelegation.h */,
+				CB9CD33818BA9C8E00DF6754 /* AQGridViewAnimatorItem.h */,
+				CB9CD33918BA9C8E00DF6754 /* AQGridViewAnimatorItem.m */,
+				CB9CD33A18BA9C8E00DF6754 /* AQGridViewCell.h */,
+				CB9CD33B18BA9C8E00DF6754 /* AQGridViewCell.m */,
+				CB9CD33C18BA9C8E00DF6754 /* AQGridViewCell+AQGridViewCellPrivate.h */,
+				CB9CD33D18BA9C8E00DF6754 /* AQGridViewController.h */,
+				CB9CD33E18BA9C8E00DF6754 /* AQGridViewController.m */,
+				CB9CD33F18BA9C8E00DF6754 /* AQGridViewData.h */,
+				CB9CD34018BA9C8E00DF6754 /* AQGridViewData.m */,
+				CB9CD34118BA9C8E00DF6754 /* AQGridViewUpdateInfo.h */,
+				CB9CD34218BA9C8E00DF6754 /* AQGridViewUpdateInfo.m */,
+				CB9CD34318BA9C8E00DF6754 /* AQGridViewUpdateItem.h */,
+				CB9CD34418BA9C8E00DF6754 /* AQGridViewUpdateItem.m */,
+				CB9CD34518BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.h */,
+				CB9CD34618BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.m */,
+				CB9CD34718BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.h */,
+				CB9CD34818BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.m */,
+				CB9CD34918BA9C8E00DF6754 /* UIColor+AQGridView.h */,
+				CB9CD34A18BA9C8E00DF6754 /* UIColor+AQGridView.m */,
+			);
+			name = AQGridView;
+			sourceTree = "<group>";
+		};
+		CB9CD3A418BA9D3F00DF6754 /* IB */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD3A618BA9D5C00DF6754 /* BookshelfGridViewController.xib */,
+				CB9CD3A718BA9D5C00DF6754 /* MainWindow.xib */,
+			);
+			name = IB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +508,39 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
+				CB9CD36618BA9CAF00DF6754 /* UserLoginViewController.xib in Resources */,
+				CB9CD36718BA9CAF00DF6754 /* users.txt in Resources */,
+				CB9CD38218BA9CFD00DF6754 /* 3D-simplicity.png in Resources */,
+				CB9CD38318BA9CFD00DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */,
+				CB9CD38418BA9CFD00DF6754 /* batman_surfing_on_superman.png in Resources */,
+				CB9CD38518BA9CFD00DF6754 /* coffee-break_.png in Resources */,
+				CB9CD38618BA9CFD00DF6754 /* colorful_1440x900.png in Resources */,
+				CB9CD38718BA9CFD00DF6754 /* Composition53.png in Resources */,
+				CB9CD38818BA9CFD00DF6754 /* Dragon.png in Resources */,
+				CB9CD38918BA9CFD00DF6754 /* eclipse.png in Resources */,
+				CB9CD38A18BA9CFD00DF6754 /* face.png in Resources */,
+				CB9CD38B18BA9CFD00DF6754 /* focus.png in Resources */,
+				CB9CD38C18BA9CFD00DF6754 /* gbo.png in Resources */,
+				CB9CD38D18BA9CFD00DF6754 /* Green_Plant_(2560x1600).png in Resources */,
+				CB9CD38E18BA9CFD00DF6754 /* grounded.png in Resources */,
+				CB9CD38F18BA9CFD00DF6754 /* happy.png in Resources */,
+				CB9CD39018BA9CFD00DF6754 /* LeatherHoles-Apple.png in Resources */,
+				CB9CD39118BA9CFD00DF6754 /* Let_it_snow_by_mj_coffeeholick.png in Resources */,
+				CB9CD39218BA9CFD00DF6754 /* Luxury_Apple_by_Stratification.png in Resources */,
+				CB9CD39318BA9CFD00DF6754 /* MacMini.png in Resources */,
+				CB9CD39418BA9CFD00DF6754 /* SlaveKingGod.png in Resources */,
+				CB9CD39518BA9CFD00DF6754 /* Snow_Leopard_by_vladstudio.png in Resources */,
+				CB9CD39618BA9CFD00DF6754 /* Space Fold.png in Resources */,
+				CB9CD39718BA9CFD00DF6754 /* Stormcloud_Schmeisser.png in Resources */,
+				CB9CD39818BA9CFD00DF6754 /* tiamat.png in Resources */,
+				CB9CD39918BA9CFD00DF6754 /* WTF.png in Resources */,
+				CB9CD39F18BA9D1E00DF6754 /* AQGridSelection.png in Resources */,
+				CB9CD3A018BA9D1E00DF6754 /* AQGridSelectionGray.png in Resources */,
+				CB9CD3A118BA9D1E00DF6754 /* AQGridSelectionGrayBlue.png in Resources */,
+				CB9CD3A218BA9D1E00DF6754 /* AQGridSelectionGreen.png in Resources */,
+				CB9CD3A318BA9D1E00DF6754 /* AQGridSelectionRed.png in Resources */,
+				CB9CD3A818BA9D5C00DF6754 /* BookshelfGridViewController.xib in Resources */,
+				CB9CD3A918BA9D5C00DF6754 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +560,21 @@
 				C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */,
+				CB9CD34B18BA9C8E00DF6754 /* AQGridView.m in Sources */,
+				CB9CD34C18BA9C8E00DF6754 /* AQGridViewAnimatorItem.m in Sources */,
+				CB9CD34D18BA9C8E00DF6754 /* AQGridViewCell.m in Sources */,
+				CB9CD34E18BA9C8E00DF6754 /* AQGridViewController.m in Sources */,
+				CB9CD34F18BA9C8E00DF6754 /* AQGridViewData.m in Sources */,
+				CB9CD35018BA9C8E00DF6754 /* AQGridViewUpdateInfo.m in Sources */,
+				CB9CD35118BA9C8E00DF6754 /* AQGridViewUpdateItem.m in Sources */,
+				CB9CD35218BA9C8E00DF6754 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
+				CB9CD35318BA9C8E00DF6754 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				CB9CD35418BA9C8E00DF6754 /* UIColor+AQGridView.m in Sources */,
+				CB9CD36118BA9CAF00DF6754 /* BookshelfGridCellChooser.m in Sources */,
+				CB9CD36218BA9CAF00DF6754 /* BookshelfGridFilledCell.m in Sources */,
+				CB9CD36318BA9CAF00DF6754 /* BookshelfGridViewCell.m in Sources */,
+				CB9CD36418BA9CAF00DF6754 /* BookshelfGridViewController.m in Sources */,
+				CB9CD36518BA9CAF00DF6754 /* UserLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +667,10 @@
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../google-api-objectivec-client-read-only/Source\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -403,6 +691,10 @@
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../google-api-objectivec-client-read-only/Source\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
