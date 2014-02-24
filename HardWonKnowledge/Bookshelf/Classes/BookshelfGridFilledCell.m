@@ -55,7 +55,7 @@
     _title.highlightedTextColor = [UIColor whiteColor];
     _title.font = [UIFont boldSystemFontOfSize: 12.0];
     _title.adjustsFontSizeToFitWidth = YES;
-    _title.minimumFontSize = 10.0;
+    _title.minimumScaleFactor = 10.0;
     
     self.backgroundColor = [UIColor colorWithWhite: 0.95 alpha: 1.0];
     self.contentView.backgroundColor = self.backgroundColor;

@@ -11,8 +11,10 @@
 @interface UserLoginViewController : UIViewController{
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
-    NSMutableArray *usernameCredentials;
-    NSMutableArray *passwordCredentials;
+//    NSMutableArray *usernameCredentials;
+//    NSMutableArray *passwordCredentials;
+    NSMutableArray *firstName;
+    NSMutableArray *lastName;
 //    NSDictionary *userCredentials;
     NSMutableDictionary *userCredentials;
     

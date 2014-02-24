@@ -43,6 +43,7 @@
 #import <UIKit/UIKit.h>
 #import "../AQGridViewClasses/AQGridView.h"
 #import "BookshelfGridCellChooser.h"
+#import "UserLoginViewController.h"
 
 @interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource, BookshelfGridCellChooserDelegate>
 {

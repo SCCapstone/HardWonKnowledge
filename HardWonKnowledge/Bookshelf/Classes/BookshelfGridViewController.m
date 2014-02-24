@@ -48,8 +48,8 @@
 
 enum
 {
-    CellTypePlain,
     CellTypeFill,
+    CellTypePlain,
     CellTypeOffset
 };
 
@@ -64,14 +64,14 @@ enum
 }
 
 -(void)getText{
-//    NSURL *url = [NSURL URLWithString:@"URL"];
-//    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSStringEncodingConversionAllowLossy error:nil];
+    //    NSURL *url = [NSURL URLWithString:@"URL"];
+    //    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSStringEncodingConversionAllowLossy error:nil];
     
 }
 
 -(IBAction)notebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
-    [self presentViewController:notebook animated:YES completion:NULL];
+    [self presentViewController:notebook animated:NO completion:NULL];
     
 }
 
@@ -80,35 +80,37 @@ enum
 {
     [super viewDidLoad];
     
-        self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        self.gridView.autoresizesSubviews = YES;
-        self.gridView.delegate = self;
-        self.gridView.dataSource = self;
+//    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Title"];
+    
+    self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    self.gridView.autoresizesSubviews = YES;
+    self.gridView.delegate = self;
+    self.gridView.dataSource = self;
+    
+    BookshelfGridCellChooser * chooser = [[BookshelfGridCellChooser alloc] initWithItemTitles: [NSArray arrayWithObjects: NSLocalizedString(@"Filled", @""), NSLocalizedString(@"Plain", @""), nil]];
+    chooser.delegate = self;
+    _menuPopoverController = [[UIPopoverController alloc] initWithContentViewController: chooser];
+    
+    if ( _orderedImageNames != nil )
+        return;
+    
+    NSArray * paths = [NSBundle pathsForResourcesOfType: @"png" inDirectory: [[NSBundle mainBundle] bundlePath]];
+    NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
+    
+    for ( NSString * path in paths )
+    {
+        if ( [[path lastPathComponent] hasPrefix: @"AQ"] )
+            continue;
         
-        BookshelfGridCellChooser * chooser = [[BookshelfGridCellChooser alloc] initWithItemTitles: [NSArray arrayWithObjects: NSLocalizedString(@"Plain", @""), NSLocalizedString(@"Filled", @""), nil]];
-        chooser.delegate = self;
-        _menuPopoverController = [[UIPopoverController alloc] initWithContentViewController: chooser];
-        
-        if ( _orderedImageNames != nil )
-            return;
-        
-        NSArray * paths = [NSBundle pathsForResourcesOfType: @"png" inDirectory: [[NSBundle mainBundle] bundlePath]];
-        NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
-        
-        for ( NSString * path in paths )
-        {
-            if ( [[path lastPathComponent] hasPrefix: @"AQ"] )
-                continue;
-            
-            [allImageNames addObject: [path lastPathComponent]];
-        }
-        
-        // sort alphabetically
-        _orderedImageNames = [[allImageNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
-        _imageNames = [_orderedImageNames copy];
-        
-        
-        [self.gridView reloadData];
+        [allImageNames addObject: [path lastPathComponent]];
+    }
+    
+    // sort alphabetically
+    _orderedImageNames = [[allImageNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+    _imageNames = [_orderedImageNames copy];
+    
+    
+    [self.gridView reloadData];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -119,10 +121,10 @@ enum
 
 - (void) viewDidUnload
 {
-        // Release any retained subviews of the main view.
-        // e.g. self.myOutlet = nil;
-        self.gridView = nil;
-        _menuPopoverController = nil;
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    self.gridView = nil;
+    _menuPopoverController = nil;
 }
 
 
@@ -209,31 +211,31 @@ enum
 
 - (void) cellChooser: (BookshelfGridCellChooser *) chooser selectedItemAtIndex: (NSUInteger) index
 {
-        if ( index != _cellType )
+    if ( index != _cellType )
+    {
+        _cellType = index;
+        switch ( _cellType )
         {
-            _cellType = index;
-            switch ( _cellType )
-            {
-                case CellTypePlain:
-                    self.gridView.separatorStyle = AQGridViewCellSeparatorStyleEmptySpace;
-                    self.gridView.resizesCellWidthToFit = NO;
-                    self.gridView.separatorColor = nil;
-                    break;
-                    
-                case CellTypeFill:
-                    self.gridView.separatorStyle = AQGridViewCellSeparatorStyleSingleLine;
-                    self.gridView.resizesCellWidthToFit = YES;
-                    self.gridView.separatorColor = [UIColor colorWithWhite: 0.85 alpha: 1.0];
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-            [self.gridView reloadData];
+            case CellTypePlain:
+                self.gridView.separatorStyle = AQGridViewCellSeparatorStyleEmptySpace;
+                self.gridView.resizesCellWidthToFit = NO;
+                self.gridView.separatorColor = nil;
+                break;
+                
+            case CellTypeFill:
+                self.gridView.separatorStyle = AQGridViewCellSeparatorStyleSingleLine;
+                self.gridView.resizesCellWidthToFit = YES;
+                self.gridView.separatorColor = [UIColor colorWithWhite: 0.85 alpha: 1.0];
+                break;
+                
+            default:
+                break;
         }
         
-        [_menuPopoverController dismissPopoverAnimated: YES];
+        [self.gridView reloadData];
+    }
+    
+    [_menuPopoverController dismissPopoverAnimated: YES];
 }
 
 #pragma mark -
@@ -246,52 +248,52 @@ enum
 
 - (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
 {
-        static NSString * PlainCellIdentifier = @"PlainCellIdentifier";
-        static NSString * FilledCellIdentifier = @"FilledCellIdentifier";
-        //static NSString * OffsetCellIdentifier = @"OffsetCellIdentifier";
-        
-        AQGridViewCell * cell = nil;
-        
-        switch ( _cellType )
+    static NSString * PlainCellIdentifier = @"PlainCellIdentifier";
+    static NSString * FilledCellIdentifier = @"FilledCellIdentifier";
+    //static NSString * OffsetCellIdentifier = @"OffsetCellIdentifier";
+    
+    AQGridViewCell * cell = nil;
+    
+    switch ( _cellType )
+    {
+        case CellTypePlain:
         {
-            case CellTypePlain:
+            BookshelfGridViewCell * plainCell = (BookshelfGridViewCell *)[aGridView dequeueReusableCellWithIdentifier: PlainCellIdentifier];
+            if ( plainCell == nil )
             {
-                BookshelfGridViewCell * plainCell = (BookshelfGridViewCell *)[aGridView dequeueReusableCellWithIdentifier: PlainCellIdentifier];
-                if ( plainCell == nil )
-                {
-                    plainCell = [[BookshelfGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 150.0)
-                                                             reuseIdentifier: PlainCellIdentifier];
-                    plainCell.selectionGlowColor = [UIColor blueColor];
-                }
-                
-                plainCell.image = [UIImage imageNamed: [_imageNames objectAtIndex: index]];
-                
-                cell = plainCell;
-                break;
+                plainCell = [[BookshelfGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 150.0)
+                                                         reuseIdentifier: PlainCellIdentifier];
+                plainCell.selectionGlowColor = [UIColor blueColor];
             }
-                
-            case CellTypeFill:
-            {
-                BookshelfGridFilledCell * filledCell = (BookshelfGridFilledCell *)[aGridView dequeueReusableCellWithIdentifier: FilledCellIdentifier];
-                if ( filledCell == nil )
-                {
-                    filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 150.0)
-                                                                reuseIdentifier: FilledCellIdentifier];
-                    filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
-                }
-                
-                filledCell.image = [UIImage imageNamed: [_imageNames objectAtIndex: index]];
-                filledCell.title = [[_imageNames objectAtIndex: index] stringByDeletingPathExtension];
-                
-                cell = filledCell;
-                break;
-            }
-                
-            default:
-                break;
+            
+            plainCell.image = [UIImage imageNamed: [_imageNames objectAtIndex: index]];
+            
+            cell = plainCell;
+            break;
         }
-        
-        return ( cell );
+            
+        case CellTypeFill:
+        {
+            BookshelfGridFilledCell * filledCell = (BookshelfGridFilledCell *)[aGridView dequeueReusableCellWithIdentifier: FilledCellIdentifier];
+            if ( filledCell == nil )
+            {
+                filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 150.0)
+                                                            reuseIdentifier: FilledCellIdentifier];
+                filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
+            }
+            
+            filledCell.image = [UIImage imageNamed: [_imageNames objectAtIndex: index]];
+            filledCell.title = [[_imageNames objectAtIndex: index] stringByDeletingPathExtension];
+            
+            cell = filledCell;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    return ( cell );
     
 }
 

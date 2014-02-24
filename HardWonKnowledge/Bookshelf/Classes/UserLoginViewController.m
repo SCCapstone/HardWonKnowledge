@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
-    NSString *fileContents = [NSString stringWithContentsOfFile:filePath];
+    NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray* rows = [fileContents componentsSeparatedByString:@"\n"];
     
     userCredentials = [[NSMutableDictionary alloc] init];
@@ -30,11 +30,13 @@
         NSString *theUsername = [userInfo objectAtIndex:0];
         theUsername= [theUsername stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         theUsername = [theUsername lowercaseString];
-        [usernameCredentials addObject:theUsername];
+//        [usernameCredentials addObject:theUsername];
         NSString *thePassword = [userInfo objectAtIndex:1];
         thePassword = [thePassword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [passwordCredentials addObject:thePassword];
+//        [passwordCredentials addObject:thePassword];
         [userCredentials setObject:thePassword forKey:theUsername];
+//        [firstName addObject:[userInfo objectAtIndex:2]];
+//        [lastName addObject:[userInfo objectAtIndex:3]];
     }
 }
 
@@ -44,7 +46,7 @@
     }
     else if([[userCredentials objectForKey:usernameField.text]isEqualToString:passwordField.text]){
         BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
-        [self presentViewController:bookshelf animated:YES completion:NULL];
+        [self presentViewController:bookshelf animated:NO completion:NULL];
     }
     else{
         
