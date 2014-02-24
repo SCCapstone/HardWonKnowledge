@@ -81,11 +81,22 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     NSLog(@"Change Color Called");
 }
 
+- (void)changeAlphaWithNumber:(float)newAlpha
+{
+    [self.paintView changeAlphaWithNumber:newAlpha];
+}
+
+
+
+//These two differ in the change alpha in order to enable/disable painting
+//all show submenu functions except the paint submenu should set alpha to zero to prevent drawing on touch
 - (void)showPaintSubmenu
 {
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
+    [self.paintView changeAlphaWithNumber:1];
+    
 }
 
 - (void)showMenuSubmenu
@@ -93,6 +104,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.menuSubmenu];
     [self.menuSubmenu setHidden:FALSE];
     [self.paintSubmenu setHidden:TRUE];
+    [self.paintView changeAlphaWithNumber:0];
 }
 
 - (void)changeBrushWithNumber:(float)number
