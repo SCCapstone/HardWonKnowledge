@@ -95,7 +95,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
-    [self.paintView changeAlphaWithNumber:1];
+    [self.paintView changeAlphaWithNumber:1.0];
     
 }
 
@@ -104,7 +104,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.menuSubmenu];
     [self.menuSubmenu setHidden:FALSE];
     [self.paintSubmenu setHidden:TRUE];
-    [self.paintView changeAlphaWithNumber:0];
+    [self.paintView changeAlphaWithNumber:0.0];
 }
 
 - (void)changeBrushWithNumber:(float)number
