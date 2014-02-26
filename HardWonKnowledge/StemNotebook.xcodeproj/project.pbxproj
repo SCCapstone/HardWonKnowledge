@@ -249,6 +249,7 @@
 		C762B692181DB7B500EB3674 = {
 			isa = PBXGroup;
 			children = (
+				CBC4C3E018BD98E9001B6FBA /* LoginScreen */,
 				CB9CD32F18BA9C3200DF6754 /* Bookshelf */,
 				C762B6A4181DB7B500EB3674 /* StemNotebook */,
 				C762B69D181DB7B500EB3674 /* Frameworks */,
@@ -353,9 +354,6 @@
 				CB9CD3D018BAA01900DF6754 /* BookshelfGridViewCell.m */,
 				CB9CD3D118BAA01900DF6754 /* BookshelfGridViewController.h */,
 				CB9CD3D218BAA01900DF6754 /* BookshelfGridViewController.m */,
-				CB9CD3D318BAA01900DF6754 /* UserLoginViewController.h */,
-				CB9CD3D418BAA01900DF6754 /* UserLoginViewController.m */,
-				CB9CD3D518BAA01900DF6754 /* users.txt */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -436,11 +434,21 @@
 		CB9CD3A418BA9D3F00DF6754 /* IB */ = {
 			isa = PBXGroup;
 			children = (
-				CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */,
 				CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */,
 				CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */,
 			);
 			name = IB;
+			sourceTree = "<group>";
+		};
+		CBC4C3E018BD98E9001B6FBA /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */,
+				CB9CD3D318BAA01900DF6754 /* UserLoginViewController.h */,
+				CB9CD3D418BAA01900DF6754 /* UserLoginViewController.m */,
+				CB9CD3D518BAA01900DF6754 /* users.txt */,
+			);
+			name = LoginScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

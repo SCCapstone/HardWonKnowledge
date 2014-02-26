@@ -25,5 +25,6 @@
 - (void)loginFromViewController:(UIViewController *)controller;
 - (void)logout;
 - (GTLDriveFileList *) listDriveFiles;
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file;
 
 @end

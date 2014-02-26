@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GTLDrive.h"
+#import "DriveManager.h"
 
-@interface UserLoginViewController : UIViewController{
+@interface UserLoginViewController : UIViewController<UIAlertViewDelegate>{
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
 //    NSMutableArray *usernameCredentials;
@@ -22,4 +24,6 @@
 //- (IBAction)userLogin:(id)sender;
 //@property (strong, nonatomic) IBOutlet UILabel *ButtonPressedNameLabel;
 - (IBAction)userLogin;
+@property (nonatomic, retain) GTLServiceDrive *driveService;
+@property (nonatomic, retain) DriveManager *driveManager;
 @end
