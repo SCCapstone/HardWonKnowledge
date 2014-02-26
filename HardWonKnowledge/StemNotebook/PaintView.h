@@ -24,6 +24,7 @@
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
+- (void)changeAlphaWithNumber:(float)newAlpha;
 - (void)saveImageView;
 - (void)loadImageView;
 - (void)nextPage;
