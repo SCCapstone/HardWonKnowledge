@@ -117,7 +117,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     }
     else
     {
-        NSLog(@"File not exits");
+        NSLog(@"File not exists");
     }
     
     GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];

@@ -53,11 +53,11 @@
     _imageView = [[UIImageView alloc] initWithFrame: CGRectZero];
     _title = [[UILabel alloc] initWithFrame: CGRectZero];
     _title.highlightedTextColor = [UIColor whiteColor];
-    _title.font = [UIFont boldSystemFontOfSize: 12.0];
+//    _title.font = [UIFont boldSystemFontOfSize: 20.0];
     _title.adjustsFontSizeToFitWidth = YES;
     _title.minimumScaleFactor = 10.0;
     
-    self.backgroundColor = [UIColor colorWithWhite: 0.95 alpha: 1.0];
+    self.backgroundColor = [UIColor colorWithWhite: 1.0 alpha: 1.0];
     self.contentView.backgroundColor = self.backgroundColor;
     _imageView.backgroundColor = self.backgroundColor;
     _title.backgroundColor = self.backgroundColor;
@@ -100,7 +100,7 @@
     
     [_title sizeToFit];
     CGRect frame = _title.frame;
-    frame.size.width = MIN(frame.size.width, bounds.size.width);
+    frame.size.width = MIN(frame.size.width, bounds.size.width)-20;
     frame.origin.y = CGRectGetMaxY(bounds) - frame.size.height;
     frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);
     _title.frame = frame;

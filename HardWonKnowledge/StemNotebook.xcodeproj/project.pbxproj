@@ -81,6 +81,8 @@
 		CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */; };
 		CB9CD41B18BAA0A300DF6754 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */; };
 		CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */; };
+		CBE86B5018BE9A7F00055ABC /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4E18BE9A7F00055ABC /* Black.png */; };
+		CBE86B5118BE9A7F00055ABC /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4F18BE9A7F00055ABC /* Green.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +192,8 @@
 		CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
 		CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGreen.png; path = Bookshelf/Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
 		CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionRed.png; path = Bookshelf/Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CBE86B4E18BE9A7F00055ABC /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Black.png; path = Bookshelf/Images/Black.png; sourceTree = "<group>"; };
+		CBE86B4F18BE9A7F00055ABC /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Bookshelf/Images/Green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +377,8 @@
 		CB9CD33218BA9C5900DF6754 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CBE86B4E18BE9A7F00055ABC /* Black.png */,
+				CBE86B4F18BE9A7F00055ABC /* Green.png */,
 				CB9CD3E318BAA08700DF6754 /* 3D-simplicity.png */,
 				CB9CD3E418BAA08700DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
 				CB9CD3E518BAA08700DF6754 /* batman_surfing_on_superman.png */,
@@ -549,6 +555,8 @@
 				CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */,
 				CB9CD41B18BAA0A300DF6754 /* AQGridSelectionGreen.png in Resources */,
 				CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */,
+				CBE86B5018BE9A7F00055ABC /* Black.png in Resources */,
+				CBE86B5118BE9A7F00055ABC /* Green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

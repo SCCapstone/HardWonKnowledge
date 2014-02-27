@@ -63,16 +63,9 @@ enum
     [self presentViewController:login animated:YES completion:NULL];
 }
 
--(void)getText{
-    //    NSURL *url = [NSURL URLWithString:@"URL"];
-    //    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSStringEncodingConversionAllowLossy error:nil];
-    
-}
-
 -(IBAction)notebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:notebook animated:NO completion:NULL];
-    
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -80,37 +73,42 @@ enum
 {
     [super viewDidLoad];
     
-//    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Title"];
+    //    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Title"];
     
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.delegate = self;
     self.gridView.dataSource = self;
-    
-    BookshelfGridCellChooser * chooser = [[BookshelfGridCellChooser alloc] initWithItemTitles: [NSArray arrayWithObjects: NSLocalizedString(@"Filled", @""), NSLocalizedString(@"Plain", @""), nil]];
-    chooser.delegate = self;
-    _menuPopoverController = [[UIPopoverController alloc] initWithContentViewController: chooser];
-    
-    if ( _orderedImageNames != nil )
+    self.driveManager = [DriveManager getDriveManager];
+
+    if ( _orderedFileNames != nil)
         return;
+
+    NSMutableArray *allFileNames = [[NSMutableArray alloc] init];
+    UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading Notebooks..."];
+    NSLog(@"Loading Notebooks...");
     
-    NSArray * paths = [NSBundle pathsForResourcesOfType: @"png" inDirectory: [[NSBundle mainBundle] bundlePath]];
-    NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
-    
-    for ( NSString * path in paths )
-    {
-        if ( [[path lastPathComponent] hasPrefix: @"AQ"] )
-            continue;
-        
-        [allImageNames addObject: [path lastPathComponent]];
-    }
-    
-    // sort alphabetically
-    _orderedImageNames = [[allImageNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
-    _imageNames = [_orderedImageNames copy];
-    
-    
-    [self.gridView reloadData];
+    // Find the existing files on Google Drive
+    NSString *search = @"title contains 'Stem Notebook Upload'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+        if (error == nil) {
+            for (GTLDriveFile *file in files) {
+                NSLog(@"Drive File: %@",file.title);
+                [allFileNames addObject:file.title];
+            }
+            _allFiles = files;
+            // _orderedFileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+            _fileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+            // _fileNames = [_orderedFileNames copy];
+            
+            [self.gridView reloadData];
+        } else {
+            NSLog (@"An Error has occurred: %@", error);
+        }
+    }];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -122,120 +120,7 @@ enum
 - (void) viewDidUnload
 {
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
     self.gridView = nil;
-    _menuPopoverController = nil;
-}
-
-
-//- (IBAction) shuffle
-//{
-//    NSMutableArray * sourceArray = [_imageNames mutableCopy];
-//    NSMutableArray * destArray = [[NSMutableArray alloc] initWithCapacity: [sourceArray count]];
-//
-//    [self.gridView beginUpdates];
-//
-//    srandom( time(NULL) );
-//    while ( [sourceArray count] != 0 )
-//    {
-//        NSUInteger index = (NSUInteger)(random() % [sourceArray count]);
-//        id item = [sourceArray objectAtIndex: index];
-//
-//        // queue the animation
-//        [self.gridView moveItemAtIndex: [_imageNames indexOfObject: item]
-//                               toIndex: [destArray count]
-//                         withAnimation: AQGridViewItemAnimationFade];
-//
-//        // modify source & destination arrays
-//        [destArray addObject: item];
-//        [sourceArray removeObjectAtIndex: index];
-//    }
-//
-//    _imageNames = [destArray copy];
-//
-//    [self.gridView endUpdates];
-//
-//}
-
-//- (IBAction) resetOrder
-//{
-//    [self.gridView beginUpdates];
-//
-//    NSUInteger index, count = [_orderedImageNames count];
-//    for ( index = 0; index < count; index++ )
-//    {
-//        NSUInteger oldIndex = [_imageNames indexOfObject: [_orderedImageNames objectAtIndex: index]];
-//        if ( oldIndex == index )
-//            continue;       // no changes for this item
-//
-//        [self.gridView moveItemAtIndex: oldIndex toIndex: index withAnimation: AQGridViewItemAnimationFade];
-//    }
-//
-//    [self.gridView endUpdates];
-//
-//    _imageNames = [_orderedImageNames copy];
-//}
-
-//- (IBAction) displayCellTypeMenu: (UIBarButtonItem *) sender
-//{
-//    if ( [_menuPopoverController isPopoverVisible] )
-//        [_menuPopoverController dismissPopoverAnimated: YES];
-//
-//    [_menuPopoverController presentPopoverFromBarButtonItem: sender
-//                                   permittedArrowDirections: UIPopoverArrowDirectionUp
-//                                                   animated: YES];
-//}
-
-//- (IBAction) toggleLayoutDirection: (UIBarButtonItem *) sender
-//{
-//	switch ( _gridView.layoutDirection )
-//	{
-//		default:
-//		case AQGridViewLayoutDirectionVertical:
-//			sender.title = NSLocalizedString(@"Horizontal Layout", @"");
-//			_gridView.layoutDirection = AQGridViewLayoutDirectionHorizontal;
-//			break;
-//
-//		case AQGridViewLayoutDirectionHorizontal:
-//			sender.title = NSLocalizedString(@"Vertical Layout", @"");
-//			_gridView.layoutDirection = AQGridViewLayoutDirectionVertical;
-//			break;
-//	}
-//
-//	// force the grid view to reflow
-//	CGRect bounds = CGRectZero;
-//	bounds.size = _gridView.frame.size;
-//	_gridView.bounds = bounds;
-//	[_gridView setNeedsLayout];
-//}
-
-- (void) cellChooser: (BookshelfGridCellChooser *) chooser selectedItemAtIndex: (NSUInteger) index
-{
-    if ( index != _cellType )
-    {
-        _cellType = index;
-        switch ( _cellType )
-        {
-            case CellTypePlain:
-                self.gridView.separatorStyle = AQGridViewCellSeparatorStyleEmptySpace;
-                self.gridView.resizesCellWidthToFit = NO;
-                self.gridView.separatorColor = nil;
-                break;
-                
-            case CellTypeFill:
-                self.gridView.separatorStyle = AQGridViewCellSeparatorStyleSingleLine;
-                self.gridView.resizesCellWidthToFit = YES;
-                self.gridView.separatorColor = [UIColor colorWithWhite: 0.85 alpha: 1.0];
-                break;
-                
-            default:
-                break;
-        }
-        
-        [self.gridView reloadData];
-    }
-    
-    [_menuPopoverController dismissPopoverAnimated: YES];
 }
 
 #pragma mark -
@@ -243,63 +128,86 @@ enum
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
-    return ( [_imageNames count] );
+    return ( [_fileNames count] );
 }
 
 - (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
 {
-    static NSString * PlainCellIdentifier = @"PlainCellIdentifier";
+    //Display notebooks in grid
     static NSString * FilledCellIdentifier = @"FilledCellIdentifier";
-    //static NSString * OffsetCellIdentifier = @"OffsetCellIdentifier";
-    
     AQGridViewCell * cell = nil;
-    
-    switch ( _cellType )
+    BookshelfGridFilledCell * filledCell = (BookshelfGridFilledCell *)[aGridView dequeueReusableCellWithIdentifier: FilledCellIdentifier];
+    if ( filledCell == nil )
     {
-        case CellTypePlain:
-        {
-            BookshelfGridViewCell * plainCell = (BookshelfGridViewCell *)[aGridView dequeueReusableCellWithIdentifier: PlainCellIdentifier];
-            if ( plainCell == nil )
-            {
-                plainCell = [[BookshelfGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 150.0)
-                                                         reuseIdentifier: PlainCellIdentifier];
-                plainCell.selectionGlowColor = [UIColor blueColor];
-            }
-            
-            plainCell.image = [UIImage imageNamed: [_imageNames objectAtIndex: index]];
-            
-            cell = plainCell;
-            break;
-        }
-            
-        case CellTypeFill:
-        {
-            BookshelfGridFilledCell * filledCell = (BookshelfGridFilledCell *)[aGridView dequeueReusableCellWithIdentifier: FilledCellIdentifier];
-            if ( filledCell == nil )
-            {
-                filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 150.0)
-                                                            reuseIdentifier: FilledCellIdentifier];
-                filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
-            }
-            
-            filledCell.image = [UIImage imageNamed: [_imageNames objectAtIndex: index]];
-            filledCell.title = [[_imageNames objectAtIndex: index] stringByDeletingPathExtension];
-            
-            cell = filledCell;
-            break;
-        }
-            
-        default:
-            break;
+        filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 300.0)
+                                                    reuseIdentifier: FilledCellIdentifier];
+        //                filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
+        filledCell.selectionGlowColor = [UIColor blackColor];
     }
     
+    if(index%2==0){
+        filledCell.image = [UIImage imageNamed:@"Green.png"];
+    } else{
+        filledCell.image = [UIImage imageNamed:@"Black.png"];
+    }
+    filledCell.title = [_fileNames objectAtIndex: index];
+    
+    cell = filledCell;
     return ( cell );
     
 }
 
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
 {
-    return ( CGSizeMake(224.0, 168.0) );
+    return ( CGSizeMake(230.0, 345.0) );
+}
+
+- (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
+{
+    GTLDriveFile *file = [_allFiles itemAtIndex:index];
+        NSLog(@"File %i selected: %@",index,file.title);
+    self.driveManager = [DriveManager getDriveManager];
+    NSString *viewPath = [self.driveManager downloadDriveFile:file];
+    
+//    NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
+//    GTLDriveFile *file = [_allFiles itemAtIndex:index];
+//    [[notebook paintView] loadNotebook:file ];
+//    [self presentViewController:notebook animated:NO completion:NULL];
+//    NSString *viewPath = file.downloadUrl;
+//    NSString *viewPath = [self.driveManager downloadDriveFile:file];
+//    NSLog(@"Item %i was selected: %@ %@",index,file.title,viewPath);
+//    
+//    //get data from file
+//    NSData *codedData = [[NSData alloc] initWithContentsOfFile:viewPath];
+//    if (codedData == nil) return;
+
+    //unarchive data
+//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
+//
+//    //get images from archive
+//    for (int i = 0; i<25; i++) {
+//        UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
+//        //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+//        UIImageView *v = [notebook.paintView.pages objectAtIndex:i];
+//        v.image = newImage;
+//    }
+//    NSLog(@"SELECTED %i", 4);
+//    [unarchiver finishDecoding];
+//    
+//    UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:file.title message:nil delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+//    
+////    UIImageView *imageView = (UIImage *)[unarchiver decodeObjectForKey:@"image-"];
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(220, 10, 40, 40)];
+////    viewPath = file.downloadUrl;
+//    NSString *path = viewPath;
+//    NSLog(@"PAAATH: %@",viewPath);
+//    UIImage *bkgImg = [[UIImage alloc] initWithContentsOfFile:path];
+//    [imageView setImage:bkgImg];
+//    
+//    [successAlert addSubview:imageView];
+//    
+//    [successAlert show];
+//        [self presentViewController:notebook animated:NO completion:NULL];
 }
 
 #pragma mark -

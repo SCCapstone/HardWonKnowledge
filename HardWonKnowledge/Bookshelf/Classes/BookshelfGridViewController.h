@@ -42,16 +42,21 @@
 
 #import <UIKit/UIKit.h>
 #import "../AQGridViewClasses/AQGridView.h"
-#import "BookshelfGridCellChooser.h"
-#import "UserLoginViewController.h"
+//#import "BookshelfGridCellChooser.h"
+//#import "UserLoginViewController.h"
+#import "GTLDrive.h"
+#import "DriveManager.h"
 
-@interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource, BookshelfGridCellChooserDelegate>
+@interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>//, BookshelfGridCellChooserDelegate>
 {
-    NSArray * _orderedImageNames;
-    NSArray * _imageNames;
+//    NSArray * _orderedImageNames;
+//    NSArray * _imageNames;
+    GTLDriveFileList *_allFiles;
+    NSArray *_orderedFileNames;
+    NSArray *_fileNames;
     AQGridView * _gridView;
     NSUInteger _cellType;
-    UIPopoverController * _menuPopoverController;
+//    UIPopoverController * _menuPopoverController;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
@@ -61,7 +66,8 @@
 //- (IBAction) displayCellTypeMenu: (UIBarButtonItem *) sender;
 //- (IBAction) toggleLayoutDirection: (UIBarButtonItem *) sender;
 -(IBAction)logoutAccount;
--(void)getText;
 -(IBAction)notebookEntry;
+@property (nonatomic, retain) GTLServiceDrive *driveService;
+@property (nonatomic, retain) DriveManager *driveManager;
 @end
 
