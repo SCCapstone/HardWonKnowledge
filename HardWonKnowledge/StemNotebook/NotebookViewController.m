@@ -22,16 +22,24 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize SubmenuView;
 @synthesize paintSubmenu;
 @synthesize menuSubmenu;
+@synthesize typeSubmenu;
+
+
+
+
 
 //Called when the view loads
 - (void)viewDidLoad
-{    
+{
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
-    [self.SubmenuView addSubview:self.paintSubmenu];
-    [self.paintSubmenu setHidden:FALSE];
+    
+    [self.SubmenuView addSubview:self.typeSubmenu];
+    [self.paintSubmenu setHidden:TRUE];
     [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:FALSE];
     self.driveService = [[GTLServiceDrive alloc] init];
     self.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                          clientID:kClientID
@@ -75,6 +83,16 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return menuSubmenu;
 }
 
+- (TypeSubmenuView *)typeSubmenu
+{
+    if (!typeSubmenu) {
+        CGRect typeSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.typeSubmenu = [[TypeSubmenuView alloc] initWithFrame:typeSubmenuFrame];
+        self.typeSubmenu.delegate = self;
+    }
+    return typeSubmenu;
+}
+
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
     [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
@@ -86,6 +104,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    
 }
 
 - (void)showMenuSubmenu
@@ -93,6 +114,17 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.menuSubmenu];
     [self.menuSubmenu setHidden:FALSE];
     [self.paintSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+}
+
+- (void)showTypeSubmenu
+{
+    [self.SubmenuView addSubview:self.typeSubmenu];
+    [self.menuSubmenu setHidden: TRUE];
+    [self.paintSubmenu setHidden: TRUE];
+    [self.typeSubmenu setHidden:FALSE];
+        
 }
 
 - (void)changeBrushWithNumber:(float)number
@@ -118,6 +150,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 -(void)decodePaintView
 {
     [self.paintView loadImageView];
+    
 }
 
 -(void)uploadButtonClicked
@@ -139,5 +172,19 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 {
     [self.driveManager logout];
 }
+
+- (void)sendNotesPressed
+{
+    
+    [self.paintView sendNotesPressed];
+
+}
+
+
+
+
+
+
+
 
 @end

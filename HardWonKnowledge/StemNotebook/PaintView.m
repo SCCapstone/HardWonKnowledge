@@ -11,6 +11,7 @@
 
 @implementation PaintView
 
+
 @synthesize lastPoint;
 @synthesize red;
 @synthesize blue;
@@ -19,8 +20,11 @@
 @synthesize swipe;
 @synthesize brush;
 @synthesize drawImage;
+@synthesize drawLabel;
+@synthesize drawField;
 @synthesize pages;
 @synthesize current;
+
 
 //Initialize the view
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
@@ -31,11 +35,16 @@
         [self setMultipleTouchEnabled:NO]; // (2)
         current = 0;
         
+        
         self.pages = [[NSMutableArray alloc] init];
         for(int i = 0; i<25; i++)
         {
+
             self.drawImage = [[UIImageView alloc] initWithImage:nil];
             self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        
+                     
+            
             [pages addObject:drawImage];
         }
         
@@ -51,6 +60,8 @@
     }
     return self;
 }
+
+
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -188,6 +199,7 @@
 //move to next page
 -(void)nextPage
 {
+    
     current = current +1;
     if(current <25)
     {
@@ -201,6 +213,7 @@
         current = 24;
     }
 }
+
 
 //move to previous page
 -(void)previousPage
@@ -220,5 +233,26 @@
     }    
     
 }
+
+-(void)sendNotesPressed
+{
+   
+    NSLog(@"sendNotes called"); //testing purposes. 
+    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (20, -300, self.bounds.size.width, self.bounds.size.height)];
+    NSString *input = @"hello fag";
+    self.drawLabel.text = input;
+    self.drawLabel.numberOfLines = 1;
+    self.drawLabel.backgroundColor = [UIColor clearColor];
+    self.drawLabel.textColor = [UIColor blackColor];
+    
+    [self.drawImage addSubview: self.drawLabel];
+}
+
+
+
+
+
+
+
 
 @end

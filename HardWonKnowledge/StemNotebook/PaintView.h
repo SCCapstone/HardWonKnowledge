@@ -18,8 +18,11 @@
     @property CGFloat brush;
     @property BOOL swipe;
     @property (strong, nonatomic) UIImageView *drawImage;
+    @property (strong, nonatomic) UILabel *drawLabel;
     @property (strong, nonatomic) NSMutableArray *pages;
     @property (nonatomic) int current;
+    @property (strong, nonatomic) UITextField *drawField;
+
 
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
@@ -28,5 +31,9 @@
 - (void)loadImageView;
 - (void)nextPage;
 - (void)previousPage;
+- (void)sendNotesPressed;
+
+
+
 
 @end
