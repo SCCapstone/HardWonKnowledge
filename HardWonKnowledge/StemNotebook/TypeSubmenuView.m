@@ -11,7 +11,7 @@
 @implementation TypeSubmenuView
 
 @synthesize delegate;
-
+@synthesize tempField;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -27,9 +27,13 @@
  
 
 
+
+
 - (IBAction)sendNotesPressed:(id)sender {
-    [self.delegate sendNotesPressed];
+    NSString *input = tempField.text;
+    [self.delegate changeText:input];
 }
+
 
 
 

@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) id <NotebookViewDelegate> delegate;
 
+@property (strong, nonatomic) IBOutlet UITextField *tempField;
 
 
 @end

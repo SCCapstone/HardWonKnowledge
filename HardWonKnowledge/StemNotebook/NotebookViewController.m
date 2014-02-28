@@ -99,6 +99,11 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     NSLog(@"Change Color Called");
 }
 
+- (void)changeText:(NSString *)text
+{
+    [self.paintView changeText:text];
+}
+
 - (void)showPaintSubmenu
 {
     [self.SubmenuView addSubview:self.paintSubmenu];

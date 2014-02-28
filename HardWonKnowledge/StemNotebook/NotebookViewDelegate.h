@@ -13,6 +13,7 @@
 - (void)PaintViewButtonPressed;
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
+- (void)changeText:(NSString*)text;
 - (void)sendNotesPressed;
 - (void)nextPage;
 - (void)previousPage;

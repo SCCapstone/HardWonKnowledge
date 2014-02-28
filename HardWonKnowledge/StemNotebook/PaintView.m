@@ -24,6 +24,7 @@
 @synthesize drawField;
 @synthesize pages;
 @synthesize current;
+@synthesize textAdd;
 
 
 //Initialize the view
@@ -69,6 +70,7 @@
     self.swipe =NO;
     UITouch *touch = [touches anyObject];
     self.lastPoint = [touch locationInView:self];
+    if(self.alpha==0.01)
 
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -128,6 +130,11 @@
 - (void)changeBrushWithNumber:(float)number
 {
     self.brush = number;
+}
+
+- (void)changeText:(NSString *)text
+{
+    self.textAdd = text;
 }
 
 //save the notebook to a file
@@ -239,7 +246,7 @@
    
     NSLog(@"sendNotes called"); //testing purposes. 
     self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (20, -300, self.bounds.size.width, self.bounds.size.height)];
-    NSString *input = @"hello fag";
+    NSString *input = @"hello world";
     self.drawLabel.text = input;
     self.drawLabel.numberOfLines = 1;
     self.drawLabel.backgroundColor = [UIColor clearColor];
