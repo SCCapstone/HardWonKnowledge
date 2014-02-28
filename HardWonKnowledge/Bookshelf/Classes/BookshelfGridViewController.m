@@ -67,6 +67,12 @@ enum
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:notebook animated:NO completion:NULL];
 }
+- (IBAction)openNotebookView: (NSString *) path{
+            NSLog(@"OpenNotebook");
+    NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
+    [notebook openNotebookNamed:path];
+    [self presentViewController:notebook animated:NO completion:NULL];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void) viewDidLoad
@@ -164,50 +170,26 @@ enum
 
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
-    GTLDriveFile *file = [_allFiles itemAtIndex:index];
-        NSLog(@"File %i selected: %@",index,file.title);
-    self.driveManager = [DriveManager getDriveManager];
-    NSString *viewPath = [self.driveManager downloadDriveFile:file];
-    
-//    NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
-//    GTLDriveFile *file = [_allFiles itemAtIndex:index];
-//    [[notebook paintView] loadNotebook:file ];
-//    [self presentViewController:notebook animated:NO completion:NULL];
-//    NSString *viewPath = file.downloadUrl;
-//    NSString *viewPath = [self.driveManager downloadDriveFile:file];
-//    NSLog(@"Item %i was selected: %@ %@",index,file.title,viewPath);
-//    
-//    //get data from file
-//    NSData *codedData = [[NSData alloc] initWithContentsOfFile:viewPath];
-//    if (codedData == nil) return;
+        GTLDriveFile *file = [_allFiles itemAtIndex:index];
+    NSString *path = [self.driveManager downloadDriveFile:file];
+    if(index == -99){
+        [self openNotebookView:path];
+        return;
+    }
+    UIAlertView * alert = [[UIAlertView alloc] init];
+    alert.delegate = self;
+    alert.title = @"Opening Notebook";
+    alert.message = [NSString stringWithFormat:@"Are you sure you want to open\n%@", file.title];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    [alert show];
+}
 
-    //unarchive data
-//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-//
-//    //get images from archive
-//    for (int i = 0; i<25; i++) {
-//        UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
-//        //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
-//        UIImageView *v = [notebook.paintView.pages objectAtIndex:i];
-//        v.image = newImage;
-//    }
-//    NSLog(@"SELECTED %i", 4);
-//    [unarchiver finishDecoding];
-//    
-//    UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:file.title message:nil delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-//    
-////    UIImageView *imageView = (UIImage *)[unarchiver decodeObjectForKey:@"image-"];
-//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(220, 10, 40, 40)];
-////    viewPath = file.downloadUrl;
-//    NSString *path = viewPath;
-//    NSLog(@"PAAATH: %@",viewPath);
-//    UIImage *bkgImg = [[UIImage alloc] initWithContentsOfFile:path];
-//    [imageView setImage:bkgImg];
-//    
-//    [successAlert addSubview:imageView];
-//    
-//    [successAlert show];
-//        [self presentViewController:notebook animated:NO completion:NULL];
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonPressedName isEqualToString: @"Yes"]){
+        [self gridView:_gridView didSelectItemAtIndex:-99];
+    }
 }
 
 #pragma mark -

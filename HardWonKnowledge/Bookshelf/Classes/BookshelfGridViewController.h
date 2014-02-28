@@ -49,24 +49,18 @@
 
 @interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>//, BookshelfGridCellChooserDelegate>
 {
-//    NSArray * _orderedImageNames;
-//    NSArray * _imageNames;
     GTLDriveFileList *_allFiles;
     NSArray *_orderedFileNames;
     NSArray *_fileNames;
     AQGridView * _gridView;
     NSUInteger _cellType;
-//    UIPopoverController * _menuPopoverController;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
 
-//- (IBAction) shuffle;
-//- (IBAction) resetOrder;
-//- (IBAction) displayCellTypeMenu: (UIBarButtonItem *) sender;
-//- (IBAction) toggleLayoutDirection: (UIBarButtonItem *) sender;
--(IBAction)logoutAccount;
--(IBAction)notebookEntry;
+- (IBAction) logoutAccount;
+- (IBAction) notebookEntry;
+- (IBAction) openNotebookView: (NSString *) path;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
 @end

@@ -140,4 +140,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.driveManager logout];
 }
 
+- (void) openNotebookNamed:(NSString *)name {
+    
+}
+
 @end

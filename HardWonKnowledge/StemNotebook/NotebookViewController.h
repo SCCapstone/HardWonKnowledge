@@ -27,4 +27,6 @@
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
 
+- (void) openNotebookNamed:(NSString *)name;
+
 @end
