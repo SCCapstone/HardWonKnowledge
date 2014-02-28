@@ -24,5 +24,6 @@
 - (void)showAlert:(NSString *)title message:(NSString *)message;
 - (void)loginFromViewController:(UIViewController *)controller;
 - (void)logout;
+- (GTLDriveFileList *) listDriveFiles;
 
 @end

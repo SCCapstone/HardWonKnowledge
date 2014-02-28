@@ -126,7 +126,6 @@
     self.alpha = newAlpha;
 }
 
-
 - (void)changeBrushWithNumber:(float)number
 {
     self.brush = number;
