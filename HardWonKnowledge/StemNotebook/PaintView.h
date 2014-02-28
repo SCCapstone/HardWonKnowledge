@@ -23,12 +23,15 @@
     @property (nonatomic) int current;
     @property (strong, nonatomic) UITextField *drawField;
     @property (strong,nonatomic) NSString *textAdd;
+    @property (nonatomic) BOOL inTextMode;
 
 
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
 - (void)changeText:(NSString*)text;
+- (void)changeAlphaWithNumber:(float)newAlpha;
+- (void)changeTextMode:(BOOL)newMode;
 - (void)saveImageView;
 - (void)loadImageView;
 - (void)nextPage;

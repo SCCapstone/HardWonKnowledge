@@ -36,10 +36,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
     
-    [self.SubmenuView addSubview:self.typeSubmenu];
-    [self.paintSubmenu setHidden:TRUE];
+    [self.SubmenuView addSubview:self.paintSubmenu];
+    [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
-    [self.typeSubmenu setHidden:FALSE];
+    [self.typeSubmenu setHidden:TRUE];
     self.driveService = [[GTLServiceDrive alloc] init];
     self.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                          clientID:kClientID
@@ -104,6 +104,20 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView changeText:text];
 }
 
+- (void)changeTextMode:(BOOL)newMode
+{
+    [self.paintView changeTextMode:newMode];
+}
+
+- (void)changeAlphaWithNumber:(float)newAlpha
+{
+    [self.paintView changeAlphaWithNumber:newAlpha];
+}
+
+
+
+//These two differ in the change alpha in order to enable/disable painting
+//all show submenu functions except the paint submenu should set alpha to zero to prevent drawing on touch
 - (void)showPaintSubmenu
 {
     [self.SubmenuView addSubview:self.paintSubmenu];
@@ -111,6 +125,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.menuSubmenu setHidden:TRUE];
     [self.typeSubmenu setHidden:TRUE];
     [self.view endEditing:YES];
+    [self.paintView changeAlphaWithNumber:1.0];
+    [self.paintView changeTextMode:FALSE];
     
 }
 
@@ -121,14 +137,17 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintSubmenu setHidden:TRUE];
     [self.typeSubmenu setHidden:TRUE];
     [self.view endEditing:YES];
+    [self.paintView changeAlphaWithNumber:0.0];
+    [self.paintView changeTextMode:FALSE];
 }
-
 - (void)showTypeSubmenu
 {
     [self.SubmenuView addSubview:self.typeSubmenu];
     [self.menuSubmenu setHidden: TRUE];
     [self.paintSubmenu setHidden: TRUE];
     [self.typeSubmenu setHidden:FALSE];
+    [self.paintView changeAlphaWithNumber:1.0];
+    [self.paintView changeTextMode:TRUE];
         
 }
 

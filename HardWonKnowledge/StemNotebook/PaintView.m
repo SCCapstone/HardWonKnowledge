@@ -7,6 +7,7 @@
 //
 
 #import "PaintView.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation PaintView
@@ -25,6 +26,7 @@
 @synthesize pages;
 @synthesize current;
 @synthesize textAdd;
+@synthesize inTextMode;
 
 
 //Initialize the view
@@ -55,9 +57,9 @@
         self.red=0.0;
         self.blue = 0.0;
         self.green = 0.0;
-        self.alpha = 1.0;
-        
+        self.alpha = 1;        
         self.brush = 10.0;
+        self.inTextMode = FALSE;
     }
     return self;
 }
@@ -70,51 +72,84 @@
     self.swipe =NO;
     UITouch *touch = [touches anyObject];
     self.lastPoint = [touch locationInView:self];
-    if(self.alpha==0.01)
+    //if(self.alpha==0)
+    //{
+   //    NSLog(@"if working");
+    //    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (0, -300, self.bounds.size.width, self.bounds.size.height)];
+   //
+   //     self.drawLabel.text = @"test";
+   //     self.drawLabel.numberOfLines = 1;
+   //     self.drawLabel.backgroundColor = [UIColor clearColor];
+   //     self.drawLabel.textColor = [UIColor blackColor];
+   //
+   //     [self.drawImage addSubview: self.drawLabel];
+   // }
+    if(inTextMode)
+    {
+        self.alpha = 0;
+        [self sendNotesPressedWithX:self.lastPoint.x WithY:self.lastPoint.y];
+    }
+    
 
 }
+    
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.swipe = YES;
-    UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self];
+    if(!inTextMode)
+    {
+        self.swipe = YES;
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPoint = [touch locationInView:self];
     
-    UIGraphicsBeginImageContext(self.frame.size);
+        
+        UIGraphicsBeginImageContext(self.frame.size);
     
-    [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+        [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     
-    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
-    CGContextBeginPath(UIGraphicsGetCurrentContext());
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-    CGContextStrokePath(UIGraphicsGetCurrentContext());
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
+        CGContextBeginPath(UIGraphicsGetCurrentContext());
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
     
-    self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.lastPoint = currentPoint;
+        self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+    
+        self.lastPoint = currentPoint;
+    }
     
     
     
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(!self.swipe)
+    if(!inTextMode)
     {
-        UIGraphicsBeginImageContext(self.frame.size);
+        if(!self.swipe)
+        {
         
-        [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+            UIGraphicsBeginImageContext(self.frame.size);
         
-        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
-        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
-        CGContextStrokePath(UIGraphicsGetCurrentContext());
-        CGContextFlush(UIGraphicsGetCurrentContext());
-        self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+            [self.drawImage.image drawInRect:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+        
+            CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+            CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
+            CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.alpha);
+            CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
+            CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
+            CGContextStrokePath(UIGraphicsGetCurrentContext());
+            CGContextFlush(UIGraphicsGetCurrentContext());
+            self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
+    }
+    else
+    {
+        self.alpha = 1;
+      
     }
 }
 
@@ -134,6 +169,17 @@
 - (void)changeText:(NSString *)text
 {
     self.textAdd = text;
+    
+}
+
+- (void)changeAlphaWithNumber:(float)newAlpha
+{
+    self.alpha = newAlpha;
+}
+
+- (void)changeTextMode:(BOOL)newMode
+{
+    self.inTextMode = newMode;
 }
 
 //save the notebook to a file
@@ -240,18 +286,31 @@
     
 }
 
--(void)sendNotesPressed
+-(void)sendNotesPressedWithX:(int)newX WithY:(int)newY
 {
-   
-    NSLog(@"sendNotes called"); //testing purposes. 
-    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (20, -300, self.bounds.size.width, self.bounds.size.height)];
-    NSString *input = @"hello world";
+
+    NSLog(@"sendNotes called"); //testing purposes.
+    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (newX, newY, 1000, 20)];
+    NSString *input = self.textAdd;
     self.drawLabel.text = input;
     self.drawLabel.numberOfLines = 1;
     self.drawLabel.backgroundColor = [UIColor clearColor];
     self.drawLabel.textColor = [UIColor blackColor];
-    
+
     [self.drawImage addSubview: self.drawLabel];
+    
+    UIGraphicsBeginImageContextWithOptions(self.drawImage.bounds.size, NO, 0.0);
+    [self.drawImage.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    [self.drawLabel removeFromSuperview];
+    
+    UIGraphicsEndImageContext();
+    self.drawImage.image = image;
+    
+    
+    
 }
 
 

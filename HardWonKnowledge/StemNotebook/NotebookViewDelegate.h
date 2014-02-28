@@ -14,9 +14,11 @@
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
 - (void)changeText:(NSString*)text;
+- (void)changeTextMode:(BOOL)newMode;
 - (void)sendNotesPressed;
 - (void)nextPage;
 - (void)previousPage;
+- (void)changeAlphaWithNumber:(float)newAlpha;
 - (void)showPaintSubmenu;
 - (void)showMenuSubmenu;
 - (void)showTypeSubmenu;
