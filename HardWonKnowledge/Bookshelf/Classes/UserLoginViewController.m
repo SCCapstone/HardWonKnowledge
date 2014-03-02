@@ -12,14 +12,16 @@
 @interface UserLoginViewController (){
     IBOutlet UITextField *usernameField;
     IBOutlet UITextField *passwordField;
-    //    NSMutableArray *firstName;
-    //    NSMutableArray *lastName;
-    NSMutableDictionary *userCredentials;
-    UIViewController *adminView;
     IBOutlet UITextField *inputFirst;
     IBOutlet UITextField *inputLast;
     IBOutlet UITextField *inputUser;
     IBOutlet UITextField *inputPass;
+    NSMutableDictionary *userCredentials;
+    NSMutableArray *userInfoRow;
+    NSMutableArray *prevInput;
+    NSString *listFileId;
+    UIViewController *adminView;
+    UITableView *autocompleteTableView;
     BOOL isAddUser;
 }
 
@@ -30,31 +32,155 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    userCredentials = [[NSMutableDictionary alloc] init];
+    prevInput = [[NSMutableArray alloc] init];
+    [prevInput setValue:@"DUMMY_VALUE" forKey:@"First"];
+    [prevInput setValue:@"DUMMY_VALUE" forKey:@"Last"];
+    [prevInput setValue:@"DUMMY_VALUE" forKey:@"User"];
+    [prevInput setValue:@"DUMMY_VALUE" forKey:@"Pass"];
+    userInfoRow = [[NSMutableArray alloc] init];
+    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
     NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    NSArray* rows = [fileContents componentsSeparatedByString:@"\n"];
+    NSArray *rows = [fileContents componentsSeparatedByString:@"\n"];
+    self.driveManager = [DriveManager getDriveManager];
     
-    userCredentials = [[NSMutableDictionary alloc] init];
+    NSString *search = @"title = 'NOTEBOOK_USERS_LIST.txt'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            [self parseFile:rows];
+            GTLDriveFile *file = [files.items objectAtIndex:0];
+            [self.driveManager downloadDriveFile:file];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+            NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
+            NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+            NSArray *userRows = [contents componentsSeparatedByString:@"\n"];
+            listFileId = file.identifier;
+            [self parseFile:userRows];
+        } else
+            NSLog (@"An Error has occurred: %@", error);
+    }];
+}
+
+- (void) parseFile: (NSArray *) rows{
     for (int n=0; n<[rows count]; n++){
-        NSString* users = [rows objectAtIndex:n];
-        NSArray* userInfo = [users componentsSeparatedByString:@" "];
-        
-        NSString *theUsername = [userInfo objectAtIndex:0];
-        theUsername= [theUsername stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        theUsername = [theUsername lowercaseString];
-        NSString *thePassword = [userInfo objectAtIndex:1];
-        thePassword = [thePassword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSString *users = [rows objectAtIndex:n];
+        NSArray *userInfo = [users componentsSeparatedByString:@" "];
+        NSString *theUsername = [[userInfo objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSString *thePassword = [[userInfo objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSLog(@"XXXXX %@ %@", theUsername, thePassword);
         [userCredentials setObject:thePassword forKey:theUsername];
-        //        [firstName addObject:[userInfo objectAtIndex:2]];
-        //        [lastName addObject:[userInfo objectAtIndex:3]];
-        
-        self.driveManager = [DriveManager getDriveManager];
+        [userInfoRow addObject:users];
     }
+    
+}
+
+- (IBAction)driveLogin{
+    [self.driveManager loginFromViewController:self];
+}
+
+- (IBAction)driveLogout{
+    [self.driveManager logout];
+}
+
+- (IBAction)closeAnimated{
+    [adminView dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)closePlain{
+    [adminView dismissViewControllerAnimated:NO completion:NULL];
+}
+
+- (void)openView: (NSString*)title value:(BOOL)value{
+    adminView = [[UIViewController alloc] init];
+    adminView.modalPresentationStyle = UIModalPresentationFormSheet;
+    adminView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:adminView animated:value completion:NULL];
+    adminView.view.backgroundColor= [UIColor whiteColor];
+    adminView.view.superview.frame = CGRectMake(0, 0, 300, 400);
+    adminView.view.superview.center = self.view.center;
+    
+    [self addLabel:title x:(adminView.view.frame.size.width-200)/2 y:10.0 width:200.0 height:50.0 color:[UIColor darkGrayColor] alignment:NSTextAlignmentCenter fontSize:18 lines:1];
+}
+
+- (UIButton*)addButton: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.frame = CGRectMake(x, y, width, height);
+    [adminView.view addSubview:button];
+    return button;
+}
+
+- (void)addLabel: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height color:(UIColor*)color alignment:(UITextAlignment)align fontSize:(CGFloat)size lines:(NSInteger)numberOfLines{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    label.text = title;
+    label.textColor = color;
+    label.numberOfLines = numberOfLines;
+    label.textAlignment = align;
+    label.font = [UIFont systemFontOfSize:size];
+    [adminView.view addSubview:label];
+}
+
+-(UITableView*)addAutoComplete{
+    UITableView *tableView = [[UITableView alloc] initWithFrame: CGRectMake(0, 80, 320, 120) style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.scrollEnabled = YES;
+    tableView.hidden = YES;
+    [adminView.view addSubview:tableView];
+    return tableView;
+}
+
+- (UITextField*)addTextField: (NSString*)placeholder x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size secure:(BOOL)value capitalize:(BOOL)cap{
+    UITextField *text = [[UITextField alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    if(cap)
+        text.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    else
+        text.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    text.autocorrectionType = UITextAutocorrectionTypeNo;
+    text.borderStyle = UITextBorderStyleBezel;
+    text.placeholder = placeholder;
+    text.secureTextEntry = value;
+    text.font = [UIFont systemFontOfSize:size];
+    [adminView.view addSubview: text];
+    return text;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    autocompleteTableView.hidden = NO;
+    NSString *substring = [NSString stringWithString:textField.text];
+    substring = [substring
+                 stringByReplacingCharactersInRange:range withString:string];
+    [self searchAutocompleteEntriesWithSubstring:substring];
+    return YES;
+}
+
+- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    [prevInput removeAllObjects];
+    for(NSString *curString in userInfoRow) {
+        NSRange substringRange = [curString rangeOfString:substring];
+        if (substringRange.location == 0) {
+            [prevInput addObject:curString];
+        }
+    }
+    [autocompleteTableView reloadData];
 }
 
 - (IBAction)userLogin {
     if([[userCredentials objectForKey:@"admin"]isEqualToString:passwordField.text]){
+        [self openView:@"Administrative Menu" value:YES];
         
+        UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
+        UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+        UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
+        UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+        
+        [button1 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+        [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
+        [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
+        [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
     }
     else if([[userCredentials objectForKey:usernameField.text]isEqualToString:passwordField.text]){
         if([self.driveManager isAuthorized]){
@@ -74,190 +200,96 @@
     else{
         //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         //        [alert show];
-        adminView = [[UIViewController alloc] init];
-        adminView.modalPresentationStyle = UIModalPresentationFormSheet;
-        adminView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        [self presentViewController:adminView animated:YES completion:NULL];
-        adminView.view.backgroundColor= [UIColor whiteColor];
-        adminView.view.superview.frame = CGRectMake(0, 0, 300, 400);
-        adminView.view.superview.center = self.view.center;
+        [self openView:@"Administrative Menu" value:YES];
         
-        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, 10, 200.0, 50.0)];
-        title.text = @"Administrative Menu";
-        title.textColor = [UIColor darkGrayColor];
-        title.textAlignment = NSTextAlignmentCenter;
-        title.font = [UIFont systemFontOfSize:18];
-        [adminView.view addSubview:title];
+        UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
+        UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+        UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
+        UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
         
-        UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button1 setTitle:@"Settings" forState:UIControlStateNormal];
         [button1 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
-        button1.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 100, 200.0, 35.0);
-        [adminView.view addSubview:button1];
-        
-        UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button2 setTitle:@"Log In to Google Drive" forState:UIControlStateNormal];
         [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
-        button2.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 150, 200.0, 35.0);
-        [adminView.view addSubview:button2];
-        
-        UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button3 setTitle:@"Log Out of Google Drive" forState:UIControlStateNormal];
         [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
-        button3.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 200, 200.0, 35.0);
-        [adminView.view addSubview:button3];
-        
-        UIButton *button4 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button4 setTitle:@"Close" forState:UIControlStateNormal];
-        [button4 addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-        button4.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 250, 200.0, 35.0);
-        [adminView.view addSubview:button4];
+        [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
-- (IBAction)driveLogin{
-    [self.driveManager loginFromViewController:self];
-}
-
-- (IBAction)driveLogout{
-    [self.driveManager logout];
+- (IBAction)adminMenu{
+    [self closePlain];
+    [self openView:@"Administrative Menu" value:NO];
+    
+    UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
+    UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+    UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
+    UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+    
+    [button1 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
+    [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
+    [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction)userSettings{
-    [adminView dismissViewControllerAnimated:NO completion:NULL];
-    adminView = [[UIViewController alloc] init];
-    adminView.modalPresentationStyle = UIModalPresentationFormSheet;
-    adminView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:adminView animated:NO completion:NULL];
-    adminView.view.backgroundColor= [UIColor whiteColor];
-    adminView.view.superview.frame = CGRectMake(0, 0, 300, 400);
-    adminView.view.superview.center = self.view.center;
+    [self closePlain];
+    [self openView:@"Settings" value:NO];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, 10, 200.0, 50.0)];
-    title.text = @"Settings";
-    title.textColor = [UIColor darkGrayColor];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont systemFontOfSize:18];
-    [adminView.view addSubview:title];
+    UIButton *button1 = [self addButton:@"Add New User" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
+    UIButton *button2 = [self addButton:@"Remove Existing User" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+    UIButton *button3 = [self addButton:@"Update Existing User" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
+    UIButton *button4 = [self addButton:@"Cancel" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
     
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button1 setTitle:@"Add New User" forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-    button1.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 100, 200.0, 35.0);
-    [adminView.view addSubview:button1];
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 setTitle:@"Remove Existing User" forState:UIControlStateNormal];
     [button2 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-    button2.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 150, 200.0, 35.0);
-    [adminView.view addSubview:button2];
-    
-    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button3 setTitle:@"Update Existing User" forState:UIControlStateNormal];
     [button3 addTarget:self action:@selector(editUser) forControlEvents:UIControlEventTouchUpInside];
-    button3.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 200, 200.0, 35.0);
-    [adminView.view addSubview:button3];
-    
-    UIButton *button4 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button4 setTitle:@"Close" forState:UIControlStateNormal];
-    [button4 addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-    button4.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 250, 200.0, 35.0);
-    [adminView.view addSubview:button4];
-}
-
-- (IBAction)closeView{
-    [adminView dismissViewControllerAnimated:YES completion:NULL];
+    [button4 addTarget:self action:@selector(adminMenu) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction)addUser{
-    [adminView dismissViewControllerAnimated:NO completion:NULL];
-    adminView = [[UIViewController alloc] init];
-    adminView.modalPresentationStyle = UIModalPresentationFormSheet;
-    adminView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:adminView animated:NO completion:NULL];
-    adminView.view.backgroundColor= [UIColor whiteColor];
-    adminView.view.superview.frame = CGRectMake(0, 0, 300, 400);
-    adminView.view.superview.center = self.view.center;
+    [self closePlain];
+    [self openView:@"Add New User" value:NO];
+    
+    if(inputFirst.text != NULL){
+        NSString *text = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@", inputFirst.text,inputLast.text,inputUser.text,inputPass.text];
+        [self addLabel:text x:50 y:200 width:200 height:100 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:12 lines:4];
+    }
     
     isAddUser = TRUE;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, 10, 200.0, 50.0)];
-    title.text = @"Add New User";
-    title.textColor = [UIColor darkGrayColor];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont systemFontOfSize:18];
-    [adminView.view addSubview:title];
+    inputFirst = [self addTextField:@"First Name (Required)" x:50.0 y:100.0 width:200.0 height:20.0 fontSize:12 secure:NO capitalize:YES];
+    inputLast = [self addTextField:@"Last Name" x:50.0 y:130.0 width:200.0 height:20.0 fontSize:12 secure:NO capitalize:YES];
+    inputUser = [self addTextField:@"Username (Required)" x:50.0 y:160.0 width:200.0 height:20.0 fontSize:12 secure:NO capitalize:NO];
+    inputPass = [self addTextField:@"Password (Required)" x:50.0 y:190.0 width:200.0 height:20.0 fontSize:12 secure:YES capitalize:NO];
     
-    inputFirst = [[UITextField alloc] initWithFrame:CGRectMake(50, 100, 200, 20)];
-    inputFirst.borderStyle = UITextBorderStyleBezel;
-    inputFirst.placeholder = @"First Name";
-    inputFirst.font = [UIFont systemFontOfSize:12];
-    
-    inputLast = [[UITextField alloc] initWithFrame:CGRectMake(50, 130, 200, 20)];
-    inputLast.borderStyle = UITextBorderStyleBezel;
-    inputLast.placeholder = @"Last Name";
-    inputLast.font = [UIFont systemFontOfSize:12];
-    
-    inputUser = [[UITextField alloc] initWithFrame:CGRectMake(50, 160, 200, 20)];
-    inputUser.borderStyle = UITextBorderStyleBezel;
-    inputUser.placeholder = @"Username (Required)";
-    inputUser.font = [UIFont systemFontOfSize:12];
-    
-    inputPass = [[UITextField alloc] initWithFrame:CGRectMake(50, 190, 200, 20)];
-    inputPass.borderStyle = UITextBorderStyleBezel;
-    inputPass.placeholder = @"Password (Required)";
-    inputPass.font = [UIFont systemFontOfSize:12];
-    
-    [adminView.view addSubview: inputFirst];
-    [adminView.view addSubview: inputLast];
-    [adminView.view addSubview: inputUser];
-    [adminView.view addSubview: inputPass];
-    
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button1 setTitle:@"Continue" forState:UIControlStateNormal];
+    UIButton *button1 = [self addButton:@"Continue" x:50.0 y:300.0 width:100.0 height:35.0];
+    UIButton *button2 = [self addButton:@"Cancel" x:160.0 y:300.0 width:100.0 height:35.0];
     [button1 addTarget:self action:@selector(viewUser) forControlEvents:UIControlEventTouchUpInside];
-    button1.frame = CGRectMake(50, 300, 100.0, 35.0);
-    [adminView.view addSubview:button1];
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 setTitle:@"Cancel" forState:UIControlStateNormal];
     [button2 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
-    button2.frame = CGRectMake(160, 300, 100.0, 35.0);
-    [adminView.view addSubview:button2];
 }
 
 - (IBAction)editUser{
-    [adminView dismissViewControllerAnimated:NO completion:NULL];
-    adminView = [[UIViewController alloc] init];
-    adminView.modalPresentationStyle = UIModalPresentationFormSheet;
-    adminView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:adminView animated:NO completion:NULL];
-    adminView.view.backgroundColor= [UIColor whiteColor];
-    adminView.view.superview.frame = CGRectMake(0, 0, 300, 400);
-    adminView.view.superview.center = self.view.center;
+    [self closePlain];
+    [self openView:@"Update Existing User" value:NO];
     
     isAddUser = FALSE;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, 10, 200.0, 50.0)];
-    title.text = @"Update Existing User";
-    title.textColor = [UIColor darkGrayColor];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont systemFontOfSize:18];
-    [adminView.view addSubview:title];
-    
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button1 setTitle:@"Add New User" forState:UIControlStateNormal];
-    [button1 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-    button1.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 100, 200.0, 35.0);
-    [adminView.view addSubview:button1];
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 setTitle:@"Remove Existing User" forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-    button2.frame = CGRectMake((adminView.view.frame.size.width-200)/2, 150, 200.0, 35.0);
-    [adminView.view addSubview:button2];
 }
 
 - (IBAction)viewUser{
-    if(inputFirst.text==nil || inputUser.text==nil || inputPass.text==nil){
+    NSInteger correctInput = 0;
+    if(inputFirst.text != NULL){
+        [prevInput setValue:[inputFirst.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"First"];
+        correctInput++;
+    }
+    if(inputLast.text != NULL)
+        [prevInput setValue:[inputLast.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"Last"];
+    if(inputUser.text != NULL){
+        [prevInput setValue:[[inputUser.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString] forKey:@"User"];
+        correctInput++;
+    }
+    if(inputPass.text != NULL){
+        [prevInput setValue:[inputPass.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"Pass"];
+        correctInput++;
+    }
+    
+    if(correctInput != 3){
         UIAlertView * alert = [[UIAlertView alloc] init];
         alert.delegate = self;
         alert.title = @"Input Error";
@@ -266,73 +298,89 @@
         [alert show];
         return;
     }
-    [adminView dismissViewControllerAnimated:NO completion:NULL];
-    adminView = [[UIViewController alloc] init];
-    adminView.modalPresentationStyle = UIModalPresentationFormSheet;
-    adminView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:adminView animated:NO completion:NULL];
-    adminView.view.backgroundColor= [UIColor whiteColor];
-    adminView.view.superview.frame = CGRectMake(0, 0, 300, 400);
-    adminView.view.superview.center = self.view.center;
-    
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, 10, 200.0, 50.0)];
-    title.text = @"Administrative Menu";
-    title.textColor = [UIColor darkGrayColor];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont systemFontOfSize:18];
-    [adminView.view addSubview:title];
-    
-    NSString *info = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@", inputFirst.text,inputLast.text,inputUser.text,inputPass.text];
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, 20, 200.0, 300.0)];
-    label1.text = info;
-    label1.numberOfLines = 4;
-    label1.textColor = [UIColor darkGrayColor];
-    label1.textAlignment = NSTextAlignmentLeft;
-    label1.font = [UIFont systemFontOfSize:12];
-    [adminView.view addSubview:label1];
-    
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button1 setTitle:@"Back" forState:UIControlStateNormal];
-    if(isAddUser){
-        [button1 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-    }else{
-        [button1 addTarget:self action:@selector(editUser) forControlEvents:UIControlEventTouchUpInside];
+    for (id key in [userCredentials allKeys]) {
+        if([key isEqualToString:inputUser.text]){
+            UIAlertView * alert = [[UIAlertView alloc] init];
+            alert.delegate = self;
+            alert.title = @"Input Error";
+            alert.message = @"This username is already taken";
+            [alert addButtonWithTitle:@"Dismiss"];
+            [alert show];
+            return;
+        }
     }
-    button1.frame = CGRectMake(20, 300, 75.0, 35.0);
-    [adminView.view addSubview:button1];
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 setTitle:@"Submit" forState:UIControlStateNormal];
+    [self closePlain];
+    [self openView:@"User Confirmation" value:NO];
+    NSString *text = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@", inputFirst.text,inputLast.text,inputUser.text,inputPass.text];
+    [self addLabel:text x:(adminView.view.frame.size.width-200)/2 y:20.0 width:200.0 height:300.0 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:12 lines:4];
+    
+    UIButton *button1 = [self addButton:@"Back" x:20.0 y:300.0 width:75.0 height:35.0];
+    UIButton *button2 = [self addButton:@"Submit" x:100.0 y:300.0 width:75.0 height:35.0];
+    UIButton *button3 = [self addButton:@"Cancel" x:200.0 y:300.0 width:75.0 height:35.0];
+    if(isAddUser)
+        [button1 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
+    else
+        [button1 addTarget:self action:@selector(editUser) forControlEvents:UIControlEventTouchUpInside];
     [button2 addTarget:self action:@selector(submitUser) forControlEvents:UIControlEventTouchUpInside];
-    button2.frame = CGRectMake(100, 300, 75.0, 35.0);
-    [adminView.view addSubview:button2];
-    
-    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button3 setTitle:@"Cancel" forState:UIControlStateNormal];
     [button3 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
-    button3.frame = CGRectMake(200, 300, 75.0, 35.0);
-    [adminView.view addSubview:button3];
 }
 
 - (IBAction)submitUser{
-    NSString *text = [[NSString alloc]initWithFormat:@"\n%@ %@ %@ %@", inputUser.text,inputPass.text,inputFirst.text,inputLast.text];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
     NSString *contents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    contents = [contents stringByAppendingString:text];
-    [contents writeToFile:filePath atomically:YES encoding: NSUnicodeStringEncoding error:nil];
-//    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
-//    [fileHandler seekToEndOfFile];
-//    [fileHandler writeData:[text dataUsingEncoding:NSUTF8StringEncoding]];
-//    [fileHandler closeFile];
+    NSString *text;
+    bool value;
+    if ( contents != NULL){
+        text = [[NSString alloc]initWithFormat:@"%@\n%@ %@ %@ %@", contents,inputUser.text,inputPass.text,inputFirst.text,inputLast.text];
+        value = TRUE;
+    }
+    else{
+        text = [[NSString alloc]initWithFormat:@"%@ %@ %@ %@", inputUser.text,inputPass.text,inputFirst.text,inputLast.text];
+        value = FALSE;
+    }
+    [text writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
-    UIAlertView * alert = [[UIAlertView alloc] init];
-    alert.delegate = self;
-    alert.title = @"User Added";
-    alert.message = nil;
-    [alert addButtonWithTitle:@"Dismiss"];
-    [alert show];
+    [self uploadListFile:filePath exists:value];
+}
+
+- (void)uploadListFile: (NSString*)filePath exists:(BOOL)value{
+    GTLDriveFile *file = [GTLDriveFile object];
+    file.title = @"NOTEBOOK_USERS_LIST.txt";
+    file.descriptionProperty = @"Text file of STEM Notebook users.";
+    file.mimeType = @"text/plain";
     
-    [self userSettings];
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+        data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+    else
+        NSLog(@"File does not exists");
+    
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query;
+    if(value)
+        query = [GTLQueryDrive queryForFilesUpdateWithObject:file fileId:listFileId uploadParameters:uploadParameters];
+    else
+        query = [GTLQueryDrive queryForFilesInsertWithObject:file uploadParameters:uploadParameters];
+    UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Uploading to Google Drive"];
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
+                                                                           GTLDriveFile *insertedFile, NSError *error) {
+        [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+        if (error == nil)
+        {
+            NSLog(@"Google Drive: File Saved");
+            UIAlertView * alert = [[UIAlertView alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-200)/2, (adminView.view.frame.size.width-200)/2, 200, 200)];
+            alert.delegate = self;
+            alert.title = @"User Added Successfully";
+            alert.message = nil;
+            [alert addButtonWithTitle:@"Okay"];
+            [alert show];
+            [self viewDidLoad];
+        }
+        else
+            NSLog(@"An error occurred: %@", error);
+    }];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -351,6 +399,9 @@
             [alert addButtonWithTitle:@"Log In"];
             [alert show];
         }
+    }
+    else if([buttonPressedName isEqualToString:@"Okay"]){
+        [self userSettings];
     }
 }
 
