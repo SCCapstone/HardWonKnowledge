@@ -52,30 +52,6 @@
 		CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */; };
 		CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */; };
 		CB9CD3E218BAA06200DF6754 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */; };
-		CB9CD3FB18BAA08700DF6754 /* 3D-simplicity.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E318BAA08700DF6754 /* 3D-simplicity.png */; };
-		CB9CD3FC18BAA08700DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E418BAA08700DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */; };
-		CB9CD3FD18BAA08700DF6754 /* batman_surfing_on_superman.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E518BAA08700DF6754 /* batman_surfing_on_superman.png */; };
-		CB9CD3FE18BAA08700DF6754 /* coffee-break_.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E618BAA08700DF6754 /* coffee-break_.png */; };
-		CB9CD3FF18BAA08700DF6754 /* colorful_1440x900.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E718BAA08700DF6754 /* colorful_1440x900.png */; };
-		CB9CD40018BAA08700DF6754 /* Composition53.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E818BAA08700DF6754 /* Composition53.png */; };
-		CB9CD40118BAA08700DF6754 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E918BAA08700DF6754 /* Dragon.png */; };
-		CB9CD40218BAA08700DF6754 /* eclipse.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3EA18BAA08700DF6754 /* eclipse.png */; };
-		CB9CD40318BAA08700DF6754 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3EB18BAA08700DF6754 /* face.png */; };
-		CB9CD40418BAA08700DF6754 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3EC18BAA08700DF6754 /* focus.png */; };
-		CB9CD40518BAA08700DF6754 /* gbo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3ED18BAA08700DF6754 /* gbo.png */; };
-		CB9CD40618BAA08700DF6754 /* Green_Plant_(2560x1600).png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3EE18BAA08700DF6754 /* Green_Plant_(2560x1600).png */; };
-		CB9CD40718BAA08700DF6754 /* grounded.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3EF18BAA08700DF6754 /* grounded.png */; };
-		CB9CD40818BAA08700DF6754 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F018BAA08700DF6754 /* happy.png */; };
-		CB9CD40918BAA08700DF6754 /* LeatherHoles-Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F118BAA08700DF6754 /* LeatherHoles-Apple.png */; };
-		CB9CD40A18BAA08700DF6754 /* Let_it_snow_by_mj_coffeeholick.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F218BAA08700DF6754 /* Let_it_snow_by_mj_coffeeholick.png */; };
-		CB9CD40B18BAA08700DF6754 /* Luxury_Apple_by_Stratification.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F318BAA08700DF6754 /* Luxury_Apple_by_Stratification.png */; };
-		CB9CD40C18BAA08700DF6754 /* MacMini.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F418BAA08700DF6754 /* MacMini.png */; };
-		CB9CD40D18BAA08700DF6754 /* SlaveKingGod.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F518BAA08700DF6754 /* SlaveKingGod.png */; };
-		CB9CD40E18BAA08700DF6754 /* Snow_Leopard_by_vladstudio.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F618BAA08700DF6754 /* Snow_Leopard_by_vladstudio.png */; };
-		CB9CD40F18BAA08700DF6754 /* Space Fold.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F718BAA08700DF6754 /* Space Fold.png */; };
-		CB9CD41018BAA08700DF6754 /* Stormcloud_Schmeisser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F818BAA08700DF6754 /* Stormcloud_Schmeisser.png */; };
-		CB9CD41118BAA08700DF6754 /* tiamat.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3F918BAA08700DF6754 /* tiamat.png */; };
-		CB9CD41218BAA08700DF6754 /* WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3FA18BAA08700DF6754 /* WTF.png */; };
 		CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */; };
 		CB9CD41918BAA0A300DF6754 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */; };
 		CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */; };
@@ -163,30 +139,6 @@
 		CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Bookshelf/MainWindow.xib; sourceTree = "<group>"; };
 		CB9CD3E018BAA04300DF6754 /* Bookshelf_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bookshelf_Prefix.pch; path = Bookshelf/Bookshelf_Prefix.pch; sourceTree = "<group>"; };
 		CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = Bookshelf/Classes/UserLoginViewController.xib; sourceTree = "<group>"; };
-		CB9CD3E318BAA08700DF6754 /* 3D-simplicity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3D-simplicity.png"; path = "Bookshelf/Images/3D-simplicity.png"; sourceTree = "<group>"; };
-		CB9CD3E418BAA08700DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleTV-esque_by-mikelcroft_nl-1440.png"; path = "Bookshelf/Images/AppleTV-esque_by-mikelcroft_nl-1440.png"; sourceTree = "<group>"; };
-		CB9CD3E518BAA08700DF6754 /* batman_surfing_on_superman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = batman_surfing_on_superman.png; path = Bookshelf/Images/batman_surfing_on_superman.png; sourceTree = "<group>"; };
-		CB9CD3E618BAA08700DF6754 /* coffee-break_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coffee-break_.png"; path = "Bookshelf/Images/coffee-break_.png"; sourceTree = "<group>"; };
-		CB9CD3E718BAA08700DF6754 /* colorful_1440x900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colorful_1440x900.png; path = Bookshelf/Images/colorful_1440x900.png; sourceTree = "<group>"; };
-		CB9CD3E818BAA08700DF6754 /* Composition53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Composition53.png; path = Bookshelf/Images/Composition53.png; sourceTree = "<group>"; };
-		CB9CD3E918BAA08700DF6754 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Dragon.png; path = Bookshelf/Images/Dragon.png; sourceTree = "<group>"; };
-		CB9CD3EA18BAA08700DF6754 /* eclipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eclipse.png; path = Bookshelf/Images/eclipse.png; sourceTree = "<group>"; };
-		CB9CD3EB18BAA08700DF6754 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = face.png; path = Bookshelf/Images/face.png; sourceTree = "<group>"; };
-		CB9CD3EC18BAA08700DF6754 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = focus.png; path = Bookshelf/Images/focus.png; sourceTree = "<group>"; };
-		CB9CD3ED18BAA08700DF6754 /* gbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gbo.png; path = Bookshelf/Images/gbo.png; sourceTree = "<group>"; };
-		CB9CD3EE18BAA08700DF6754 /* Green_Plant_(2560x1600).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green_Plant_(2560x1600).png"; path = "Bookshelf/Images/Green_Plant_(2560x1600).png"; sourceTree = "<group>"; };
-		CB9CD3EF18BAA08700DF6754 /* grounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grounded.png; path = Bookshelf/Images/grounded.png; sourceTree = "<group>"; };
-		CB9CD3F018BAA08700DF6754 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = happy.png; path = Bookshelf/Images/happy.png; sourceTree = "<group>"; };
-		CB9CD3F118BAA08700DF6754 /* LeatherHoles-Apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeatherHoles-Apple.png"; path = "Bookshelf/Images/LeatherHoles-Apple.png"; sourceTree = "<group>"; };
-		CB9CD3F218BAA08700DF6754 /* Let_it_snow_by_mj_coffeeholick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Let_it_snow_by_mj_coffeeholick.png; path = Bookshelf/Images/Let_it_snow_by_mj_coffeeholick.png; sourceTree = "<group>"; };
-		CB9CD3F318BAA08700DF6754 /* Luxury_Apple_by_Stratification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Luxury_Apple_by_Stratification.png; path = Bookshelf/Images/Luxury_Apple_by_Stratification.png; sourceTree = "<group>"; };
-		CB9CD3F418BAA08700DF6754 /* MacMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MacMini.png; path = Bookshelf/Images/MacMini.png; sourceTree = "<group>"; };
-		CB9CD3F518BAA08700DF6754 /* SlaveKingGod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SlaveKingGod.png; path = Bookshelf/Images/SlaveKingGod.png; sourceTree = "<group>"; };
-		CB9CD3F618BAA08700DF6754 /* Snow_Leopard_by_vladstudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Snow_Leopard_by_vladstudio.png; path = Bookshelf/Images/Snow_Leopard_by_vladstudio.png; sourceTree = "<group>"; };
-		CB9CD3F718BAA08700DF6754 /* Space Fold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Space Fold.png"; path = "Bookshelf/Images/Space Fold.png"; sourceTree = "<group>"; };
-		CB9CD3F818BAA08700DF6754 /* Stormcloud_Schmeisser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stormcloud_Schmeisser.png; path = Bookshelf/Images/Stormcloud_Schmeisser.png; sourceTree = "<group>"; };
-		CB9CD3F918BAA08700DF6754 /* tiamat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiamat.png; path = Bookshelf/Images/tiamat.png; sourceTree = "<group>"; };
-		CB9CD3FA18BAA08700DF6754 /* WTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WTF.png; path = Bookshelf/Images/WTF.png; sourceTree = "<group>"; };
 		CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelection.png; path = Bookshelf/Resources/AQGridSelection.png; sourceTree = "<group>"; };
 		CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGray.png; path = Bookshelf/Resources/AQGridSelectionGray.png; sourceTree = "<group>"; };
 		CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
@@ -379,30 +331,6 @@
 			children = (
 				CBE86B4E18BE9A7F00055ABC /* Black.png */,
 				CBE86B4F18BE9A7F00055ABC /* Green.png */,
-				CB9CD3E318BAA08700DF6754 /* 3D-simplicity.png */,
-				CB9CD3E418BAA08700DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
-				CB9CD3E518BAA08700DF6754 /* batman_surfing_on_superman.png */,
-				CB9CD3E618BAA08700DF6754 /* coffee-break_.png */,
-				CB9CD3E718BAA08700DF6754 /* colorful_1440x900.png */,
-				CB9CD3E818BAA08700DF6754 /* Composition53.png */,
-				CB9CD3E918BAA08700DF6754 /* Dragon.png */,
-				CB9CD3EA18BAA08700DF6754 /* eclipse.png */,
-				CB9CD3EB18BAA08700DF6754 /* face.png */,
-				CB9CD3EC18BAA08700DF6754 /* focus.png */,
-				CB9CD3ED18BAA08700DF6754 /* gbo.png */,
-				CB9CD3EE18BAA08700DF6754 /* Green_Plant_(2560x1600).png */,
-				CB9CD3EF18BAA08700DF6754 /* grounded.png */,
-				CB9CD3F018BAA08700DF6754 /* happy.png */,
-				CB9CD3F118BAA08700DF6754 /* LeatherHoles-Apple.png */,
-				CB9CD3F218BAA08700DF6754 /* Let_it_snow_by_mj_coffeeholick.png */,
-				CB9CD3F318BAA08700DF6754 /* Luxury_Apple_by_Stratification.png */,
-				CB9CD3F418BAA08700DF6754 /* MacMini.png */,
-				CB9CD3F518BAA08700DF6754 /* SlaveKingGod.png */,
-				CB9CD3F618BAA08700DF6754 /* Snow_Leopard_by_vladstudio.png */,
-				CB9CD3F718BAA08700DF6754 /* Space Fold.png */,
-				CB9CD3F818BAA08700DF6754 /* Stormcloud_Schmeisser.png */,
-				CB9CD3F918BAA08700DF6754 /* tiamat.png */,
-				CB9CD3FA18BAA08700DF6754 /* WTF.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -526,30 +454,6 @@
 				CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */,
 				CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */,
 				CB9CD3E218BAA06200DF6754 /* UserLoginViewController.xib in Resources */,
-				CB9CD3FB18BAA08700DF6754 /* 3D-simplicity.png in Resources */,
-				CB9CD3FC18BAA08700DF6754 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */,
-				CB9CD3FD18BAA08700DF6754 /* batman_surfing_on_superman.png in Resources */,
-				CB9CD3FE18BAA08700DF6754 /* coffee-break_.png in Resources */,
-				CB9CD3FF18BAA08700DF6754 /* colorful_1440x900.png in Resources */,
-				CB9CD40018BAA08700DF6754 /* Composition53.png in Resources */,
-				CB9CD40118BAA08700DF6754 /* Dragon.png in Resources */,
-				CB9CD40218BAA08700DF6754 /* eclipse.png in Resources */,
-				CB9CD40318BAA08700DF6754 /* face.png in Resources */,
-				CB9CD40418BAA08700DF6754 /* focus.png in Resources */,
-				CB9CD40518BAA08700DF6754 /* gbo.png in Resources */,
-				CB9CD40618BAA08700DF6754 /* Green_Plant_(2560x1600).png in Resources */,
-				CB9CD40718BAA08700DF6754 /* grounded.png in Resources */,
-				CB9CD40818BAA08700DF6754 /* happy.png in Resources */,
-				CB9CD40918BAA08700DF6754 /* LeatherHoles-Apple.png in Resources */,
-				CB9CD40A18BAA08700DF6754 /* Let_it_snow_by_mj_coffeeholick.png in Resources */,
-				CB9CD40B18BAA08700DF6754 /* Luxury_Apple_by_Stratification.png in Resources */,
-				CB9CD40C18BAA08700DF6754 /* MacMini.png in Resources */,
-				CB9CD40D18BAA08700DF6754 /* SlaveKingGod.png in Resources */,
-				CB9CD40E18BAA08700DF6754 /* Snow_Leopard_by_vladstudio.png in Resources */,
-				CB9CD40F18BAA08700DF6754 /* Space Fold.png in Resources */,
-				CB9CD41018BAA08700DF6754 /* Stormcloud_Schmeisser.png in Resources */,
-				CB9CD41118BAA08700DF6754 /* tiamat.png in Resources */,
-				CB9CD41218BAA08700DF6754 /* WTF.png in Resources */,
 				CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */,
 				CB9CD41918BAA0A300DF6754 /* AQGridSelectionGray.png in Resources */,
 				CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */,
