@@ -20,7 +20,6 @@
 - (void)openView: (NSString*)title value:(BOOL)value;
 - (UIButton*)addButton: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
 - (void)addLabel: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height color:(UIColor*)color alignment:(UITextAlignment)align fontSize:(CGFloat)size lines:(NSInteger)numberOfLines;
--(UITableView*)addAutoComplete;
 - (UITextField*)addTextField: (NSString*)placeholder x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size secure:(BOOL)value capitalize:(BOOL)cap;
 - (IBAction)userLogin;
 - (IBAction)adminMenu;
