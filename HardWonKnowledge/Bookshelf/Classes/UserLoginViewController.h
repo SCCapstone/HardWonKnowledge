@@ -10,21 +10,19 @@
 #import "GTLDrive.h"
 #import "DriveManager.h"
 
-@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>  {
+@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>   
 
-    
-}
 @property(nonatomic,retain)NSMutableArray *dataSource;
 
-
 - (void) parseFile: (NSArray *) rows file:(NSInteger)file;
-- (IBAction)userLogin;
-- (IBAction)adminMenu;
-- (IBAction)userSettings;
-- (IBAction)addUser;
-- (IBAction)editUser;
-- (IBAction)viewUser;
-- (void)submitUser;
+- (IBAction)menuLoginScreen;
+- (IBAction)menuAdminMain;
+- (IBAction)menuAdminSettings;
+- (IBAction)menuAdminAdd;
+- (IBAction)menuAdminUpdate;
+- (IBAction)confirmSubmittedUser;
+- (void)submitConfirmedUser;
+-(void)removeSelectedUser;
 - (NSString*)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile;
 - (void)uploadListFile: (NSString*)filePath isNewFile:(BOOL)isNewFile;
 
