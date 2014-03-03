@@ -174,7 +174,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     NSString *docDir = [paths objectAtIndex:0];
     NSString *viewPath = nil;
     if([file.title rangeOfString:@"NOTEBOOK_USERS_LIST"].location != NSNotFound){
-        NSLog(@"Found it");
         viewPath = [docDir stringByAppendingPathComponent:@"users.txt"];
     } else{
        viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
