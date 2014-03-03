@@ -1,2 +1,1 @@
-usr1 pass1 FirstName LastName
 admin 12345 Teacher Administrator
