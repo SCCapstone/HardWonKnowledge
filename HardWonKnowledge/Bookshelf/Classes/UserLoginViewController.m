@@ -46,10 +46,10 @@
 /*  Find the user credential files to parse  */
 - (void)getUserData{
     // Get hard-coded passwords
-    data1.text = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
-    data2.text = [NSString stringWithContentsOfFile:data1.text encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [data2.text componentsSeparatedByString:@"\n"];
-    [self parseFile:rows file:0];
+//    data1.text = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
+//    data2.text = [NSString stringWithContentsOfFile:data1.text encoding:NSUTF8StringEncoding error:nil];
+//    NSArray *rows = [data2.text componentsSeparatedByString:@"\n"];
+//    [self parseFile:rows file:0];
     
     // Get users saved on Google Drive
     self.driveManager = [DriveManager getDriveManager];
@@ -62,7 +62,7 @@
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
             data1.text = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
             data2.text = [NSString stringWithContentsOfFile:data1.text encoding:NSUTF8StringEncoding error:nil];
-                NSLog(@"GETTING File Id %@",  file.identifier);
+            NSLog(@"GETTING File Id %@",  file.identifier);
             if(file.identifier != nil)
                 listFileId = file.identifier;
             if(data2.text==nil){
@@ -102,7 +102,7 @@
         NSString *theLastname = [[userInfo objectAtIndex:3] capitalizedString];
         NSLog(@"%@, %@: %@ (%@)", theLastname, theFirstname, theUsername, thePassword);
         [userCredentials setObject:thePassword forKey:theUsername];
-        if(file == 1){
+        if(file == 1 && ![theFirstname isEqualToString:@"admin"]){
             if([theLastname isEqualToString:@""])
                 [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@ (%@)",theFirstname, theUsername]];
             else
@@ -181,7 +181,7 @@
 }
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
-- (IBAction)userLogin {
+- (IBAction)menuLoginScreen {
     if([[userCredentials objectForKey:@"admin"]isEqualToString:passwordField.text]){
         NSLog(@"Logged in as Admin");
         [self openView:@"Administrative Menu" value:YES];
@@ -191,7 +191,7 @@
         UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
         UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
         
-        [button1 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+        [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
         [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
         [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
         [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
@@ -224,7 +224,7 @@
             UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
             UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
             
-            [button1 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+            [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
             [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
             [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
             [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
@@ -242,21 +242,21 @@
 }
 
 /*  Set up first page of the Administrative Menu for admin user  */
-- (IBAction)adminMenu{
+- (IBAction)menuAdminMain{
     [self openView:@"Administrative Menu" value:NO];
     UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
     UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
     UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
     UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
     
-    [button1 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
     [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
     [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
     [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /*  Set up the User Settings Menu for admin user  */
-- (IBAction)userSettings{
+- (IBAction)menuAdminSettings{
     [self openView:@"Settings" value:NO];
     
     srchedData = [[NSMutableArray alloc] init];
@@ -273,13 +273,13 @@
     UIButton *button2 = [self addButton:@"Update/Remove User" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
     UIButton *button3 = [self addButton:@"Cancel" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
     
-    [button1 addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-    [button2 addTarget:self action:@selector(editUser) forControlEvents:UIControlEventTouchUpInside];
-    [button3 addTarget:self action:@selector(adminMenu) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(menuAdminAdd) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(menuAdminUpdate) forControlEvents:UIControlEventTouchUpInside];
+    [button3 addTarget:self action:@selector(menuAdminMain) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /*  The Add User Menu for adding users to the users list  */
-- (IBAction)addUser{
+- (IBAction)menuAdminAdd{
     
     if(data1.text == nil)
         [self openView:@"Add New User" value:NO];
@@ -296,23 +296,23 @@
     
     UIButton *button1 = [self addButton:@"Add" x:50.0 y:300.0 width:100.0 height:35.0];
     UIButton *button2 = [self addButton:@"Cancel" x:160.0 y:300.0 width:100.0 height:35.0];
-    [button1 addTarget:self action:@selector(viewUser) forControlEvents:UIControlEventTouchUpInside];
-    [button2 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(confirmSubmittedUser) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
-- (IBAction)editUser{
-    if([userCredentials count]<3){
-        UIAlertView * alert = [[UIAlertView alloc] init];
-        alert.delegate = self;
-        alert.title = @"Error";
-        alert.message = [[NSString alloc] initWithFormat:@"You must add users before you can use this feature."];
-        [alert addButtonWithTitle:@"Dismiss"];
-        [alert show];
-        return;
-    }
+- (IBAction)menuAdminUpdate{
+        if([dataSrc count]<1){
+            UIAlertView * alert = [[UIAlertView alloc] init];
+            alert.delegate = self;
+            alert.title = @"Error";
+            alert.message = [[NSString alloc] initWithFormat:@"You must add users before you can use this feature."];
+            [alert addButtonWithTitle:@"Dismiss"];
+            [alert show];
+            return;
+        }
     
-    [tblData removeAllObjects];
+//    [tblData removeAllObjects];
     [myTableView reloadData];
     [self openView:@"Update/Remove User" value:NO];
     
@@ -334,16 +334,12 @@
         NSLog(@"%@", s);
     }
     
-    UIButton *button1 = [self addButton:@"Update" x:20.0 y:350.0 width:75.0 height:35.0];
-    UIButton *button2 = [self addButton:@"Remove" x:100.0 y:350.0 width:75.0 height:35.0];
     UIButton *button3 = [self addButton:@"Cancel" x:200.0 y:350.0 width:75.0 height:35.0];
-    [button1 addTarget:self action:@selector(updateUser) forControlEvents:UIControlEventTouchUpInside];
-    [button2 addTarget:self action:@selector(removeUser) forControlEvents:UIControlEventTouchUpInside];
-    [button3 addTarget:self action:@selector(userSettings) forControlEvents:UIControlEventTouchUpInside];
+    [button3 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
 }
 
-/*  Update the properties of existing user  */
-- (IBAction)updateUser{
+/*  The update user prompt  */
+- (IBAction)promptUpdateUser{
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     alert.title = @"Update User";
@@ -354,8 +350,8 @@
     return;
 }
 
-/*  The Remove Users prompt  */
-- (IBAction)removeUser{
+/*  The remove user prompt  */
+- (IBAction)promptRemoveUser{
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     alert.title = @"Remove User";
@@ -367,7 +363,7 @@
 }
 
 /*  Review the newly added user before submit  */
-- (IBAction)viewUser{
+- (IBAction)confirmSubmittedUser{
     if(data1.text == NULL || data3.text == NULL || data4.text == NULL){
         UIAlertView * alert = [[UIAlertView alloc] init];
         alert.delegate = self;
@@ -400,7 +396,7 @@
 }
 
 /*  Save added user to file on disk  */
-- (void)submitUser{
+- (void)submitConfirmedUser{
     [userCredentials setObject:data4.text forKey:data3.text];
     if([data2.text isEqualToString:@""])
         [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@ (%@)",data1.text, data3.text]];
@@ -411,13 +407,33 @@
     text = [self saveOnDisk:text clearFile:NO];
     [self uploadListFile:text isNewFile:NO];
     [self viewDidLoad];
-    
-    UIAlertView * alert = [[UIAlertView alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-100)/2, (adminView.view.frame.size.width-100)/2, 100, 100)];
-    alert.delegate = self;
-    alert.title = @"User Added Successfully";
-    alert.message = nil;
-    [alert addButtonWithTitle:@"Okay"];
-    [alert show];
+}
+
+-(void)removeSelectedUser{
+            // Update values and save new file without deleted user
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
+    NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    contents = @"";
+    for (int n=0; n<[rows count]; n++){
+        NSString *users = [rows objectAtIndex:n];
+        if([[users stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]isEqualToString:@""])
+            break;
+        NSArray *userInfo = [users componentsSeparatedByString:@" "];
+        if([[srchedData objectAtIndex:0]isEqualToString:[userInfo objectAtIndex:0]]){
+            continue;
+        }
+        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",users]];
+        [dataSrc removeAllObjects];
+        [userCredentials removeAllObjects];
+        [tblData removeAllObjects];
+        [self saveOnDisk:contents clearFile:YES];
+        [self uploadListFile:path isNewFile:NO];
+        rows = [contents componentsSeparatedByString:@"\n"];
+        [self parseFile:rows file:1];
+        [myTableView reloadData];
+    }
 }
 
 /*  Save the file to disk before upload  */
@@ -455,7 +471,7 @@
         query = [GTLQueryDrive queryForFilesInsertWithObject:file uploadParameters:uploadParameters];
     else
         query = [GTLQueryDrive queryForFilesUpdateWithObject:file fileId:listFileId uploadParameters:uploadParameters];
-
+    
     UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading"];
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFile *insertedFile, NSError *error) {
         [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
@@ -472,12 +488,8 @@
 
 /*  Alert View responses  */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
-    NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    if([buttonPressedName isEqualToString: @"Log In"]){
+            NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+       if([buttonPressedName isEqualToString: @"Log In"]){
         UITextField *promptField = [alertView textFieldAtIndex:buttonIndex];
         if([[userCredentials objectForKey:@"admin"]isEqualToString:promptField.text]){
             [self.driveManager loginFromViewController:self];
@@ -497,58 +509,45 @@
         data2.text = nil;
         data3.text = nil;
         data4.text = nil;
-        [self addUser];
+        [self menuAdminAdd];
     }
     else if([buttonPressedName isEqualToString:@"Update"]){
-            for (int n=0; n<[rows count]; n++){
-                NSString *users = [rows objectAtIndex:n];
-                NSArray *userInfo = [users componentsSeparatedByString:@" "];
-                data3.text = [[userInfo objectAtIndex:0] lowercaseString];
-                if([data3.text isEqualToString:[srchedData objectAtIndex:0]]){
-                    data4.text = [[userInfo objectAtIndex:1] lowercaseString];
-                    data1.text = [[userInfo objectAtIndex:2] capitalizedString];
-                    data2.text = [[userInfo objectAtIndex:3] capitalizedString];
-                    break;
-                }
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
+        NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+        for (int n=0; n<[rows count]; n++){
+            NSString *users = [rows objectAtIndex:n];
+            NSArray *userInfo = [users componentsSeparatedByString:@" "];
+            data3.text = [[userInfo objectAtIndex:0] lowercaseString];
+            if([data3.text isEqualToString:[srchedData objectAtIndex:0]]){
+                data4.text = [[userInfo objectAtIndex:1] lowercaseString];
+                data1.text = [[userInfo objectAtIndex:2] capitalizedString];
+                data2.text = [[userInfo objectAtIndex:3] capitalizedString];
+                break;
             }
-            [self addUser];
+        }
+        [self menuAdminAdd];
     }
     else if([buttonPressedName isEqualToString:@"Submit"]){
-        [self submitUser];
+        [self submitConfirmedUser];
+        UIAlertView * alert = [[UIAlertView alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-100)/2, (adminView.view.frame.size.width-100)/2, 100, 100)];
+        alert.delegate = self;
+        alert.title = @"User Added Successfully";
+        alert.message = nil;
+        [alert addButtonWithTitle:@"Okay"];
+        [alert show];
     }
     else if([buttonPressedName isEqualToString:@"Remove"]){
-        // Update values and save new file without deleted user
-        if([[srchedData objectAtIndex:0]isEqualToString:@""]){
-            contents = @"";
-            for (int n=0; n<[rows count]; n++){
-                NSString *users = [rows objectAtIndex:n];
-                if([[users stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]isEqualToString:@""])
-                    break;
-                NSArray *userInfo = [users componentsSeparatedByString:@" "];
-                if([[srchedData objectAtIndex:0]isEqualToString:[userInfo objectAtIndex:0]]){
-                    continue;
-                }
-                contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",users]];
-            }
-            [dataSrc removeAllObjects];
-            [userCredentials removeAllObjects];
-            [tblData removeAllObjects];
-            [self saveOnDisk:contents clearFile:YES];
-            [self uploadListFile:path isNewFile:NO];
-            rows = [contents componentsSeparatedByString:@"\n"];
-            [self parseFile:rows file:1];
-            [myTableView reloadData];
-            
-            // Alert user to success
-            UIAlertView * alert = [[UIAlertView alloc]
-                                   initWithFrame:CGRectMake((adminView.view.frame.size.width-100)/2, (adminView.view.frame.size.width-100)/2, 100, 100)];
-            alert.delegate = self;
-            alert.title = @"User Deleted Successfully";
-            alert.message = nil;
-            [alert addButtonWithTitle:@"Dismiss"];
-            [alert show];
-                        [self editUser];
-        }
+        [self promptRemoveUser];
+        UIAlertView * alert = [[UIAlertView alloc]
+                               initWithFrame:CGRectMake((adminView.view.frame.size.width-100)/2, (adminView.view.frame.size.width-100)/2, 100, 100)];
+        alert.delegate = self;
+        alert.title = @"User Deleted Successfully";
+        alert.message = nil;
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert show];
+        [self menuAdminUpdate];
     }
 }
 
@@ -608,6 +607,7 @@
     // if a valid search was entered but the user wanted to cancel, bring back the main list content
     [tblData removeAllObjects];
     [tblData addObjectsFromArray:dataSrc];
+    [srchedData setObject:@"DUMMY_VALUE" atIndexedSubscript:0];
     @try{
         [myTableView reloadData];
     }
@@ -638,6 +638,11 @@
                 s = [u objectAtIndex:2];
             s = [[s substringToIndex: s.length-1] substringFromIndex:1];
             [srchedData setObject:s atIndexedSubscript:0];
+            
+            UIButton *button1 = [self addButton:@"Update" x:20.0 y:350.0 width:75.0 height:35.0];
+            UIButton *button2 = [self addButton:@"Remove" x:100.0 y:350.0 width:75.0 height:35.0];
+                [button1 addTarget:self action:@selector(promptUpdateUser) forControlEvents:UIControlEventTouchUpInside];
+                [button2 addTarget:self action:@selector(promptRemoveUser) forControlEvents:UIControlEventTouchUpInside];
         }
     }
 }
