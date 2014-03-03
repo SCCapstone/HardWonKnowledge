@@ -10,25 +10,23 @@
 #import "GTLDrive.h"
 #import "DriveManager.h"
 
-@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>  {
 
-- (void)parseFile: (NSArray *)rows;
-- (IBAction)driveLogin;
-- (IBAction)driveLogout;
-- (IBAction)closeAnimated;
-- (IBAction)closePlain;
-- (void)openView: (NSString*)title value:(BOOL)value;
-- (UIButton*)addButton: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
-- (void)addLabel: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height color:(UIColor*)color alignment:(UITextAlignment)align fontSize:(CGFloat)size lines:(NSInteger)numberOfLines;
-- (UITextField*)addTextField: (NSString*)placeholder x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size secure:(BOOL)value capitalize:(BOOL)cap;
+    
+}
+@property(nonatomic,retain)NSMutableArray *dataSource;
+
+
+- (void) parseFile: (NSArray *) rows file:(NSInteger)file;
 - (IBAction)userLogin;
 - (IBAction)adminMenu;
 - (IBAction)userSettings;
 - (IBAction)addUser;
 - (IBAction)editUser;
 - (IBAction)viewUser;
-- (IBAction)submitUser;
-- (void)uploadListFile: (NSString*)filePath exists:(BOOL)value;
+- (void)submitUser;
+- (NSString*)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile;
+- (void)uploadListFile: (NSString*)filePath isNewFile:(BOOL)isNewFile;
 
 @property (weak, nonatomic) IBOutlet UIButton *LogInButton;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
