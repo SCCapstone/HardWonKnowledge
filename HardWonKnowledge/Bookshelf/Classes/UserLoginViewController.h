@@ -14,17 +14,17 @@
 
 @property(nonatomic,retain)NSMutableArray *dataSource;
 
-- (void) parseFile: (NSArray *) rows file:(NSInteger)file;
 - (IBAction)menuLoginScreen;
 - (IBAction)menuAdminMain;
 - (IBAction)menuAdminSettings;
 - (IBAction)menuAdminAdd;
 - (IBAction)menuAdminUpdate;
 - (IBAction)confirmSubmittedUser;
-- (void)submitConfirmedUser;
--(void)removeSelectedUser;
-- (NSString*)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile;
-- (void)uploadListFile: (NSString*)filePath isNewFile:(BOOL)isNewFile;
+- (void)saveConfirmedUser;
+- (void)removeSelectedUser;
+- (void)parseText: (NSString *)text;
+- (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile;
+- (void)uploadListFile: (BOOL)isNewFile;
 
 @property (weak, nonatomic) IBOutlet UIButton *LogInButton;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
