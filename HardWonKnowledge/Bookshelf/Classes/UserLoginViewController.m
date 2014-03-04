@@ -16,8 +16,10 @@
     IBOutlet UITextField *data2;
     IBOutlet UITextField *data3;
     IBOutlet UITextField *data4;
+    NSMutableDictionary *adminCredentials;
     NSMutableDictionary *userCredentials;
     NSString *listFileId;
+    NSString *userTxtPath;
     UIViewController *adminView;
     UITableView *myTableView;
     NSMutableArray *dataSrc; //will be storing all the data
@@ -33,24 +35,28 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     userCredentials = [[NSMutableDictionary alloc] init];
+    adminCredentials = [[NSMutableDictionary alloc] init];
     dataSrc= [[NSMutableArray alloc] init];
     data1 = [[UITextField alloc]init];
     data2 = [[UITextField alloc]init];
     data3 = [[UITextField alloc]init];
     data4 = [[UITextField alloc]init];
     listFileId = [[NSString alloc]init];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    userTxtPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
+    
+    // Get hard-coded passwords
+    data1.text = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
+    data2.text = [NSString stringWithContentsOfFile:data1.text encoding:NSUTF8StringEncoding error:nil];///////////////////////////////////////////////
+    NSArray *rows = [data2.text componentsSeparatedByString:@"\n"];
+    for(NSString *row in rows)
+        [self parseText:row];
     
     [self getUserData];
 }
 
 /*  Find the user credential files to parse  */
 - (void)getUserData{
-    // Get hard-coded passwords
-//    data1.text = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
-//    data2.text = [NSString stringWithContentsOfFile:data1.text encoding:NSUTF8StringEncoding error:nil];
-//    NSArray *rows = [data2.text componentsSeparatedByString:@"\n"];
-//    [self parseFile:rows file:0];
-    
     // Get users saved on Google Drive
     self.driveManager = [DriveManager getDriveManager];
     NSString *search = @"title contains 'NOTEBOOK_USERS_LIST'";
@@ -59,56 +65,33 @@
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         if (error == nil) {
             GTLDriveFile *file = [files.items objectAtIndex:0];
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-            data1.text = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
-            data2.text = [NSString stringWithContentsOfFile:data1.text encoding:NSUTF8StringEncoding error:nil];
-            NSLog(@"GETTING File Id %@",  file.identifier);
+            data2.text = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];//////////////////////////////////////////////
+            NSLog(@"File ID: %@",  file.identifier);
             if(file.identifier != nil)
                 listFileId = file.identifier;
+            
             if(data2.text==nil){
                 NSLog(@"No File in Drive");
-                [self saveOnDisk:@"new file" clearFile:YES];
-                [self uploadListFile:data1.text isNewFile:YES];
+                [self saveOnDisk:@"new file XX XX" clearFile:YES];
+                [self uploadListFile:YES];
                 [self getUserData];
             }
             else{
                 NSLog(@"File in Drive");
-                if(file.identifier == nil){
+                if(listFileId == nil){
                     [self getUserData];
                 }
-                if(![data2.text isEqualToString:@"new file"] ){
-                    NSArray *userRows = [data2.text componentsSeparatedByString:@"\n"];
-                    [self parseFile:userRows file:1];
+                                [self.driveManager downloadDriveFile:file];
+                NSArray *rows = [data2.text componentsSeparatedByString:@"\n"];
+                for (NSString *row in rows){//int n=0; n<[rows count]; n++){
+                    [self parseText:row];
                 }
-                [self.driveManager downloadDriveFile:file];
             }
             
         } else
             NSLog (@"An Error has occurred: %@", error);
     }];
     
-}
-
-/*  Parse the user login information  */
-- (void) parseFile: (NSArray *) rows file:(NSInteger)file{
-    for (int n=0; n<[rows count]; n++){
-        NSString *users = [[rows objectAtIndex:n] stringByAppendingString:@" **"];
-        if([[users stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]isEqualToString:@"**"])
-            continue;
-        NSArray *userInfo = [users componentsSeparatedByString:@" "];
-        NSString *theUsername = [[userInfo objectAtIndex:0] lowercaseString];
-        NSString *thePassword = [[userInfo objectAtIndex:1] lowercaseString];
-        NSString *theFirstname = [[userInfo objectAtIndex:2] capitalizedString];
-        NSString *theLastname = [[userInfo objectAtIndex:3] capitalizedString];
-        NSLog(@"%@, %@: %@ (%@)", theLastname, theFirstname, theUsername, thePassword);
-        [userCredentials setObject:thePassword forKey:theUsername];
-        if(file == 1 && ![theFirstname isEqualToString:@"admin"]){
-            if([theLastname isEqualToString:@""])
-                [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@ (%@)",theFirstname, theUsername]];
-            else
-                [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@, %@ (%@)",theLastname, theFirstname, theUsername]];
-        }
-    }
 }
 
 /*  Log in to Drive  */
@@ -180,14 +163,40 @@
     return text;
 }
 
+/*  Search if student username is in keys  */
+- (BOOL)isStudentUser: (NSString *) name{
+    for (NSString *key in [userCredentials allKeys]){
+        NSLog(@"Compare key: %@ %@", name, key);
+        if ([name isEqualToString:key]){
+            NSLog(@"Student found %@X%@", name, key);
+            return true;
+        }
+    }
+    NSLog(@"Student NOT found");
+    return false;
+}
+
+/*  Search if administrator username is in keys  */
+- (BOOL)isAdminUser: (NSString *) name{
+    for (NSString *key in [adminCredentials allKeys]){
+        NSLog(@"Compare key: %@ %@", name, key);
+        if ([name isEqualToString:key]){
+            NSLog(@"Admin found %@X%@", name, key);
+            return true;
+        }
+    }
+    NSLog(@"Admin NOT found");
+    return false;
+}
+
 /*  User log in screen set up, confirm or deny user access to notebook features  */
 - (IBAction)menuLoginScreen {
-    if([[userCredentials objectForKey:@"admin"]isEqualToString:passwordField.text]){
-        NSLog(@"Logged in as Admin");
+    if([[adminCredentials objectForKey:usernameField]isEqualToString:passwordField.text]){
+        NSLog(@"Admin logged in as %@", usernameField.text);
         [self openView:@"Administrative Menu" value:YES];
         
         UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
-        UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+        UIButton *button2 = [self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
         UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
         UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
         
@@ -197,7 +206,7 @@
         [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
     }
     else if([[userCredentials objectForKey:usernameField.text]isEqualToString:passwordField.text]){
-        NSLog(@"Logged in as %@", usernameField.text);
+        NSLog(@"Student logged in as %@", usernameField.text);
         if([self.driveManager isAuthorized]){
             BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
             [self presentViewController:bookshelf animated:NO completion:NULL];
@@ -212,7 +221,7 @@
             [alert show];
         }
     }
-    else if(![[userCredentials objectForKey:usernameField.text]isEqualToString:passwordField.text]){
+    else {
         if([self.driveManager isAuthorized]){
             NSLog(@"Incorrect User/Password");
             //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -258,6 +267,7 @@
 /*  Set up the User Settings Menu for admin user  */
 - (IBAction)menuAdminSettings{
     [self openView:@"Settings" value:NO];
+    [self uploadListFile:NO];
     
     srchedData = [[NSMutableArray alloc] init];
     [srchedData setValue:@"DUMMY_VALUE" forKey:@"First"];
@@ -270,11 +280,11 @@
     data4.text = nil;
     
     UIButton *button1 = [self addButton:@"Add New User" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
-    UIButton *button2 = [self addButton:@"Update/Remove User" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+    //    UIButton *button2 = [self addButton:@"Update/Remove User" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
     UIButton *button3 = [self addButton:@"Cancel" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
     
     [button1 addTarget:self action:@selector(menuAdminAdd) forControlEvents:UIControlEventTouchUpInside];
-    [button2 addTarget:self action:@selector(menuAdminUpdate) forControlEvents:UIControlEventTouchUpInside];
+    //    [button2 addTarget:self action:@selector(menuAdminUpdate) forControlEvents:UIControlEventTouchUpInside];
     [button3 addTarget:self action:@selector(menuAdminMain) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -283,7 +293,7 @@
     
     if(data1.text == nil)
         [self openView:@"Add New User" value:NO];
-    else if(data1.text != NULL){
+    else {
         [self openView:@"Update User" value:NO];
         NSString *text = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@",data1.text,data2.text,data3.text,data4.text];
         [self addLabel:text x:50 y:200 width:200 height:100 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:14 lines:4];
@@ -294,7 +304,7 @@
     data3 = [self addTextField:@"Username (Required)" x:50.0 y:160.0 width:200.0 height:20.0 fontSize:12 secure:NO capitalize:NO];
     data4 = [self addTextField:@"Password (Required)" x:50.0 y:190.0 width:200.0 height:20.0 fontSize:12 secure:YES capitalize:NO];
     
-    UIButton *button1 = [self addButton:@"Add" x:50.0 y:300.0 width:100.0 height:35.0];
+    UIButton *button1 = [self addButton:@"Submit" x:50.0 y:300.0 width:100.0 height:35.0];
     UIButton *button2 = [self addButton:@"Cancel" x:160.0 y:300.0 width:100.0 height:35.0];
     [button1 addTarget:self action:@selector(confirmSubmittedUser) forControlEvents:UIControlEventTouchUpInside];
     [button2 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
@@ -302,18 +312,16 @@
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (IBAction)menuAdminUpdate{
-        if([dataSrc count]<1){
-            UIAlertView * alert = [[UIAlertView alloc] init];
-            alert.delegate = self;
-            alert.title = @"Error";
-            alert.message = [[NSString alloc] initWithFormat:@"You must add users before you can use this feature."];
-            [alert addButtonWithTitle:@"Dismiss"];
-            [alert show];
-            return;
-        }
+    if([dataSrc count]==0){
+        UIAlertView * alert = [[UIAlertView alloc] init];
+        alert.delegate = self;
+        alert.title = @"Error";
+        alert.message = [[NSString alloc] initWithFormat:@"You must add users before you can use this feature."];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert show];
+        return;
+    }
     
-//    [tblData removeAllObjects];
-    [myTableView reloadData];
     [self openView:@"Update/Remove User" value:NO];
     
     sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(10,60,280,35.0)];
@@ -329,10 +337,6 @@
     srchedData = [[NSMutableArray alloc]init];
     tblData = [[NSMutableArray alloc]init];
     [tblData addObjectsFromArray:dataSrc];
-    
-    for(NSString *s in dataSrc){
-        NSLog(@"%@", s);
-    }
     
     UIButton *button3 = [self addButton:@"Cancel" x:200.0 y:350.0 width:75.0 height:35.0];
     [button3 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
@@ -373,16 +377,14 @@
         [alert show];
         return;
     }
-    for (id key in [userCredentials allKeys]) {
-        if([key isEqualToString:data3.text] && ![key isEqualToString:nil]){
-            UIAlertView * alert = [[UIAlertView alloc] init];
-            alert.delegate = self;
-            alert.title = @"Input Error";
-            alert.message = @"This username is already taken";
-            [alert addButtonWithTitle:@"Dismiss"];
-            [alert show];
-            return;
-        }
+    if([self isStudentUser:data3.text] || [self isAdminUser:data3.text]){
+        UIAlertView * alert = [[UIAlertView alloc] init];
+        alert.delegate = self;
+        alert.title = @"Input Error";
+        alert.message = @"This username is already taken";
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert show];
+        return;
     }
     
     UIAlertView * alert = [[UIAlertView alloc] init];
@@ -396,72 +398,111 @@
 }
 
 /*  Save added user to file on disk  */
-- (void)submitConfirmedUser{
-    [userCredentials setObject:data4.text forKey:data3.text];
-    if([data2.text isEqualToString:@""])
-        [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@ (%@)",data1.text, data3.text]];
-    else
-        [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@, %@ (%@)",data2.text, data1.text, data3.text]];
-    
+- (void)saveConfirmedUser{
+    //    [userCredentials setObject:data4.text forKey:data3.text];
+    //    if([data2.text isEqualToString:@""])
+    //        [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@ (%@)",data1.text, data3.text]];
+    //    else
+    //        [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@, %@ (%@)",data2.text, data1.text, data3.text]];
     NSString *text = [[NSString alloc]initWithFormat:@"%@ %@ %@ %@", data3.text, data4.text, data1.text, data2.text];
-    text = [self saveOnDisk:text clearFile:NO];
-    [self uploadListFile:text isNewFile:NO];
-    [self viewDidLoad];
+    [self parseText:text];
+    [self saveOnDisk:text clearFile:NO];    
 }
 
 -(void)removeSelectedUser{
-            // Update values and save new file without deleted user
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
-    NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    contents = @"";
-    for (int n=0; n<[rows count]; n++){
-        NSString *users = [rows objectAtIndex:n];
-        if([[users stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]isEqualToString:@""])
-            break;
-        NSArray *userInfo = [users componentsSeparatedByString:@" "];
-        if([[srchedData objectAtIndex:0]isEqualToString:[userInfo objectAtIndex:0]]){
+    // Update values and save new file without deleted user
+    
+    //    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
+    //    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    //    contents = @"";
+    //    for (NSString *row in rows){
+    //        if([[row stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]isEqualToString:@""])
+    //            break;
+    //        NSArray *fields = [row componentsSeparatedByString:@" "];
+    //        if([[srchedData objectAtIndex:0]isEqualToString:[fields objectAtIndex:0]])
+    //            continue;
+    //        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",row]];
+    //    }
+    [dataSrc removeAllObjects];
+    [userCredentials removeAllObjects];
+    [tblData removeAllObjects];
+    //    [self saveOnDisk:contents clearFile:YES];
+    //    [self uploadListFile:NO];
+    //    rows = [contents componentsSeparatedByString:@"\n"];
+    //    for(NSString *row in rows)
+    //        [self parseText:row];
+    //        [myTableView reloadData];
+    
+    for(id key in userCredentials){
+        if([[userCredentials objectForKey:key]isEqual:[srchedData objectAtIndex:0]])
             continue;
+        NSString *text = @"";
+        for(NSString *field in [userCredentials objectForKey:key]){
+            text = [text stringByAppendingFormat:@"%@ ",field];
         }
-        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",users]];
-        [dataSrc removeAllObjects];
-        [userCredentials removeAllObjects];
-        [tblData removeAllObjects];
-        [self saveOnDisk:contents clearFile:YES];
-        [self uploadListFile:path isNewFile:NO];
-        rows = [contents componentsSeparatedByString:@"\n"];
-        [self parseFile:rows file:1];
+        [self parseText:text];
         [myTableView reloadData];
     }
 }
 
+/*  Parse the string given and add as user  */
+- (void) parseText:(NSString *)text{
+    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if([text isEqualToString:@""] || [text isEqualToString:@"new file XX XX"])
+        return;
+    text = [text stringByAppendingString:@" %%"];
+    NSMutableArray *fields = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
+    NSString *user = [[fields objectAtIndex:0] lowercaseString];
+    NSString *pass = [[fields objectAtIndex:1] lowercaseString];
+    NSString *first = [[fields objectAtIndex:2] capitalizedString];
+    if([[fields objectAtIndex:3]isEqualToString:@"%%"])
+        [fields setObject:@" " atIndexedSubscript:3];
+    NSString *last = [[fields objectAtIndex:3] capitalizedString];
+    NSLog(@"%@, %@: %@ (%@)", last, first, user, pass);
+    
+    if([fields containsObject:@"#*#"]){
+        [adminCredentials setObject:[fields subarrayWithRange:NSMakeRange(0, 3)] forKey:user];
+        NSLog(@"admin user");
+        return;
+    }
+    [userCredentials setObject: [fields subarrayWithRange:NSMakeRange(0, 3)] forKey:user];
+    if([last isEqualToString:@""])
+        [dataSrc setValue:[[NSString stringWithFormat:@"%@ (%@)",first,user] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:user];
+    else
+        [dataSrc setValue:[[NSString stringWithFormat:@"%@, %@ (%@)",last,first,user] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:user];
+    
+    for(id key in [userCredentials allKeys]){
+        NSLog(@"Key: %@", key);
+        NSMutableArray *kkey = [NSMutableArray arrayWithArray:[userCredentials objectForKey:key]];
+        for(id obj in kkey)
+            NSLog(@"Object: %@",obj);
+    }
+}
+
 /*  Save the file to disk before upload  */
-- (NSString*)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
-    NSString *contents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    NSLog(@"%@", contents);
-    if(clearFile || [contents isEqualToString:@"new file"])
+- (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile{
+    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];///////////////////////////////////////////////
+    if(clearFile || [contents isEqualToString:@"new file XX XX"])
         text = [[NSString alloc]initWithFormat:@"%@", text];
     else
         text = [[NSString alloc]initWithFormat:@"%@\n%@", contents, text];
     
-    [text writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"File Contents: %@", contents);
+    
+    [text writeToFile:userTxtPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     NSLog(@"Saved to disk");
-    return filePath;
 }
 
 /*  Upload file to Google Drive  */
-- (void)uploadListFile: (NSString*)filePath isNewFile:(BOOL)isNewFile{
+- (void)uploadListFile: (BOOL)isNewFile{
     GTLDriveFile *file = [GTLDriveFile object];
     file.title = @"NOTEBOOK_USERS_LIST.txt";
     file.descriptionProperty = @"Text file of STEM Notebook users.";
     file.mimeType = @"text/plain";
     
     NSData *data = nil;
-    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
-        data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:userTxtPath])
+        data = [[NSFileManager defaultManager] contentsAtPath:userTxtPath];
     else
         NSLog(@"File does not exist");
     
@@ -488,8 +529,8 @@
 
 /*  Alert View responses  */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-            NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
-       if([buttonPressedName isEqualToString: @"Log In"]){
+    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonPressedName isEqualToString: @"Log In"]){
         UITextField *promptField = [alertView textFieldAtIndex:buttonIndex];
         if([[userCredentials objectForKey:@"admin"]isEqualToString:promptField.text]){
             [self.driveManager loginFromViewController:self];
@@ -505,16 +546,10 @@
         }
     }
     else if ([buttonPressedName isEqualToString:@"Okay"]){
-        data1.text = nil;
-        data2.text = nil;
-        data3.text = nil;
-        data4.text = nil;
         [self menuAdminAdd];
     }
     else if([buttonPressedName isEqualToString:@"Update"]){
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
-        NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];////////////////////////////////////////////
         NSArray *rows = [contents componentsSeparatedByString:@"\n"];
         for (int n=0; n<[rows count]; n++){
             NSString *users = [rows objectAtIndex:n];
@@ -530,7 +565,8 @@
         [self menuAdminAdd];
     }
     else if([buttonPressedName isEqualToString:@"Submit"]){
-        [self submitConfirmedUser];
+        [self saveConfirmedUser];
+        
         UIAlertView * alert = [[UIAlertView alloc] initWithFrame:CGRectMake((adminView.view.frame.size.width-100)/2, (adminView.view.frame.size.width-100)/2, 100, 100)];
         alert.delegate = self;
         alert.title = @"User Added Successfully";
@@ -641,8 +677,8 @@
             
             UIButton *button1 = [self addButton:@"Update" x:20.0 y:350.0 width:75.0 height:35.0];
             UIButton *button2 = [self addButton:@"Remove" x:100.0 y:350.0 width:75.0 height:35.0];
-                [button1 addTarget:self action:@selector(promptUpdateUser) forControlEvents:UIControlEventTouchUpInside];
-                [button2 addTarget:self action:@selector(promptRemoveUser) forControlEvents:UIControlEventTouchUpInside];
+            [button1 addTarget:self action:@selector(promptUpdateUser) forControlEvents:UIControlEventTouchUpInside];
+            [button2 addTarget:self action:@selector(promptRemoveUser) forControlEvents:UIControlEventTouchUpInside];
         }
     }
 }
