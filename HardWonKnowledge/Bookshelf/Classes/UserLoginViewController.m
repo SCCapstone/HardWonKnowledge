@@ -81,7 +81,7 @@
                 if(listFileId == nil){
                     [self getUserData];
                 }
-                                [self.driveManager downloadDriveFile:file];
+//                [self.driveManager downloadDriveFile:file];
                 NSArray *rows = [data2.text componentsSeparatedByString:@"\n"];
                 for (NSString *row in rows){//int n=0; n<[rows count]; n++){
                     [self parseText:row];
@@ -92,6 +92,14 @@
             NSLog (@"An Error has occurred: %@", error);
     }];
     
+}
+
+- (IBAction)openBookshelf{
+    if([self.driveManager isAuthorized]){
+        [adminView dismissViewControllerAnimated:NO completion:NULL];
+        BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
+        [self presentViewController:bookshelf animated:NO completion:NULL];
+    }
 }
 
 /*  Log in to Drive  */
@@ -110,7 +118,6 @@
 - (IBAction)closeAnimated{
     [adminView dismissViewControllerAnimated:YES completion:NULL];
 }
-
 
 /*  Open adminView and set up properties  */
 - (void)openView: (NSString*)title value:(BOOL)value{
@@ -191,21 +198,23 @@
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
 - (IBAction)menuLoginScreen {
-    if([[adminCredentials objectForKey:usernameField]isEqualToString:passwordField.text]){
+    if([[[adminCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:passwordField.text]){
         NSLog(@"Admin logged in as %@", usernameField.text);
         [self openView:@"Administrative Menu" value:YES];
         
         UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
         UIButton *button2 = [self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
         UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
-        UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+        UIButton *button4 = [self addButton:@"Open Notebook" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+        UIButton *button5 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:300.0 width:200.0 height:35.0];
         
         [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
         [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
         [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
-        [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
+        [button4 addTarget:self action:@selector(openBookshelf) forControlEvents:UIControlEventTouchUpInside];
+        [button5 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
     }
-    else if([[userCredentials objectForKey:usernameField.text]isEqualToString:passwordField.text]){
+    else if([[[userCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:passwordField.text]){
         NSLog(@"Student logged in as %@", usernameField.text);
         if([self.driveManager isAuthorized]){
             BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
@@ -224,19 +233,19 @@
     else {
         if([self.driveManager isAuthorized]){
             NSLog(@"Incorrect User/Password");
-            //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            //        [alert show];
-            [self openView:@"Administrative Menu" value:YES];
-            
-            UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
-            UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
-            UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
-            UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
-            
-            [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
-            [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
-            [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
-            [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                    [alert show];
+//            [self openView:@"Administrative Menu" value:YES];
+//            
+//            UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
+//            UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+//            UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
+//            UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+//            
+//            [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
+//            [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
+//            [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
+//            [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
         }
         else{
             UIAlertView * alert = [[UIAlertView alloc] init];
@@ -254,14 +263,16 @@
 - (IBAction)menuAdminMain{
     [self openView:@"Administrative Menu" value:NO];
     UIButton *button1 = [self addButton:@"Settings" x:(adminView.view.frame.size.width-200)/2 y:100.0 width:200.0 height:35.0];
-    UIButton *button2 =[self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
+    UIButton *button2 = [self addButton:@"Log In to Google Drive" x:(adminView.view.frame.size.width-200)/2 y:150.0 width:200.0 height:35.0];
     UIButton *button3 = [self addButton:@"Log Out of Google Drive" x:(adminView.view.frame.size.width-200)/2 y:200.0 width:200.0 height:35.0];
-    UIButton *button4 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+    UIButton *button4 = [self addButton:@"Open Notebook" x:(adminView.view.frame.size.width-200)/2 y:250.0 width:200.0 height:35.0];
+    UIButton *button5 = [self addButton:@"Close" x:(adminView.view.frame.size.width-200)/2 y:300.0 width:200.0 height:35.0];
     
     [button1 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
     [button2 addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
     [button3 addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
-    [button4 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
+    [button4 addTarget:self action:@selector(openBookshelf) forControlEvents:UIControlEventTouchUpInside];
+    [button5 addTarget:self action:@selector(closeAnimated) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /*  Set up the User Settings Menu for admin user  */
@@ -291,13 +302,13 @@
 /*  The Add User Menu for adding users to the users list  */
 - (IBAction)menuAdminAdd{
     
-    if(data1.text == nil)
-        [self openView:@"Add New User" value:NO];
-    else {
-        [self openView:@"Update User" value:NO];
-        NSString *text = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@",data1.text,data2.text,data3.text,data4.text];
-        [self addLabel:text x:50 y:200 width:200 height:100 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:14 lines:4];
-    }
+//    if(data1.text == nil)
+//        [self openView:@"Add New User" value:NO];
+//    else {
+//        [self openView:@"Update User" value:NO];
+//        NSString *text = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@",data1.text,data2.text,data3.text,data4.text];
+//        [self addLabel:text x:50 y:200 width:200 height:100 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:14 lines:4];
+//    }
     
     data1 = [self addTextField:@"First Name (Required)" x:50.0 y:100.0 width:200.0 height:20.0 fontSize:12 secure:NO capitalize:YES];
     data2 = [self addTextField:@"Last Name" x:50.0 y:130.0 width:200.0 height:20.0 fontSize:12 secure:NO capitalize:YES];
@@ -399,14 +410,9 @@
 
 /*  Save added user to file on disk  */
 - (void)saveConfirmedUser{
-    //    [userCredentials setObject:data4.text forKey:data3.text];
-    //    if([data2.text isEqualToString:@""])
-    //        [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@ (%@)",data1.text, data3.text]];
-    //    else
-    //        [dataSrc addObject:[[NSString alloc] initWithFormat:@"%@, %@ (%@)",data2.text, data1.text, data3.text]];
     NSString *text = [[NSString alloc]initWithFormat:@"%@ %@ %@ %@", data3.text, data4.text, data1.text, data2.text];
     [self parseText:text];
-    [self saveOnDisk:text clearFile:NO];    
+    [self saveOnDisk:text clearFile:NO];
 }
 
 -(void)removeSelectedUser{
@@ -461,11 +467,19 @@
     NSLog(@"%@, %@: %@ (%@)", last, first, user, pass);
     
     if([fields containsObject:@"#*#"]){
-        [adminCredentials setObject:[fields subarrayWithRange:NSMakeRange(0, 3)] forKey:user];
+//        NSLog(@"%@ %@ %@ %@", [fields objectAtIndex:0], [fields objectAtIndex:1], [fields objectAtIndex:2], [fields objectAtIndex:3]);
+        [adminCredentials setObject:[fields subarrayWithRange:NSMakeRange(0, 4)] forKey:user];
         NSLog(@"admin user");
+        
+        for(id key in [adminCredentials allKeys]){
+            NSLog(@"Key: %@", key);
+            NSMutableArray *kkey = [NSMutableArray arrayWithArray:[adminCredentials objectForKey:key]];
+            for(id obj in kkey)
+                NSLog(@"Object: %@",obj);
+        }
         return;
     }
-    [userCredentials setObject: [fields subarrayWithRange:NSMakeRange(0, 3)] forKey:user];
+    [userCredentials setObject: [fields subarrayWithRange:NSMakeRange(0, 4)] forKey:user];
     if([last isEqualToString:@""])
         [dataSrc setValue:[[NSString stringWithFormat:@"%@ (%@)",first,user] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:user];
     else
