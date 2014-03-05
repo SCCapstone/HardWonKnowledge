@@ -27,6 +27,8 @@
 - (void)changeAlphaWithNumber:(float)newAlpha;
 - (void)saveImageView;
 - (void)loadImageView;
+- (void)loadFileNamed:(NSString *)name;
+- (void)saveFileNamed:(NSString *)name;
 - (void)nextPage;
 - (void)previousPage;
 

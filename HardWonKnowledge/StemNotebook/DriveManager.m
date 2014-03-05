@@ -148,8 +148,60 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   }];
 }
 
+- (void)uploadNotebookNamed:(NSString*)name
+{
+    
+    //setup path for file
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *filepath = [docDir stringByAppendingPathComponent:name];
+    
+    GTLDriveFile *file = [GTLDriveFile object];
+    file.title = name;
+    file.descriptionProperty = @"Uploaded from StemNotebook App";
+    file.mimeType = @"application/octet-stream";
+    
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"File not exits");
+    }
+    
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
+                                                       uploadParameters:uploadParameters];
+    
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    NSLog(@"Uploading to Google Drive...");
+    
+    
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      NSLog(@"Done");
+                      if (error == nil)
+                      {
+                          NSLog(@"File ID: %@", insertedFile.identifier);
+                          //[self showAlert:@"Google Drive" message:@"File saved!"];
+                          NSLog(@"Google Drive: File Saved");
+                      }
+                      else
+                      {
+                          NSLog(@"An error occurred: %@", error);
+                          //[self showAlert:@"Google Drive" message:@"Sorry, an error occurred!"];
+                          NSLog(@"An Error Occured");
+                      }
+                  }];
+}
+
+
 - (GTLDriveFileList *)listDriveFiles {
-    NSString *search = @"title contains 'Stem Notebook Upload'";
+    NSString *search = @"title contains '.nbf'";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     __block GTLDriveFileList *list = nil;

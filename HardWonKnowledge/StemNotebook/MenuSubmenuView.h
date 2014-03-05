@@ -12,5 +12,6 @@
 @interface MenuSubmenuView : UIView
 
 @property (nonatomic, strong) id <NotebookViewDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UITextField *fileNameInput;
 
 @end

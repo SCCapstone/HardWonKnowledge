@@ -189,6 +189,64 @@
     [self.drawImage setHidden:FALSE];
 }
 
+- (void) loadFileNamed:(NSString *)name {
+    //setup path for file
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:name];
+    
+    //get data from file
+    NSData *codedData = [[NSData alloc] initWithContentsOfFile:viewPath];
+    if (codedData == nil) return;
+    
+    //unarchive data
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
+    
+    //get images from archive
+    for (int i = 0; i<25; i++) {
+        UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
+        //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+        UIImageView *v = [self.pages objectAtIndex:i];
+        v.image = newImage;
+    }
+    [unarchiver finishDecoding];
+    
+    //Reset to page 1
+    current = 0;
+    [self.drawImage setHidden:TRUE];
+    self.drawImage = [pages objectAtIndex:current];
+    [self addSubview:self.drawImage];
+    [self.drawImage setHidden:FALSE];
+}
+
+- (void) saveFileNamed:(NSString *)name {
+    //setup path for file
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:name];
+    
+    //variable for data to be written
+    NSMutableData *data = [[NSMutableData alloc] init];
+    
+    //setup archiver for data
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    //archive images
+    for (int i = 0; i < 25; i++) {
+        UIImageView *imv = [self.pages objectAtIndex:i];
+        if (imv.image != nil) {
+            [archiver encodeObject:imv.image forKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
+            //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+        }
+    }
+    
+    [archiver finishEncoding];
+    
+    //write to file
+    if (![data writeToFile:viewPath atomically:YES])
+        NSLog(@"Failed to write data to file!");
+}
+
 //move to next page
 -(void)nextPage
 {
