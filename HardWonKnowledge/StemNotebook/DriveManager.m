@@ -80,6 +80,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                            keychainItemName:kKeychainItemName
                                                    delegate:self
                                            finishedSelector:finishedSelector];
+        authViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        authViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        authViewController.view.superview.frame = CGRectMake(0, 0, 300, 400);
+//        authViewController.view.superview.center = self.view.center;
         [self.cont presentViewController:authViewController
                                 animated:YES completion:nil];
     } else {
