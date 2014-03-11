@@ -31,6 +31,9 @@
 		C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF899E1850D4DC00F6A093 /* DriveManager.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
+		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
+		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
+		CB8B125318C9760A00DC90B0 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB8B125018C9760A00DC90B0 /* users.txt */; };
 		CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */; };
 		CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */; };
 		CB9CD3C118BA9FF000DF6754 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3AB18BA9FF000DF6754 /* AQGridView.m */; };
@@ -47,16 +50,17 @@
 		CB9CD3D718BAA01900DF6754 /* BookshelfGridFilledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3CE18BAA01900DF6754 /* BookshelfGridFilledCell.m */; };
 		CB9CD3D818BAA01900DF6754 /* BookshelfGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3D018BAA01900DF6754 /* BookshelfGridViewCell.m */; };
 		CB9CD3D918BAA01900DF6754 /* BookshelfGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3D218BAA01900DF6754 /* BookshelfGridViewController.m */; };
-		CB9CD3DA18BAA01900DF6754 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3D418BAA01900DF6754 /* UserLoginViewController.m */; };
-		CB9CD3DB18BAA01900DF6754 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3D518BAA01900DF6754 /* users.txt */; };
 		CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */; };
 		CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */; };
-		CB9CD3E218BAA06200DF6754 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */; };
 		CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */; };
 		CB9CD41918BAA0A300DF6754 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */; };
 		CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */; };
 		CB9CD41B18BAA0A300DF6754 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */; };
 		CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */; };
+		CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848A818C8037200153587 /* UserLoginBackend.m */; };
+		CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848AB18C8046200153587 /* UserLoginViewController.m */; };
+		CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD848AC18C8046200153587 /* UserLoginViewController.xib */; };
+		CBD848B918C820E100153587 /* AdminView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848B818C820E100153587 /* AdminView.m */; };
 		CBE86B5018BE9A7F00055ABC /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4E18BE9A7F00055ABC /* Black.png */; };
 		CBE86B5118BE9A7F00055ABC /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4F18BE9A7F00055ABC /* Green.png */; };
 /* End PBXBuildFile section */
@@ -99,6 +103,9 @@
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
+		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
+		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
+		CB8B125018C9760A00DC90B0 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = LoginScreen/Resources/users.txt; sourceTree = "<group>"; };
 		CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		CB9CD3AA18BA9FF000DF6754 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Bookshelf/AQGridViewClasses/AQGridView.h; sourceTree = "<group>"; };
@@ -132,18 +139,21 @@
 		CB9CD3D018BAA01900DF6754 /* BookshelfGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewCell.m; path = Bookshelf/Classes/BookshelfGridViewCell.m; sourceTree = "<group>"; };
 		CB9CD3D118BAA01900DF6754 /* BookshelfGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewController.h; path = Bookshelf/Classes/BookshelfGridViewController.h; sourceTree = "<group>"; };
 		CB9CD3D218BAA01900DF6754 /* BookshelfGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewController.m; path = Bookshelf/Classes/BookshelfGridViewController.m; sourceTree = "<group>"; };
-		CB9CD3D318BAA01900DF6754 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = Bookshelf/Classes/UserLoginViewController.h; sourceTree = "<group>"; };
-		CB9CD3D418BAA01900DF6754 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = Bookshelf/Classes/UserLoginViewController.m; sourceTree = "<group>"; };
-		CB9CD3D518BAA01900DF6754 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = Bookshelf/Classes/users.txt; sourceTree = "<group>"; };
 		CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookshelfGridViewController.xib; path = Bookshelf/BookshelfGridViewController.xib; sourceTree = "<group>"; };
 		CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Bookshelf/MainWindow.xib; sourceTree = "<group>"; };
 		CB9CD3E018BAA04300DF6754 /* Bookshelf_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bookshelf_Prefix.pch; path = Bookshelf/Bookshelf_Prefix.pch; sourceTree = "<group>"; };
-		CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = Bookshelf/Classes/UserLoginViewController.xib; sourceTree = "<group>"; };
 		CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelection.png; path = Bookshelf/Resources/AQGridSelection.png; sourceTree = "<group>"; };
 		CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGray.png; path = Bookshelf/Resources/AQGridSelectionGray.png; sourceTree = "<group>"; };
 		CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
 		CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGreen.png; path = Bookshelf/Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
 		CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionRed.png; path = Bookshelf/Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CBD848A718C8037200153587 /* UserLoginBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginBackend.h; path = LoginScreen/UserLoginBackend.h; sourceTree = "<group>"; };
+		CBD848A818C8037200153587 /* UserLoginBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginBackend.m; path = LoginScreen/UserLoginBackend.m; sourceTree = "<group>"; };
+		CBD848AA18C8046200153587 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = LoginScreen/UserLoginViewController.h; sourceTree = "<group>"; };
+		CBD848AB18C8046200153587 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = LoginScreen/UserLoginViewController.m; sourceTree = "<group>"; };
+		CBD848AC18C8046200153587 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = LoginScreen/UserLoginViewController.xib; sourceTree = "<group>"; };
+		CBD848B718C820E100153587 /* AdminView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdminView.h; path = LoginScreen/AdminView.h; sourceTree = "<group>"; };
+		CBD848B818C820E100153587 /* AdminView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdminView.m; path = LoginScreen/AdminView.m; sourceTree = "<group>"; };
 		CBE86B4E18BE9A7F00055ABC /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Black.png; path = Bookshelf/Images/Black.png; sourceTree = "<group>"; };
 		CBE86B4F18BE9A7F00055ABC /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Bookshelf/Images/Green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,6 +296,16 @@
 			name = "Api Provided Files";
 			sourceTree = "<group>";
 		};
+		CB8B124D18C975DA00DC90B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */,
+				CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */,
+				CB8B125018C9760A00DC90B0 /* users.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		CB9CD32F18BA9C3200DF6754 /* Bookshelf */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,10 +397,14 @@
 		CBC4C3E018BD98E9001B6FBA /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CB9CD3E118BAA06200DF6754 /* UserLoginViewController.xib */,
-				CB9CD3D318BAA01900DF6754 /* UserLoginViewController.h */,
-				CB9CD3D418BAA01900DF6754 /* UserLoginViewController.m */,
-				CB9CD3D518BAA01900DF6754 /* users.txt */,
+				CB8B124D18C975DA00DC90B0 /* Resources */,
+				CBD848AA18C8046200153587 /* UserLoginViewController.h */,
+				CBD848AB18C8046200153587 /* UserLoginViewController.m */,
+				CBD848AC18C8046200153587 /* UserLoginViewController.xib */,
+				CBD848A718C8037200153587 /* UserLoginBackend.h */,
+				CBD848A818C8037200153587 /* UserLoginBackend.m */,
+				CBD848B718C820E100153587 /* AdminView.h */,
+				CBD848B818C820E100153587 /* AdminView.m */,
 			);
 			name = LoginScreen;
 			sourceTree = "<group>";
@@ -450,10 +474,8 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
-				CB9CD3DB18BAA01900DF6754 /* users.txt in Resources */,
 				CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */,
 				CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */,
-				CB9CD3E218BAA06200DF6754 /* UserLoginViewController.xib in Resources */,
 				CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */,
 				CB9CD41918BAA0A300DF6754 /* AQGridSelectionGray.png in Resources */,
 				CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */,
@@ -461,6 +483,10 @@
 				CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */,
 				CBE86B5018BE9A7F00055ABC /* Black.png in Resources */,
 				CBE86B5118BE9A7F00055ABC /* Green.png in Resources */,
+				CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */,
+				CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */,
+				CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */,
+				CB8B125318C9760A00DC90B0 /* users.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +520,9 @@
 				CB9CD3D718BAA01900DF6754 /* BookshelfGridFilledCell.m in Sources */,
 				CB9CD3D818BAA01900DF6754 /* BookshelfGridViewCell.m in Sources */,
 				CB9CD3D918BAA01900DF6754 /* BookshelfGridViewController.m in Sources */,
-				CB9CD3DA18BAA01900DF6754 /* UserLoginViewController.m in Sources */,
+				CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */,
+				CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */,
+				CBD848B918C820E100153587 /* AdminView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
