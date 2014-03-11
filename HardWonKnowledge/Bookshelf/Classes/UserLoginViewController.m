@@ -303,7 +303,7 @@
 - (IBAction)menuAdminAdd{
     
 //    if(data1.text == nil)
-//        [self openView:@"Add New User" value:NO];
+        [self openView:@"Add New User" value:NO];
 //    else {
 //        [self openView:@"Update User" value:NO];
 //        NSString *text = [[NSString alloc]initWithFormat:@"First Name: %@\nLast Name: %@\nUsername: %@\nPassword: %@",data1.text,data2.text,data3.text,data4.text];
