@@ -59,8 +59,9 @@ enum
 
 // Sign out of user account.
 - (IBAction)logoutAccount{
-    UserLoginViewController *login = [[UserLoginViewController alloc] initWithNibName:nil bundle:nil];
-    [self presentViewController:login animated:YES completion:NULL];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+//    UserLoginViewController *login = [[UserLoginViewController alloc] initWithNibName:nil bundle:nil];
+//    [self presentViewController:login animated:YES completion:NULL];
 }
 
 -(IBAction)notebookEntry{
