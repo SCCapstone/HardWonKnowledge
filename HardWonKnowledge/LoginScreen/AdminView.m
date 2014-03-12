@@ -76,10 +76,12 @@
 }
 
 /*  Add switch to adminView and set up properties */
-- (void)addSwitch: (BOOL)useYes x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height {
+- (void)addSwitch: (BOOL)isON x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height {
     UISwitch *aSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [aSwitch setOnImage: [UIImage imageNamed:@"UISwitch-Yes"]];
     [aSwitch setOffImage:[UIImage imageNamed:@"UISwitch-No"]];
+    if(isON)
+       [aSwitch setOn:isON animated:YES];
     [aSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:aSwitch];
     [subviews addObject:aSwitch];
@@ -189,7 +191,7 @@
     tf4 = [self addTextField:@"Required Field **" x:120 y:325 width:400.0 height:30.0 fontSize:18 secure:YES capitalize:NO];
     
     [self addLabel:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addSwitch:YES x:320 y:400 width:200 height:30];
+    [self addSwitch:NO x:320 y:400 width:200 height:30];
     
     UIButton *button1 = [self addButton:@"Submit" x:50.0 y:550.0 width:200.0 height:50.0];
     [button1 addTarget:self action:@selector(confirmUser) forControlEvents:UIControlEventTouchUpInside];
@@ -247,7 +249,31 @@
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (void)menuAdminUpdate {
-    //  UPDATE CODE
+    [self openView:@"Add New User"];
+    
+    [self addLabel:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+//    tf0 = [self addTextField:@"Required Field **" x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
+    
+    [self addLabel:@"M.I.:" x:440 y:150 width:40 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+//    tf1 = [self addTextField:nil x:480 y:150.0 width:40.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
+    
+    [self addLabel:@"Last Name:" x:20 y:200 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+//    tf2 = [self addTextField:nil x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
+    
+    [self addLabel:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+//    tf3 = [self addTextField:@"Required Field **" x:120 y:275 width:400.0 height:30.0 fontSize:18 secure:NO capitalize:NO];
+    
+    [self addLabel:@"Password:" x:20 y:325 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+//    tf4 = [self addTextField:@"Required Field **" x:120 y:325 width:400.0 height:30.0 fontSize:18 secure:YES capitalize:NO];
+    
+    [self addLabel:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+    [self addSwitch:isAdmin x:320 y:400 width:200 height:30];
+    
+    UIButton *button1 = [self addButton:@"Submit" x:50.0 y:550.0 width:200.0 height:50.0];
+    [button1 addTarget:self action:@selector(confirmUser) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *button2 = [self addButton:@"Cancel" x:(self.view.frame.size.width-250) y:550.0 width:200.0 height:50.0];
+    [button2 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /*  Open adminView and set up properties  */
@@ -259,12 +285,32 @@
 
 /*  The remove user prompt  */
 - (IBAction)promptRemoveUser {
-    [self alertTwoButtons:@"Remove User" message:[[NSString alloc] initWithFormat:@"Are you sure you want to delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
+    [self alertTwoButtons:@"Remove User" message:[[NSString alloc] initWithFormat:@"Delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
 }
 
 /*  The update user prompt  */
 - (IBAction)promptUpdateUser {
-    [self alertTwoButtons:@"Update User" message:[[NSString alloc] initWithFormat:@"Are you sure you want to update %@?", [srchedData objectAtIndex:0]] firstButton:@"Update" secondButton:@"Dismiss"];
+    [self alertTwoButtons:@"Update User" message:[[NSString alloc] initWithFormat:@"Update %@?", [srchedData objectAtIndex:0]] firstButton:@"Update" secondButton:@"Dismiss"];
+}
+
+/*  Setting up user details to be added into user list  */
+- (void)configAddUser{
+    if([[tf1.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
+        tf1.text = @"(empty)";
+    
+    if([[tf2.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
+        tf2.text = @"(empty)";
+    
+    if(isAdmin)
+        tf2.text = [tf2.text stringByAppendingString:@" #*#"];
+    
+    NSString *text = [[NSString alloc]initWithFormat:@"%@ %@ %@ %@ %@", tf3.text,tf4.text,tf0.text,tf1.text,tf2.text];
+    [self.loginBackend saveUser:[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+}
+
+/*  Setting up user details to be updated in user list  */
+- (void)configUpdateUser{
+    
 }
 
 /*  Alert View responses  */
@@ -294,21 +340,11 @@
 //        }
 //        [self menuAdminAdd];
         
-        
+        [self menuAdminUpdate];
         NSLog(@"Update");
     }
     else if([buttonPressedName isEqualToString:@"Add"]){
-        if([[tf1.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
-            tf1.text = @"(empty)";
-        
-        if([[tf2.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
-            tf2.text = @"(empty)";
-        
-        if(isAdmin)
-            tf2.text = [tf2.text stringByAppendingString:@" #*#"];
-        
-        NSString *text = [[NSString alloc]initWithFormat:@"%@ %@ %@ %@ %@", tf3.text,tf4.text,tf0.text,tf1.text,tf2.text];
-        [self.loginBackend saveUser:[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        [self configAddUser];
         [self alertOneButton:@"User Added Successfully" message:nil buttonTitle:@"Okay"];
         NSLog(@"Add");
     }
@@ -424,7 +460,7 @@
         NSRange r = [[row lowercaseString] rangeOfString:[cell.textLabel.text lowercaseString]];
         if(r.location != NSNotFound){
             NSArray *array = [row componentsSeparatedByString:@" "];
-            [srchedData setObject:array atIndexedSubscript:0];
+            [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
         }
     }
     
