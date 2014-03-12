@@ -38,10 +38,6 @@
 @property (nonatomic,retain) NSMutableDictionary *adminCredentials;
 @property (nonatomic,retain) NSMutableDictionary *userCredentials;
 @property (nonatomic,retain) NSMutableArray *dataSrc;
-@property (nonatomic,retain) NSMutableArray *srchedData;
-@property (nonatomic,retain) NSMutableArray *tblData;
-@property (nonatomic,retain) UISearchBar *sBar;
-@property (nonatomic,retain) UITableView *myTableView;
 @property (nonatomic,retain) NSString *listFileId;
 @property (nonatomic,retain) NSString *userTxtPath;
 
