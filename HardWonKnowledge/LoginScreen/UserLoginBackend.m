@@ -13,10 +13,6 @@
 @synthesize adminCredentials;
 @synthesize userCredentials;
 @synthesize dataSrc;
-@synthesize srchedData;
-@synthesize tblData;
-@synthesize sBar;
-@synthesize myTableView;
 @synthesize listFileId;
 @synthesize userTxtPath;
 
@@ -51,8 +47,10 @@
             GTLDriveFile *file = [files.items objectAtIndex:0];
             NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
             NSLog(@"File ID: %@",  file.identifier);
-            if(file.identifier != nil)
+            if(file.identifier != nil){
                 listFileId = file.identifier;
+                [self.driveManager downloadDriveFile:file];
+            }
             
             if(contents==nil){
                 NSLog(@"No File in Drive");
@@ -65,7 +63,7 @@
                 if(listFileId == nil)
                     [self findDriveData];
                 
-                [self.driveManager downloadDriveFile:file];
+//                [self.driveManager downloadDriveFile:file];
                 NSArray *rows = [contents componentsSeparatedByString:@"\n"];
                 for (NSString *row in rows)
                     [self parseText:row file:1];
@@ -113,16 +111,16 @@
     if([text isEqualToString:@""] || [text isEqualToString:@"new file XX XX"])
         return;
     
-    text = [text stringByAppendingString:@" % % %"];
+    text = [text stringByAppendingString:@" (empty) (empty) (empty)"];
     NSMutableArray *fields = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
     if(fileType == 0)
         [adminCredentials setObject:fields forKey:[fields objectAtIndex:0]];
     else{
         if([fields containsObject:@"#*#"])
-            [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
+            [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 6)]]];
         else
             [self addNewUser:userCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
-        [self setUpDataSrc: [fields subarrayWithRange:NSMakeRange(0, [fields count]-3)]];
+        [self setUpDataSrc: [fields subarrayWithRange:NSMakeRange(0, [fields count])]];
     }
 }
 
@@ -185,15 +183,17 @@
 - (void)setUpDataSrc: (NSArray *)array{
     NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[array objectAtIndex:0] lowercaseString]];
     for(int i=2; i<[array count]; i++){
-        text = [text stringByAppendingFormat:@" %@", [[array objectAtIndex:i]capitalizedString]];
+        if([[array objectAtIndex:i] isEqualToString:@"#*#"])
+            text = [text stringByAppendingString:@"[Administrator User]"];
+        if(![[array objectAtIndex:i] isEqualToString:@"(empty)"] && ![[array objectAtIndex:i] isEqualToString:@"#*#"] )
+            text = [text stringByAppendingFormat:@" %@", [[array objectAtIndex:i] capitalizedString]];
     }
     NSLog(@"%@", text);
     [dataSrc addObject:text];
+}
+
+- (void)updateSelectedUser{
     
-    //    if([last isEqualToString:@" "])
-    //        [dataSrc addObject:[NSString stringWithFormat:@"%@ - %@ %@",user, first,last]];
-    //    else
-    //        [dataSrc addObject:[NSString stringWithFormat:@"%@ - %@ %@",last,first,user]];
 }
 
 /*  Upload file to Google Drive  */
