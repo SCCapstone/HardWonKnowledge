@@ -57,10 +57,10 @@
 		CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */; };
 		CB9CD41B18BAA0A300DF6754 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */; };
 		CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */; };
+		CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC9636C18CFE1D9007FA669 /* AdminView.m */; };
 		CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848A818C8037200153587 /* UserLoginBackend.m */; };
 		CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848AB18C8046200153587 /* UserLoginViewController.m */; };
 		CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD848AC18C8046200153587 /* UserLoginViewController.xib */; };
-		CBD848B918C820E100153587 /* AdminView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848B818C820E100153587 /* AdminView.m */; };
 		CBE86B5018BE9A7F00055ABC /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4E18BE9A7F00055ABC /* Black.png */; };
 		CBE86B5118BE9A7F00055ABC /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4F18BE9A7F00055ABC /* Green.png */; };
 /* End PBXBuildFile section */
@@ -147,13 +147,13 @@
 		CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
 		CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGreen.png; path = Bookshelf/Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
 		CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionRed.png; path = Bookshelf/Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CBC9636B18CFE1D9007FA669 /* AdminView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdminView.h; path = LoginScreen/AdminView.h; sourceTree = "<group>"; };
+		CBC9636C18CFE1D9007FA669 /* AdminView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdminView.m; path = LoginScreen/AdminView.m; sourceTree = "<group>"; };
 		CBD848A718C8037200153587 /* UserLoginBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginBackend.h; path = LoginScreen/UserLoginBackend.h; sourceTree = "<group>"; };
 		CBD848A818C8037200153587 /* UserLoginBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginBackend.m; path = LoginScreen/UserLoginBackend.m; sourceTree = "<group>"; };
 		CBD848AA18C8046200153587 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = LoginScreen/UserLoginViewController.h; sourceTree = "<group>"; };
 		CBD848AB18C8046200153587 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = LoginScreen/UserLoginViewController.m; sourceTree = "<group>"; };
 		CBD848AC18C8046200153587 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = LoginScreen/UserLoginViewController.xib; sourceTree = "<group>"; };
-		CBD848B718C820E100153587 /* AdminView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdminView.h; path = LoginScreen/AdminView.h; sourceTree = "<group>"; };
-		CBD848B818C820E100153587 /* AdminView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdminView.m; path = LoginScreen/AdminView.m; sourceTree = "<group>"; };
 		CBE86B4E18BE9A7F00055ABC /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Black.png; path = Bookshelf/Images/Black.png; sourceTree = "<group>"; };
 		CBE86B4F18BE9A7F00055ABC /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Bookshelf/Images/Green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -403,8 +403,8 @@
 				CBD848AC18C8046200153587 /* UserLoginViewController.xib */,
 				CBD848A718C8037200153587 /* UserLoginBackend.h */,
 				CBD848A818C8037200153587 /* UserLoginBackend.m */,
-				CBD848B718C820E100153587 /* AdminView.h */,
-				CBD848B818C820E100153587 /* AdminView.m */,
+				CBC9636B18CFE1D9007FA669 /* AdminView.h */,
+				CBC9636C18CFE1D9007FA669 /* AdminView.m */,
 			);
 			name = LoginScreen;
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				CB9CD3D918BAA01900DF6754 /* BookshelfGridViewController.m in Sources */,
 				CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */,
 				CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */,
-				CBD848B918C820E100153587 /* AdminView.m in Sources */,
+				CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
