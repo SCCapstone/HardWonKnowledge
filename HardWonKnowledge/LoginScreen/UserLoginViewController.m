@@ -25,6 +25,17 @@
     self.adminView = [[AdminView alloc]initWithNibName:nil bundle:nil];
 }
 
+- (UIButton*)addButton: (NSString*)title y:(CGFloat)y {
+    UIButton *book = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [book setTitle:title forState:UIControlStateNormal];
+    book.frame = CGRectMake((self.view.frame.size.width-250)/2 , y, 250, 50);
+    book.titleLabel.font = [UIFont systemFontOfSize:18];
+    book.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [self.view addSubview:book];
+    [subviews addObject:book];
+    return book;
+}
+
 - (void)alertDriveConnection{
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
@@ -52,14 +63,24 @@
     [self.adminView.loginBackend.driveManager logout];
 }
 
-- (void)driveButton: (UIButton*)button{
+- (IBAction)driveButton{
     if([self.adminView.loginBackend.driveManager isAuthorized]){
-        [button setTitle:@"Log Out of Drive" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(driveLogout) forControlEvents:UIControlEventTouchUpInside];
+        UIAlertView * alert = [[UIAlertView alloc] init];
+        alert.delegate = self;
+        alert.title = @"Google Drive Sign Out";
+        alert.message = @"Are you sure you want to sign out of your Google Drive account?";
+        [alert addButtonWithTitle:@"Sign Out"];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert show];
     }
     else{
-        [button setTitle:@"Log In to Drive" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(driveLogin) forControlEvents:UIControlEventTouchUpInside];
+        UIAlertView * alert = [[UIAlertView alloc] init];
+        alert.delegate = self;
+        alert.title = @"Google Drive Sign In";
+        alert.message = @"Are you sure you want to sign in to your Google Drive account?";
+        [alert addButtonWithTitle:@"Sign In"];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert show];
     }
 }
 
@@ -67,33 +88,18 @@
     [usernameField removeFromSuperview];
     [passwordField removeFromSuperview];
     
-    UIButton *notebook = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [notebook setTitle:@"STEM Notebook" forState:UIControlStateNormal];
-    notebook.frame = CGRectMake((self.view.frame.size.width-250)/2 , self.loginButton.frame.origin.y-300, 250, 50);
-    [self.view addSubview:notebook];
+    UIButton *notebook = [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300];
     [notebook addTarget:self action:@selector(openNotebook) forControlEvents:UIControlEventTouchUpInside];
-    [subviews addObject:notebook];
     
-    UIButton *adminView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [adminView setTitle:@"User Settings" forState:UIControlStateNormal];
-    adminView.frame = CGRectMake((self.view.frame.size.width-250)/2 , self.loginButton.frame.origin.y-200, 250, 50);
-    [self.view addSubview:adminView];
+    UIButton *adminView = [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200];
     [adminView addTarget:self action:@selector(openAdminSettings) forControlEvents:UIControlEventTouchUpInside];
-    [subviews addObject:adminView];
     
-    UIButton *drive = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    drive.frame = CGRectMake((self.view.frame.size.width-250)/2 , self.loginButton.frame.origin.y-100, 250, 50);
-    [self.view addSubview:drive];
-    [subviews addObject:drive];
-    [self driveButton:drive];
+    UIButton *drive = [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100];
+    [drive addTarget:self action:@selector(driveButton) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIButton *logout = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [logout setTitle:@"Admin Log Out" forState:UIControlStateNormal];
-    logout.frame = CGRectMake((self.view.frame.size.width-250)/2 ,self.loginButton.frame.origin.y, 250, 50);
-    [self.view addSubview:logout];
+    UIButton *logout = [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y];
     [logout addTarget:self action:@selector(logoutAdmin) forControlEvents:UIControlEventTouchUpInside];
-    [subviews addObject:logout];
 }
 
 - (IBAction)openAdminSettings{
@@ -103,8 +109,7 @@
 
 - (IBAction)openNotebook{
     if([self.adminView.loginBackend.driveManager isAuthorized]){
-        [self dismissViewControllerAnimated:NO completion:NULL];
-        
+//        [self dismissViewControllerAnimated:NO completion:NULL];
         BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
         [self presentViewController:bookshelf animated:NO completion:NULL];
     }
@@ -114,7 +119,6 @@
     [self clearScreen];
     [self.view addSubview:usernameField];
     [self.view addSubview:passwordField];
-    
 }
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
@@ -135,15 +139,15 @@
         }
     }
     else {
-        if([self.adminView.loginBackend.driveManager isAuthorized]){
+//        if([self.adminView.loginBackend.driveManager isAuthorized]){
             //            NSLog(@"Incorrect User/Password");
             //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             //                    [alert show];
             [self showAdmin];
-        }
-        else{
-            [self alertDriveConnection];
-        }
+//        }
+//        else{
+//            [self alertDriveConnection];
+//        }
     }
 }
 
@@ -154,12 +158,16 @@
         UITextField *promptUser = [alertView textFieldAtIndex:0];
         UITextField *promptPass = [alertView textFieldAtIndex:1];
         if([[[self.adminView.loginBackend.adminCredentials objectForKey:promptUser.text] objectAtIndex:1]isEqualToString:promptPass.text]){
-            [self.adminView.loginBackend.driveManager loginFromViewController:self];
+            [self driveLogin];
         }
         else{
             [self alertDriveConnection];
         }
     }
+    else if([buttonPressedName isEqualToString: @"Sign In"])
+        [self driveLogin];
+    else if([buttonPressedName isEqualToString: @"Sign Out"])
+        [self driveLogout];
 }
 
 @end
