@@ -20,21 +20,24 @@
 }
 
 - (UIButton*)addButton: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
+- (UITextField*)addTextField: (NSString*)placeholder x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size secure:(BOOL)value capitalize:(BOOL)cap;
+- (void)addTextView: (NSString*)text x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size;
+
 - (void)addLabel: (NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height color:(UIColor*)color alignment:(UITextAlignment)align fontSize:(CGFloat)size isBold:(BOOL)bold;
 - (void)addSwitch: (BOOL)useYes x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
-- (UITextField*)addTextField: (NSString*)placeholder x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size secure:(BOOL)value capitalize:(BOOL)cap;
-- (void)addTextView;
 - (void)alertOneButton: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn;
 - (void)alertTwoButtons: (NSString*)title message:(NSString*)mssg firstButton:(NSString*)btn1 secondButton:(NSString*)btn2;
 - (void)changeSwitch:(id)sender;
 - (void)clearScreen;
+- (void)menuAdminAdd;
+- (IBAction)menuAdminUpdate;
+- (void)openView: (NSString*)title;
+- (NSArray*)configUpdateUser;
+
 - (IBAction)closeView;
 - (IBAction)confirmUser;
-- (void)menuAdminAdd;
 - (IBAction)menuAdminEdit;
 - (IBAction)menuAdminSettings;
-- (void)menuAdminUpdate;
-- (void)openView: (NSString*)title;
 - (IBAction)promptRemoveUser;
 - (IBAction)promptUpdateUser;
 
