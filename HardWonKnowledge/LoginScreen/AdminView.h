@@ -32,7 +32,7 @@
 - (void)menuAdminAdd;
 - (IBAction)menuAdminUpdate;
 - (void)openView: (NSString*)title;
-- (NSArray*)configUpdateUser;
+- (void)configUpdateUser;
 
 - (IBAction)closeView;
 - (IBAction)confirmUser;
