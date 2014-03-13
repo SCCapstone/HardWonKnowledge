@@ -7,6 +7,7 @@
 //
 
 #import "AdminView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AdminView ()
 
@@ -89,24 +90,41 @@
 
 /*  Add text field to adminView and set up properties */
 - (UITextField*)addTextField: (NSString*)placeholder x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size secure:(BOOL)value capitalize:(BOOL)cap {
-    UITextField *text = [[UITextField alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x, y, width, height)];
     if(cap)
-        text.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     else
-        text.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    text.autocorrectionType = UITextAutocorrectionTypeNo;
-    text.borderStyle = UITextBorderStyleBezel;
-    text.placeholder = placeholder;
-    text.secureTextEntry = value;
-    text.font = [UIFont systemFontOfSize:size];
-    [self.view addSubview: text];
-    [subviews addObject:text];
-    return text;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.borderStyle = UITextBorderStyleLine;
+    [textField.layer setBorderWidth:1.0];
+    textField.placeholder = placeholder;
+    textField.secureTextEntry = value;
+    textField.font = [UIFont systemFontOfSize:size];
+    [textField.layer setCornerRadius:10];
+    [self.view addSubview: textField];
+    [subviews addObject:textField];
+    return textField;
 }
 
 /*  Add text view to adminView and set up properties */
-- (void)addTextView{
+- (void)addTextView: (NSString*)text x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size {
         //  TEXT VIEW DETAILS  //
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    textView.autocorrectionType = UITextAutocorrectionTypeNo;
+    [textView.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+    [textView.layer setBorderWidth:1.0];
+    textView.font = [UIFont systemFontOfSize:size];
+    [textView.layer setCornerRadius:10];
+    [textView setClipsToBounds: YES];
+    [textView setEditable:YES];
+    [textView setScrollEnabled:NO];
+    if([[text lowercaseString]isEqualToString:@"(empty)"])
+        textView.text = @"";
+    else
+        textView.text = text;
+    [self.view addSubview:textView];
+    [subviews addObject:textView];
 }
 
 /*  Method for creating alert with a single button  */
@@ -248,23 +266,24 @@
 }
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
-- (void)menuAdminUpdate {
+- (IBAction)menuAdminUpdate {
     [self openView:@"Add New User"];
+    NSArray *array = [self configUpdateUser];
     
     [self addLabel:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-//    tf0 = [self addTextField:@"Required Field **" x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
+    [self addTextView:[array objectAtIndex:2] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18];
     
     [self addLabel:@"M.I.:" x:440 y:150 width:40 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-//    tf1 = [self addTextField:nil x:480 y:150.0 width:40.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
+    [self addTextView:[array objectAtIndex:3] x:480 y:150.0 width:40.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Last Name:" x:20 y:200 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-//    tf2 = [self addTextField:nil x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
+    [self addTextView:[array objectAtIndex:4] x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-//    tf3 = [self addTextField:@"Required Field **" x:120 y:275 width:400.0 height:30.0 fontSize:18 secure:NO capitalize:NO];
+    [self addTextView:[array objectAtIndex:0] x:120 y:275 width:400.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Password:" x:20 y:325 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-//    tf4 = [self addTextField:@"Required Field **" x:120 y:325 width:400.0 height:30.0 fontSize:18 secure:YES capitalize:NO];
+    [self addTextView:[array objectAtIndex:1] x:120 y:325 width:400.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addSwitch:isAdmin x:320 y:400 width:200 height:30];
@@ -273,7 +292,7 @@
     [button1 addTarget:self action:@selector(confirmUser) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *button2 = [self addButton:@"Cancel" x:(self.view.frame.size.width-250) y:550.0 width:200.0 height:50.0];
-    [button2 addTarget:self action:@selector(menuAdminSettings) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(menuAdminEdit) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /*  Open adminView and set up properties  */
@@ -290,7 +309,7 @@
 
 /*  The update user prompt  */
 - (IBAction)promptUpdateUser {
-    [self alertTwoButtons:@"Update User" message:[[NSString alloc] initWithFormat:@"Update %@?", [srchedData objectAtIndex:0]] firstButton:@"Update" secondButton:@"Dismiss"];
+//    [self alertTwoButtons:@"Update User" message:[[NSString alloc] initWithFormat:@"Update %@?", [srchedData objectAtIndex:0]] firstButton:@"Update" secondButton:@"Dismiss"];
 }
 
 /*  Setting up user details to be added into user list  */
@@ -309,8 +328,17 @@
 }
 
 /*  Setting up user details to be updated in user list  */
-- (void)configUpdateUser{
-    
+- (NSArray*)configUpdateUser {
+    NSMutableArray *array;
+    if([self.loginBackend isAdminUser:[srchedData objectAtIndex:0]]){
+        isAdmin = YES;
+        array = [[NSMutableArray alloc] initWithArray:[self.loginBackend.adminCredentials objectForKey:[srchedData objectAtIndex:0]]];
+    }
+    else if([self.loginBackend isStudentUser:[srchedData objectAtIndex:0]]){
+        isAdmin = NO;
+        array = [[NSMutableArray alloc] initWithArray:[self.loginBackend.userCredentials objectForKey:[srchedData objectAtIndex:0]]];
+    }
+    return array;
 }
 
 /*  Alert View responses  */
@@ -339,9 +367,7 @@
 //            }
 //        }
 //        [self menuAdminAdd];
-        
         [self menuAdminUpdate];
-        NSLog(@"Update");
     }
     else if([buttonPressedName isEqualToString:@"Add"]){
         [self configAddUser];
@@ -465,7 +491,7 @@
     }
     
     UIButton *button1 = [self addButton:@"Update" x:10.0 y:550.0 width:150.0 height:50.0];
-    [button1 addTarget:self action:@selector(promptUpdateUser) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(menuAdminUpdate) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *button2 = [self addButton:@"Remove" x:170.0 y:550.0 width:150.0 height:50.0];
     [button2 addTarget:self action:@selector(promptRemoveUser) forControlEvents:UIControlEventTouchUpInside];
