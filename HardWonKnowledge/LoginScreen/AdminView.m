@@ -44,6 +44,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     subviews = [[NSMutableArray alloc]init];
+    tf0 = [[UITextField alloc]init];
+    tf1 = [[UITextField alloc]init];
+    tf2 = [[UITextField alloc]init];
+    tf3 = [[UITextField alloc]init];
+    tf4 = [[UITextField alloc]init];
 //    texts = [[NSMutableArray alloc]init];
 }
 
@@ -182,7 +187,7 @@
         return;
     }
     
-    if([tf1.text length] > 1)
+    if([tf1.text length] > 1 && ![[tf1.text lowercaseString] isEqualToString:@"(empty)"])
         tf1.text = [tf1.text substringToIndex:1];
     
     [self alertTwoButtons:@"Insert Confirmation" message:[[NSString alloc]initWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@", tf0.text,tf1.text,tf2.text,tf3.text,tf4.text] firstButton:@"Add" secondButton:@"Dismiss"];
@@ -267,23 +272,24 @@
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (IBAction)menuAdminUpdate {
-    [self openView:@"Add New User"];
-    NSArray *array = [self configUpdateUser];
+    [self openView:@"Update Existing User"];
+    [self configUpdateUser];
     
     [self addLabel:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addTextView:[array objectAtIndex:2] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18];
+    [self addTextView:tf0.text x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18];
+    
     
     [self addLabel:@"M.I.:" x:440 y:150 width:40 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addTextView:[array objectAtIndex:3] x:480 y:150.0 width:40.0 height:30.0 fontSize:18];
+    [self addTextView:tf1.text x:480 y:150.0 width:40.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Last Name:" x:20 y:200 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addTextView:[array objectAtIndex:4] x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18];
+    [self addTextView:tf2.text  x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addTextView:[array objectAtIndex:0] x:120 y:275 width:400.0 height:30.0 fontSize:18];
+    [self addTextView:tf3.text  x:120 y:275 width:400.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Password:" x:20 y:325 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addTextView:[array objectAtIndex:1] x:120 y:325 width:400.0 height:30.0 fontSize:18];
+    [self addTextView:tf4.text  x:120 y:325 width:400.0 height:30.0 fontSize:18];
     
     [self addLabel:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addSwitch:isAdmin x:320 y:400 width:200 height:30];
@@ -328,17 +334,23 @@
 }
 
 /*  Setting up user details to be updated in user list  */
-- (NSArray*)configUpdateUser {
+- (void)configUpdateUser {
     NSMutableArray *array;
     if([self.loginBackend isAdminUser:[srchedData objectAtIndex:0]]){
         isAdmin = YES;
         array = [[NSMutableArray alloc] initWithArray:[self.loginBackend.adminCredentials objectForKey:[srchedData objectAtIndex:0]]];
+        [self.loginBackend.adminCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
     }
     else if([self.loginBackend isStudentUser:[srchedData objectAtIndex:0]]){
         isAdmin = NO;
         array = [[NSMutableArray alloc] initWithArray:[self.loginBackend.userCredentials objectForKey:[srchedData objectAtIndex:0]]];
+        [self.loginBackend.userCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
     }
-    return array;
+    tf0.text = [array objectAtIndex:2];
+    tf1.text = [array objectAtIndex:3];
+    tf2.text = [array objectAtIndex:4];
+    tf3.text = [array objectAtIndex:0];
+    tf4.text = [array objectAtIndex:1];
 }
 
 /*  Alert View responses  */
