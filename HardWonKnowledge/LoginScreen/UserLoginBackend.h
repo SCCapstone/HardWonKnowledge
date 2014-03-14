@@ -28,10 +28,12 @@
 - (BOOL)isAdminUser: (NSString *)name;
 - (BOOL)isStudentUser: (NSString *)name;
 - (void)parseText: (NSString *)text file:(NSInteger)fileType;
-- (void)removeSelectedUser;
+- (void)resetUsers;
+- (void)removeSelectedUser: (NSString *)username;
 - (void)saveUser: (NSString *)user;
 - (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile;
 - (void)uploadListFile: (BOOL)isNewFile;
+- (void)updateSelectedUser: (NSString*)text username:(NSString*)username;
 
 @property (nonatomic,retain) GTLServiceDrive *driveService;
 @property (nonatomic,retain) DriveManager *driveManager;
