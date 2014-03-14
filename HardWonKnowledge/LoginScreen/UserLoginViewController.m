@@ -109,7 +109,6 @@
 
 - (IBAction)openNotebook{
     if([self.adminView.loginBackend.driveManager isAuthorized]){
-//        [self dismissViewControllerAnimated:NO completion:NULL];
         BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
         [self presentViewController:bookshelf animated:NO completion:NULL];
     }
@@ -139,15 +138,15 @@
         }
     }
     else {
-//        if([self.adminView.loginBackend.driveManager isAuthorized]){
-            //            NSLog(@"Incorrect User/Password");
-            //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            //                    [alert show];
-            [self showAdmin];
-//        }
-//        else{
-//            [self alertDriveConnection];
-//        }
+        if([self.adminView.loginBackend.driveManager isAuthorized]){
+            NSLog(@"Incorrect User/Password");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+            //            [self showAdmin];
+        }
+        else{
+            [self alertDriveConnection];
+        }
     }
 }
 
