@@ -2,7 +2,7 @@
 //  UserLoginBackend.h
 //  StemNotebook
 //
-//  Created by Keneequa Brown on  on 3/5/14.
+//  Created by Keneequa Brown on 3/5/14.
 //  Copyright (c) 2014 HardWonKnowledge. All rights reserved.
 //
 
