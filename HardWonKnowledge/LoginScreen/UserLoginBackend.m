@@ -63,7 +63,7 @@
                 if(listFileId == nil)
                     [self findDriveData];
                 
-//                [self.driveManager downloadDriveFile:file];
+                //                [self.driveManager downloadDriveFile:file];
                 NSArray *rows = [contents componentsSeparatedByString:@"\n"];
                 for (NSString *row in rows)
                     [self parseText:row file:1];
@@ -89,7 +89,7 @@
 - (BOOL)isAdminUser: (NSString *) name{
     for (NSString *key in [adminCredentials allKeys]){
         //        NSLog(@"Compare: %@ %@", name, key);
-        if ([name isEqualToString:key]){
+        if ([name isEqualToString:key] && [adminCredentials objectForKey:name] != nil){
             //            NSLog(@"Found: %@ %@", name, key);
             return true;}
     }
@@ -99,7 +99,7 @@
 /*  Search if student username is in keys  */
 - (BOOL)isStudentUser: (NSString *) name{
     for (NSString *key in [userCredentials allKeys]){
-        if ([name isEqualToString:key])
+        if ([name isEqualToString:key] && [userCredentials objectForKey:name] != nil)
             return true;
     }
     return false;
@@ -124,48 +124,39 @@
     }
 }
 
--(void)removeSelectedUser {
-    // Update values and save new file without deleted user
+- (void)resetUsers {
+    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    for(NSString *row in rows)
+        [self parseText:row file:1];
+}
+
+-(void)removeSelectedUser: (NSString *)username {
+    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    contents = @"";
+    for (NSString *row in rows){
+        if([[row stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
+            continue;
+        NSArray *fields = [row componentsSeparatedByString:@" "];
+        if([username isEqualToString:[fields objectAtIndex:0]])
+            continue;
+        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",row]];
+    }
     
-    //    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    //    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    //    contents = @"";
-    //    for (NSString *row in rows){
-    //        if([[row stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]isEqualToString:@""])
-    //            break;
-    //        NSArray *fields = [row componentsSeparatedByString:@" "];
-    //        if([[srchedData objectAtIndex:0]isEqualToString:[fields objectAtIndex:0]])
-    //            continue;
-    //        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",row]];
-    //    }
-    //    [dataSrc removeAllObjects];
-    //    [userCredentials removeAllObjects];
-    //    [tblData removeAllObjects];
-    //    [self saveOnDisk:contents clearFile:YES];
-    //    [self uploadListFile:NO];
-    //    rows = [contents componentsSeparatedByString:@"\n"];
-    //    for(NSString *row in rows)
-    //        [self parseText:row];
-    //        [myTableView reloadData];
-    
-    //    for(id key in userCredentials){
-    //        if([[userCredentials objectForKey:key]isEqual:[srchedData objectAtIndex:0]])
-    //            continue;
-    //        NSString *text = @"";
-    //        for(NSString *field in [userCredentials objectForKey:key]){
-    //            text = [text stringByAppendingFormat:@"%@ ",field];
-    //        }
-    //        [self parseText:text];
-    //        [myTableView reloadData];
-    //    }
-    NSLog(@"REMOVE");
+    [dataSrc removeAllObjects];
+    [userCredentials removeAllObjects];
+    [adminCredentials removeAllObjects];
+    [self saveOnDisk:[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] clearFile:YES];
+//    [self uploadListFile:NO];
+    [self resetUsers];
 }
 
 /*  Save added user to file on disk  */
 - (void)saveUser: (NSString *)user{
     [self parseText:user file:1];
     [self saveOnDisk:user clearFile:NO];
-    [self uploadListFile:NO];
+//    [self uploadListFile:NO];
 }
 
 /*  Save the file to disk before upload  */
@@ -192,8 +183,9 @@
     [dataSrc addObject:text];
 }
 
-- (void)updateSelectedUser{
-    
+- (void)updateSelectedUser:(NSString *)text username:(NSString *)username {
+    [self removeSelectedUser:username];
+    [self saveUser:text];
 }
 
 /*  Upload file to Google Drive  */
