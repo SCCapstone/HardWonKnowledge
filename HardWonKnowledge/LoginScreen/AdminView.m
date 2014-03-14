@@ -238,7 +238,6 @@
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
     myTableView.delegate = self;
     myTableView.dataSource = self;
-    [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:0];
     [self.view addSubview:myTableView];
     [subviews setObject:myTableView atIndexedSubscript:2];
     
@@ -247,6 +246,9 @@
     [tblData addObjectsFromArray:self.loginBackend.dataSrc];
     [tblData sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     [myTableView reloadData];
+    
+//    [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [srchedData addObject:@"nil"];
     
     [self addButton:3 title:@"Update" action:@selector(menuAdminUpdate) x:10.0 y:550.0 width:150.0 height:50.0];
     [self addButton:4 title:@"Remove" action:@selector(promptRemoveUser) x:170.0 y:550.0 width:150.0 height:50.0];
@@ -266,6 +268,11 @@
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (IBAction)menuAdminUpdate {
+    if([[srchedData objectAtIndex:0]isEqualToString:@"nil"]){
+        NSLog(@"Nothing Selected");
+        return;
+    }
+
     [self openView:@"Update Existing User"];
     
     [self addTextView:1 text:[savedText objectAtIndex:2] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18];
@@ -301,6 +308,9 @@
 
 /*  The remove user prompt  */
 - (IBAction)promptRemoveUser {
+    if([[srchedData objectAtIndex:0]isEqualToString:@"nil"])
+        return;
+    
     [self alertTwoButtons:nil message:[NSString stringWithFormat:@"Delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
 }
 
@@ -370,11 +380,12 @@
         [self submitUpdatedUser];
         [self alertOneButton:@"User Updated Successfully" message:nil buttonTitle:@"Dismiss"];
         [myTableView reloadData];
-        [self menuAdminUpdate];
+        [self menuAdminEdit];
     }
     else if([buttonPressedName isEqualToString:@"Remove"]){
         [self.loginBackend removeSelectedUser:[srchedData objectAtIndex:0]];
         [myTableView reloadData];
+        [self menuAdminEdit];
     }
 }
 
@@ -470,7 +481,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     sBar.text = cell.textLabel.text;
-    NSLog(@"%@ Selected",cell.textLabel.text);
     
     for(NSString *row in self.loginBackend.dataSrc){
         NSRange r = [[row lowercaseString] rangeOfString:[cell.textLabel.text lowercaseString]];
