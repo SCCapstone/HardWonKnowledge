@@ -5,27 +5,27 @@
  *
  * Modified from ImageDemoFilledCell.m
  * Classes
- * 
+ *
  * Created by Jim Dovey on 18/4/2010.
- * 
+ *
  * Copyright (c) 2010 Jim Dovey
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- * 
+ *
  * Redistributions of source code must retain the above copyright notice,
  * this list of conditions and the following disclaimer.
- * 
+ *
  * Redistributions in binary form must reproduce the above copyright
  * notice, this list of conditions and the following disclaimer in the
  * documentation and/or other materials provided with the distribution.
- * 
+ *
  * Neither the name of the project's author nor the names of its
  * contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -52,15 +52,22 @@
     
     _imageView = [[UIImageView alloc] initWithFrame: CGRectZero];
     _title = [[UILabel alloc] initWithFrame: CGRectZero];
-    _title.highlightedTextColor = [UIColor whiteColor];
-//    _title.font = [UIFont boldSystemFontOfSize: 20.0];
-    _title.adjustsFontSizeToFitWidth = YES;
-    _title.minimumScaleFactor = 10.0;
+    //    _title.highlightedTextColor = [UIColor whiteColor];
+    //    _title.backgroundColor = [UIColor clearColor];
+    [_title setBackgroundColor:[UIColor whiteColor]];
+    [_title setAlpha:0.95f];
+    _title.font = [UIFont boldSystemFontOfSize: 16.0];
+    _title.numberOfLines = 4;
+    _title.textAlignment = NSTextAlignmentCenter;
+    //    _title.lineBreakMode = UILineBreakModeWordWrap;
+    //    _title.adjustsFontSizeToFitWidth = YES;
+    //    _title.minimumScaleFactor = 10.0;
+    [_title sizeToFit];
     
     self.backgroundColor = [UIColor colorWithWhite: 1.0 alpha: 1.0];
     self.contentView.backgroundColor = self.backgroundColor;
     _imageView.backgroundColor = self.backgroundColor;
-    _title.backgroundColor = self.backgroundColor;
+    //    _title.backgroundColor = self.backgroundColor;
     
     [self.contentView addSubview: _imageView];
     [self.contentView addSubview: _title];
@@ -96,17 +103,17 @@
     [super layoutSubviews];
     
     CGSize imageSize = _imageView.image.size;
-    CGRect bounds = CGRectInset( self.contentView.bounds, 10.0, 10.0 );
+    CGRect bounds = CGRectInset( self.contentView.bounds, 5, 5 );
     
-    [_title sizeToFit];
-    CGRect frame = _title.frame;
-    frame.size.width = MIN(frame.size.width, bounds.size.width)-20;
-    frame.origin.y = CGRectGetMaxY(bounds) - frame.size.height;
-    frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);
-    _title.frame = frame;
+//    [_title sizeToFit];
+//    CGRect frame = _title.frame;
+//    frame.size.width = MIN(frame.size.width, bounds.size.width)-20;
+//    frame.origin.y = CGRectGetMaxY(bounds) - frame.size.height;
+//    frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);
+    //    _title.frame = frame;
     
     // adjust the frame down for the image layout calculation
-    bounds.size.height = frame.origin.y - bounds.origin.y;
+    //    bounds.size.height = frame.origin.y - bounds.origin.y;
     
     if ( (imageSize.width <= bounds.size.width) &&
         (imageSize.height <= bounds.size.height) )
@@ -120,12 +127,21 @@
     CGFloat ratio = MIN(hRatio, vRatio);
     
     [_imageView sizeToFit];
-    frame = _imageView.frame;
-    frame.size.width = floorf(imageSize.width * ratio);
-    frame.size.height = floorf(imageSize.height * ratio);
-    frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);
-    frame.origin.y = floorf((bounds.size.height - frame.size.height) * 0.5);
+    CGRect frame = _imageView.frame;
+    //    frame.size.width = floorf(imageSize.width * ratio);
+    //    frame.size.height = floorf(imageSize.height * ratio);
+    //    frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);
+    //    frame.origin.y = floorf((bounds.size.height - frame.size.height) * 0.5);
+    frame.size.width = bounds.size.width;
+    frame.size.height = bounds.size.height;
+    frame.origin.x = bounds.origin.x;
+    frame.origin.y = bounds.origin.y;
     _imageView.frame = frame;
+    
+    //    frame.origin.x = _imageView.frame.origin.x + 20;
+    frame.origin.y = _imageView.frame.origin.y + 45.0;
+    frame.size.height = floorf(imageSize.height * (ratio/3));
+    _title.frame = frame;
 }
 
 @end
