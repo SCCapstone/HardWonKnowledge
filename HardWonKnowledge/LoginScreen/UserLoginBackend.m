@@ -148,7 +148,7 @@
     [userCredentials removeAllObjects];
     [adminCredentials removeAllObjects];
     [self saveOnDisk:[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] clearFile:YES];
-//    [self uploadListFile:NO];
+    [self uploadListFile:NO];
     [self resetUsers];
 }
 
@@ -156,7 +156,7 @@
 - (void)saveUser: (NSString *)user{
     [self parseText:user file:1];
     [self saveOnDisk:user clearFile:NO];
-//    [self uploadListFile:NO];
+    [self uploadListFile:NO];
 }
 
 /*  Save the file to disk before upload  */
