@@ -36,7 +36,7 @@
 - (void)submitUpdatedUser;
 
 - (IBAction)closeView;
-- (IBAction)confirmUserInsertion;
+- (void)confirmUserInsertion: (NSString*)method;
 - (IBAction)menuAdminEdit;
 - (IBAction)menuAdminSettings;
 - (IBAction)menuAdminUpdate;
