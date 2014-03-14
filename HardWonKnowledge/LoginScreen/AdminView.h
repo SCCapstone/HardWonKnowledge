@@ -11,11 +11,6 @@
 #import "BookshelfGridViewController.h"
 
 @interface AdminView : UIViewController <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UITextFieldDelegate, UITextViewDelegate>{
-//    UITextField *tf0;
-//    UITextField *tf1;
-//    UITextField *tf2;
-//    UITextField *tf3;
-//    UITextField *tf4;
     BOOL isAdmin;
 }
 
@@ -29,14 +24,14 @@
 - (void)alertTwoButtons: (NSString*)title message:(NSString*)mssg firstButton:(NSString*)btn1 secondButton:(NSString*)btn2;
 - (void)changeSwitch:(id)sender;
 - (void)clearScreen;
+- (void)configUpdateUser;
+- (void)confirmUserInsertion: (NSString*)method;
 - (void)menuAdminAdd;
 - (void)openView: (NSString*)title;
-- (void)configUpdateUser;
 - (void)submitAddedUser;
 - (void)submitUpdatedUser;
 
 - (IBAction)closeView;
-- (void)confirmUserInsertion: (NSString*)method;
 - (IBAction)menuAdminEdit;
 - (IBAction)menuAdminSettings;
 - (IBAction)menuAdminUpdate;
