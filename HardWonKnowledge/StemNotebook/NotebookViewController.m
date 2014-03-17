@@ -22,16 +22,24 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize SubmenuView;
 @synthesize paintSubmenu;
 @synthesize menuSubmenu;
+@synthesize typeSubmenu;
+
+
+
+
 
 //Called when the view loads
 - (void)viewDidLoad
-{    
+{
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
+    
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
     self.driveService = [[GTLServiceDrive alloc] init];
     self.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                          clientID:kClientID
@@ -75,10 +83,30 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return menuSubmenu;
 }
 
+- (TypeSubmenuView *)typeSubmenu
+{
+    if (!typeSubmenu) {
+        CGRect typeSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.typeSubmenu = [[TypeSubmenuView alloc] initWithFrame:typeSubmenuFrame];
+        self.typeSubmenu.delegate = self;
+    }
+    return typeSubmenu;
+}
+
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
     [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
     NSLog(@"Change Color Called");
+}
+
+- (void)changeText:(NSString *)text
+{
+    [self.paintView changeText:text];
+}
+
+- (void)changeTextMode:(BOOL)newMode
+{
+    [self.paintView changeTextMode:newMode];
 }
 
 - (void)changeAlphaWithNumber:(float)newAlpha
@@ -128,6 +156,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 -(void)decodePaintView
 {
     [self.paintView loadImageView];
+    
 }
 
 -(void)uploadButtonClicked

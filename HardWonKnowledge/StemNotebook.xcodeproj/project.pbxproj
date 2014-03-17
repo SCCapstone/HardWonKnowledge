@@ -32,6 +32,9 @@
 		C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF899E1850D4DC00F6A093 /* DriveManager.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
+		E763C04018BE65B600B0A387 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = E763C03F18BE65B600B0A387 /* TypeSubmenuView.m */; };
+		E763C04218BE9F7900B0A387 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E763C04118BE9F7900B0A387 /* TypeSubmenuView.xib */; };
+		E78B505518BD605500F8659E /* WallNotebookPaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E78B505418BD605500F8659E /* WallNotebookPaper.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,10 @@
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
+		E763C03E18BE65B600B0A387 /* TypeSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSubmenuView.h; sourceTree = "<group>"; };
+		E763C03F18BE65B600B0A387 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
+		E763C04118BE9F7900B0A387 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
+		E78B505418BD605500F8659E /* WallNotebookPaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = WallNotebookPaper.jpg; path = ../../../WallNotebookPaper.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +106,7 @@
 				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
 				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
+				E763C04118BE9F7900B0A387 /* TypeSubmenuView.xib */,
 			);
 			name = "IB Files";
 			sourceTree = "<group>";
@@ -106,6 +114,8 @@
 		C72B07D2182B3283003B9494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E763C03E18BE65B600B0A387 /* TypeSubmenuView.h */,
+				E763C03F18BE65B600B0A387 /* TypeSubmenuView.m */,
 				C7E4479018400E7F0059A65F /* MenuSubmenuView.h */,
 				C7E4479118400E7F0059A65F /* MenuSubmenuView.m */,
 				C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */,
@@ -162,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				C7AF899C1850D4B000F6A093 /* Api Provided Files */,
-				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
+				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C72B07D2182B3283003B9494 /* Views */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
 				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
@@ -177,6 +187,7 @@
 		C762B6A5181DB7B500EB3674 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E78B505418BD605500F8659E /* WallNotebookPaper.jpg */,
 				C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */,
 				C762B6A6181DB7B500EB3674 /* StemNotebook-Info.plist */,
 				C762B6A7181DB7B500EB3674 /* InfoPlist.strings */,
@@ -272,6 +283,8 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
+				E78B505518BD605500F8659E /* WallNotebookPaper.jpg in Resources */,
+				E763C04218BE9F7900B0A387 /* TypeSubmenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +304,7 @@
 				C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */,
+				E763C04018BE65B600B0A387 /* TypeSubmenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
