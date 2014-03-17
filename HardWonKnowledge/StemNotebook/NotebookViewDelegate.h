@@ -13,21 +13,21 @@
 - (void)PaintViewButtonPressed;
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
-
-
-
--(void)nextPage;
--(void)previousPage;
-
-
-
-
+- (void)changeText:(NSString*)text;
+- (void)changeTextMode:(BOOL)newMode;
+- (void)sendNotesPressed;
+- (void)nextPage;
+- (void)previousPage;
+- (void)changeAlphaWithNumber:(float)newAlpha;
 - (void)showPaintSubmenu;
 - (void)showMenuSubmenu;
+- (void)showTypeSubmenu;
 - (void)encodePaintView;
 - (void)decodePaintView;
 - (void)uploadButtonClicked;
 - (void)loginButtonClicked;
 - (void)logoutButtonClicked;
+- (void)saveFileNamed:(NSString *)name;
+
 
 @end

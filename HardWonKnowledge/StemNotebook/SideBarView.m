@@ -34,6 +34,11 @@
     [self.delegate previousPage];
 }
 
+- (IBAction)typeButtonPressed:(id)sender {
+    [self.delegate showTypeSubmenu];
+    
+}
+
 
 
 /*

@@ -184,6 +184,7 @@
 				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
 				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
+				E763C04118BE9F7900B0A387 /* TypeSubmenuView.xib */,
 			);
 			name = "IB Files";
 			sourceTree = "<group>";
@@ -191,6 +192,8 @@
 		C72B07D2182B3283003B9494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E763C03E18BE65B600B0A387 /* TypeSubmenuView.h */,
+				E763C03F18BE65B600B0A387 /* TypeSubmenuView.m */,
 				C7E4479018400E7F0059A65F /* MenuSubmenuView.h */,
 				C7E4479118400E7F0059A65F /* MenuSubmenuView.m */,
 				C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */,
@@ -251,8 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				C7AF899C1850D4B000F6A093 /* Api Provided Files */,
-				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
+				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C72B07D2182B3283003B9494 /* Views */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
 				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
@@ -266,6 +269,7 @@
 		C762B6A5181DB7B500EB3674 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E78B505418BD605500F8659E /* WallNotebookPaper.jpg */,
 				C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */,
 				C762B6A6181DB7B500EB3674 /* StemNotebook-Info.plist */,
 				C762B6A7181DB7B500EB3674 /* InfoPlist.strings */,

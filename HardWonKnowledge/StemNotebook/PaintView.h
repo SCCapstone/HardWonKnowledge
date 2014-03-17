@@ -18,15 +18,29 @@
     @property CGFloat brush;
     @property BOOL swipe;
     @property (strong, nonatomic) UIImageView *drawImage;
+    @property (strong, nonatomic) UILabel *drawLabel;
     @property (strong, nonatomic) NSMutableArray *pages;
     @property (nonatomic) int current;
+    @property (strong, nonatomic) UITextField *drawField;
+    @property (strong,nonatomic) NSString *textAdd;
+    @property (nonatomic) BOOL inTextMode;
+
 
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
+- (void)changeText:(NSString*)text;
+- (void)changeAlphaWithNumber:(float)newAlpha;
+- (void)changeTextMode:(BOOL)newMode;
 - (void)saveImageView;
 - (void)loadImageView;
+- (void)loadFileNamed:(NSString *)name;
+- (void)saveFileNamed:(NSString *)name;
 - (void)nextPage;
 - (void)previousPage;
+- (void)sendNotesPressed;
+
+
+
 
 @end

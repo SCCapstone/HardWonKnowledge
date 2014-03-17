@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0D963E81-6EC8-42C5-9D88-1E7F4DD0B998</string>
+	<key>IDESourceControlProjectName</key>
+	<string>StemNotebook</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0C64AF32-E5EC-4A61-9DEF-ADA21F474780</key>
+		<string>https://github.com/SCCapstone/HardWonKnowledge.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>StemNotebook.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0C64AF32-E5EC-4A61-9DEF-ADA21F474780</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/SCCapstone/HardWonKnowledge.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0C64AF32-E5EC-4A61-9DEF-ADA21F474780</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0C64AF32-E5EC-4A61-9DEF-ADA21F474780</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HardWonKnowledge</string>
+		</dict>
+	</array>
+</dict>
+</plist>
