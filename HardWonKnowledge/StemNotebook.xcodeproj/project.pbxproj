@@ -34,7 +34,6 @@
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
 		E763C04018BE65B600B0A387 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = E763C03F18BE65B600B0A387 /* TypeSubmenuView.m */; };
 		E763C04218BE9F7900B0A387 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E763C04118BE9F7900B0A387 /* TypeSubmenuView.xib */; };
-		E78B505518BD605500F8659E /* WallNotebookPaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E78B505418BD605500F8659E /* WallNotebookPaper.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -283,7 +282,6 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
-				E78B505518BD605500F8659E /* WallNotebookPaper.jpg in Resources */,
 				E763C04218BE9F7900B0A387 /* TypeSubmenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

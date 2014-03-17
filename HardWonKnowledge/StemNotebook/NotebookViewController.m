@@ -123,6 +123,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.paintView changeAlphaWithNumber:1.0];
+    [self.paintView changeTextMode:FALSE];
     
 }
 
@@ -131,6 +135,20 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.SubmenuView addSubview:self.menuSubmenu];
     [self.menuSubmenu setHidden:FALSE];
     [self.paintSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.paintView changeAlphaWithNumber:0.0];
+    [self.paintView changeTextMode:FALSE];
+}
+- (void)showTypeSubmenu
+{
+    [self.SubmenuView addSubview:self.typeSubmenu];
+    [self.menuSubmenu setHidden: TRUE];
+    [self.paintSubmenu setHidden: TRUE];
+    [self.typeSubmenu setHidden:FALSE];
+    [self.paintView changeAlphaWithNumber:1.0];
+    [self.paintView changeTextMode:TRUE];
+        
 }
 
 - (void)changeBrushWithNumber:(float)number
@@ -179,6 +197,11 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.driveManager logout];
 }
 
+- (void)sendNotesPressed
+{
+    
+    [self.paintView sendNotesPressed];
+}
 
 - (void) openNotebookNamed:(NSString *)name {
     [self.paintView loadFileNamed:name];
