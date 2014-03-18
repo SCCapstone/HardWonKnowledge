@@ -80,7 +80,7 @@
     dataSrc = [[NSMutableArray alloc] init];
     listFileId = [[NSString alloc]init];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    userTxtPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"users.txt"];
+    userTxtPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"NOTEBOOK_USERS_LIST.txt"];
     NSLog(@"%@", userTxtPath);
     
 }

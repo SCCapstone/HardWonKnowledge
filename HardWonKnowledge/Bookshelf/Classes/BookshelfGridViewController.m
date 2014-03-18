@@ -57,21 +57,59 @@ enum
 @implementation BookshelfGridViewController
 
 @synthesize gridView=_gridView;
-@synthesize savedPath;
+@synthesize selectedFile;
 
-// Sign out of user account.
-- (IBAction)logoutAccount{
-    [self dismissViewControllerAnimated:NO completion:NULL];
-//    UserLoginViewController *login = [[UserLoginViewController alloc] initWithNibName:nil bundle:nil];
-//    [self presentViewController:login animated:YES completion:NULL];
+- (void)alertTwoButton: (NSString*)title message:(NSString*)message button1:(NSString*)button1 button2:(NSString*)button2{
+    UIAlertView * alert = [[UIAlertView alloc] init];
+    alert.delegate = self;
+    alert.title = title;
+    alert.message = message;
+    [alert addButtonWithTitle:button1];
+    [alert addButtonWithTitle:button2];
+    [alert show];
 }
 
--(IBAction)notebookEntry{
+// Sign out of user account.
+- (IBAction)closeBookshelf{
+    [self dismissViewControllerAnimated:NO completion:NULL];
+}
+
+- (void)loadNotebookFiles{
+    NSMutableArray *allFileNames = [[NSMutableArray alloc] init];
+    UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading Notebooks..."];
+    NSLog(@"Loading Notebooks...");
+    
+    // Find the existing files on Google Drive
+    NSString *search = @"mimeType = 'application/octet-stream'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+        if (error == nil) {
+            [allFileNames addObject:@"New Notebook Entry"];
+            for (GTLDriveFile *file in files) {
+                NSLog(@"Drive File: %@",file.title);
+                [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
+            }
+            _allFiles = files;
+            _fileNames = allFileNames;
+            
+            //_orderedFileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+            // _fileNames = [_orderedFileNames copy];
+            
+            [self.gridView reloadData];
+        } else {
+            NSLog (@"An Error has occurred: %@", error);
+        }
+    }];
+}
+
+-(IBAction)newNotebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
+//    [self presentViewController:notebook animated:NO completion:NULL];
     [self presentViewController:notebook animated:NO completion:NULL];
 }
 - (IBAction)openNotebookView: (NSString *) path{
-            NSLog(@"OpenNotebook");
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:notebook animated:NO completion:NULL];
     [notebook openNotebookNamed:path];
@@ -82,43 +120,16 @@ enum
 {
     [super viewDidLoad];
     
-    //    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Title"];
-    
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.delegate = self;
     self.gridView.dataSource = self;
     self.driveManager = [DriveManager getDriveManager];
-
-    if ( _orderedFileNames != nil)
-        return;
-
-    NSMutableArray *allFileNames = [[NSMutableArray alloc] init];
-    UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading Notebooks..."];
-    NSLog(@"Loading Notebooks...");
     
-    // Find the existing files on Google Drive
-    NSString *search = @"title contains ''";
-    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
-    query.q = search;
-    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
-        [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
-        if (error == nil) {
-            for (GTLDriveFile *file in files) {
-                NSLog(@"Drive File: %@",file.title);
-                [allFileNames addObject:file.title];
-            }
-            _allFiles = files;
-            //_orderedFileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
-            //_fileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
-            _fileNames = allFileNames;
-            // _fileNames = [_orderedFileNames copy];
-            
-            [self.gridView reloadData];
-        } else {
-            NSLog (@"An Error has occurred: %@", error);
-        }
-    }];
+    //    if ( _orderedFileNames != nil)
+    //        return;
+    
+    [self loadNotebookFiles];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -174,28 +185,24 @@ enum
 
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
-        GTLDriveFile *file = [_allFiles itemAtIndex:index];
-    NSString *path = [self.driveManager downloadDriveFile:file];
-    savedPath = path;
-//    if(index == -99){
-//        [self openNotebookView:path];
-//        return;
-//    }
-    UIAlertView * alert = [[UIAlertView alloc] init];
-    alert.delegate = self;
-    alert.title = @"Opening Notebook";
-    alert.message = [NSString stringWithFormat:@"Are you sure you want to open\n%@", file.title];
-    [alert addButtonWithTitle:@"Yes"];
-    [alert addButtonWithTitle:@"No"];
-    [alert show];
+    if(index == 0){
+    [self alertTwoButton:@"Opening Notebook" message:@"Are you sure you want to create a new notebook entry?" button1:@"New" button2:@"Cancel"];
+        return;
+    }
+    GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
+    selectedFile = [self.driveManager downloadDriveFile:file];
+    NSLog(@"%i",index);
+    
+    [self alertTwoButton:@"Opening Notebook" message:[NSString stringWithFormat:@"Are you sure you want to open\n%@?", file.title] button1:@"Open" button2:@"Cancel"];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
-    if([buttonPressedName isEqualToString: @"Yes"]){
-//        [self gridView:_gridView didSelectItemAtIndex:-99];
-        NSLog(savedPath);
-        [self openNotebookView:savedPath];
+    if([buttonPressedName isEqualToString: @"Open"]){
+        [self openNotebookView:selectedFile];
+    }
+    else if([buttonPressedName isEqualToString:@"New"]){
+        [self newNotebookEntry];
     }
 }
 
