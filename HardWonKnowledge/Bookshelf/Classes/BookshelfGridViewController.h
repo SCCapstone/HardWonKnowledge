@@ -57,10 +57,11 @@
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
-@property (nonatomic, retain) IBOutlet NSString * savedPath;
+@property (nonatomic, retain) IBOutlet NSString * selectedFile;
 
-- (IBAction) logoutAccount;
-- (IBAction) notebookEntry;
+- (IBAction) closeBookshelf;
+- (void)loadNotebookFiles;
+- (IBAction) newNotebookEntry;
 - (IBAction) openNotebookView: (NSString *) path;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
