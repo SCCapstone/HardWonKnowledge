@@ -43,7 +43,8 @@
 #import "BookshelfGridViewController.h"
 #import "BookshelfGridViewCell.h"
 #import "BookshelfGridFilledCell.h"
-#import "../../StemNotebook/NotebookViewController.h"
+#import "NotebookViewController.h"
+#import "PaintView.h"
 #import "UserLoginViewController.h"
 
 enum
@@ -56,6 +57,7 @@ enum
 @implementation BookshelfGridViewController
 
 @synthesize gridView=_gridView;
+@synthesize savedPath;
 
 // Sign out of user account.
 - (IBAction)logoutAccount{
@@ -71,8 +73,8 @@ enum
 - (IBAction)openNotebookView: (NSString *) path{
             NSLog(@"OpenNotebook");
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
-    [notebook openNotebookNamed:path];
     [self presentViewController:notebook animated:NO completion:NULL];
+    [notebook openNotebookNamed:path];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -96,7 +98,7 @@ enum
     NSLog(@"Loading Notebooks...");
     
     // Find the existing files on Google Drive
-    NSString *search = @"title contains 'Stem Notebook Upload'";
+    NSString *search = @"title contains ''";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
@@ -107,8 +109,9 @@ enum
                 [allFileNames addObject:file.title];
             }
             _allFiles = files;
-            // _orderedFileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
-            _fileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+            //_orderedFileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+            //_fileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
+            _fileNames = allFileNames;
             // _fileNames = [_orderedFileNames copy];
             
             [self.gridView reloadData];
@@ -173,10 +176,11 @@ enum
 {
         GTLDriveFile *file = [_allFiles itemAtIndex:index];
     NSString *path = [self.driveManager downloadDriveFile:file];
-    if(index == -99){
-        [self openNotebookView:path];
-        return;
-    }
+    savedPath = path;
+//    if(index == -99){
+//        [self openNotebookView:path];
+//        return;
+//    }
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     alert.title = @"Opening Notebook";
@@ -189,7 +193,9 @@ enum
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
     if([buttonPressedName isEqualToString: @"Yes"]){
-        [self gridView:_gridView didSelectItemAtIndex:-99];
+//        [self gridView:_gridView didSelectItemAtIndex:-99];
+        NSLog(savedPath);
+        [self openNotebookView:savedPath];
     }
 }
 

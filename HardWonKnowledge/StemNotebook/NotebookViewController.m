@@ -23,7 +23,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize paintSubmenu;
 @synthesize menuSubmenu;
 @synthesize typeSubmenu;
-
+@synthesize sideBarView;
 
 
 
@@ -35,7 +35,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
-    
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
@@ -197,8 +196,24 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.driveManager logout];
 }
 
-- (void) openNotebookNamed:(NSString *)name {
+- (void)backButtonClicked
+{
+     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+- (void)sendNotesPressed
+{
     
+    [self.paintView sendNotesPressed];
+}
+
+- (void) openNotebookNamed:(NSString *)name {
+    NSLog(@"Load File Named: %s",name);
+    [self.paintView loadFileNamed:name];
+}
+
+- (void) saveFileNamed:(NSString *)name {
+    [self.paintView saveFileNamed:name];
+    [self.driveManager uploadNotebookNamed:name];
 }
 
 @end

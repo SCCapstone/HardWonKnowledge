@@ -57,6 +57,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
+@property (nonatomic, retain) IBOutlet NSString * savedPath;
 
 - (IBAction) logoutAccount;
 - (IBAction) notebookEntry;

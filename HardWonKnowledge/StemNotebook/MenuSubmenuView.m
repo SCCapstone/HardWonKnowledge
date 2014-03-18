@@ -55,6 +55,9 @@
     }
 }
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.delegate backButtonClicked];
+}
 
 
 

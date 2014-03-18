@@ -249,13 +249,15 @@
 }
 
 - (void) loadFileNamed:(NSString *)name {
-    //setup path for file
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docDir = [paths objectAtIndex:0];
-    NSString *viewPath = [docDir stringByAppendingPathComponent:name];
+//    //setup path for file
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docDir = [paths objectAtIndex:0];
+//    NSString *viewPath = [docDir stringByAppendingPathComponent:name];
+    
+    NSLog(@"name: %s",name);
     
     //get data from file
-    NSData *codedData = [[NSData alloc] initWithContentsOfFile:viewPath];
+    NSData *codedData = [[NSData alloc] initWithContentsOfFile:name];
     if (codedData == nil) return;
     
     //unarchive data
@@ -264,7 +266,7 @@
     //get images from archive
     for (int i = 0; i<25; i++) {
         UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
-        //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+        NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
         UIImageView *v = [self.pages objectAtIndex:i];
         v.image = newImage;
     }
@@ -272,6 +274,9 @@
     
     //Reset to page 1
     current = 0;
+    
+    
+    
     [self.drawImage setHidden:TRUE];
     self.drawImage = [pages objectAtIndex:current];
     [self addSubview:self.drawImage];
@@ -295,7 +300,7 @@
         UIImageView *imv = [self.pages objectAtIndex:i];
         if (imv.image != nil) {
             [archiver encodeObject:imv.image forKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
-            //NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
+//            NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
         }
     }
     
@@ -309,7 +314,7 @@
 //move to next page
 -(void)nextPage
 {
-    
+    NSLog(@"CURRENT: %d",current);
     current = current +1;
     if(current <25)
     {

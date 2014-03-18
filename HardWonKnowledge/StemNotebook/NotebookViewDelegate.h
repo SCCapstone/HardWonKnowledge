@@ -27,6 +27,7 @@
 - (void)uploadButtonClicked;
 - (void)loginButtonClicked;
 - (void)logoutButtonClicked;
+- (void)backButtonClicked;
 - (void)saveFileNamed:(NSString *)name;
 
 

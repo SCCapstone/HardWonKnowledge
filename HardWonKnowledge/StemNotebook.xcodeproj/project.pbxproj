@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
+		B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */; };
+		B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */; };
 		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
 		C71981AC1850138E00D502E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A81850138E00D502E3 /* Security.framework */; };
 		C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A91850138E00D502E3 /* SystemConfiguration.framework */; };
@@ -67,6 +69,9 @@
 
 /* Begin PBXFileReference section */
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
+		B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
+		B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
+		B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSubmenuView.h; sourceTree = "<group>"; };
 		C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		C71981A71850138E00D502E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C71981A81850138E00D502E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -180,11 +185,11 @@
 		C72B07D1182B325E003B9494 /* IB Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */,
 				C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */,
 				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
 				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
-				E763C04118BE9F7900B0A387 /* TypeSubmenuView.xib */,
 			);
 			name = "IB Files";
 			sourceTree = "<group>";
@@ -192,8 +197,8 @@
 		C72B07D2182B3283003B9494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E763C03E18BE65B600B0A387 /* TypeSubmenuView.h */,
-				E763C03F18BE65B600B0A387 /* TypeSubmenuView.m */,
+				B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */,
+				B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */,
 				C7E4479018400E7F0059A65F /* MenuSubmenuView.h */,
 				C7E4479118400E7F0059A65F /* MenuSubmenuView.m */,
 				C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */,
@@ -269,7 +274,6 @@
 		C762B6A5181DB7B500EB3674 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E78B505418BD605500F8659E /* WallNotebookPaper.jpg */,
 				C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */,
 				C762B6A6181DB7B500EB3674 /* StemNotebook-Info.plist */,
 				C762B6A7181DB7B500EB3674 /* InfoPlist.strings */,
@@ -491,6 +495,7 @@
 				CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */,
 				CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */,
 				CB8B125318C9760A00DC90B0 /* users.txt in Resources */,
+				B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +532,7 @@
 				CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */,
 				CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */,
 				CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */,
+				B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +635,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -653,6 +660,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};

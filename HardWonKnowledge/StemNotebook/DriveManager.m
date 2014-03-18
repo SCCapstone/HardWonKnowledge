@@ -228,12 +228,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     //Get Download Path
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
-    NSString *viewPath = nil;
-    if([file.title rangeOfString:@"NOTEBOOK_USERS_LIST"].location != NSNotFound){
-        viewPath = [docDir stringByAppendingPathComponent:@"users.txt"];
-    } else{
-       viewPath = [docDir stringByAppendingPathComponent:@"Notebook2.nbf"];
-    }
+    NSString *viewPath = [docDir stringByAppendingPathComponent:file.title];
     
     //Setup HTTP Fetcher
     GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
