@@ -198,7 +198,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 
 - (void)backButtonClicked
 {
-     [self dismissViewControllerAnimated:YES completion:NULL];
+    BookshelfGridViewController *bookshelf = (BookshelfGridViewController*)self.presentingViewController;
+    [bookshelf loadNotebookFiles];
+    [self dismissViewControllerAnimated:NO completion:NULL];
 }
 - (void)sendNotesPressed
 {
@@ -207,7 +209,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 }
 
 - (void) openNotebookNamed:(NSString *)name {
-    NSLog(@"Load File Named: %s",name);
     [self.paintView loadFileNamed:name];
 }
 

@@ -12,6 +12,7 @@
 #import "PaintView.h"
 #import "MenuSubmenuView.h"
 #import "TypeSubmenuView.h"
+#import "BookshelfGridViewController.h"
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "NotebookViewDelegate.h"
 #import "GTLDrive.h"
