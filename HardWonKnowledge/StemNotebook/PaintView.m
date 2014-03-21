@@ -48,12 +48,8 @@ const int menuMode = 3;
         self.pages = [[NSMutableArray alloc] init];
         for(int i = 0; i<25; i++)
         {
-
             self.drawImage = [[UIImageView alloc] initWithImage:nil];
-            self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        
-                     
-            
+            self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);           
             [pages addObject:drawImage];
         }
         
@@ -80,8 +76,8 @@ const int menuMode = 3;
     self.lastPoint = [touch locationInView:self];
     if(submenuMode == textMode)
     {
-        //self.alpha = 0;
-        [self textMergedWithX:self.lastPoint.x WithY:self.lastPoint.y];
+        [self createTextLabel:textAdd AtX:self.lastPoint.x AtY:self.lastPoint.y];
+        [self.drawImage addSubview: self.drawLabel];
     }
     
 
@@ -114,6 +110,17 @@ const int menuMode = 3;
     
         self.lastPoint = currentPoint;
     }
+    else if(submenuMode == textMode)
+    {
+        self.swipe = YES;
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPoint = [touch locationInView:self];
+        
+        [self.drawLabel removeFromSuperview];
+        self.drawLabel.frame = CGRectMake (currentPoint.x, currentPoint.y, 1000, 20);
+        [self.drawImage addSubview:drawLabel];
+        self.lastPoint = currentPoint;
+    }
     
     
     
@@ -140,10 +147,12 @@ const int menuMode = 3;
             UIGraphicsEndImageContext();
         }
     }
-    else
+    else if(submenuMode == textMode)
     {
-       // self.alpha = 1;
-      
+        
+            [self mergeLabel:self.drawLabel AtX:self.lastPoint.x AtY:self.lastPoint.y];
+            [self changeText:@""];
+        
     }
 }
 
@@ -350,29 +359,29 @@ const int menuMode = 3;
     
 }
 
--(void)textMergedWithX:(int)newX WithY:(int)newY
+-(void)mergeLabel: (UILabel *) label AtX:(int)newX AtY:(int)newY
 {
-    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (newX, newY, 1000, 20)];
-    NSString *input = self.textAdd;
-    self.drawLabel.text = input;
-    self.drawLabel.numberOfLines = 1;
-    self.drawLabel.backgroundColor = [UIColor clearColor];
-    self.drawLabel.textColor = [UIColor blackColor];
-
-    [self.drawImage addSubview: self.drawLabel];
+    [self.drawImage addSubview: label];
     
     UIGraphicsBeginImageContextWithOptions(self.drawImage.bounds.size, NO, 0.0);
     [self.drawImage.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
-    [self.drawLabel removeFromSuperview];
+    [label removeFromSuperview];
     
     UIGraphicsEndImageContext();
-    self.drawImage.image = image;
+    self.drawImage.image = image;    
     
-    
-    
+}
+
+-(void)createTextLabel:(NSString *)text AtX:(int) xcord AtY:(int)ycord
+{
+    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (xcord, ycord, 1000, 20)];
+    self.drawLabel.text = text;
+    self.drawLabel.numberOfLines = 1;
+    self.drawLabel.backgroundColor = [UIColor clearColor];
+    self.drawLabel.textColor = [UIColor blackColor];
 }
 
 
