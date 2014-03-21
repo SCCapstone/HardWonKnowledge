@@ -26,7 +26,13 @@
 @synthesize pages;
 @synthesize current;
 @synthesize textAdd;
-@synthesize inTextMode;
+@synthesize submenuMode;
+
+//Possible submenu modes
+const int paintMode = 0;
+const int textMode = 1;
+const int cameraMode = 2;
+const int menuMode = 3;
 
 
 //Initialize the view
@@ -59,7 +65,7 @@
         self.green = 0.0;
         self.alpha = 1;        
         self.brush = 10.0;
-        self.inTextMode = FALSE;
+        self.submenuMode = 0;
     }
     return self;
 }
@@ -72,22 +78,10 @@
     self.swipe =NO;
     UITouch *touch = [touches anyObject];
     self.lastPoint = [touch locationInView:self];
-    //if(self.alpha==0)
-    //{
-   //    NSLog(@"if working");
-    //    self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (0, -300, self.bounds.size.width, self.bounds.size.height)];
-   //
-   //     self.drawLabel.text = @"test";
-   //     self.drawLabel.numberOfLines = 1;
-   //     self.drawLabel.backgroundColor = [UIColor clearColor];
-   //     self.drawLabel.textColor = [UIColor blackColor];
-   //
-   //     [self.drawImage addSubview: self.drawLabel];
-   // }
-    if(inTextMode)
+    if(submenuMode == textMode)
     {
-        self.alpha = 0;
-        [self sendNotesPressedWithX:self.lastPoint.x WithY:self.lastPoint.y];
+        //self.alpha = 0;
+        [self textMergedWithX:self.lastPoint.x WithY:self.lastPoint.y];
     }
     
 
@@ -95,7 +89,7 @@
     
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(!inTextMode)
+    if(submenuMode == paintMode)
     {
         self.swipe = YES;
         UITouch *touch = [touches anyObject];
@@ -126,7 +120,7 @@
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(!inTextMode)
+    if(submenuMode == paintMode)
     {
         if(!self.swipe)
         {
@@ -148,7 +142,7 @@
     }
     else
     {
-        self.alpha = 1;
+       // self.alpha = 1;
       
     }
 }
@@ -177,9 +171,16 @@
     self.alpha = newAlpha;
 }
 
-- (void)changeTextMode:(BOOL)newMode
+- (void)changeMode:(int) newMode
 {
-    self.inTextMode = newMode;
+    if(newMode != paintMode && newMode != textMode && newMode != cameraMode && newMode != menuMode)
+    {
+        NSLog(@"ERROR: INVALID MODE ENTERED");
+    }
+    else
+    {
+        self.submenuMode = newMode;
+    }
 }
 
 //save the notebook to a file
@@ -349,10 +350,8 @@
     
 }
 
--(void)sendNotesPressedWithX:(int)newX WithY:(int)newY
+-(void)textMergedWithX:(int)newX WithY:(int)newY
 {
-
-    NSLog(@"sendNotes called"); //testing purposes.
     self.drawLabel = [[UILabel alloc] initWithFrame:CGRectMake (newX, newY, 1000, 20)];
     NSString *input = self.textAdd;
     self.drawLabel.text = input;

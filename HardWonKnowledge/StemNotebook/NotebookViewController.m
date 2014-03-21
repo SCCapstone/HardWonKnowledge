@@ -24,7 +24,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize menuSubmenu;
 @synthesize typeSubmenu;
 @synthesize sideBarView;
-
+@synthesize cameraSubmenu;
 
 
 
@@ -39,6 +39,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
     [self.typeSubmenu setHidden:TRUE];
+    [self.cameraSubmenu setHidden:TRUE];
+    [self.paintView changeMode:paintMode];
     self.driveService = [[GTLServiceDrive alloc] init];
     self.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                          clientID:kClientID
@@ -92,6 +94,19 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return typeSubmenu;
 }
 
+- (CameraSubmenuView *)cameraSubmenu
+{
+    if (!cameraSubmenu) {
+        CGRect cameraSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.cameraSubmenu = [[CameraSubmenuView alloc] initWithFrame:cameraSubmenuFrame];
+        self.cameraSubmenu.delegate = self;
+    }
+    return cameraSubmenu;
+}
+
+
+
+//Methods used for PaintView
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
     [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
@@ -103,9 +118,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView changeText:text];
 }
 
-- (void)changeTextMode:(BOOL)newMode
+- (void)changeMode:(int)newMode
 {
-    [self.paintView changeTextMode:newMode];
+    [self.paintView changeMode:newMode];
 }
 
 - (void)changeAlphaWithNumber:(float)newAlpha
@@ -113,56 +128,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView changeAlphaWithNumber:newAlpha];
 }
 
-
-
-//These two differ in the change alpha in order to enable/disable painting
-//all show submenu functions except the paint submenu should set alpha to zero to prevent drawing on touch
-- (void)showPaintSubmenu
-{
-    [self.SubmenuView addSubview:self.paintSubmenu];
-    [self.paintSubmenu setHidden:FALSE];
-    [self.menuSubmenu setHidden:TRUE];
-    [self.typeSubmenu setHidden:TRUE];
-    [self.view endEditing:YES];
-    [self.paintView changeAlphaWithNumber:1.0];
-    [self.paintView changeTextMode:FALSE];
-    
-}
-
-- (void)showMenuSubmenu
-{
-    [self.SubmenuView addSubview:self.menuSubmenu];
-    [self.menuSubmenu setHidden:FALSE];
-    [self.paintSubmenu setHidden:TRUE];
-    [self.typeSubmenu setHidden:TRUE];
-    [self.view endEditing:YES];
-    [self.paintView changeAlphaWithNumber:0.0];
-    [self.paintView changeTextMode:FALSE];
-}
-- (void)showTypeSubmenu
-{
-    [self.SubmenuView addSubview:self.typeSubmenu];
-    [self.menuSubmenu setHidden: TRUE];
-    [self.paintSubmenu setHidden: TRUE];
-    [self.typeSubmenu setHidden:FALSE];
-    [self.paintView changeAlphaWithNumber:1.0];
-    [self.paintView changeTextMode:TRUE];
-        
-}
-
 - (void)changeBrushWithNumber:(float)number
 {
     [self.paintView changeBrushWithNumber:number];
-}
-
-- (void)nextPage
-{
-    [self.paintView nextPage];
-}
-
--(void)previousPage
-{
-    [self.paintView previousPage];
 }
 
 -(void)encodePaintView
@@ -173,9 +141,19 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 -(void)decodePaintView
 {
     [self.paintView loadImageView];
-    
 }
 
+- (void) openNotebookNamed:(NSString *)name {
+    [self.paintView loadFileNamed:name];
+}
+
+- (void) saveFileNamed:(NSString *)name {
+    [self.paintView saveFileNamed:name];
+    [self.driveManager uploadNotebookNamed:name];
+}
+
+
+//Methods Used in Menu SubMenu
 -(void)uploadButtonClicked
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -202,19 +180,84 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [bookshelf loadNotebookFiles];
     [self dismissViewControllerAnimated:NO completion:NULL];
 }
-- (void)sendNotesPressed
+
+
+//Methods used for Type Submenu
+- (void)textMerged
+{
+    [self.paintView textMerged];
+}
+
+//Methods used for Camera Submenu
+- (void)importButtonClicked
 {
     
-    [self.paintView sendNotesPressed];
 }
 
-- (void) openNotebookNamed:(NSString *)name {
-    [self.paintView loadFileNamed:name];
+- (void)cameraButtonClicked
+{
+    
 }
 
-- (void) saveFileNamed:(NSString *)name {
-    [self.paintView saveFileNamed:name];
-    [self.driveManager uploadNotebookNamed:name];
+//Methods used for Side Bar Menu
+- (void)showPaintSubmenu
+{
+    [self.SubmenuView addSubview:self.paintSubmenu];
+    [self.paintSubmenu setHidden:FALSE];
+    [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.cameraSubmenu setHidden:TRUE];
+    //[self.paintView changeAlphaWithNumber:1.0];
+    [self.paintView changeMode:paintMode];
+    
 }
+
+- (void)showMenuSubmenu
+{
+    [self.SubmenuView addSubview:self.menuSubmenu];
+    [self.menuSubmenu setHidden:FALSE];
+    [self.paintSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.cameraSubmenu setHidden:TRUE];
+    [self.paintView changeMode:menuMode];
+}
+- (void)showTypeSubmenu
+{
+    [self.SubmenuView addSubview:self.typeSubmenu];
+    [self.menuSubmenu setHidden: TRUE];
+    [self.paintSubmenu setHidden: TRUE];
+    [self.typeSubmenu setHidden:FALSE];
+    [self.cameraSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.paintView changeMode:textMode];
+        
+}
+- (void)showCameraSubmenu
+{
+    [self.SubmenuView addSubview:self.cameraSubmenu];
+    [self.menuSubmenu setHidden: TRUE];
+    [self.paintSubmenu setHidden: TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.cameraSubmenu setHidden:FALSE];    
+    [self.view endEditing:YES];
+    [self.paintView changeMode:cameraMode];
+}
+
+- (void)nextPage
+{
+    [self.paintView nextPage];
+}
+
+-(void)previousPage
+{
+    [self.paintView previousPage];
+}
+
+
+
+
+
 
 @end

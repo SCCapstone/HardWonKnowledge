@@ -39,6 +39,9 @@
     
 }
 
+- (IBAction)cameraButtonPressed:(id)sender {
+    [self.delegate showCameraSubmenu];
+}
 
 
 /*
