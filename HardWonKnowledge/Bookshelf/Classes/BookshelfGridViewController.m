@@ -86,7 +86,7 @@ enum
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
         if (error == nil) {
-            [allFileNames addObject:@"New Notebook Entry"];
+            [allFileNames addObject:@"Create New"];
             for (GTLDriveFile *file in files) {
                 NSLog(@"Drive File: %@",file.title);
                 [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
