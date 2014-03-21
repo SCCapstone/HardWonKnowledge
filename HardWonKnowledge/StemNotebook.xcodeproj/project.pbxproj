@@ -455,7 +455,7 @@
 				ORGANIZATIONNAME = HardWonKnowledge;
 				TargetAttributes = {
 					C762B69A181DB7B500EB3674 = {
-						DevelopmentTeam = VT9937V7SF;
+						DevelopmentTeam = LN2U99T73H;
 					};
 				};
 			};
