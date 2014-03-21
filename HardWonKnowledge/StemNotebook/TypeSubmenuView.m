@@ -29,7 +29,7 @@
 
 
 
-- (IBAction)sendNotesPressed:(id)sender {
+- (IBAction)textMerged:(id)sender {
     NSString *input = tempField.text;
     [self.delegate changeText:input];
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16656FEB18DBAAE700835842 /* CameraSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */; };
+		16656FEE18DBACF700835842 /* CameraSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16656FED18DBACF700835842 /* CameraSubmenuView.m */; };
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
 		B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */; };
 		B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */; };
@@ -68,6 +70,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraSubmenuView.xib; sourceTree = "<group>"; };
+		16656FEC18DBACF700835842 /* CameraSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSubmenuView.h; sourceTree = "<group>"; };
+		16656FED18DBACF700835842 /* CameraSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSubmenuView.m; sourceTree = "<group>"; };
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
 		B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
 		B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
@@ -190,6 +195,7 @@
 				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
 				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
+				16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */,
 			);
 			name = "IB Files";
 			sourceTree = "<group>";
@@ -207,6 +213,8 @@
 				C75EF9FA1826E8E600C9A725 /* PaintView.m */,
 				C75EF9F618246B3D00C9A725 /* SideBarView.h */,
 				C75EF9F718246B3D00C9A725 /* SideBarView.m */,
+				16656FEC18DBACF700835842 /* CameraSubmenuView.h */,
+				16656FED18DBACF700835842 /* CameraSubmenuView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -482,6 +490,7 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
+				16656FEB18DBAAE700835842 /* CameraSubmenuView.xib in Resources */,
 				CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */,
 				CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */,
 				CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */,
@@ -515,6 +524,7 @@
 				C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */,
+				16656FEE18DBACF700835842 /* CameraSubmenuView.m in Sources */,
 				CB9CD3C118BA9FF000DF6754 /* AQGridView.m in Sources */,
 				CB9CD3C218BA9FF000DF6754 /* AQGridViewAnimatorItem.m in Sources */,
 				CB9CD3C318BA9FF000DF6754 /* AQGridViewCell.m in Sources */,
