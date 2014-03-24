@@ -9,15 +9,15 @@
 #import "UserLoginViewController.h"
 //#import "BookshelfGridViewController.h"
 
-@interface UserLoginViewController (){
-    IBOutlet UITextField *usernameField;
-    IBOutlet UITextField *passwordField;
-    NSMutableArray *subviews;
-}
+@interface UserLoginViewController ()
 
 @end
 
 @implementation UserLoginViewController
+
+@synthesize passwordField;
+@synthesize usernameField;
+@synthesize subviews;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -27,15 +27,14 @@
     passwordField.delegate = self;
 }
 
-- (UIButton*)addButton: (NSString*)title y:(CGFloat)y {
-    UIButton *book = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [book setTitle:title forState:UIControlStateNormal];
-    book.frame = CGRectMake((self.view.frame.size.width-250)/2 , y, 250, 50);
-    book.titleLabel.font = [UIFont systemFontOfSize:18];
-    book.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    [self.view addSubview:book];
-    [subviews addObject:book];
-    return book;
+- (void)addButton: (NSString*)title y:(CGFloat)y action:(SEL)target {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.frame = CGRectMake((self.view.frame.size.width-250)/2 , y, 250, 50);
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [button addTarget:self action:target forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    [subviews addObject:button];
 }
 
 - (void)alertDriveConnection{
@@ -86,22 +85,39 @@
     }
 }
 
+- (void)driveAlert{
+    UIView *alertview = [[UIView alloc] initWithFrame:CGRectMake(0, -999, self.view.frame.size.width, 50)];
+    UILabel *theMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(alertview.bounds), CGRectGetHeight(alertview.bounds))];
+    
+    theMessage.backgroundColor = [UIColor colorWithRed:178.0/255 green:34.0/255 blue:34.0/255 alpha:1];
+    theMessage.font = [UIFont boldSystemFontOfSize:18];
+    theMessage.textAlignment = NSTextAlignmentCenter;
+    theMessage.textColor = [UIColor whiteColor];
+    theMessage.text = @"Please connect to a Google Drive account.";
+    [alertview addSubview:theMessage];
+    
+    if(![self.adminView.loginBackend.driveManager isAuthorized]){
+        [self.view addSubview:alertview];
+        [subviews addObject:alertview];
+        CGRect newFrm = alertview.frame;
+        newFrm.origin.y = 44;
+        [UIView animateWithDuration:1.0f animations:^{ alertview.frame = newFrm; }];
+    }
+}
+
+
+
 - (void)showAdmin{
     [usernameField removeFromSuperview];
     [passwordField removeFromSuperview];
     
-    UIButton *notebook = [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300];
-    [notebook addTarget:self action:@selector(openNotebook) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
     
-    UIButton *adminView = [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200];
-    [adminView addTarget:self action:@selector(openAdminSettings) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
     
-    UIButton *drive = [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100];
-    [drive addTarget:self action:@selector(driveButton) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
     
-    
-    UIButton *logout = [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y];
-    [logout addTarget:self action:@selector(logoutAdmin) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
 }
 
 - (IBAction)openAdminSettings{
@@ -126,12 +142,16 @@
 - (IBAction)menuLoginScreen {
     if([[[self.adminView.loginBackend.adminCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:[passwordField.text lowercaseString]]){
         NSLog(@"Admin logged in as %@", usernameField.text);
+        usernameField.text = @"";
+        passwordField.text = @"";
         [self showAdmin];
         
     }
     else if([[[self.adminView.loginBackend.userCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:[passwordField.text lowercaseString]]){
         NSLog(@"Student logged in as %@", usernameField.text);
         if([self.adminView.loginBackend.driveManager isAuthorized]){
+            usernameField.text = @"";
+            passwordField.text = @"";
             BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
             [self presentViewController:bookshelf animated:NO completion:NULL];
         }
@@ -167,14 +187,16 @@
     }
     else if([buttonPressedName isEqualToString: @"Sign In"])
         [self driveLogin];
-    else if([buttonPressedName isEqualToString: @"Sign Out"])
+    else if([buttonPressedName isEqualToString: @"Sign Out"]){
         [self driveLogout];
+        [self driveAlert];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == passwordField) {
         [self menuLoginScreen];
-    } 
+    }
     return YES;
 }
 
