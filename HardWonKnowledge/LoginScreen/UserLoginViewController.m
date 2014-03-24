@@ -25,15 +25,15 @@
     self.adminView = [[AdminView alloc]initWithNibName:nil bundle:nil];
 }
 
-- (UIButton*)addButton: (NSString*)title y:(CGFloat)y {
-    UIButton *book = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [book setTitle:title forState:UIControlStateNormal];
-    book.frame = CGRectMake((self.view.frame.size.width-250)/2 , y, 250, 50);
-    book.titleLabel.font = [UIFont systemFontOfSize:18];
-    book.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    [self.view addSubview:book];
-    [subviews addObject:book];
-    return book;
+- (void)addButton: (NSString*)title y:(CGFloat)y action:(SEL)target{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.frame = CGRectMake((self.view.frame.size.width-250)/2 , y, 250, 50);
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [button addTarget:self action:target forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    [subviews addObject:button];
 }
 
 - (void)alertDriveConnection{
@@ -88,18 +88,20 @@
     [usernameField removeFromSuperview];
     [passwordField removeFromSuperview];
     
-    UIButton *notebook = [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300];
-    [notebook addTarget:self action:@selector(openNotebook) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
+//    [notebook addTarget:self action:@selector(openNotebook) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *adminView = [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200];
-    [adminView addTarget:self action:@selector(openAdminSettings) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
+//    [adminView addTarget:self action:@selector(openAdminSettings) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *drive = [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100];
-    [drive addTarget:self action:@selector(driveButton) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
+//    [drive addTarget:self action:@selector(driveButton) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIButton *logout = [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y];
-    [logout addTarget:self action:@selector(logoutAdmin) forControlEvents:UIControlEventTouchUpInside];
+    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
+//    [logout addTarget:self action:@selector(logoutAdmin) forControlEvents:UIControlEventTouchUpInside];
+    
+        [self driveAlert];
 }
 
 - (IBAction)openAdminSettings{
@@ -114,6 +116,32 @@
     }
 }
 
+- (void)driveAlert{
+    //Create a view to hold the label and add images or whatever, place it off screen at -100
+    UIView *alertview = [[UIView alloc] initWithFrame:CGRectMake(0, -999, self.view.frame.size.width, 50)];
+    
+    //Create a label to display the message and add it to the alertView
+    UILabel *theMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(alertview.bounds), CGRectGetHeight(alertview.bounds))];
+    theMessage.backgroundColor = [UIColor colorWithRed:178.0/255 green:34.0/255 blue:34.0/255 alpha:1];
+    theMessage.font = [UIFont boldSystemFontOfSize:18];
+    theMessage.textAlignment = NSTextAlignmentCenter;
+    theMessage.textColor = [UIColor whiteColor];
+    theMessage.text = @"Please connect to a Google Drive account.";
+    [alertview addSubview:theMessage];
+    
+    if(![self.adminView.loginBackend.driveManager isAuthorized]){
+        [self.view addSubview:alertview];
+        [subviews addObject:alertview];
+
+        CGRect newFrm = alertview.frame;
+        newFrm.origin.y = 44;
+        
+        [UIView animateWithDuration:1.0f animations:^{
+            alertview.frame = newFrm;
+        }];
+    }
+}
+
 - (IBAction)logoutAdmin{
     [self clearScreen];
     [self.view addSubview:usernameField];
@@ -122,14 +150,16 @@
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
 - (IBAction)menuLoginScreen {
-    if([[[self.adminView.loginBackend.adminCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:[passwordField.text lowercaseString]]){
-        NSLog(@"Admin logged in as %@", usernameField.text);
+    if([[[self.adminView.loginBackend.adminCredentials objectForKey:[usernameField.text lowercaseString]] objectAtIndex:1]isEqualToString:passwordField.text]){
+        usernameField.text = @"";
+        passwordField.text = @"";
         [self showAdmin];
         
     }
-    else if([[[self.adminView.loginBackend.userCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:[passwordField.text lowercaseString]]){
-        NSLog(@"Student logged in as %@", usernameField.text);
+    else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectAtIndex:1]isEqualToString:passwordField.text]){
         if([self.adminView.loginBackend.driveManager isAuthorized]){
+            usernameField.text = @"";
+            passwordField.text = @"";
             BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
             [self presentViewController:bookshelf animated:NO completion:NULL];
         }
@@ -163,10 +193,18 @@
             [self alertDriveConnection];
         }
     }
-    else if([buttonPressedName isEqualToString: @"Sign In"])
+    else if([buttonPressedName isEqualToString: @"Sign In"]){
         [self driveLogin];
-    else if([buttonPressedName isEqualToString: @"Sign Out"])
+        for(UIView *view in subviews){
+            if(![view isKindOfClass:[UIButton class]])
+              [view removeFromSuperview];
+        }
+//        [subviews removeLastObject];
+    }
+    else if([buttonPressedName isEqualToString: @"Sign Out"]){
         [self driveLogout];
+        [self driveAlert];
+    }
 }
 
 @end
