@@ -72,6 +72,7 @@
 		E1115B6018E0D39A0087DC02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B6A0181DB7B500EB3674 /* Foundation.framework */; };
 		E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1115B6418E0D39A0087DC02 /* InfoPlist.strings */; };
 		E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */; };
+		E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B7118E0D9D30087DC02 /* PaintViewTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,8 @@
 		E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StemNotebookUnitTest.h; sourceTree = "<group>"; };
 		E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StemNotebookUnitTest.m; sourceTree = "<group>"; };
 		E1115B6A18E0D39A0087DC02 /* StemNotebookUnitTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StemNotebookUnitTest-Prefix.pch"; sourceTree = "<group>"; };
+		E1115B7018E0D9D30087DC02 /* PaintViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintViewTest.h; sourceTree = "<group>"; };
+		E1115B7118E0D9D30087DC02 /* PaintViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintViewTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,6 +469,8 @@
 				E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */,
 				E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */,
 				E1115B6218E0D39A0087DC02 /* Supporting Files */,
+				E1115B7018E0D9D30087DC02 /* PaintViewTest.h */,
+				E1115B7118E0D9D30087DC02 /* PaintViewTest.m */,
 			);
 			path = StemNotebookUnitTest;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */,
+				E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

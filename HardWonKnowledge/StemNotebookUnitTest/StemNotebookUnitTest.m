@@ -24,9 +24,10 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in StemNotebookUnitTest");
-}
+
+//- (void)testExample
+//{
+//    STFail(@"Unit tests are not implemented yet in StemNotebookUnitTest");
+//}
 
 @end
