@@ -23,6 +23,8 @@
     [super viewDidLoad];
     subviews = [[NSMutableArray alloc]init];
     self.adminView = [[AdminView alloc]initWithNibName:nil bundle:nil];
+    passwordField.returnKeyType = UIReturnKeyDone;
+    passwordField.delegate = self;
 }
 
 - (UIButton*)addButton: (NSString*)title y:(CGFloat)y {
@@ -168,5 +170,22 @@
     else if([buttonPressedName isEqualToString: @"Sign Out"])
         [self driveLogout];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == passwordField) {
+        [self menuLoginScreen];
+    } 
+    return YES;
+}
+
+/*  Hide cursor when click outside of input field.  */
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
+///*  Hide keyboard when not in user  */
+//- (BOOL)disablesAutomaticKeyboardDismissal {
+//    return NO;
+//}
 
 @end
