@@ -9,15 +9,15 @@
 #import "UserLoginViewController.h"
 //#import "BookshelfGridViewController.h"
 
-@interface UserLoginViewController (){
-    IBOutlet UITextField *usernameField;
-    IBOutlet UITextField *passwordField;
-    NSMutableArray *subviews;
-}
+@interface UserLoginViewController ()
 
 @end
 
 @implementation UserLoginViewController
+
+@synthesize passwordField;
+@synthesize usernameField;
+@synthesize subviews;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
