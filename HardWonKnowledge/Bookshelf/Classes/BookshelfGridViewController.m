@@ -106,7 +106,7 @@ enum
 
 -(IBAction)newNotebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
-//    [self presentViewController:notebook animated:NO completion:NULL];
+    //    [self presentViewController:notebook animated:NO completion:NULL];
     [self presentViewController:notebook animated:NO completion:NULL];
 }
 - (IBAction)openNotebookView: (NSString *) path{
@@ -186,25 +186,29 @@ enum
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
     if(index == 0){
-    [self alertTwoButton:@"Opening Notebook" message:@"Are you sure you want to create a new notebook entry?" button1:@"New" button2:@"Cancel"];
-        return;
-    }
-    GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
-    selectedFile = [self.driveManager downloadDriveFile:file];
-    NSLog(@"%i",index);
-    
-    [self alertTwoButton:@"Opening Notebook" message:[NSString stringWithFormat:@"Are you sure you want to open\n%@?", file.title] button1:@"Open" button2:@"Cancel"];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
-    if([buttonPressedName isEqualToString: @"Open"]){
-        [self openNotebookView:selectedFile];
-    }
-    else if([buttonPressedName isEqualToString:@"New"]){
         [self newNotebookEntry];
     }
+    else {
+        GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
+        selectedFile = [self.driveManager downloadDriveFile:file];
+        
+        [self openNotebookView:selectedFile];
+    }
+    
+    NSLog(@"%i",index);
+    
+    //    [self alertTwoButton:@"Opening Notebook" message:[NSString stringWithFormat:@"Are you sure you want to open\n%@?", file.title] button1:@"Open" button2:@"Cancel"];
 }
+
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+//    if([buttonPressedName isEqualToString: @"Open"]){
+//        [self openNotebookView:selectedFile];
+//    }
+//    else if([buttonPressedName isEqualToString:@"New"]){
+//        [self newNotebookEntry];
+//    }
+//}
 
 #pragma mark -
 #pragma mark Grid View Delegate
