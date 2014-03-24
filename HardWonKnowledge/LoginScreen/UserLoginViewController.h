@@ -10,7 +10,7 @@
 #import "UserLoginBackend.h"
 #import "AdminView.h"
 
-@interface UserLoginViewController : UIViewController<UIAlertViewDelegate>   
+@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITextFieldDelegate>
 
 - (IBAction)driveButton;
 - (IBAction)menuLoginScreen;
