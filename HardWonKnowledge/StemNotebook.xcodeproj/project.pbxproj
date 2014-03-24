@@ -67,7 +67,22 @@
 		CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD848AC18C8046200153587 /* UserLoginViewController.xib */; };
 		CBE86B5018BE9A7F00055ABC /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4E18BE9A7F00055ABC /* Black.png */; };
 		CBE86B5118BE9A7F00055ABC /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4F18BE9A7F00055ABC /* Green.png */; };
+		E1115B5E18E0D39A0087DC02 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1115B5D18E0D39A0087DC02 /* SenTestingKit.framework */; };
+		E1115B5F18E0D39A0087DC02 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B69E181DB7B500EB3674 /* UIKit.framework */; };
+		E1115B6018E0D39A0087DC02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B6A0181DB7B500EB3674 /* Foundation.framework */; };
+		E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1115B6418E0D39A0087DC02 /* InfoPlist.strings */; };
+		E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1115B6E18E0D3BE0087DC02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C762B693181DB7B500EB3674 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C762B69A181DB7B500EB3674;
+			remoteInfo = StemNotebook;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraSubmenuView.xib; sourceTree = "<group>"; };
@@ -166,6 +181,13 @@
 		CBD848AC18C8046200153587 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = LoginScreen/UserLoginViewController.xib; sourceTree = "<group>"; };
 		CBE86B4E18BE9A7F00055ABC /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Black.png; path = Bookshelf/Images/Black.png; sourceTree = "<group>"; };
 		CBE86B4F18BE9A7F00055ABC /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Bookshelf/Images/Green.png; sourceTree = "<group>"; };
+		E1115B5C18E0D39A0087DC02 /* StemNotebookUnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StemNotebookUnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1115B5D18E0D39A0087DC02 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E1115B6318E0D39A0087DC02 /* StemNotebookUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StemNotebookUnitTest-Info.plist"; sourceTree = "<group>"; };
+		E1115B6518E0D39A0087DC02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StemNotebookUnitTest.h; sourceTree = "<group>"; };
+		E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StemNotebookUnitTest.m; sourceTree = "<group>"; };
+		E1115B6A18E0D39A0087DC02 /* StemNotebookUnitTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StemNotebookUnitTest-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +203,16 @@
 				C762B69F181DB7B500EB3674 /* UIKit.framework in Frameworks */,
 				C762B6A1181DB7B500EB3674 /* Foundation.framework in Frameworks */,
 				C762B6A3181DB7B500EB3674 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1115B5818E0D39A0087DC02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1115B5E18E0D39A0087DC02 /* SenTestingKit.framework in Frameworks */,
+				E1115B5F18E0D39A0087DC02 /* UIKit.framework in Frameworks */,
+				E1115B6018E0D39A0087DC02 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +266,7 @@
 				CBC4C3E018BD98E9001B6FBA /* LoginScreen */,
 				CB9CD32F18BA9C3200DF6754 /* Bookshelf */,
 				C762B6A4181DB7B500EB3674 /* StemNotebook */,
+				E1115B6118E0D39A0087DC02 /* StemNotebookUnitTest */,
 				C762B69D181DB7B500EB3674 /* Frameworks */,
 				C762B69C181DB7B500EB3674 /* Products */,
 			);
@@ -243,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				C762B69B181DB7B500EB3674 /* StemNotebook.app */,
+				E1115B5C18E0D39A0087DC02 /* StemNotebookUnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +293,7 @@
 				C762B69E181DB7B500EB3674 /* UIKit.framework */,
 				C762B6A0181DB7B500EB3674 /* Foundation.framework */,
 				C762B6A2181DB7B500EB3674 /* CoreGraphics.framework */,
+				E1115B5D18E0D39A0087DC02 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -425,6 +460,26 @@
 			name = LoginScreen;
 			sourceTree = "<group>";
 		};
+		E1115B6118E0D39A0087DC02 /* StemNotebookUnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */,
+				E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */,
+				E1115B6218E0D39A0087DC02 /* Supporting Files */,
+			);
+			path = StemNotebookUnitTest;
+			sourceTree = "<group>";
+		};
+		E1115B6218E0D39A0087DC02 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1115B6318E0D39A0087DC02 /* StemNotebookUnitTest-Info.plist */,
+				E1115B6418E0D39A0087DC02 /* InfoPlist.strings */,
+				E1115B6A18E0D39A0087DC02 /* StemNotebookUnitTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,6 +499,25 @@
 			productName = StemNotebook;
 			productReference = C762B69B181DB7B500EB3674 /* StemNotebook.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E1115B5B18E0D39A0087DC02 /* StemNotebookUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1115B6D18E0D39A0087DC02 /* Build configuration list for PBXNativeTarget "StemNotebookUnitTest" */;
+			buildPhases = (
+				E1115B5718E0D39A0087DC02 /* Sources */,
+				E1115B5818E0D39A0087DC02 /* Frameworks */,
+				E1115B5918E0D39A0087DC02 /* Resources */,
+				E1115B5A18E0D39A0087DC02 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1115B6F18E0D3BE0087DC02 /* PBXTargetDependency */,
+			);
+			name = StemNotebookUnitTest;
+			productName = StemNotebookUnitTest;
+			productReference = E1115B5C18E0D39A0087DC02 /* StemNotebookUnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -472,6 +546,7 @@
 			projectRoot = "";
 			targets = (
 				C762B69A181DB7B500EB3674 /* StemNotebook */,
+				E1115B5B18E0D39A0087DC02 /* StemNotebookUnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -508,7 +583,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1115B5918E0D39A0087DC02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1115B5A18E0D39A0087DC02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C762B697181DB7B500EB3674 /* Sources */ = {
@@ -546,7 +645,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1115B5718E0D39A0087DC02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1115B6F18E0D3BE0087DC02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C762B69A181DB7B500EB3674 /* StemNotebook */;
+			targetProxy = E1115B6E18E0D3BE0087DC02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C762B6A7181DB7B500EB3674 /* InfoPlist.strings */ = {
@@ -563,6 +678,14 @@
 				C762B6BA181DB7B500EB3674 /* en */,
 			);
 			name = NotebookViewController.xib;
+			sourceTree = "<group>";
+		};
+		E1115B6418E0D39A0087DC02 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1115B6518E0D39A0087DC02 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -658,6 +781,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -673,6 +797,40 @@
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E1115B6B18E0D39A0087DC02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StemNotebook.app/StemNotebook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StemNotebookUnitTest/StemNotebookUnitTest-Prefix.pch";
+				INFOPLIST_FILE = "StemNotebookUnitTest/StemNotebookUnitTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E1115B6C18E0D39A0087DC02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StemNotebook.app/StemNotebook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StemNotebookUnitTest/StemNotebookUnitTest-Prefix.pch";
+				INFOPLIST_FILE = "StemNotebookUnitTest/StemNotebookUnitTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -696,6 +854,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E1115B6D18E0D39A0087DC02 /* Build configuration list for PBXNativeTarget "StemNotebookUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1115B6B18E0D39A0087DC02 /* Debug */,
+				E1115B6C18E0D39A0087DC02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
