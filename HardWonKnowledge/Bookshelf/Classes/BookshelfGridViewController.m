@@ -76,11 +76,11 @@ enum
 
 - (void)loadNotebookFiles{
     NSMutableArray *allFileNames = [[NSMutableArray alloc] init];
-    UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading Notebooks..."];
+    UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Finding notebooks..."];
     NSLog(@"Loading Notebooks...");
     
     // Find the existing files on Google Drive
-    NSString *search = @"mimeType = 'application/octet-stream'";
+    NSString *search = @"mimeType = 'application/octet-stream' and trashed = false";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
