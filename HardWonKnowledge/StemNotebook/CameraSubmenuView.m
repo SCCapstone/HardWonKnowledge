@@ -35,7 +35,7 @@
 }
 
 - (IBAction)videoButtonClicked:(id)sender {
-    [self.delegate videoButtonClicked];
+   // [self.delegate videoButtonClicked];
 }
 
 
