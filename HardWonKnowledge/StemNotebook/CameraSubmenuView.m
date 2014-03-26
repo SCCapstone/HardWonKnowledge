@@ -25,10 +25,11 @@
 }
 
 
+
 - (IBAction)importButtonClicked:(id)sender {
+    NSLog(@"button clicked");
     [self.delegate importButtonClicked];
 }
-
 
 - (IBAction)cameraButtonClicked:(id)sender {
     [self.delegate cameraButtonClicked];
@@ -37,7 +38,6 @@
 - (IBAction)videoButtonClicked:(id)sender {
    // [self.delegate videoButtonClicked];
 }
-
 
 
 - (void) setDisplayImage:(UIImageView*)newImage

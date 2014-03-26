@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NotebookViewDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "NotebookViewDelegate.h"
 
 @interface CameraSubmenuView : UIView
 
@@ -18,9 +18,5 @@
 @property (copy,   nonatomic) NSURL *movieURL;
 @property (strong, nonatomic) MPMoviePlayerController *movieController;
 
-
-- (IBAction)importButtonClicked:(id)sender;
-- (IBAction)cameraButtonClicked:(id)sender;
-- (IBAction)videoButtonClicked:(id)sender;
 
 @end

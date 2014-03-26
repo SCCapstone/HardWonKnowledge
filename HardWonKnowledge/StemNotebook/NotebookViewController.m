@@ -191,16 +191,24 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 //Methods used for Camera Submenu
 - (void)importButtonClicked
 {
+    NSLog(@" Did it go to notebookviewcontol");
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
+
 }
+
+//-(void) importButtonClicked
+//{
+//    NSLog(@"WORKING");
+//}
 
 - (void)cameraButtonClicked
 {
+    NSLog(@" Did it go to notebookviewcontol");
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -220,6 +228,12 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     
     [self presentViewController:picker animated:YES completion:NULL];
     
+}
+
+
+- (void)testButtonClicked
+{
+    NSLog(@"TEST SENT TO DELEGATE");
 }
 
 //Methods used for Side Bar Menu

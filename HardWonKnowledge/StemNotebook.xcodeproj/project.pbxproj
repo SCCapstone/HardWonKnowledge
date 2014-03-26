@@ -771,7 +771,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../google-api-objectivec-client-read-only/Source\"",
@@ -797,7 +797,7 @@
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../google-api-objectivec-client-read-only/Source\"",
