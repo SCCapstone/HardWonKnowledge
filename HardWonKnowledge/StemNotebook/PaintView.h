@@ -18,15 +18,33 @@
     @property CGFloat brush;
     @property BOOL swipe;
     @property (strong, nonatomic) UIImageView *drawImage;
+    @property (strong, nonatomic) UILabel *drawLabel;
     @property (strong, nonatomic) NSMutableArray *pages;
     @property (nonatomic) int current;
+    @property (strong, nonatomic) UITextField *drawField;
+    @property (strong,nonatomic) NSString *textAdd;
+    @property (nonatomic) int submenuMode;
+
+    
 
 
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
+- (void)changeText:(NSString*)text;
+- (void)changeAlphaWithNumber:(float)newAlpha;
+- (void)changeMode:(int)newMode;
 - (void)saveImageView;
 - (void)loadImageView;
+- (void)loadFileNamed:(NSString *)name;
+- (void)saveFileNamed:(NSString *)name;
 - (void)nextPage;
 - (void)previousPage;
+-(void)textMerged;
+
+extern const int paintMode;
+extern const int textMode;
+extern const int cameraMode;
+extern const int menuMode;
+
 
 @end

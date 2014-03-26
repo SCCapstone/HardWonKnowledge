@@ -80,6 +80,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                            keychainItemName:kKeychainItemName
                                                    delegate:self
                                            finishedSelector:finishedSelector];
+//        authViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+//        authViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//        authViewController.view.superview.frame = CGRectMake(0, 0, 300, 400);
+//        authViewController.view.superview.center = self.view.center;
         [self.cont presentViewController:authViewController
                                 animated:YES completion:nil];
     } else {
@@ -109,6 +113,57 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     file.descriptionProperty = @"Uploaded from StemNotebook App";
     file.mimeType = @"application/octet-stream";
     
+    
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"File not exists");
+    }
+    
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
+                                                       uploadParameters:uploadParameters];
+    
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    NSLog(@"Uploading to Google Drive...");
+    
+    
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      NSLog(@"Done");
+                      if (error == nil)
+                      {
+                          NSLog(@"File ID: %@", insertedFile.identifier);
+                          //[self showAlert:@"Google Drive" message:@"File saved!"];
+                          NSLog(@"Google Drive: File Saved");
+                      }
+                      else
+                      {
+                          NSLog(@"An error occurred: %@", error);
+                          //[self showAlert:@"Google Drive" message:@"Sorry, an error occurred!"];
+                          NSLog(@"An Error Occured");
+                      }
+                  }];
+}
+
+- (void)uploadNotebookNamed:(NSString*)name
+{
+    
+    //setup path for file
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *filepath = [docDir stringByAppendingPathComponent:name];
+    
+    GTLDriveFile *file = [GTLDriveFile object];
+    file.title = name;
+    file.descriptionProperty = @"Uploaded from StemNotebook App";
+    file.mimeType = @"application/octet-stream";
     
     NSData *data = nil;
     if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
@@ -148,6 +203,47 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   }];
 }
 
+
+- (GTLDriveFileList *)listDriveFiles {
+    NSString *search = @"title contains '.nbf'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    __block GTLDriveFileList *list = nil;
+    [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            //Good
+            for (GTLDriveFile *file in files) {
+                NSLog(@"Drive File: %@",file.title);
+            }
+            list = files;
+        } else {
+            NSLog (@"An Error has occurred: %@", error);
+        }
+    }];
+    return list;
+}
+
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file
+{
+    //Get Download Path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *viewPath = [docDir stringByAppendingPathComponent:file.title];
+    
+    //Setup HTTP Fetcher
+    GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
+    fetcher.downloadPath = viewPath;
+    
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error == nil) {
+            //Save file to disk
+            NSLog(@"Retrieved file content");
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+    return viewPath;
+}
 
 - (UIAlertView*)showWaitIndicator:(NSString *)title
 {

@@ -11,20 +11,31 @@
 #import "SideBarView.h"
 #import "PaintView.h"
 #import "MenuSubmenuView.h"
+#import "TypeSubmenuView.h"
+#import "CameraSubmenuView.h"
+#import "BookshelfGridViewController.h"
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "NotebookViewDelegate.h"
 #import "GTLDrive.h"
 #import "DriveManager.h"
 
-@interface NotebookViewController : UIViewController <NotebookViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@interface NotebookViewController : UIViewController <NotebookViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 //Views that the NotebookViewController will control
 @property (strong, nonatomic) IBOutlet UIView *SubmenuView; //IBOutlet created from interface builder
 @property (strong, nonatomic) PaintSubmenuView *paintSubmenu;
 @property (strong, nonatomic) MenuSubmenuView *menuSubmenu;
+@property (strong, nonatomic) TypeSubmenuView *typeSubmenu;
+@property (strong, nonatomic) CameraSubmenuView *cameraSubmenu;
 @property (strong, nonatomic) IBOutlet PaintView *paintView;
 @property (strong, nonatomic) IBOutlet SideBarView *sideBarView;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
+
+- (void) openNotebookNamed:(NSString *)name;
+
+
+
 
 @end

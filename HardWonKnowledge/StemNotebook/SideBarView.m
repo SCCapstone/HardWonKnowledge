@@ -34,6 +34,14 @@
     [self.delegate previousPage];
 }
 
+- (IBAction)typeButtonPressed:(id)sender {
+    [self.delegate showTypeSubmenu];
+    
+}
+
+- (IBAction)cameraButtonPressed:(id)sender {
+    [self.delegate showCameraSubmenu];
+}
 
 
 /*

@@ -11,6 +11,7 @@
 @implementation MenuSubmenuView
 
 @synthesize delegate;
+@synthesize fileNameInput;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -37,7 +38,26 @@
 - (IBAction)logoutButtonClicked:(id)sender {
     [self.delegate logoutButtonClicked];
 }
+- (IBAction)saveButtonClicked:(id)sender {
+    NSString *name = self.fileNameInput.text;
+    if (name==nil || [name isEqualToString:@""]) {
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle: @"No Filename"
+                                           message: @"Please enter a filename"
+                                          delegate: nil
+                                 cancelButtonTitle: @"OK"
+                                 otherButtonTitles: nil];
+        [alert show];
+    }
+    else {
+        NSString *filename = [name stringByAppendingString:@".nbf"];
+        [self.delegate saveFileNamed:filename];
+    }
+}
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.delegate backButtonClicked];
+}
 
 
 

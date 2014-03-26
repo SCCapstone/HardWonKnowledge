@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16656FEB18DBAAE700835842 /* CameraSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */; };
+		16656FEE18DBACF700835842 /* CameraSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16656FED18DBACF700835842 /* CameraSubmenuView.m */; };
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
+		B4B7E04818E0E70A00FEF893 /* UserLoginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7E04718E0E70A00FEF893 /* UserLoginTest.m */; };
+		B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */; };
+		B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */; };
 		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
 		C71981AC1850138E00D502E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A81850138E00D502E3 /* Security.framework */; };
 		C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A91850138E00D502E3 /* SystemConfiguration.framework */; };
@@ -31,61 +36,67 @@
 		C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF899E1850D4DC00F6A093 /* DriveManager.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
-		CBEA474B18B71FA7005CB564 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA473518B71FA7005CB564 /* AQGridView.m */; };
-		CBEA474C18B71FA7005CB564 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA473918B71FA7005CB564 /* AQGridViewAnimatorItem.m */; };
-		CBEA474D18B71FA7005CB564 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA473B18B71FA7005CB564 /* AQGridViewCell.m */; };
-		CBEA474E18B71FA7005CB564 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA473E18B71FA7005CB564 /* AQGridViewController.m */; };
-		CBEA474F18B71FA7005CB564 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA474018B71FA7005CB564 /* AQGridViewData.m */; };
-		CBEA475018B71FA7005CB564 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA474218B71FA7005CB564 /* AQGridViewUpdateInfo.m */; };
-		CBEA475118B71FA7005CB564 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA474418B71FA7005CB564 /* AQGridViewUpdateItem.m */; };
-		CBEA475218B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA474618B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.m */; };
-		CBEA475318B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA474818B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.m */; };
-		CBEA475418B71FA7005CB564 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA474A18B71FA7005CB564 /* UIColor+AQGridView.m */; };
-		CBEA476418B7200E005CB564 /* BookshelfGridAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA475718B7200D005CB564 /* BookshelfGridAppDelegate.m */; };
-		CBEA476518B7200E005CB564 /* BookshelfGridCellChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA475918B7200D005CB564 /* BookshelfGridCellChooser.m */; };
-		CBEA476618B7200E005CB564 /* BookshelfGridFilledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA475B18B7200D005CB564 /* BookshelfGridFilledCell.m */; };
-		CBEA476718B7200E005CB564 /* BookshelfGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA475D18B7200D005CB564 /* BookshelfGridViewCell.m */; };
-		CBEA476818B7200E005CB564 /* BookshelfGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA475F18B7200D005CB564 /* BookshelfGridViewController.m */; };
-		CBEA476918B7200E005CB564 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEA476118B7200D005CB564 /* UserLoginViewController.m */; };
-		CBEA476A18B7200E005CB564 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEA476218B7200D005CB564 /* UserLoginViewController.xib */; };
-		CBEA476B18B7200E005CB564 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBEA476318B7200E005CB564 /* users.txt */; };
-		CBEA478518B72047005CB564 /* 3D-simplicity.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA476D18B7203F005CB564 /* 3D-simplicity.png */; };
-		CBEA478618B72047005CB564 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA476E18B72040005CB564 /* AppleTV-esque_by-mikelcroft_nl-1440.png */; };
-		CBEA478718B72047005CB564 /* batman_surfing_on_superman.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA476F18B72040005CB564 /* batman_surfing_on_superman.png */; };
-		CBEA478818B72047005CB564 /* coffee-break_.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477018B72040005CB564 /* coffee-break_.png */; };
-		CBEA478918B72047005CB564 /* colorful_1440x900.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477118B72040005CB564 /* colorful_1440x900.png */; };
-		CBEA478A18B72047005CB564 /* Composition53.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477218B72040005CB564 /* Composition53.png */; };
-		CBEA478B18B72047005CB564 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477318B72040005CB564 /* Dragon.png */; };
-		CBEA478C18B72047005CB564 /* eclipse.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477418B72041005CB564 /* eclipse.png */; };
-		CBEA478D18B72047005CB564 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477518B72041005CB564 /* face.png */; };
-		CBEA478E18B72047005CB564 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477618B72041005CB564 /* focus.png */; };
-		CBEA478F18B72047005CB564 /* gbo.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477718B72041005CB564 /* gbo.png */; };
-		CBEA479018B72047005CB564 /* Green_Plant_(2560x1600).png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477818B72042005CB564 /* Green_Plant_(2560x1600).png */; };
-		CBEA479118B72047005CB564 /* grounded.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477918B72042005CB564 /* grounded.png */; };
-		CBEA479218B72047005CB564 /* happy.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477A18B72042005CB564 /* happy.png */; };
-		CBEA479318B72047005CB564 /* LeatherHoles-Apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477B18B72043005CB564 /* LeatherHoles-Apple.png */; };
-		CBEA479418B72047005CB564 /* Let_it_snow_by_mj_coffeeholick.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477C18B72043005CB564 /* Let_it_snow_by_mj_coffeeholick.png */; };
-		CBEA479518B72047005CB564 /* Luxury_Apple_by_Stratification.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477D18B72043005CB564 /* Luxury_Apple_by_Stratification.png */; };
-		CBEA479618B72047005CB564 /* MacMini.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477E18B72044005CB564 /* MacMini.png */; };
-		CBEA479718B72047005CB564 /* SlaveKingGod.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA477F18B72044005CB564 /* SlaveKingGod.png */; };
-		CBEA479818B72047005CB564 /* Snow_Leopard_by_vladstudio.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA478018B72045005CB564 /* Snow_Leopard_by_vladstudio.png */; };
-		CBEA479918B72047005CB564 /* Space Fold.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA478118B72045005CB564 /* Space Fold.png */; };
-		CBEA479A18B72048005CB564 /* Stormcloud_Schmeisser.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA478218B72046005CB564 /* Stormcloud_Schmeisser.png */; };
-		CBEA479B18B72048005CB564 /* tiamat.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA478318B72046005CB564 /* tiamat.png */; };
-		CBEA479C18B72048005CB564 /* WTF.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA478418B72047005CB564 /* WTF.png */; };
-		CBEA47A318B7207A005CB564 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA479E18B72079005CB564 /* AQGridSelection.png */; };
-		CBEA47A418B7207A005CB564 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA479F18B72079005CB564 /* AQGridSelectionGray.png */; };
-		CBEA47A518B7207A005CB564 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA47A018B72079005CB564 /* AQGridSelectionGrayBlue.png */; };
-		CBEA47A618B7207A005CB564 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA47A118B72079005CB564 /* AQGridSelectionGreen.png */; };
-		CBEA47A718B7207A005CB564 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CBEA47A218B72079005CB564 /* AQGridSelectionRed.png */; };
-		CBEA47AC18B720B8005CB564 /* BookshelfGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEA47AA18B720B8005CB564 /* BookshelfGridViewController.xib */; };
-		CBEA47AD18B720B8005CB564 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEA47AB18B720B8005CB564 /* MainWindow.xib */; };
-		CBEA47B318B72D4A005CB564 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEA47B218B72D4A005CB564 /* libGTLTouchStaticLib.a */; };
-		CBEA47B518B72FD6005CB564 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEA47B418B72FD6005CB564 /* QuartzCore.framework */; };
+		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
+		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
+		CB8B125318C9760A00DC90B0 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB8B125018C9760A00DC90B0 /* users.txt */; };
+		CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */; };
+		CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */; };
+		CB9CD3C118BA9FF000DF6754 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3AB18BA9FF000DF6754 /* AQGridView.m */; };
+		CB9CD3C218BA9FF000DF6754 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3AF18BA9FF000DF6754 /* AQGridViewAnimatorItem.m */; };
+		CB9CD3C318BA9FF000DF6754 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3B118BA9FF000DF6754 /* AQGridViewCell.m */; };
+		CB9CD3C418BA9FF000DF6754 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3B418BA9FF000DF6754 /* AQGridViewController.m */; };
+		CB9CD3C518BA9FF000DF6754 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3B618BA9FF000DF6754 /* AQGridViewData.m */; };
+		CB9CD3C618BA9FF000DF6754 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3B818BA9FF000DF6754 /* AQGridViewUpdateInfo.m */; };
+		CB9CD3C718BA9FF000DF6754 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3BA18BA9FF000DF6754 /* AQGridViewUpdateItem.m */; };
+		CB9CD3C818BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3BC18BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		CB9CD3C918BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3BE18BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.m */; };
+		CB9CD3CA18BA9FF000DF6754 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3C018BA9FF000DF6754 /* UIColor+AQGridView.m */; };
+		CB9CD3D618BAA01900DF6754 /* BookshelfGridCellChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3CC18BAA01900DF6754 /* BookshelfGridCellChooser.m */; };
+		CB9CD3D718BAA01900DF6754 /* BookshelfGridFilledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3CE18BAA01900DF6754 /* BookshelfGridFilledCell.m */; };
+		CB9CD3D818BAA01900DF6754 /* BookshelfGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3D018BAA01900DF6754 /* BookshelfGridViewCell.m */; };
+		CB9CD3D918BAA01900DF6754 /* BookshelfGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3D218BAA01900DF6754 /* BookshelfGridViewController.m */; };
+		CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */; };
+		CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */; };
+		CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */; };
+		CB9CD41918BAA0A300DF6754 /* AQGridSelectionGray.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */; };
+		CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */; };
+		CB9CD41B18BAA0A300DF6754 /* AQGridSelectionGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */; };
+		CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */; };
+		CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC9636C18CFE1D9007FA669 /* AdminView.m */; };
+		CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848A818C8037200153587 /* UserLoginBackend.m */; };
+		CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD848AB18C8046200153587 /* UserLoginViewController.m */; };
+		CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD848AC18C8046200153587 /* UserLoginViewController.xib */; };
+		CBE86B5018BE9A7F00055ABC /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4E18BE9A7F00055ABC /* Black.png */; };
+		CBE86B5118BE9A7F00055ABC /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE86B4F18BE9A7F00055ABC /* Green.png */; };
+		E1115B5E18E0D39A0087DC02 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1115B5D18E0D39A0087DC02 /* SenTestingKit.framework */; };
+		E1115B5F18E0D39A0087DC02 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B69E181DB7B500EB3674 /* UIKit.framework */; };
+		E1115B6018E0D39A0087DC02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B6A0181DB7B500EB3674 /* Foundation.framework */; };
+		E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1115B6418E0D39A0087DC02 /* InfoPlist.strings */; };
+		E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */; };
+		E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B7118E0D9D30087DC02 /* PaintViewTest.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E1115B6E18E0D3BE0087DC02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C762B693181DB7B500EB3674 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C762B69A181DB7B500EB3674;
+			remoteInfo = StemNotebook;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraSubmenuView.xib; sourceTree = "<group>"; };
+		16656FEC18DBACF700835842 /* CameraSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSubmenuView.h; sourceTree = "<group>"; };
+		16656FED18DBACF700835842 /* CameraSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSubmenuView.m; sourceTree = "<group>"; };
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
+		B4B7E04618E0E70A00FEF893 /* UserLoginTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTest.h; sourceTree = "<group>"; };
+		B4B7E04718E0E70A00FEF893 /* UserLoginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTest.m; sourceTree = "<group>"; };
+		B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
+		B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
+		B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSubmenuView.h; sourceTree = "<group>"; };
+		C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		C71981A71850138E00D502E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C71981A81850138E00D502E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C71981A91850138E00D502E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -121,77 +132,68 @@
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
-		CBEA473418B71FA7005CB564 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Bookshelf/AQGridViewClasses/AQGridView.h; sourceTree = "<group>"; };
-		CBEA473518B71FA7005CB564 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridView.m; path = Bookshelf/AQGridViewClasses/AQGridView.m; sourceTree = "<group>"; };
-		CBEA473618B71FA7005CB564 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLayout.h"; path = "Bookshelf/AQGridViewClasses/AQGridView+CellLayout.h"; sourceTree = "<group>"; };
-		CBEA473718B71FA7005CB564 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLocationDelegation.h"; path = "Bookshelf/AQGridViewClasses/AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
-		CBEA473818B71FA7005CB564 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewAnimatorItem.h; path = Bookshelf/AQGridViewClasses/AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
-		CBEA473918B71FA7005CB564 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewAnimatorItem.m; path = Bookshelf/AQGridViewClasses/AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
-		CBEA473A18B71FA7005CB564 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewCell.h; path = Bookshelf/AQGridViewClasses/AQGridViewCell.h; sourceTree = "<group>"; };
-		CBEA473B18B71FA7005CB564 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewCell.m; path = Bookshelf/AQGridViewClasses/AQGridViewCell.m; sourceTree = "<group>"; };
-		CBEA473C18B71FA7005CB564 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridViewCell+AQGridViewCellPrivate.h"; path = "Bookshelf/AQGridViewClasses/AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
-		CBEA473D18B71FA7005CB564 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewController.h; path = Bookshelf/AQGridViewClasses/AQGridViewController.h; sourceTree = "<group>"; };
-		CBEA473E18B71FA7005CB564 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewController.m; path = Bookshelf/AQGridViewClasses/AQGridViewController.m; sourceTree = "<group>"; };
-		CBEA473F18B71FA7005CB564 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewData.h; path = Bookshelf/AQGridViewClasses/AQGridViewData.h; sourceTree = "<group>"; };
-		CBEA474018B71FA7005CB564 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewData.m; path = Bookshelf/AQGridViewClasses/AQGridViewData.m; sourceTree = "<group>"; };
-		CBEA474118B71FA7005CB564 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewUpdateInfo.h; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
-		CBEA474218B71FA7005CB564 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewUpdateInfo.m; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
-		CBEA474318B71FA7005CB564 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewUpdateItem.h; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateItem.h; sourceTree = "<group>"; };
-		CBEA474418B71FA7005CB564 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewUpdateItem.m; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateItem.m; sourceTree = "<group>"; };
-		CBEA474518B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+AQIndexesOutsideSet.h"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
-		CBEA474618B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+AQIndexesOutsideSet.m"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
-		CBEA474718B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+AQIsSetContiguous.h"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
-		CBEA474818B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+AQIsSetContiguous.m"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
-		CBEA474918B71FA7005CB564 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+AQGridView.h"; path = "Bookshelf/AQGridViewClasses/UIColor+AQGridView.h"; sourceTree = "<group>"; };
-		CBEA474A18B71FA7005CB564 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+AQGridView.m"; path = "Bookshelf/AQGridViewClasses/UIColor+AQGridView.m"; sourceTree = "<group>"; };
-		CBEA475618B7200D005CB564 /* BookshelfGridAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridAppDelegate.h; path = Bookshelf/Classes/BookshelfGridAppDelegate.h; sourceTree = "<group>"; };
-		CBEA475718B7200D005CB564 /* BookshelfGridAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridAppDelegate.m; path = Bookshelf/Classes/BookshelfGridAppDelegate.m; sourceTree = "<group>"; };
-		CBEA475818B7200D005CB564 /* BookshelfGridCellChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridCellChooser.h; path = Bookshelf/Classes/BookshelfGridCellChooser.h; sourceTree = "<group>"; };
-		CBEA475918B7200D005CB564 /* BookshelfGridCellChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridCellChooser.m; path = Bookshelf/Classes/BookshelfGridCellChooser.m; sourceTree = "<group>"; };
-		CBEA475A18B7200D005CB564 /* BookshelfGridFilledCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridFilledCell.h; path = Bookshelf/Classes/BookshelfGridFilledCell.h; sourceTree = "<group>"; };
-		CBEA475B18B7200D005CB564 /* BookshelfGridFilledCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridFilledCell.m; path = Bookshelf/Classes/BookshelfGridFilledCell.m; sourceTree = "<group>"; };
-		CBEA475C18B7200D005CB564 /* BookshelfGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewCell.h; path = Bookshelf/Classes/BookshelfGridViewCell.h; sourceTree = "<group>"; };
-		CBEA475D18B7200D005CB564 /* BookshelfGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewCell.m; path = Bookshelf/Classes/BookshelfGridViewCell.m; sourceTree = "<group>"; };
-		CBEA475E18B7200D005CB564 /* BookshelfGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewController.h; path = Bookshelf/Classes/BookshelfGridViewController.h; sourceTree = "<group>"; };
-		CBEA475F18B7200D005CB564 /* BookshelfGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewController.m; path = Bookshelf/Classes/BookshelfGridViewController.m; sourceTree = "<group>"; };
-		CBEA476018B7200D005CB564 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = Bookshelf/Classes/UserLoginViewController.h; sourceTree = "<group>"; };
-		CBEA476118B7200D005CB564 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = Bookshelf/Classes/UserLoginViewController.m; sourceTree = "<group>"; };
-		CBEA476218B7200D005CB564 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = Bookshelf/Classes/UserLoginViewController.xib; sourceTree = "<group>"; };
-		CBEA476318B7200E005CB564 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = Bookshelf/Classes/users.txt; sourceTree = "<group>"; };
-		CBEA476D18B7203F005CB564 /* 3D-simplicity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3D-simplicity.png"; path = "Bookshelf/Images/3D-simplicity.png"; sourceTree = "<group>"; };
-		CBEA476E18B72040005CB564 /* AppleTV-esque_by-mikelcroft_nl-1440.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppleTV-esque_by-mikelcroft_nl-1440.png"; path = "Bookshelf/Images/AppleTV-esque_by-mikelcroft_nl-1440.png"; sourceTree = "<group>"; };
-		CBEA476F18B72040005CB564 /* batman_surfing_on_superman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = batman_surfing_on_superman.png; path = Bookshelf/Images/batman_surfing_on_superman.png; sourceTree = "<group>"; };
-		CBEA477018B72040005CB564 /* coffee-break_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coffee-break_.png"; path = "Bookshelf/Images/coffee-break_.png"; sourceTree = "<group>"; };
-		CBEA477118B72040005CB564 /* colorful_1440x900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colorful_1440x900.png; path = Bookshelf/Images/colorful_1440x900.png; sourceTree = "<group>"; };
-		CBEA477218B72040005CB564 /* Composition53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Composition53.png; path = Bookshelf/Images/Composition53.png; sourceTree = "<group>"; };
-		CBEA477318B72040005CB564 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Dragon.png; path = Bookshelf/Images/Dragon.png; sourceTree = "<group>"; };
-		CBEA477418B72041005CB564 /* eclipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eclipse.png; path = Bookshelf/Images/eclipse.png; sourceTree = "<group>"; };
-		CBEA477518B72041005CB564 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = face.png; path = Bookshelf/Images/face.png; sourceTree = "<group>"; };
-		CBEA477618B72041005CB564 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = focus.png; path = Bookshelf/Images/focus.png; sourceTree = "<group>"; };
-		CBEA477718B72041005CB564 /* gbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gbo.png; path = Bookshelf/Images/gbo.png; sourceTree = "<group>"; };
-		CBEA477818B72042005CB564 /* Green_Plant_(2560x1600).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green_Plant_(2560x1600).png"; path = "Bookshelf/Images/Green_Plant_(2560x1600).png"; sourceTree = "<group>"; };
-		CBEA477918B72042005CB564 /* grounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grounded.png; path = Bookshelf/Images/grounded.png; sourceTree = "<group>"; };
-		CBEA477A18B72042005CB564 /* happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = happy.png; path = Bookshelf/Images/happy.png; sourceTree = "<group>"; };
-		CBEA477B18B72043005CB564 /* LeatherHoles-Apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeatherHoles-Apple.png"; path = "Bookshelf/Images/LeatherHoles-Apple.png"; sourceTree = "<group>"; };
-		CBEA477C18B72043005CB564 /* Let_it_snow_by_mj_coffeeholick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Let_it_snow_by_mj_coffeeholick.png; path = Bookshelf/Images/Let_it_snow_by_mj_coffeeholick.png; sourceTree = "<group>"; };
-		CBEA477D18B72043005CB564 /* Luxury_Apple_by_Stratification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Luxury_Apple_by_Stratification.png; path = Bookshelf/Images/Luxury_Apple_by_Stratification.png; sourceTree = "<group>"; };
-		CBEA477E18B72044005CB564 /* MacMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MacMini.png; path = Bookshelf/Images/MacMini.png; sourceTree = "<group>"; };
-		CBEA477F18B72044005CB564 /* SlaveKingGod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SlaveKingGod.png; path = Bookshelf/Images/SlaveKingGod.png; sourceTree = "<group>"; };
-		CBEA478018B72045005CB564 /* Snow_Leopard_by_vladstudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Snow_Leopard_by_vladstudio.png; path = Bookshelf/Images/Snow_Leopard_by_vladstudio.png; sourceTree = "<group>"; };
-		CBEA478118B72045005CB564 /* Space Fold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Space Fold.png"; path = "Bookshelf/Images/Space Fold.png"; sourceTree = "<group>"; };
-		CBEA478218B72046005CB564 /* Stormcloud_Schmeisser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stormcloud_Schmeisser.png; path = Bookshelf/Images/Stormcloud_Schmeisser.png; sourceTree = "<group>"; };
-		CBEA478318B72046005CB564 /* tiamat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiamat.png; path = Bookshelf/Images/tiamat.png; sourceTree = "<group>"; };
-		CBEA478418B72047005CB564 /* WTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WTF.png; path = Bookshelf/Images/WTF.png; sourceTree = "<group>"; };
-		CBEA479E18B72079005CB564 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelection.png; path = Bookshelf/Resources/AQGridSelection.png; sourceTree = "<group>"; };
-		CBEA479F18B72079005CB564 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGray.png; path = Bookshelf/Resources/AQGridSelectionGray.png; sourceTree = "<group>"; };
-		CBEA47A018B72079005CB564 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
-		CBEA47A118B72079005CB564 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGreen.png; path = Bookshelf/Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
-		CBEA47A218B72079005CB564 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionRed.png; path = Bookshelf/Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
-		CBEA47A918B720B8005CB564 /* Bookshelf_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bookshelf_Prefix.pch; path = Bookshelf/Bookshelf_Prefix.pch; sourceTree = "<group>"; };
-		CBEA47AA18B720B8005CB564 /* BookshelfGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookshelfGridViewController.xib; path = Bookshelf/BookshelfGridViewController.xib; sourceTree = "<group>"; };
-		CBEA47AB18B720B8005CB564 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Bookshelf/MainWindow.xib; sourceTree = "<group>"; };
-		CBEA47B218B72D4A005CB564 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../../../Library/Developer/Xcode/DerivedData/GTL-aptpgjbqkestsofypwxyxisfdpqa/Build/Products/Debug-iphonesimulator/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
-		CBEA47B418B72FD6005CB564 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
+		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
+		CB8B125018C9760A00DC90B0 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = LoginScreen/Resources/users.txt; sourceTree = "<group>"; };
+		CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
+		CB9CD3AA18BA9FF000DF6754 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Bookshelf/AQGridViewClasses/AQGridView.h; sourceTree = "<group>"; };
+		CB9CD3AB18BA9FF000DF6754 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridView.m; path = Bookshelf/AQGridViewClasses/AQGridView.m; sourceTree = "<group>"; };
+		CB9CD3AC18BA9FF000DF6754 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLayout.h"; path = "Bookshelf/AQGridViewClasses/AQGridView+CellLayout.h"; sourceTree = "<group>"; };
+		CB9CD3AD18BA9FF000DF6754 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLocationDelegation.h"; path = "Bookshelf/AQGridViewClasses/AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
+		CB9CD3AE18BA9FF000DF6754 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewAnimatorItem.h; path = Bookshelf/AQGridViewClasses/AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
+		CB9CD3AF18BA9FF000DF6754 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewAnimatorItem.m; path = Bookshelf/AQGridViewClasses/AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
+		CB9CD3B018BA9FF000DF6754 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewCell.h; path = Bookshelf/AQGridViewClasses/AQGridViewCell.h; sourceTree = "<group>"; };
+		CB9CD3B118BA9FF000DF6754 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewCell.m; path = Bookshelf/AQGridViewClasses/AQGridViewCell.m; sourceTree = "<group>"; };
+		CB9CD3B218BA9FF000DF6754 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridViewCell+AQGridViewCellPrivate.h"; path = "Bookshelf/AQGridViewClasses/AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
+		CB9CD3B318BA9FF000DF6754 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewController.h; path = Bookshelf/AQGridViewClasses/AQGridViewController.h; sourceTree = "<group>"; };
+		CB9CD3B418BA9FF000DF6754 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewController.m; path = Bookshelf/AQGridViewClasses/AQGridViewController.m; sourceTree = "<group>"; };
+		CB9CD3B518BA9FF000DF6754 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewData.h; path = Bookshelf/AQGridViewClasses/AQGridViewData.h; sourceTree = "<group>"; };
+		CB9CD3B618BA9FF000DF6754 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewData.m; path = Bookshelf/AQGridViewClasses/AQGridViewData.m; sourceTree = "<group>"; };
+		CB9CD3B718BA9FF000DF6754 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewUpdateInfo.h; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
+		CB9CD3B818BA9FF000DF6754 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewUpdateInfo.m; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
+		CB9CD3B918BA9FF000DF6754 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridViewUpdateItem.h; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateItem.h; sourceTree = "<group>"; };
+		CB9CD3BA18BA9FF000DF6754 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridViewUpdateItem.m; path = Bookshelf/AQGridViewClasses/AQGridViewUpdateItem.m; sourceTree = "<group>"; };
+		CB9CD3BB18BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+AQIndexesOutsideSet.h"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
+		CB9CD3BC18BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+AQIndexesOutsideSet.m"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
+		CB9CD3BD18BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+AQIsSetContiguous.h"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
+		CB9CD3BE18BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+AQIsSetContiguous.m"; path = "Bookshelf/AQGridViewClasses/NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
+		CB9CD3BF18BA9FF000DF6754 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+AQGridView.h"; path = "Bookshelf/AQGridViewClasses/UIColor+AQGridView.h"; sourceTree = "<group>"; };
+		CB9CD3C018BA9FF000DF6754 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+AQGridView.m"; path = "Bookshelf/AQGridViewClasses/UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		CB9CD3CB18BAA01900DF6754 /* BookshelfGridCellChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridCellChooser.h; path = Bookshelf/Classes/BookshelfGridCellChooser.h; sourceTree = "<group>"; };
+		CB9CD3CC18BAA01900DF6754 /* BookshelfGridCellChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridCellChooser.m; path = Bookshelf/Classes/BookshelfGridCellChooser.m; sourceTree = "<group>"; };
+		CB9CD3CD18BAA01900DF6754 /* BookshelfGridFilledCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridFilledCell.h; path = Bookshelf/Classes/BookshelfGridFilledCell.h; sourceTree = "<group>"; };
+		CB9CD3CE18BAA01900DF6754 /* BookshelfGridFilledCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridFilledCell.m; path = Bookshelf/Classes/BookshelfGridFilledCell.m; sourceTree = "<group>"; };
+		CB9CD3CF18BAA01900DF6754 /* BookshelfGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewCell.h; path = Bookshelf/Classes/BookshelfGridViewCell.h; sourceTree = "<group>"; };
+		CB9CD3D018BAA01900DF6754 /* BookshelfGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewCell.m; path = Bookshelf/Classes/BookshelfGridViewCell.m; sourceTree = "<group>"; };
+		CB9CD3D118BAA01900DF6754 /* BookshelfGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookshelfGridViewController.h; path = Bookshelf/Classes/BookshelfGridViewController.h; sourceTree = "<group>"; };
+		CB9CD3D218BAA01900DF6754 /* BookshelfGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookshelfGridViewController.m; path = Bookshelf/Classes/BookshelfGridViewController.m; sourceTree = "<group>"; };
+		CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookshelfGridViewController.xib; path = Bookshelf/BookshelfGridViewController.xib; sourceTree = "<group>"; };
+		CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Bookshelf/MainWindow.xib; sourceTree = "<group>"; };
+		CB9CD3E018BAA04300DF6754 /* Bookshelf_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bookshelf_Prefix.pch; path = Bookshelf/Bookshelf_Prefix.pch; sourceTree = "<group>"; };
+		CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelection.png; path = Bookshelf/Resources/AQGridSelection.png; sourceTree = "<group>"; };
+		CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGray.png; path = Bookshelf/Resources/AQGridSelectionGray.png; sourceTree = "<group>"; };
+		CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGrayBlue.png; path = Bookshelf/Resources/AQGridSelectionGrayBlue.png; sourceTree = "<group>"; };
+		CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionGreen.png; path = Bookshelf/Resources/AQGridSelectionGreen.png; sourceTree = "<group>"; };
+		CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AQGridSelectionRed.png; path = Bookshelf/Resources/AQGridSelectionRed.png; sourceTree = "<group>"; };
+		CBC9636B18CFE1D9007FA669 /* AdminView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdminView.h; path = LoginScreen/AdminView.h; sourceTree = "<group>"; };
+		CBC9636C18CFE1D9007FA669 /* AdminView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdminView.m; path = LoginScreen/AdminView.m; sourceTree = "<group>"; };
+		CBD848A718C8037200153587 /* UserLoginBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginBackend.h; path = LoginScreen/UserLoginBackend.h; sourceTree = "<group>"; };
+		CBD848A818C8037200153587 /* UserLoginBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginBackend.m; path = LoginScreen/UserLoginBackend.m; sourceTree = "<group>"; };
+		CBD848AA18C8046200153587 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = LoginScreen/UserLoginViewController.h; sourceTree = "<group>"; };
+		CBD848AB18C8046200153587 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = LoginScreen/UserLoginViewController.m; sourceTree = "<group>"; };
+		CBD848AC18C8046200153587 /* UserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserLoginViewController.xib; path = LoginScreen/UserLoginViewController.xib; sourceTree = "<group>"; };
+		CBE86B4E18BE9A7F00055ABC /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Black.png; path = Bookshelf/Images/Black.png; sourceTree = "<group>"; };
+		CBE86B4F18BE9A7F00055ABC /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Bookshelf/Images/Green.png; sourceTree = "<group>"; };
+		E1115B5C18E0D39A0087DC02 /* StemNotebookUnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StemNotebookUnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1115B5D18E0D39A0087DC02 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E1115B6318E0D39A0087DC02 /* StemNotebookUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StemNotebookUnitTest-Info.plist"; sourceTree = "<group>"; };
+		E1115B6518E0D39A0087DC02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StemNotebookUnitTest.h; sourceTree = "<group>"; };
+		E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StemNotebookUnitTest.m; sourceTree = "<group>"; };
+		E1115B6A18E0D39A0087DC02 /* StemNotebookUnitTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StemNotebookUnitTest-Prefix.pch"; sourceTree = "<group>"; };
+		E1115B7018E0D9D30087DC02 /* PaintViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintViewTest.h; sourceTree = "<group>"; };
+		E1115B7118E0D9D30087DC02 /* PaintViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintViewTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,8 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBEA47B518B72FD6005CB564 /* QuartzCore.framework in Frameworks */,
-				CBEA47B318B72D4A005CB564 /* libGTLTouchStaticLib.a in Frameworks */,
+				CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */,
+				CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */,
 				C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */,
 				C71981AC1850138E00D502E3 /* Security.framework in Frameworks */,
 				C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */,
@@ -210,16 +212,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1115B5818E0D39A0087DC02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1115B5E18E0D39A0087DC02 /* SenTestingKit.framework in Frameworks */,
+				E1115B5F18E0D39A0087DC02 /* UIKit.framework in Frameworks */,
+				E1115B6018E0D39A0087DC02 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		C72B07D1182B325E003B9494 /* IB Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */,
 				C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */,
 				C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */,
 				C75EF9F418246AAE00C9A725 /* SideBarView.xib */,
 				168337881826F76C0069A31E /* PaintSubmenuView.xib */,
+				16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */,
 			);
 			name = "IB Files";
 			sourceTree = "<group>";
@@ -227,6 +241,8 @@
 		C72B07D2182B3283003B9494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */,
+				B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */,
 				C7E4479018400E7F0059A65F /* MenuSubmenuView.h */,
 				C7E4479118400E7F0059A65F /* MenuSubmenuView.m */,
 				C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */,
@@ -235,6 +251,8 @@
 				C75EF9FA1826E8E600C9A725 /* PaintView.m */,
 				C75EF9F618246B3D00C9A725 /* SideBarView.h */,
 				C75EF9F718246B3D00C9A725 /* SideBarView.m */,
+				16656FEC18DBACF700835842 /* CameraSubmenuView.h */,
+				16656FED18DBACF700835842 /* CameraSubmenuView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -251,8 +269,10 @@
 		C762B692181DB7B500EB3674 = {
 			isa = PBXGroup;
 			children = (
-				CBEA470218B71F14005CB564 /* Bookshelf */,
+				CBC4C3E018BD98E9001B6FBA /* LoginScreen */,
+				CB9CD32F18BA9C3200DF6754 /* Bookshelf */,
 				C762B6A4181DB7B500EB3674 /* StemNotebook */,
+				E1115B6118E0D39A0087DC02 /* StemNotebookUnitTest */,
 				C762B69D181DB7B500EB3674 /* Frameworks */,
 				C762B69C181DB7B500EB3674 /* Products */,
 			);
@@ -262,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				C762B69B181DB7B500EB3674 /* StemNotebook.app */,
+				E1115B5C18E0D39A0087DC02 /* StemNotebookUnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,14 +290,16 @@
 		C762B69D181DB7B500EB3674 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CBEA47B218B72D4A005CB564 /* libGTLTouchStaticLib.a */,
-				CBEA47B418B72FD6005CB564 /* QuartzCore.framework */,
+				C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */,
+				CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */,
+				CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */,
 				C71981A71850138E00D502E3 /* MobileCoreServices.framework */,
 				C71981A81850138E00D502E3 /* Security.framework */,
 				C71981A91850138E00D502E3 /* SystemConfiguration.framework */,
 				C762B69E181DB7B500EB3674 /* UIKit.framework */,
 				C762B6A0181DB7B500EB3674 /* Foundation.framework */,
 				C762B6A2181DB7B500EB3674 /* CoreGraphics.framework */,
+				E1115B5D18E0D39A0087DC02 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,8 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				C7AF899C1850D4B000F6A093 /* Api Provided Files */,
-				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
+				C7AF899B1850D49100F6A093 /* Backend Support */,
 				C72B07D2182B3283003B9494 /* Views */,
 				C762B6AE181DB7B500EB3674 /* AppDelegate.m */,
 				C762B6AD181DB7B500EB3674 /* AppDelegate.h */,
@@ -330,112 +353,139 @@
 			name = "Api Provided Files";
 			sourceTree = "<group>";
 		};
-		CBEA470218B71F14005CB564 /* Bookshelf */ = {
+		CB8B124D18C975DA00DC90B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CBEA47A918B720B8005CB564 /* Bookshelf_Prefix.pch */,
-				CBEA47AA18B720B8005CB564 /* BookshelfGridViewController.xib */,
-				CBEA47AB18B720B8005CB564 /* MainWindow.xib */,
-				CBEA476218B7200D005CB564 /* UserLoginViewController.xib */,
-				CBEA47A818B72099005CB564 /* Resources */,
-				CBEA479D18B72061005CB564 /* Images */,
-				CBEA476C18B72017005CB564 /* Classes */,
-				CBEA475518B71FC9005CB564 /* AQGridView */,
+				CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */,
+				CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */,
+				CB8B125018C9760A00DC90B0 /* users.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CB9CD32F18BA9C3200DF6754 /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD33318BA9C6800DF6754 /* AQGridView */,
+				CB9CD33018BA9C4400DF6754 /* Classes */,
+				CB9CD3A418BA9D3F00DF6754 /* IB */,
+				CB9CD33218BA9C5900DF6754 /* Images */,
+				CB9CD33118BA9C4D00DF6754 /* Selection */,
 			);
 			name = Bookshelf;
 			sourceTree = "<group>";
 		};
-		CBEA475518B71FC9005CB564 /* AQGridView */ = {
+		CB9CD33018BA9C4400DF6754 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CBEA473418B71FA7005CB564 /* AQGridView.h */,
-				CBEA473518B71FA7005CB564 /* AQGridView.m */,
-				CBEA473618B71FA7005CB564 /* AQGridView+CellLayout.h */,
-				CBEA473718B71FA7005CB564 /* AQGridView+CellLocationDelegation.h */,
-				CBEA473818B71FA7005CB564 /* AQGridViewAnimatorItem.h */,
-				CBEA473918B71FA7005CB564 /* AQGridViewAnimatorItem.m */,
-				CBEA473A18B71FA7005CB564 /* AQGridViewCell.h */,
-				CBEA473B18B71FA7005CB564 /* AQGridViewCell.m */,
-				CBEA473C18B71FA7005CB564 /* AQGridViewCell+AQGridViewCellPrivate.h */,
-				CBEA473D18B71FA7005CB564 /* AQGridViewController.h */,
-				CBEA473E18B71FA7005CB564 /* AQGridViewController.m */,
-				CBEA473F18B71FA7005CB564 /* AQGridViewData.h */,
-				CBEA474018B71FA7005CB564 /* AQGridViewData.m */,
-				CBEA474118B71FA7005CB564 /* AQGridViewUpdateInfo.h */,
-				CBEA474218B71FA7005CB564 /* AQGridViewUpdateInfo.m */,
-				CBEA474318B71FA7005CB564 /* AQGridViewUpdateItem.h */,
-				CBEA474418B71FA7005CB564 /* AQGridViewUpdateItem.m */,
-				CBEA474518B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.h */,
-				CBEA474618B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.m */,
-				CBEA474718B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.h */,
-				CBEA474818B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.m */,
-				CBEA474918B71FA7005CB564 /* UIColor+AQGridView.h */,
-				CBEA474A18B71FA7005CB564 /* UIColor+AQGridView.m */,
-			);
-			name = AQGridView;
-			sourceTree = "<group>";
-		};
-		CBEA476C18B72017005CB564 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CBEA475618B7200D005CB564 /* BookshelfGridAppDelegate.h */,
-				CBEA475718B7200D005CB564 /* BookshelfGridAppDelegate.m */,
-				CBEA475818B7200D005CB564 /* BookshelfGridCellChooser.h */,
-				CBEA475918B7200D005CB564 /* BookshelfGridCellChooser.m */,
-				CBEA475A18B7200D005CB564 /* BookshelfGridFilledCell.h */,
-				CBEA475B18B7200D005CB564 /* BookshelfGridFilledCell.m */,
-				CBEA475C18B7200D005CB564 /* BookshelfGridViewCell.h */,
-				CBEA475D18B7200D005CB564 /* BookshelfGridViewCell.m */,
-				CBEA475E18B7200D005CB564 /* BookshelfGridViewController.h */,
-				CBEA475F18B7200D005CB564 /* BookshelfGridViewController.m */,
-				CBEA476018B7200D005CB564 /* UserLoginViewController.h */,
-				CBEA476118B7200D005CB564 /* UserLoginViewController.m */,
-				CBEA476318B7200E005CB564 /* users.txt */,
+				CB9CD3E018BAA04300DF6754 /* Bookshelf_Prefix.pch */,
+				CB9CD3CB18BAA01900DF6754 /* BookshelfGridCellChooser.h */,
+				CB9CD3CC18BAA01900DF6754 /* BookshelfGridCellChooser.m */,
+				CB9CD3CD18BAA01900DF6754 /* BookshelfGridFilledCell.h */,
+				CB9CD3CE18BAA01900DF6754 /* BookshelfGridFilledCell.m */,
+				CB9CD3CF18BAA01900DF6754 /* BookshelfGridViewCell.h */,
+				CB9CD3D018BAA01900DF6754 /* BookshelfGridViewCell.m */,
+				CB9CD3D118BAA01900DF6754 /* BookshelfGridViewController.h */,
+				CB9CD3D218BAA01900DF6754 /* BookshelfGridViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		CBEA479D18B72061005CB564 /* Images */ = {
+		CB9CD33118BA9C4D00DF6754 /* Selection */ = {
 			isa = PBXGroup;
 			children = (
-				CBEA476D18B7203F005CB564 /* 3D-simplicity.png */,
-				CBEA476E18B72040005CB564 /* AppleTV-esque_by-mikelcroft_nl-1440.png */,
-				CBEA476F18B72040005CB564 /* batman_surfing_on_superman.png */,
-				CBEA477018B72040005CB564 /* coffee-break_.png */,
-				CBEA477118B72040005CB564 /* colorful_1440x900.png */,
-				CBEA477218B72040005CB564 /* Composition53.png */,
-				CBEA477318B72040005CB564 /* Dragon.png */,
-				CBEA477418B72041005CB564 /* eclipse.png */,
-				CBEA477518B72041005CB564 /* face.png */,
-				CBEA477618B72041005CB564 /* focus.png */,
-				CBEA477718B72041005CB564 /* gbo.png */,
-				CBEA477818B72042005CB564 /* Green_Plant_(2560x1600).png */,
-				CBEA477918B72042005CB564 /* grounded.png */,
-				CBEA477A18B72042005CB564 /* happy.png */,
-				CBEA477B18B72043005CB564 /* LeatherHoles-Apple.png */,
-				CBEA477C18B72043005CB564 /* Let_it_snow_by_mj_coffeeholick.png */,
-				CBEA477D18B72043005CB564 /* Luxury_Apple_by_Stratification.png */,
-				CBEA477E18B72044005CB564 /* MacMini.png */,
-				CBEA477F18B72044005CB564 /* SlaveKingGod.png */,
-				CBEA478018B72045005CB564 /* Snow_Leopard_by_vladstudio.png */,
-				CBEA478118B72045005CB564 /* Space Fold.png */,
-				CBEA478218B72046005CB564 /* Stormcloud_Schmeisser.png */,
-				CBEA478318B72046005CB564 /* tiamat.png */,
-				CBEA478418B72047005CB564 /* WTF.png */,
+				CB9CD41318BAA0A300DF6754 /* AQGridSelection.png */,
+				CB9CD41418BAA0A300DF6754 /* AQGridSelectionGray.png */,
+				CB9CD41518BAA0A300DF6754 /* AQGridSelectionGrayBlue.png */,
+				CB9CD41618BAA0A300DF6754 /* AQGridSelectionGreen.png */,
+				CB9CD41718BAA0A300DF6754 /* AQGridSelectionRed.png */,
+			);
+			name = Selection;
+			sourceTree = "<group>";
+		};
+		CB9CD33218BA9C5900DF6754 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CBE86B4E18BE9A7F00055ABC /* Black.png */,
+				CBE86B4F18BE9A7F00055ABC /* Green.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
 		};
-		CBEA47A818B72099005CB564 /* Resources */ = {
+		CB9CD33318BA9C6800DF6754 /* AQGridView */ = {
 			isa = PBXGroup;
 			children = (
-				CBEA479E18B72079005CB564 /* AQGridSelection.png */,
-				CBEA479F18B72079005CB564 /* AQGridSelectionGray.png */,
-				CBEA47A018B72079005CB564 /* AQGridSelectionGrayBlue.png */,
-				CBEA47A118B72079005CB564 /* AQGridSelectionGreen.png */,
-				CBEA47A218B72079005CB564 /* AQGridSelectionRed.png */,
+				CB9CD3AA18BA9FF000DF6754 /* AQGridView.h */,
+				CB9CD3AB18BA9FF000DF6754 /* AQGridView.m */,
+				CB9CD3AC18BA9FF000DF6754 /* AQGridView+CellLayout.h */,
+				CB9CD3AD18BA9FF000DF6754 /* AQGridView+CellLocationDelegation.h */,
+				CB9CD3AE18BA9FF000DF6754 /* AQGridViewAnimatorItem.h */,
+				CB9CD3AF18BA9FF000DF6754 /* AQGridViewAnimatorItem.m */,
+				CB9CD3B018BA9FF000DF6754 /* AQGridViewCell.h */,
+				CB9CD3B118BA9FF000DF6754 /* AQGridViewCell.m */,
+				CB9CD3B218BA9FF000DF6754 /* AQGridViewCell+AQGridViewCellPrivate.h */,
+				CB9CD3B318BA9FF000DF6754 /* AQGridViewController.h */,
+				CB9CD3B418BA9FF000DF6754 /* AQGridViewController.m */,
+				CB9CD3B518BA9FF000DF6754 /* AQGridViewData.h */,
+				CB9CD3B618BA9FF000DF6754 /* AQGridViewData.m */,
+				CB9CD3B718BA9FF000DF6754 /* AQGridViewUpdateInfo.h */,
+				CB9CD3B818BA9FF000DF6754 /* AQGridViewUpdateInfo.m */,
+				CB9CD3B918BA9FF000DF6754 /* AQGridViewUpdateItem.h */,
+				CB9CD3BA18BA9FF000DF6754 /* AQGridViewUpdateItem.m */,
+				CB9CD3BB18BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.h */,
+				CB9CD3BC18BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.m */,
+				CB9CD3BD18BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.h */,
+				CB9CD3BE18BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.m */,
+				CB9CD3BF18BA9FF000DF6754 /* UIColor+AQGridView.h */,
+				CB9CD3C018BA9FF000DF6754 /* UIColor+AQGridView.m */,
 			);
-			name = Resources;
+			name = AQGridView;
+			sourceTree = "<group>";
+		};
+		CB9CD3A418BA9D3F00DF6754 /* IB */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CD3DC18BAA03400DF6754 /* BookshelfGridViewController.xib */,
+				CB9CD3DD18BAA03400DF6754 /* MainWindow.xib */,
+			);
+			name = IB;
+			sourceTree = "<group>";
+		};
+		CBC4C3E018BD98E9001B6FBA /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CB8B124D18C975DA00DC90B0 /* Resources */,
+				CBD848AA18C8046200153587 /* UserLoginViewController.h */,
+				CBD848AB18C8046200153587 /* UserLoginViewController.m */,
+				CBD848AC18C8046200153587 /* UserLoginViewController.xib */,
+				CBD848A718C8037200153587 /* UserLoginBackend.h */,
+				CBD848A818C8037200153587 /* UserLoginBackend.m */,
+				CBC9636B18CFE1D9007FA669 /* AdminView.h */,
+				CBC9636C18CFE1D9007FA669 /* AdminView.m */,
+			);
+			name = LoginScreen;
+			sourceTree = "<group>";
+		};
+		E1115B6118E0D39A0087DC02 /* StemNotebookUnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */,
+				E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */,
+				E1115B6218E0D39A0087DC02 /* Supporting Files */,
+				E1115B7018E0D9D30087DC02 /* PaintViewTest.h */,
+				E1115B7118E0D9D30087DC02 /* PaintViewTest.m */,
+			);
+			path = StemNotebookUnitTest;
+			sourceTree = "<group>";
+		};
+		E1115B6218E0D39A0087DC02 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1115B6318E0D39A0087DC02 /* StemNotebookUnitTest-Info.plist */,
+				E1115B6418E0D39A0087DC02 /* InfoPlist.strings */,
+				E1115B6A18E0D39A0087DC02 /* StemNotebookUnitTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,6 +508,25 @@
 			productReference = C762B69B181DB7B500EB3674 /* StemNotebook.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E1115B5B18E0D39A0087DC02 /* StemNotebookUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1115B6D18E0D39A0087DC02 /* Build configuration list for PBXNativeTarget "StemNotebookUnitTest" */;
+			buildPhases = (
+				E1115B5718E0D39A0087DC02 /* Sources */,
+				E1115B5818E0D39A0087DC02 /* Frameworks */,
+				E1115B5918E0D39A0087DC02 /* Resources */,
+				E1115B5A18E0D39A0087DC02 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1115B6F18E0D3BE0087DC02 /* PBXTargetDependency */,
+			);
+			name = StemNotebookUnitTest;
+			productName = StemNotebookUnitTest;
+			productReference = E1115B5C18E0D39A0087DC02 /* StemNotebookUnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -468,7 +537,7 @@
 				ORGANIZATIONNAME = HardWonKnowledge;
 				TargetAttributes = {
 					C762B69A181DB7B500EB3674 = {
-						DevelopmentTeam = VT9937V7SF;
+						DevelopmentTeam = LN2U99T73H;
 					};
 				};
 			};
@@ -485,6 +554,7 @@
 			projectRoot = "";
 			targets = (
 				C762B69A181DB7B500EB3674 /* StemNotebook */,
+				E1115B5B18E0D39A0087DC02 /* StemNotebookUnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -503,43 +573,49 @@
 				C762B6B5181DB7B500EB3674 /* Default-568h@2x.png in Resources */,
 				C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */,
 				168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */,
-				CBEA476A18B7200E005CB564 /* UserLoginViewController.xib in Resources */,
-				CBEA476B18B7200E005CB564 /* users.txt in Resources */,
-				CBEA478518B72047005CB564 /* 3D-simplicity.png in Resources */,
-				CBEA478618B72047005CB564 /* AppleTV-esque_by-mikelcroft_nl-1440.png in Resources */,
-				CBEA478718B72047005CB564 /* batman_surfing_on_superman.png in Resources */,
-				CBEA478818B72047005CB564 /* coffee-break_.png in Resources */,
-				CBEA478918B72047005CB564 /* colorful_1440x900.png in Resources */,
-				CBEA478A18B72047005CB564 /* Composition53.png in Resources */,
-				CBEA478B18B72047005CB564 /* Dragon.png in Resources */,
-				CBEA478C18B72047005CB564 /* eclipse.png in Resources */,
-				CBEA478D18B72047005CB564 /* face.png in Resources */,
-				CBEA478E18B72047005CB564 /* focus.png in Resources */,
-				CBEA478F18B72047005CB564 /* gbo.png in Resources */,
-				CBEA479018B72047005CB564 /* Green_Plant_(2560x1600).png in Resources */,
-				CBEA479118B72047005CB564 /* grounded.png in Resources */,
-				CBEA479218B72047005CB564 /* happy.png in Resources */,
-				CBEA479318B72047005CB564 /* LeatherHoles-Apple.png in Resources */,
-				CBEA479418B72047005CB564 /* Let_it_snow_by_mj_coffeeholick.png in Resources */,
-				CBEA479518B72047005CB564 /* Luxury_Apple_by_Stratification.png in Resources */,
-				CBEA479618B72047005CB564 /* MacMini.png in Resources */,
-				CBEA479718B72047005CB564 /* SlaveKingGod.png in Resources */,
-				CBEA479818B72047005CB564 /* Snow_Leopard_by_vladstudio.png in Resources */,
-				CBEA479918B72047005CB564 /* Space Fold.png in Resources */,
-				CBEA479A18B72048005CB564 /* Stormcloud_Schmeisser.png in Resources */,
-				CBEA479B18B72048005CB564 /* tiamat.png in Resources */,
-				CBEA479C18B72048005CB564 /* WTF.png in Resources */,
-				CBEA47A318B7207A005CB564 /* AQGridSelection.png in Resources */,
-				CBEA47A418B7207A005CB564 /* AQGridSelectionGray.png in Resources */,
-				CBEA47A518B7207A005CB564 /* AQGridSelectionGrayBlue.png in Resources */,
-				CBEA47A618B7207A005CB564 /* AQGridSelectionGreen.png in Resources */,
-				CBEA47A718B7207A005CB564 /* AQGridSelectionRed.png in Resources */,
-				CBEA47AC18B720B8005CB564 /* BookshelfGridViewController.xib in Resources */,
-				CBEA47AD18B720B8005CB564 /* MainWindow.xib in Resources */,
+				16656FEB18DBAAE700835842 /* CameraSubmenuView.xib in Resources */,
+				CB9CD3DE18BAA03400DF6754 /* BookshelfGridViewController.xib in Resources */,
+				CB9CD3DF18BAA03400DF6754 /* MainWindow.xib in Resources */,
+				CB9CD41818BAA0A300DF6754 /* AQGridSelection.png in Resources */,
+				CB9CD41918BAA0A300DF6754 /* AQGridSelectionGray.png in Resources */,
+				CB9CD41A18BAA0A300DF6754 /* AQGridSelectionGrayBlue.png in Resources */,
+				CB9CD41B18BAA0A300DF6754 /* AQGridSelectionGreen.png in Resources */,
+				CB9CD41C18BAA0A300DF6754 /* AQGridSelectionRed.png in Resources */,
+				CBE86B5018BE9A7F00055ABC /* Black.png in Resources */,
+				CBE86B5118BE9A7F00055ABC /* Green.png in Resources */,
+				CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */,
+				CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */,
+				CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */,
+				CB8B125318C9760A00DC90B0 /* users.txt in Resources */,
+				B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1115B5918E0D39A0087DC02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1115B5A18E0D39A0087DC02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C762B697181DB7B500EB3674 /* Sources */ = {
@@ -555,26 +631,46 @@
 				C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */,
 				C75EF9FB1826E8E600C9A725 /* PaintView.m in Sources */,
 				C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */,
-				CBEA474B18B71FA7005CB564 /* AQGridView.m in Sources */,
-				CBEA474C18B71FA7005CB564 /* AQGridViewAnimatorItem.m in Sources */,
-				CBEA474D18B71FA7005CB564 /* AQGridViewCell.m in Sources */,
-				CBEA474E18B71FA7005CB564 /* AQGridViewController.m in Sources */,
-				CBEA474F18B71FA7005CB564 /* AQGridViewData.m in Sources */,
-				CBEA475018B71FA7005CB564 /* AQGridViewUpdateInfo.m in Sources */,
-				CBEA475118B71FA7005CB564 /* AQGridViewUpdateItem.m in Sources */,
-				CBEA475218B71FA7005CB564 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
-				CBEA475318B71FA7005CB564 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
-				CBEA475418B71FA7005CB564 /* UIColor+AQGridView.m in Sources */,
-				CBEA476418B7200E005CB564 /* BookshelfGridAppDelegate.m in Sources */,
-				CBEA476518B7200E005CB564 /* BookshelfGridCellChooser.m in Sources */,
-				CBEA476618B7200E005CB564 /* BookshelfGridFilledCell.m in Sources */,
-				CBEA476718B7200E005CB564 /* BookshelfGridViewCell.m in Sources */,
-				CBEA476818B7200E005CB564 /* BookshelfGridViewController.m in Sources */,
-				CBEA476918B7200E005CB564 /* UserLoginViewController.m in Sources */,
+				16656FEE18DBACF700835842 /* CameraSubmenuView.m in Sources */,
+				CB9CD3C118BA9FF000DF6754 /* AQGridView.m in Sources */,
+				CB9CD3C218BA9FF000DF6754 /* AQGridViewAnimatorItem.m in Sources */,
+				CB9CD3C318BA9FF000DF6754 /* AQGridViewCell.m in Sources */,
+				CB9CD3C418BA9FF000DF6754 /* AQGridViewController.m in Sources */,
+				CB9CD3C518BA9FF000DF6754 /* AQGridViewData.m in Sources */,
+				CB9CD3C618BA9FF000DF6754 /* AQGridViewUpdateInfo.m in Sources */,
+				CB9CD3C718BA9FF000DF6754 /* AQGridViewUpdateItem.m in Sources */,
+				CB9CD3C818BA9FF000DF6754 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
+				CB9CD3C918BA9FF000DF6754 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				CB9CD3CA18BA9FF000DF6754 /* UIColor+AQGridView.m in Sources */,
+				CB9CD3D618BAA01900DF6754 /* BookshelfGridCellChooser.m in Sources */,
+				CB9CD3D718BAA01900DF6754 /* BookshelfGridFilledCell.m in Sources */,
+				CB9CD3D818BAA01900DF6754 /* BookshelfGridViewCell.m in Sources */,
+				CB9CD3D918BAA01900DF6754 /* BookshelfGridViewController.m in Sources */,
+				CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */,
+				CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */,
+				CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */,
+				B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1115B5718E0D39A0087DC02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */,
+				E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1115B6F18E0D3BE0087DC02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C762B69A181DB7B500EB3674 /* StemNotebook */;
+			targetProxy = E1115B6E18E0D3BE0087DC02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C762B6A7181DB7B500EB3674 /* InfoPlist.strings */ = {
@@ -591,6 +687,14 @@
 				C762B6BA181DB7B500EB3674 /* en */,
 			);
 			name = NotebookViewController.xib;
+			sourceTree = "<group>";
+		};
+		E1115B6418E0D39A0087DC02 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1115B6518E0D39A0087DC02 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -665,8 +769,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/..\"",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/GTL-aptpgjbqkestsofypwxyxisfdpqa/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../google-api-objectivec-client-read-only/Source\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -674,6 +777,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -686,12 +790,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StemNotebook/StemNotebook-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "StemNotebook/StemNotebook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/..\"",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/GTL-aptpgjbqkestsofypwxyxisfdpqa/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../google-api-objectivec-client-read-only/Source\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -699,8 +803,43 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "/Users/jacob/Desktop/untitled_folder/google-api-objectivec-client-read-only/Source/** ../google-api-objectivec-client-read-only/Source/**";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E1115B6B18E0D39A0087DC02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StemNotebook.app/StemNotebook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StemNotebookUnitTest/StemNotebookUnitTest-Prefix.pch";
+				INFOPLIST_FILE = "StemNotebookUnitTest/StemNotebookUnitTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E1115B6C18E0D39A0087DC02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StemNotebook.app/StemNotebook";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StemNotebookUnitTest/StemNotebookUnitTest-Prefix.pch";
+				INFOPLIST_FILE = "StemNotebookUnitTest/StemNotebookUnitTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -721,6 +860,15 @@
 			buildConfigurations = (
 				C762B6BF181DB7B500EB3674 /* Debug */,
 				C762B6C0181DB7B500EB3674 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1115B6D18E0D39A0087DC02 /* Build configuration list for PBXNativeTarget "StemNotebookUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1115B6B18E0D39A0087DC02 /* Debug */,
+				E1115B6C18E0D39A0087DC02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

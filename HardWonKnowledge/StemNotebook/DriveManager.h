@@ -20,9 +20,12 @@
 - (BOOL) isAuthorized;
 - (GTMOAuth2ViewControllerTouch *) createAuthController;
 - (void)uploadNotebook:(NSString*)filepath;
+- (void)uploadNotebookNamed:(NSString *)name;
 - (UIAlertView*)showWaitIndicator:(NSString *)title;
 - (void)showAlert:(NSString *)title message:(NSString *)message;
 - (void)loginFromViewController:(UIViewController *)controller;
 - (void)logout;
+- (GTLDriveFileList *) listDriveFiles;
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file;
 
 @end

@@ -22,16 +22,25 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize SubmenuView;
 @synthesize paintSubmenu;
 @synthesize menuSubmenu;
+@synthesize typeSubmenu;
+@synthesize sideBarView;
+@synthesize cameraSubmenu;
+
+
 
 //Called when the view loads
 - (void)viewDidLoad
-{    
+{
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.sideBarView.delegate = self;
     [self.SubmenuView addSubview:self.paintSubmenu];
     [self.paintSubmenu setHidden:FALSE];
     [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.cameraSubmenu setHidden:TRUE];
+    [self.paintView changeMode:paintMode];
     self.driveService = [[GTLServiceDrive alloc] init];
     self.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                          clientID:kClientID
@@ -75,39 +84,53 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return menuSubmenu;
 }
 
+- (TypeSubmenuView *)typeSubmenu
+{
+    if (!typeSubmenu) {
+        CGRect typeSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.typeSubmenu = [[TypeSubmenuView alloc] initWithFrame:typeSubmenuFrame];
+        self.typeSubmenu.delegate = self;
+    }
+    return typeSubmenu;
+}
+
+- (CameraSubmenuView *)cameraSubmenu
+{
+    if (!cameraSubmenu) {
+        CGRect cameraSubmenuFrame = CGRectMake(0, 0, self.SubmenuView.bounds.size.width, self.view.bounds.size.height);
+        self.cameraSubmenu = [[CameraSubmenuView alloc] initWithFrame:cameraSubmenuFrame];
+        self.cameraSubmenu.delegate = self;
+    }
+    return cameraSubmenu;
+}
+
+
+
+//Methods used for PaintView
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
     [self.paintView changeColorWithRed:newRed Blue:newBlue Green:newGreen Alpha:newAlpha];
     NSLog(@"Change Color Called");
 }
 
-- (void)showPaintSubmenu
+- (void)changeText:(NSString *)text
 {
-    [self.SubmenuView addSubview:self.paintSubmenu];
-    [self.paintSubmenu setHidden:FALSE];
-    [self.menuSubmenu setHidden:TRUE];
+    [self.paintView changeText:text];
 }
 
-- (void)showMenuSubmenu
+- (void)changeMode:(int)newMode
 {
-    [self.SubmenuView addSubview:self.menuSubmenu];
-    [self.menuSubmenu setHidden:FALSE];
-    [self.paintSubmenu setHidden:TRUE];
+    [self.paintView changeMode:newMode];
+}
+
+- (void)changeAlphaWithNumber:(float)newAlpha
+{
+    [self.paintView changeAlphaWithNumber:newAlpha];
 }
 
 - (void)changeBrushWithNumber:(float)number
 {
     [self.paintView changeBrushWithNumber:number];
-}
-
-- (void)nextPage
-{
-    [self.paintView nextPage];
-}
-
--(void)previousPage
-{
-    [self.paintView previousPage];
 }
 
 -(void)encodePaintView
@@ -120,6 +143,17 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView loadImageView];
 }
 
+- (void) openNotebookNamed:(NSString *)name {
+    [self.paintView loadFileNamed:name];
+}
+
+- (void) saveFileNamed:(NSString *)name {
+    [self.paintView saveFileNamed:name];
+    [self.driveManager uploadNotebookNamed:name];
+}
+
+
+//Methods Used in Menu SubMenu
 -(void)uploadButtonClicked
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -139,5 +173,91 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 {
     [self.driveManager logout];
 }
+
+- (void)backButtonClicked
+{
+    BookshelfGridViewController *bookshelf = (BookshelfGridViewController*)self.presentingViewController;
+    [bookshelf loadNotebookFiles];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+}
+
+
+//Methods used for Type Submenu
+- (void)textMerged
+{
+    [self.paintView textMerged];
+}
+
+//Methods used for Camera Submenu
+- (void)importButtonClicked
+{
+    
+}
+
+- (void)cameraButtonClicked
+{
+    
+}
+
+//Methods used for Side Bar Menu
+- (void)showPaintSubmenu
+{
+    [self.SubmenuView addSubview:self.paintSubmenu];
+    [self.paintSubmenu setHidden:FALSE];
+    [self.menuSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.cameraSubmenu setHidden:TRUE];
+    //[self.paintView changeAlphaWithNumber:1.0];
+    [self.paintView changeMode:paintMode];
+    
+}
+
+- (void)showMenuSubmenu
+{
+    [self.SubmenuView addSubview:self.menuSubmenu];
+    [self.menuSubmenu setHidden:FALSE];
+    [self.paintSubmenu setHidden:TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.cameraSubmenu setHidden:TRUE];
+    [self.paintView changeMode:menuMode];
+}
+- (void)showTypeSubmenu
+{
+    [self.SubmenuView addSubview:self.typeSubmenu];
+    [self.menuSubmenu setHidden: TRUE];
+    [self.paintSubmenu setHidden: TRUE];
+    [self.typeSubmenu setHidden:FALSE];
+    [self.cameraSubmenu setHidden:TRUE];
+    [self.view endEditing:YES];
+    [self.paintView changeMode:textMode];
+        
+}
+- (void)showCameraSubmenu
+{
+    [self.SubmenuView addSubview:self.cameraSubmenu];
+    [self.menuSubmenu setHidden: TRUE];
+    [self.paintSubmenu setHidden: TRUE];
+    [self.typeSubmenu setHidden:TRUE];
+    [self.cameraSubmenu setHidden:FALSE];    
+    [self.view endEditing:YES];
+    [self.paintView changeMode:cameraMode];
+}
+
+- (void)nextPage
+{
+    [self.paintView nextPage];
+}
+
+-(void)previousPage
+{
+    [self.paintView previousPage];
+}
+
+
+
+
+
 
 @end
