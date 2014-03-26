@@ -18,6 +18,8 @@
 #import "NotebookViewDelegate.h"
 #import "GTLDrive.h"
 #import "DriveManager.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 
 @interface NotebookViewController : UIViewController <NotebookViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>

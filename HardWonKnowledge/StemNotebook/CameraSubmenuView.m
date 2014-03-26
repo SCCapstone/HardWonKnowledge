@@ -34,12 +34,56 @@
     [self.delegate cameraButtonClicked];
 }
 
+- (IBAction)videoButtonClicked:(id)sender {
+    [self.delegate videoButtonClicked];
+}
+
+
+
 - (void) setDisplayImage:(UIImageView*)newImage
 {
     //self.displayImage = newImage;
 }
 
+#pragma mark - Image Picker Controller delegate methods
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.displayImage.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+
+
+
+
+- (void)imageVideoPickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    self.movieURL = info[UIImagePickerControllerMediaURL];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+
+- (void)moviePlayBackDidFinish:(NSNotification *)notification {
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    [self.movieController stop];
+    [self.movieController.view removeFromSuperview];
+    self.movieController = nil;
+    
+}
 
 
 /*
@@ -50,5 +94,6 @@
     // Drawing code
 }
 */
+
 
 @end

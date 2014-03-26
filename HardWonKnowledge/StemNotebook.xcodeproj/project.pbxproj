@@ -10,9 +10,10 @@
 		16656FEB18DBAAE700835842 /* CameraSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */; };
 		16656FEE18DBACF700835842 /* CameraSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16656FED18DBACF700835842 /* CameraSubmenuView.m */; };
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
-		B4B7E04818E0E70A00FEF893 /* UserLoginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7E04718E0E70A00FEF893 /* UserLoginTest.m */; };
 		B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */; };
 		B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */; };
+		BF7268E618E2C53B00819C54 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7268E518E2C53B00819C54 /* CoreMedia.framework */; };
+		BF7268E818E2C54300819C54 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7268E718E2C54200819C54 /* MediaPlayer.framework */; };
 		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
 		C71981AC1850138E00D502E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A81850138E00D502E3 /* Security.framework */; };
 		C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A91850138E00D502E3 /* SystemConfiguration.framework */; };
@@ -91,11 +92,11 @@
 		16656FEC18DBACF700835842 /* CameraSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSubmenuView.h; sourceTree = "<group>"; };
 		16656FED18DBACF700835842 /* CameraSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSubmenuView.m; sourceTree = "<group>"; };
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
-		B4B7E04618E0E70A00FEF893 /* UserLoginTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTest.h; sourceTree = "<group>"; };
-		B4B7E04718E0E70A00FEF893 /* UserLoginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTest.m; sourceTree = "<group>"; };
 		B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
 		B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
 		B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSubmenuView.h; sourceTree = "<group>"; };
+		BF7268E518E2C53B00819C54 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		BF7268E718E2C54200819C54 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		C71981A71850138E00D502E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C71981A81850138E00D502E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -201,6 +202,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7268E818E2C54300819C54 /* MediaPlayer.framework in Frameworks */,
+				BF7268E618E2C53B00819C54 /* CoreMedia.framework in Frameworks */,
 				CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */,
 				CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */,
 				C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */,
@@ -290,6 +293,8 @@
 		C762B69D181DB7B500EB3674 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF7268E518E2C53B00819C54 /* CoreMedia.framework */,
+				BF7268E718E2C54200819C54 /* MediaPlayer.framework */,
 				C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */,
 				CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */,
 				CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */,
