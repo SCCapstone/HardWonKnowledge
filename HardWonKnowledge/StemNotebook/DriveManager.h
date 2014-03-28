@@ -15,12 +15,15 @@
 
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) UIViewController *cont;
+@property (nonatomic, strong) NSString *documentPath;
 
 + (DriveManager*) getDriveManager;
 - (BOOL) isAuthorized;
 - (GTMOAuth2ViewControllerTouch *) createAuthController;
 - (void)uploadNotebook:(NSString*)filepath;
 - (void)uploadNotebookNamed:(NSString *)name;
+- (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name;
+
 - (UIAlertView*)showWaitIndicator:(NSString *)title;
 - (void)showAlert:(NSString *)title message:(NSString *)message;
 - (void)loginFromViewController:(UIViewController *)controller;

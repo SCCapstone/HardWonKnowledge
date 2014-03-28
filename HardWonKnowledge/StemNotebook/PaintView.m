@@ -27,6 +27,7 @@
 @synthesize current;
 @synthesize textAdd;
 @synthesize submenuMode;
+@synthesize notebookName;
 
 //Possible submenu modes
 const int paintMode = 0;
@@ -282,16 +283,15 @@ const int menuMode = 3;
     [self.drawImage setHidden:FALSE];
 }
 
-- (void) loadFileNamed:(NSString *)name {
+- (void) loadFileNamed:(NSString *)name atPath:(NSString *)path{
+    self.notebookName = name;
 //    //setup path for file
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *docDir = [paths objectAtIndex:0];
 //    NSString *viewPath = [docDir stringByAppendingPathComponent:name];
     
-    NSLog(@"name: %s",name);
-    
     //get data from file
-    NSData *codedData = [[NSData alloc] initWithContentsOfFile:name];
+    NSData *codedData = [[NSData alloc] initWithContentsOfFile:path];
     if (codedData == nil) return;
     
     //unarchive data

@@ -99,10 +99,10 @@ enum
 //    [self presentViewController:notebook animated:NO completion:NULL];
     [self presentViewController:notebook animated:NO completion:NULL];
 }
-- (IBAction)openNotebookView: (NSString *) path{
+- (IBAction)openNotebookView: (GTLDriveFile *) file{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:notebook animated:NO completion:NULL];
-    [notebook openNotebookNamed:path];
+    [notebook openNotebookFromFile:file];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -181,8 +181,7 @@ enum
     }
     
     GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
-    selectedFile = [self.driveManager downloadDriveFile:file];    
-    [self openNotebookView:selectedFile];
+    [self openNotebookView:file];
 }
 
 #pragma mark -

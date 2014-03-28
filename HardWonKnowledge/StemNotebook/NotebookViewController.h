@@ -32,8 +32,9 @@
 @property (strong, nonatomic) IBOutlet SideBarView *sideBarView;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
-
+@property (nonatomic, strong) GTLDriveFile *notebookDriveFile;
 - (void) openNotebookNamed:(NSString *)name;
+- (void) openNotebookFromFile:(GTLDriveFile *)file;
 
 
 

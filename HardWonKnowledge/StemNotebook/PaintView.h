@@ -24,6 +24,7 @@
     @property (strong, nonatomic) UITextField *drawField;
     @property (strong,nonatomic) NSString *textAdd;
     @property (nonatomic) int submenuMode;
+@property (nonatomic, strong) NSString *notebookName;
 
     
 
@@ -35,7 +36,7 @@
 - (void)changeMode:(int)newMode;
 - (void)saveImageView;
 - (void)loadImageView;
-- (void)loadFileNamed:(NSString *)name;
+- (void)loadFileNamed:(NSString *)name atPath:(NSString *)path;
 - (void)saveFileNamed:(NSString *)name;
 - (void)nextPage;
 - (void)previousPage;

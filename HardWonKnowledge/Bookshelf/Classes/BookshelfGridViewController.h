@@ -62,7 +62,7 @@
 - (IBAction) closeBookshelf;
 - (void)loadNotebookFiles;
 - (IBAction) newNotebookEntry;
-- (IBAction) openNotebookView: (NSString *) path;
+- (IBAction) openNotebookView: (GTLDriveFile *)file;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
 @end
