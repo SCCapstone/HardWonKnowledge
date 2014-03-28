@@ -34,7 +34,31 @@ const int textMode = 1;
 const int cameraMode = 2;
 const int menuMode = 3;
 
-
+- (id)init
+{
+    [self setMultipleTouchEnabled:NO]; // (2)
+    current = 0;
+    
+    
+    self.pages = [[NSMutableArray alloc] init];
+    for(int i = 0; i<25; i++)
+    {
+        self.drawImage = [[UIImageView alloc] initWithImage:nil];
+        self.drawImage.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        [pages addObject:drawImage];
+    }
+    
+    self.drawImage = [pages objectAtIndex:current];
+    [self addSubview:self.drawImage];
+    self.backgroundColor = [UIColor whiteColor];
+    self.red=0.0;
+    self.blue = 0.0;
+    self.green = 0.0;
+    self.alpha = 1;
+    self.brush = 10.0;
+    self.submenuMode = 0;
+    return self;
+}
 //Initialize the view
 - (id)initWithCoder:(NSCoder *)aDecoder // (1)
 {

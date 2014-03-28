@@ -10,6 +10,7 @@
 		16656FEB18DBAAE700835842 /* CameraSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16656FEA18DBAAE700835842 /* CameraSubmenuView.xib */; };
 		16656FEE18DBACF700835842 /* CameraSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16656FED18DBACF700835842 /* CameraSubmenuView.m */; };
 		168337891826F76C0069A31E /* PaintSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168337881826F76C0069A31E /* PaintSubmenuView.xib */; };
+		B4B7E04818E0E70A00FEF893 /* UserLoginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7E04718E0E70A00FEF893 /* UserLoginTest.m */; };
 		B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */; };
 		B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */; };
 		C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A71850138E00D502E3 /* MobileCoreServices.framework */; };
@@ -72,6 +73,7 @@
 		E1115B6018E0D39A0087DC02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762B6A0181DB7B500EB3674 /* Foundation.framework */; };
 		E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1115B6418E0D39A0087DC02 /* InfoPlist.strings */; };
 		E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */; };
+		E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1115B7118E0D9D30087DC02 /* PaintViewTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		16656FEC18DBACF700835842 /* CameraSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSubmenuView.h; sourceTree = "<group>"; };
 		16656FED18DBACF700835842 /* CameraSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSubmenuView.m; sourceTree = "<group>"; };
 		168337881826F76C0069A31E /* PaintSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintSubmenuView.xib; sourceTree = "<group>"; };
+		B4B7E04618E0E70A00FEF893 /* UserLoginTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTest.h; sourceTree = "<group>"; };
+		B4B7E04718E0E70A00FEF893 /* UserLoginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTest.m; sourceTree = "<group>"; };
 		B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
 		B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
 		B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSubmenuView.h; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StemNotebookUnitTest.h; sourceTree = "<group>"; };
 		E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StemNotebookUnitTest.m; sourceTree = "<group>"; };
 		E1115B6A18E0D39A0087DC02 /* StemNotebookUnitTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StemNotebookUnitTest-Prefix.pch"; sourceTree = "<group>"; };
+		E1115B7018E0D9D30087DC02 /* PaintViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintViewTest.h; sourceTree = "<group>"; };
+		E1115B7118E0D9D30087DC02 /* PaintViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintViewTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,6 +472,8 @@
 				E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */,
 				E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */,
 				E1115B6218E0D39A0087DC02 /* Supporting Files */,
+				E1115B7018E0D9D30087DC02 /* PaintViewTest.h */,
+				E1115B7118E0D9D30087DC02 /* PaintViewTest.m */,
 			);
 			path = StemNotebookUnitTest;
 			sourceTree = "<group>";
@@ -650,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */,
+				E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +871,7 @@
 				E1115B6C18E0D39A0087DC02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

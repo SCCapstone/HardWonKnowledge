@@ -17,4 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) AdminView *adminView;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic)  IBOutlet UITextField *usernameField;
+@property (nonatomic, retain) NSMutableArray *subviews;
 @end
