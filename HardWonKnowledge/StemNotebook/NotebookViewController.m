@@ -25,6 +25,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize typeSubmenu;
 @synthesize sideBarView;
 @synthesize cameraSubmenu;
+@synthesize notebookDriveFile;
 
 
 
@@ -143,8 +144,11 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView loadImageView];
 }
 
-- (void) openNotebookNamed:(NSString *)name {
-    [self.paintView loadFileNamed:name];
+
+- (void) openNotebookFromFile:(GTLDriveFile *)file {
+    self.notebookDriveFile = file;
+    NSString *path = [self.driveManager downloadDriveFile:file];
+    [self.paintView loadFileNamed:file.title atPath:path];
 }
 
 - (void) saveFileNamed:(NSString *)name {
@@ -245,6 +249,18 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView changeMode:cameraMode];
 }
 
+- (void)doneButtonPressed
+{
+    if (self.notebookDriveFile.title == nil) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Notebook Name" message:@"What is the name of this notebook?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Okay",nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    } else {
+        [self.paintView saveFileNamed:self.notebookDriveFile.title];
+        [self.driveManager updateNotebook:self.notebookDriveFile fromFileNamed:self.notebookDriveFile.title];
+    }
+}
+
 - (void)nextPage
 {
     [self.paintView nextPage];
@@ -255,6 +271,18 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView previousPage];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    if ([textField.text length] <= 0 || buttonIndex == 0){
+        return; //If cancel or 0 length string the string doesn't matter
+    }
+    if (buttonIndex == 1) {
+        NSString *fileName;
+        fileName = [textField.text stringByAppendingString:@".nbf"];
+        [self.paintView saveFileNamed:fileName];
+        [self.driveManager uploadNotebookNamed:fileName];
+    }
+}
 
 
 

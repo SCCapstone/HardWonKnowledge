@@ -22,12 +22,15 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     dispatch_once(&onceToken, ^{
         sharedInstance = [[DriveManager alloc] init];
         // Do any other initialisation stuff here
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        sharedInstance.documentPath = [paths objectAtIndex:0];
+
         sharedInstance.driveService = [[GTLServiceDrive alloc] init];
         sharedInstance.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                              clientID:kClientID
                                                                                          clientSecret:kClientSecret];
+        NSLog(@"Drive Manager Initialized");
     });
-    NSLog(@"Drive Manager Initialized");
     return sharedInstance;
 }
 
@@ -156,9 +159,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 {
     
     //setup path for file
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docDir = [paths objectAtIndex:0];
-    NSString *filepath = [docDir stringByAppendingPathComponent:name];
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
     
     GTLDriveFile *file = [GTLDriveFile object];
     file.title = name;
@@ -203,6 +204,52 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   }];
 }
 
+- (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name
+{
+    
+    //setup path for file
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
+    
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"File not exits");
+    }
+    
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesUpdateWithObject:file
+                                                       fileId:file.identifier
+                                                       uploadParameters:uploadParameters];
+    
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    NSLog(@"Uploading to Google Drive...");
+    
+    
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      NSLog(@"Done");
+                      if (error == nil)
+                      {
+                          NSLog(@"File ID: %@", insertedFile.identifier);
+                          //[self showAlert:@"Google Drive" message:@"File saved!"];
+                          NSLog(@"Google Drive: File Saved");
+                      }
+                      else
+                      {
+                          NSLog(@"An error occurred: %@", error);
+                          //[self showAlert:@"Google Drive" message:@"Sorry, an error occurred!"];
+                          NSLog(@"An Error Occured");
+                      }
+                  }];
+}
+
+
 
 - (GTLDriveFileList *)listDriveFiles {
     NSString *search = @"title contains '.nbf'";
@@ -226,9 +273,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file
 {
     //Get Download Path
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docDir = [paths objectAtIndex:0];
-    NSString *viewPath = [docDir stringByAppendingPathComponent:file.title];
+    NSString *viewPath = [self.documentPath stringByAppendingPathComponent:file.title];
     
     //Setup HTTP Fetcher
     GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];

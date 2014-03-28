@@ -32,6 +32,6 @@
 - (void)importButtonClicked;
 - (void)cameraButtonClicked;
 - (void)saveFileNamed:(NSString *)name;
-
+- (void)doneButtonPressed;
 
 @end
