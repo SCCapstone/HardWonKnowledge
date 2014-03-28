@@ -194,10 +194,13 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     NSLog(@" Did it go to notebookviewcontol");
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    //picker.allowsEditing = YES;
+    //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    UIPopoverController *popOver = [[UIPopoverController alloc]initWithContentViewController:picker];
+    self.popoverImageViewController = popOver;
+    [self.popoverImageViewController presentPopoverFromRect:CGRectMake(450.0f, 825.0f, 10.0f, 10.0f) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    //[self presentViewController:picker animated:YES completion:NULL];
 
 }
 

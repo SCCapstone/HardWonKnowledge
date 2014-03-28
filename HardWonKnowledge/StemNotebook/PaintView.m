@@ -408,6 +408,11 @@ const int menuMode = 3;
     self.drawLabel.textColor = [UIColor blackColor];
 }
 
+-(void)mergeImage: (UIImageView *) image AtX:(int)newX AtY:(int)newY
+{
+    
+}
+
 
 
 
