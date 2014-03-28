@@ -288,8 +288,6 @@ const int menuMode = 3;
 //    NSString *docDir = [paths objectAtIndex:0];
 //    NSString *viewPath = [docDir stringByAppendingPathComponent:name];
     
-    NSLog(@"name: %s",name);
-    
     //get data from file
     NSData *codedData = [[NSData alloc] initWithContentsOfFile:name];
     if (codedData == nil) return;
@@ -300,7 +298,6 @@ const int menuMode = 3;
     //get images from archive
     for (int i = 0; i<25; i++) {
         UIImage *newImage = (UIImage*)[unarchiver decodeObjectForKey:[@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]];
-        NSLog([@"image-" stringByAppendingString:[NSString stringWithFormat:@"%d", i]]);
         UIImageView *v = [self.pages objectAtIndex:i];
         v.image = newImage;
     }

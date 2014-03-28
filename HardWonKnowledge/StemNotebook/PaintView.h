@@ -39,7 +39,7 @@
 - (void)saveFileNamed:(NSString *)name;
 - (void)nextPage;
 - (void)previousPage;
--(void)textMerged;
+- (void)textMerged;
 
 extern const int paintMode;
 extern const int textMode;
