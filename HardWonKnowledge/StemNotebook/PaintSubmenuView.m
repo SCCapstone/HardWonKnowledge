@@ -26,6 +26,7 @@
 
 - (IBAction)Red:(id)sender {
     [self.delegate changeColorWithRed:255 Blue:0 Green:0 Alpha:1];
+    
 
 }
 

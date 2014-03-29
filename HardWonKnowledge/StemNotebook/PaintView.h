@@ -43,6 +43,8 @@
 - (void)nextPage;
 - (void)previousPage;
 -(void)textMerged;
+-(void)createImageView:(UIImage *)image AtX:(int) xcord AtY:(int) ycord;
+- (void)mergeImage;
 
 extern const int paintMode;
 extern const int textMode;

@@ -194,11 +194,11 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     NSLog(@" Did it go to notebookviewcontol");
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    //picker.allowsEditing = YES;
-    //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     UIPopoverController *popOver = [[UIPopoverController alloc]initWithContentViewController:picker];
     self.popoverImageViewController = popOver;
-    [self.popoverImageViewController presentPopoverFromRect:CGRectMake(450.0f, 825.0f, 10.0f, 10.0f) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    [self.popoverImageViewController presentPopoverFromRect:CGRectMake(384.0f, 704.0f, 0, 0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
     
     //[self presentViewController:picker animated:YES completion:NULL];
 
@@ -211,9 +211,22 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    UIPopoverController *popOver = [[UIPopoverController alloc]initWithContentViewController:picker];
+    self.popoverImageViewController = popOver;
+    [self.popoverImageViewController presentPopoverFromRect:CGRectMake(384.0f, 704.0f, 0, 0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    //[self presentViewController:picker animated:YES completion:NULL];
 }
+
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:NO completion:nil];
+    UIImage *pickedImage = info[UIImagePickerControllerEditedImage];
+    [self.cameraSubmenu changeDisplayImage:pickedImage];
+    [self.paintView changeImage:pickedImage];
+}
+
 
 //Methods used for Side Bar Menu
 - (void)showPaintSubmenu
@@ -264,13 +277,16 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (void)nextPage
 {
     [self.paintView nextPage];
+    NSString *newString = [NSString stringWithFormat:@"%d",self.paintView.current+1];
+    [self.sideBarView changePageNumber:newString];
 }
 
 -(void)previousPage
 {
     [self.paintView previousPage];
+    NSString *newString = [NSString stringWithFormat:@"%d",self.paintView.current+1];
+    [self.sideBarView changePageNumber:newString];
 }
-
 
 
 
