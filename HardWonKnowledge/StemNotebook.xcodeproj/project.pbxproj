@@ -33,6 +33,7 @@
 		C762B6B8181DB7B500EB3674 /* NotebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C762B6B7181DB7B500EB3674 /* NotebookViewController.m */; };
 		C762B6BB181DB7B500EB3674 /* NotebookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C762B6B9181DB7B500EB3674 /* NotebookViewController.xib */; };
 		C7AF899F1850D4DC00F6A093 /* DriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AF899E1850D4DC00F6A093 /* DriveManager.m */; };
+		C7BA419D18EA2642001AC927 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BA419C18EA2642001AC927 /* User.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
 		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
@@ -126,6 +127,8 @@
 		C762B6BA181DB7B500EB3674 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NotebookViewController.xib; sourceTree = "<group>"; };
 		C7AF899D1850D4DC00F6A093 /* DriveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveManager.h; sourceTree = "<group>"; };
 		C7AF899E1850D4DC00F6A093 /* DriveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveManager.m; sourceTree = "<group>"; };
+		C7BA419B18EA2642001AC927 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C7BA419C18EA2642001AC927 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
@@ -304,6 +307,7 @@
 		C762B6A4181DB7B500EB3674 /* StemNotebook */ = {
 			isa = PBXGroup;
 			children = (
+				C7BA419A18EA262C001AC927 /* Models */,
 				C7AF899C1850D4B000F6A093 /* Api Provided Files */,
 				C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */,
 				C7AF899B1850D49100F6A093 /* Backend Support */,
@@ -348,6 +352,15 @@
 				C71981B1185015C800D502E3 /* GTLDrive.h */,
 			);
 			name = "Api Provided Files";
+			sourceTree = "<group>";
+		};
+		C7BA419A18EA262C001AC927 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7BA419B18EA2642001AC927 /* User.h */,
+				C7BA419C18EA2642001AC927 /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		CB8B124D18C975DA00DC90B0 /* Resources */ = {
@@ -643,6 +656,7 @@
 				CB9CD3D718BAA01900DF6754 /* BookshelfGridFilledCell.m in Sources */,
 				CB9CD3D818BAA01900DF6754 /* BookshelfGridViewCell.m in Sources */,
 				CB9CD3D918BAA01900DF6754 /* BookshelfGridViewController.m in Sources */,
+				C7BA419D18EA2642001AC927 /* User.m in Sources */,
 				CBD848A918C8037200153587 /* UserLoginBackend.m in Sources */,
 				CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */,
 				CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */,
