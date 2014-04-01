@@ -58,7 +58,10 @@ enum
 
 @synthesize gridView=_gridView;
 @synthesize selectedFile;
+@synthesize userManager;
 
+#pragma mark -
+#pragma mark Bookshelf
 // Sign out of user account.
 - (IBAction)closeBookshelf{
     [self dismissViewControllerAnimated:NO completion:NULL];
@@ -70,7 +73,7 @@ enum
     NSLog(@"Loading Notebooks...");
     
     // Find the existing files on Google Drive
-    NSString *search = @"mimeType = 'application/octet-stream'";
+    NSString *search = [NSString stringWithFormat:@"'%@' in parents and mimeType = 'application/octet-stream'",userManager.username];
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
@@ -94,6 +97,8 @@ enum
     }];
 }
 
+#pragma mark -
+#pragma mark Notebook
 -(IBAction)newNotebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
 //    [self presentViewController:notebook animated:NO completion:NULL];
@@ -105,6 +110,8 @@ enum
     [notebook openNotebookFromFile:file];
 }
 
+#pragma mark -
+#pragma mark Original Methods
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void) viewDidLoad
 {
@@ -118,15 +125,15 @@ enum
     
     //    if ( _orderedFileNames != nil)
     //        return;
-    
+    userManager = [ActiveUser userManager];
     [self loadNotebookFiles];
 }
 
 // Override to allow orientations other than the default portrait orientation.
-- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
-{
-    return YES;
-}
+//- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+//{
+//    return YES;
+//}
 
 - (void) viewDidUnload
 {
@@ -135,7 +142,7 @@ enum
 }
 
 #pragma mark -
-#pragma mark Grid View Data Source
+#pragma mark Grid View
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
@@ -183,9 +190,6 @@ enum
     GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
     [self openNotebookView:file];
 }
-
-#pragma mark -
-#pragma mark Grid View Delegate
 
 // nothing here yet
 
