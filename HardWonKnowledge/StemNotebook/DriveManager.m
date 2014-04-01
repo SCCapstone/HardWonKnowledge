@@ -159,7 +159,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     file.descriptionProperty = @"Uploaded from StemNotebook App";
     file.mimeType = @"application/octet-stream";
     
-    
     NSData *data = nil;
     if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
     {
@@ -308,6 +307,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
             NSLog (@"An Error has occurred: %@", error);
         }
     }];
+    return nil;
 }
 
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file
@@ -389,8 +389,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                                               GTLDriveFileList *files,
                                                               NSError *error) {
         if (error == nil) {
-            if (callbackSel != nil)
-                [self performSelector:callbackSel withObject:files];
+            if (@selector(callbackSel) != nil)
+                [self performSelector:@selector(callbackSel) withObject:files];
         } else {
             NSLog(@"An error occurred: %@", error);
         }
@@ -437,8 +437,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                       {
                           NSLog(@"File ID: %@", insertedFile.identifier);
                           NSLog(@"Google Drive: File Saved");
-                          if (callbackSel != nil)
-                              [self performSelector:callbackSel withObject:insertedFile];
+                          if (@selector(callbackSel) != nil)
+                              [self performSelector:@selector(callbackSel) withObject:insertedFile];
                       }
                       else
                       {
@@ -486,8 +486,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                       {
                           NSLog(@"File ID: %@", insertedFile.identifier);
                           NSLog(@"Google Drive: File Saved");
-                          if (callbackSel != nil)
-                              [self performSelector:callbackSel withObject:insertedFile];
+                          if (@selector(callbackSel) != nil)
+                              [self performSelector:@selector(callbackSel) withObject:insertedFile];
 
                       }
                       else
@@ -516,8 +516,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         if (error == nil) {
             //Save file to disk
             NSLog(@"Retrieved file content");
-            if (callbackSel != nil)
-                [self performSelector:callbackSel withObject:data];
+            if (@selector(callbackSel) != nil)
+                [self performSelector:@selector(callbackSel) withObject:data];
         } else {
             NSLog(@"An error occurred: %@", error);
         }
@@ -554,7 +554,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                       {
                           NSLog(@"Folder ID: %@", insertedFile.identifier);
                           NSLog(@"Google Drive: Folder Saved");
-                          [self performSelector:callbackSel withObject:insertedFile];
+                          [self performSelector:@selector(callbackSel) withObject:insertedFile];
                       }
                       else
                       {
