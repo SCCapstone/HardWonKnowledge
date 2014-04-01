@@ -298,19 +298,16 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     NSString *search = @"title contains '.nbf'";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
-    __block GTLDriveFileList *list = nil;
     [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         if (error == nil) {
             //Good
             for (GTLDriveFile *file in files) {
                 NSLog(@"Drive File: %@",file.title);
             }
-            list = files;
         } else {
             NSLog (@"An Error has occurred: %@", error);
         }
     }];
-    return list;
 }
 
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file
@@ -333,7 +330,44 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return viewPath;
 }
 
+- (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder
+{
+    NSString *parentId = parentFolder.identifier;
 
+    GTLDriveParentReference *parent = [GTLDriveParentReference object];
+    parent.identifier = parentId;
+
+    GTLDriveFile *folder = [GTLDriveFile object];
+    folder.title = name;
+    folder.mimeType = @"application/vnd.google-apps.folder";
+    folder.parents = @[parent];
+
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
+
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Creating Student Folder"];
+    NSLog(@"Creating Student Folder...");
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      NSLog(@"Done");
+                      if (error == nil)
+                      {
+                          NSLog(@"Folder ID: %@", insertedFile.identifier);
+                          NSLog(@"Google Drive: Folder Saved");
+                      }
+                      else
+                      {
+                          NSLog(@"An error occurred: %@", error);
+                      }
+                  }];
+    
+}
+
+- (void) createFolderUnderAppRootNamed:(NSString *)name
+{
+    [self createFolderNamed:name withParent:self.appRoot];
+}
 
 #pragma mark -
 #pragma mark methodsWithSelectorCallbacks
@@ -491,6 +525,53 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return viewPath;
 }
 
+//callbackSel should have on einput, a GTLDriveFile object
+//to call, do this:
+//[driveManager createFolderNamed:folderName withParent:parentFolder withCallback:@selector(someMethod:)];
+//METHOD SHOULD HAVE VOID RETURN
+- (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder withCallback:(SEL)callbackSel
+{
+    NSString *parentId = parentFolder.identifier;
+
+    GTLDriveParentReference *parent = [GTLDriveParentReference object];
+    parent.identifier = parentId;
+
+    GTLDriveFile *folder = [GTLDriveFile object];
+    folder.title = name;
+    folder.mimeType = @"application/vnd.google-apps.folder";
+    folder.parents = @[parent];
+
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
+
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Creating Student Folder"];
+    NSLog(@"Creating Student Folder...");
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      NSLog(@"Done");
+                      if (error == nil)
+                      {
+                          NSLog(@"Folder ID: %@", insertedFile.identifier);
+                          NSLog(@"Google Drive: Folder Saved");
+                          [self performSelector:callbackSel withObject:insertedFile];
+                      }
+                      else
+                      {
+                          NSLog(@"An error occurred: %@", error);
+                      }
+                  }];
+    
+}
+
+//callbackSel should have on einput, a GTLDriveFile object
+//to call, do this:
+//[driveManager createFolderNamed:folderName withParent:parentFolder withCallback:@selector(someMethod:)];
+//METHOD SHOULD HAVE VOID RETURN
+- (void) createFolderUnderAppRootNamed:(NSString *)name  withCallback:(SEL)callbackSel
+{
+    [self createFolderNamed:name withParent:self.appRoot withCallback:callbackSel];
+}
 
 #pragma mark -
 #pragma mark NonDriveSupportMethods
