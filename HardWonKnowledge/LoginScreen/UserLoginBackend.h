@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GTLDrive.h"
 #import "DriveManager.h"
+#import "ActiveUser.h"
 
 @interface UserLoginBackend : NSObject
 
@@ -28,6 +29,7 @@
 
 @property (nonatomic,retain) GTLServiceDrive *driveService;
 @property (nonatomic,retain) DriveManager *driveManager;
+@property (nonatomic, retain) ActiveUser *userManager;
 @property (nonatomic,retain) NSMutableDictionary *adminCredentials;
 @property (nonatomic,retain) NSMutableDictionary *userCredentials;
 @property (nonatomic,retain) NSMutableArray *dataSrc;
