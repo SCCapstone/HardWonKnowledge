@@ -9,6 +9,7 @@
 #import "SideBarView.h"
 
 @implementation SideBarView
+@synthesize pageNumber;
 
 - (id)initWithCoder:(NSCoder *)aDecoder //Instantiated in interface builder, so initWithCoder used
 {
@@ -16,6 +17,7 @@
     {
         UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"SideBarView" owner:self options:nil] objectAtIndex:0];
         [self addSubview:firstViewUIView];
+        pageNumber.text = @"1";
 
     }
     return self;
@@ -41,6 +43,11 @@
 }
 - (IBAction)doneButtonClicked:(id)sender {
     [self.delegate doneButtonPressed];
+}
+
+-(void)changePageNumber:(NSString *) newNumber
+{
+    pageNumber.text = newNumber;
 }
 
 

@@ -31,6 +31,7 @@
 - (void)backButtonClicked;
 - (void)importButtonClicked;
 - (void)cameraButtonClicked;
+- (void)pasteButtonClicked;
 - (void)saveFileNamed:(NSString *)name;
 - (void)doneButtonPressed;
 
