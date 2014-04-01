@@ -33,10 +33,11 @@
 
 #pragma mark -
 #pragma mark Drive File/Folder Methods
+- (void)listDriveFiles;
 - (void)uploadNotebook:(NSString*)filepath;
 - (void)uploadNotebookNamed:(NSString *)name;
+- (void)uploadNotebookNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder;
 - (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name;
-- (GTLDriveFileList *) listDriveFiles;
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file;
 - (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder;
 -(void) createFolderUnderAppRootNamed:(NSString *)name;
@@ -46,6 +47,7 @@
 #pragma mark methodsWithSelectorCallbacks
 - (void)listFilesUnderFolder:(GTLDriveFile *)parent withCallback:(SEL)callbackSel;
 - (void)uploadNotebookNamed:(NSString*)name withCallback:(SEL)callbackSel;
+- (void)uploadNotebookNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder withCallback:(SEL)callbackSelector;
 - (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name withCallback:(SEL)callbackSel;
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file withCallback:(SEL)callbackSel;
 - (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder withCallback:(SEL)callbackSel;
