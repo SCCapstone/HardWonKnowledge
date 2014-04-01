@@ -13,4 +13,17 @@
 
 @property (nonatomic, strong) id <NotebookViewDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIButton *redBtn;
+@property (weak, nonatomic) IBOutlet UIButton *blueBtn;
+@property (weak, nonatomic) IBOutlet UIButton *yellowBtn;
+@property (weak, nonatomic) IBOutlet UIButton *blackBtn;
+@property (weak, nonatomic) IBOutlet UIButton *greenBtn;
+@property (weak, nonatomic) IBOutlet UIButton *purpleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *orangeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *brownBtn;
+@property (weak, nonatomic) IBOutlet UIButton *eraseBtn;
+@property (strong, nonatomic) NSArray *buttons;
+
+
+
 @end
