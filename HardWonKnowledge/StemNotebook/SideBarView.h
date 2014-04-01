@@ -12,5 +12,7 @@
 @interface SideBarView: UIView
 
 @property (nonatomic, strong) id <NotebookViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *pageNumber;
 
+-(void) changePageNumber:(NSString *)newNumber;
 @end

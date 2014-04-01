@@ -33,6 +33,9 @@
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
 @property (nonatomic, strong) GTLDriveFile *notebookDriveFile;
+
+@property (strong,nonatomic) UIPopoverController *popoverImageViewController;
+
 - (void) openNotebookNamed:(NSString *)name;
 - (void) openNotebookFromFile:(GTLDriveFile *)file;
 
