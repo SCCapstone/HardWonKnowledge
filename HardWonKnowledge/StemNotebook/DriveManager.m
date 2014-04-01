@@ -14,7 +14,11 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 
 
 @implementation DriveManager
+@synthesize appRoot;
+@synthesize currentUserFolder;
 
+#pragma mark -
+#pragma mark Initialization Methods
 + (DriveManager*) getDriveManager;
 {
     static DriveManager *sharedInstance = nil;
@@ -29,11 +33,48 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         sharedInstance.driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                                              clientID:kClientID
                                                                                          clientSecret:kClientSecret];
+        [sharedInstance initRootAppFolder];
         NSLog(@"Drive Manager Initialized");
     });
     return sharedInstance;
 }
 
+- (void)initRootAppFolder
+{
+    NSString *search = @"title = 'StemNotebook'";
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            //Good
+            for (GTLDriveFile *file in files) {
+                if ([file.title compare:@"StemNotebook"] == 0)
+                    self.appRoot = file;
+            }
+            if (self.appRoot == nil) {
+                GTLDriveFile *folder = [GTLDriveFile object];
+                folder.title = @"StemNotebook";
+                folder.mimeType = @"application/vnd.google-apps.folder";
+                
+                GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
+                [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
+                                                                          GTLDriveFile *updatedFile,
+                                                                          NSError *error) {
+                    if (error == nil) {
+                        NSLog(@"Created folder");
+                    } else {
+                        NSLog(@"An error occurred: %@", error);
+                    }
+                }];
+            }
+        } else {
+            NSLog (@"An Error has occurred: %@", error);
+        }
+    }];
+}
+
+#pragma mark -
+#pragma mark Authentication Methods
 - (BOOL)isAuthorized
 {
     return [((GTMOAuth2Authentication *)self.driveService.authorizer) canAuthorize];
@@ -106,6 +147,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     }
 }
 
+#pragma mark -
+#pragma mark Drive File/Folder Methods
 - (void)uploadNotebook:(NSString*)filepath
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -290,6 +333,163 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     return viewPath;
 }
 
+
+
+#pragma mark -
+#pragma mark methodsWithSelectorCallbacks
+//callbackSel should have one input, a GTLDriveFileList* object;
+//To call, do this:
+//[driveManager listFilesUnderFolder:someFolder withCallback:@selector(someMethod:)];
+//METHOD SHOULD HAVE VOID RETURN
+- (void)listFilesUnderFolder:(GTLDriveFile *)parent withCallback:(SEL)callbackSel
+{
+    NSString *parentId = nil;
+    if (parent == nil)
+        parentId = @"root";
+    else
+        parentId = parent.identifier;
+    
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = [NSString stringWithFormat:@"'%@' in parents", parentId];
+    [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
+                                                              GTLDriveFileList *files,
+                                                              NSError *error) {
+        if (error == nil) {
+            if (callbackSel != nil)
+                [self performSelector:callbackSel withObject:files];
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+}
+
+//callbackSel should have one input, a GTLDriveFile* object;
+//to call, do this:
+//[driveManager uploadNotebookNamed:notebook withCallback:@selector(someMethod:)];
+//METHOD SHOULD HAVE VOID RETURN
+- (void)uploadNotebookNamed:(NSString*)name withCallback:(SEL)callbackSel
+{
+    //setup path for file
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
+    
+    //instantiate GTLDriveFile object
+    GTLDriveFile *file = [GTLDriveFile object];
+    file.title = name;
+    file.descriptionProperty = @"Uploaded from StemNotebook App";
+    file.mimeType = @"application/octet-stream";
+    
+    //Get data From File
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"Local File Does Not Exist");
+        return;
+    }
+    
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
+                                                       uploadParameters:uploadParameters];
+    
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      if (error == nil)
+                      {
+                          NSLog(@"File ID: %@", insertedFile.identifier);
+                          NSLog(@"Google Drive: File Saved");
+                          if (callbackSel != nil)
+                              [self performSelector:callbackSel withObject:insertedFile];
+                      }
+                      else
+                      {
+                          NSLog(@"An Error Occured: %@", error);
+                      }
+                  }];
+}
+
+//callbackSel should have one input, a GTLDriveFile* object;
+//to call, do this:
+//[driveManager uploadNotebookNamed:notebook withCallback:@selector(someMethod:)];
+//METHOD SHOULD HAVE VOID RETURN
+- (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name withCallback:(SEL)callbackSel
+{
+    //setup path for file
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
+    
+    //Get data from file
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"File not exits");
+        return;
+    }
+    
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesUpdateWithObject:file
+                                                                 fileId:file.identifier
+                                                       uploadParameters:uploadParameters];
+    
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    NSLog(@"Uploading to Google Drive...");
+    
+    
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      NSLog(@"Done");
+                      if (error == nil)
+                      {
+                          NSLog(@"File ID: %@", insertedFile.identifier);
+                          NSLog(@"Google Drive: File Saved");
+                          if (callbackSel != nil)
+                              [self performSelector:callbackSel withObject:insertedFile];
+
+                      }
+                      else
+                      {
+                          NSLog(@"An error occurred: %@", error);
+                          //[self showAlert:@"Google Drive" message:@"Sorry, an error occurred!"];
+                          NSLog(@"An Error Occured");
+                      }
+                  }];
+}
+
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file withCallback:(SEL)callbackSel
+{
+    //Get Download Path
+    NSString *viewPath = [self.documentPath stringByAppendingPathComponent:file.title];
+    
+    //Setup HTTP Fetcher
+    GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
+    fetcher.downloadPath = viewPath;
+    
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error == nil) {
+            //Save file to disk
+            NSLog(@"Retrieved file content");
+            if (callbackSel != nil)
+                [self performSelector:callbackSel withObject:data];
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+    return viewPath;
+}
+
+
+#pragma mark -
+#pragma mark NonDriveSupportMethods
 - (UIAlertView*)showWaitIndicator:(NSString *)title
 {
     UIAlertView *progressAlert;
@@ -320,8 +520,4 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                              otherButtonTitles: nil];
     [alert show];
 }
-
-
-
-
 @end

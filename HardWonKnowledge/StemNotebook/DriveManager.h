@@ -16,19 +16,38 @@
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) UIViewController *cont;
 @property (nonatomic, strong) NSString *documentPath;
+@property (nonatomic, strong) GTLDriveFile *appRoot;
+@property (nonatomic, strong) GTLDriveFile *currentUserFolder;
 
+#pragma mark -
+#pragma mark Initialization Methods
 + (DriveManager*) getDriveManager;
-- (BOOL) isAuthorized;
+
+#pragma mark -
+#pragma mark Authentication Methods
+- (BOOL)isAuthorized;
 - (GTMOAuth2ViewControllerTouch *) createAuthController;
+- (void)loginFromViewController:(UIViewController *)controller;
+- (void)logout;
+
+#pragma mark -
+#pragma mark Drive File/Folder Methods
 - (void)uploadNotebook:(NSString*)filepath;
 - (void)uploadNotebookNamed:(NSString *)name;
 - (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name;
-
-- (UIAlertView*)showWaitIndicator:(NSString *)title;
-- (void)showAlert:(NSString *)title message:(NSString *)message;
-- (void)loginFromViewController:(UIViewController *)controller;
-- (void)logout;
 - (GTLDriveFileList *) listDriveFiles;
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file;
+
+#pragma mark -
+#pragma mark methodsWithSelectorCallbacks
+- (void)listFilesUnderFolder:(GTLDriveFile *)parent withCallback:(SEL)callbackSel;
+- (void)uploadNotebookNamed:(NSString*)name withCallback:(SEL)callbackSel;
+- (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name withCallback:(SEL)callbackSel;
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file withCallback:(SEL)callbackSel;
+
+#pragma mark -
+#pragma mark NonDriveSupportMethods
+- (UIAlertView*)showWaitIndicator:(NSString *)title;
+- (void)showAlert:(NSString *)title message:(NSString *)message;
 
 @end
