@@ -12,7 +12,8 @@
 @interface CameraSubmenuView : UIView
 
 @property (nonatomic, strong) id <NotebookViewDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIImageView *displayImage;
+@property (strong, nonatomic) IBOutlet UIImageView *displayImage;
 
+-(void) changeDisplayImage:(UIImage *)image;
 
 @end

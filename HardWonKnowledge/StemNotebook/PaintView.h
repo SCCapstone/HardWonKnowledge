@@ -19,6 +19,8 @@
     @property BOOL swipe;
     @property (strong, nonatomic) UIImageView *drawImage;
     @property (strong, nonatomic) UILabel *drawLabel;
+@property (strong, nonatomic) UIImageView *pasteImage;
+@property (strong, nonatomic) UIImage *imageAdd;
     @property (strong, nonatomic) NSMutableArray *pages;
     @property (nonatomic) int current;
     @property (strong, nonatomic) UITextField *drawField;
@@ -32,6 +34,7 @@
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha;
 - (void)changeBrushWithNumber:(float)number;
 - (void)changeText:(NSString*)text;
+- (void)changeImage:(UIImage*)image;
 - (void)changeAlphaWithNumber:(float)newAlpha;
 - (void)changeMode:(int)newMode;
 - (void)saveImageView;
@@ -40,7 +43,9 @@
 - (void)saveFileNamed:(NSString *)name;
 - (void)nextPage;
 - (void)previousPage;
-- (void)textMerged;
+-(void)textMerged;
+-(void)createImageView:(UIImage *)image AtX:(int) xcord AtY:(int) ycord;
+- (void)mergeImage;
 
 extern const int paintMode;
 extern const int textMode;

@@ -23,6 +23,8 @@
 @synthesize drawImage;
 @synthesize drawLabel;
 @synthesize drawField;
+@synthesize pasteImage;
+@synthesize imageAdd;
 @synthesize pages;
 @synthesize current;
 @synthesize textAdd;
@@ -104,6 +106,11 @@ const int menuMode = 3;
         [self createTextLabel:textAdd AtX:self.lastPoint.x AtY:self.lastPoint.y];
         [self.drawImage addSubview: self.drawLabel];
     }
+    else if(submenuMode == cameraMode)
+    {
+        [self createImageView:imageAdd AtX: self.lastPoint.x AtY:self.lastPoint.y];
+        [self.drawImage addSubview:self.pasteImage];
+    }
     
 
 }
@@ -146,6 +153,17 @@ const int menuMode = 3;
         [self.drawImage addSubview:drawLabel];
         self.lastPoint = currentPoint;
     }
+    else if(submenuMode == cameraMode)
+    {
+        self.swipe = YES;
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPoint = [touch locationInView:self];
+        
+        [self.pasteImage removeFromSuperview];
+        self.pasteImage.frame = CGRectMake(currentPoint.x, currentPoint.y, self.imageAdd.size.width,self.imageAdd.size.height);
+        [self.drawImage addSubview:pasteImage];
+        self.lastPoint = currentPoint;
+    }
     
     
     
@@ -175,9 +193,13 @@ const int menuMode = 3;
     else if(submenuMode == textMode)
     {
         
-            [self mergeLabel:self.drawLabel AtX:self.lastPoint.x AtY:self.lastPoint.y];
+            [self mergeLabel:self.drawLabel];
             [self changeText:@""];
         
+    }
+    else if(submenuMode == cameraMode)
+    {
+        [self mergeImage];
     }
 }
 
@@ -198,6 +220,11 @@ const int menuMode = 3;
 {
     self.textAdd = text;
     
+}
+
+- (void)changeImage:(UIImage *)image
+{
+    self.imageAdd = image;
 }
 
 - (void)changeAlphaWithNumber:(float)newAlpha
@@ -378,12 +405,14 @@ const int menuMode = 3;
     else
     {
         current = 0;
-    }    
-    
+    }
+
+
 }
 
--(void)mergeLabel: (UILabel *) label AtX:(int)newX AtY:(int)newY
+-(void)mergeLabel: (UILabel *) label
 {
+    label.alpha = 1;
     [self.drawImage addSubview: label];
     
     UIGraphicsBeginImageContextWithOptions(self.drawImage.bounds.size, NO, 0.0);
@@ -405,10 +434,31 @@ const int menuMode = 3;
     self.drawLabel.numberOfLines = 1;
     self.drawLabel.backgroundColor = [UIColor clearColor];
     self.drawLabel.textColor = [UIColor blackColor];
+    self.drawLabel.alpha = .5;
 }
 
+-(void)mergeImage
+{
+    pasteImage.alpha = 1;
+    [self.drawImage addSubview:pasteImage];
+    
+    UIGraphicsBeginImageContextWithOptions(self.drawImage.bounds.size, NO, 0.0);
+    [self.drawImage.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    [pasteImage removeFromSuperview];
+    
+    UIGraphicsEndImageContext();
+    self.drawImage.image = image;
+}
 
-
+-(void)createImageView:(UIImage *)image AtX:(int) xcord AtY:(int) ycord
+{
+    self.pasteImage = [[UIImageView alloc] initWithFrame:CGRectMake (xcord, ycord, image.size.width,image.size.height)]; //350,350 needs to change probably
+    pasteImage.image = image;
+    pasteImage.alpha = .5;
+}
 
 
 
