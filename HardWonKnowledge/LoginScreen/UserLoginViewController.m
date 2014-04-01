@@ -18,6 +18,7 @@
 @synthesize passwordField;
 @synthesize usernameField;
 @synthesize subviews;
+@synthesize userManager;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -25,8 +26,24 @@
     self.adminView = [[AdminView alloc]initWithNibName:nil bundle:nil];
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.delegate = self;
+    userManager = [ActiveUser userManager];
 }
 
+#pragma mark -
+#pragma mark Controller
+- (IBAction)openAdminSettings{
+    [self presentViewController:self.adminView animated:YES completion:NULL];
+    [self.adminView menuAdminSettings];
+}
+
+- (IBAction)openNotebook{
+    if([self.adminView.loginBackend.driveManager isAuthorized]){
+        BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
+        [self presentViewController:bookshelf animated:NO completion:NULL];
+    }
+}
+#pragma mark -
+#pragma mark Interface
 - (void)addButton: (NSString*)title y:(CGFloat)y action:(SEL)target {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:title forState:UIControlStateNormal];
@@ -37,6 +54,94 @@
     [subviews addObject:button];
 }
 
+/*  Remove items on the view  */
+- (void)clearScreen{
+    for(UIView *view in subviews)
+        [view removeFromSuperview];
+}
+
+- (void)showAdmin{
+    [usernameField removeFromSuperview];
+    [passwordField removeFromSuperview];
+    
+    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
+    
+    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
+    
+    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
+    
+    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
+}
+
+- (IBAction)logoutAdmin{
+    [self clearScreen];
+    [self.view addSubview:usernameField];
+    [self.view addSubview:passwordField];
+}
+
+/*  User log in screen set up, confirm or deny user access to notebook features  */
+- (IBAction)menuLoginScreen {
+    if([[[self.adminView.loginBackend.adminCredentials objectForKey:[usernameField.text lowercaseString]] objectAtIndex:1]isEqualToString:passwordField.text]){
+        [userManager setUsername:[usernameField.text lowercaseString]];
+        [userManager setFirstName:[[self.adminView.loginBackend.adminCredentials objectForKey:[userManager username]]objectAtIndex:2]];
+        [userManager setLastName:[[self.adminView.loginBackend.adminCredentials objectForKey:[userManager username]]objectAtIndex:3]];
+        [userManager setMidInitial:[[self.adminView.loginBackend.adminCredentials objectForKey:[userManager username]]objectAtIndex:4]];
+        usernameField.text = @"";
+        passwordField.text = @"";
+        [self showAdmin];
+        
+    }
+    else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectAtIndex:1]isEqualToString:passwordField.text]){
+        if([self.adminView.loginBackend.driveManager isAuthorized]){
+            [userManager setUsername:[usernameField.text lowercaseString]];
+            [userManager setFirstName:[[self.adminView.loginBackend.userCredentials objectForKey:[userManager username]]objectAtIndex:2]];
+            [userManager setLastName:[[self.adminView.loginBackend.userCredentials objectForKey:[userManager username]]objectAtIndex:3]];
+            [userManager setMidInitial:[[self.adminView.loginBackend.userCredentials objectForKey:[userManager username]]objectAtIndex:4]];
+            usernameField.text = @"";
+            passwordField.text = @"";
+            BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
+            [self presentViewController:bookshelf animated:NO completion:NULL];
+        }
+        else{
+            [self alertDriveConnection];
+        }
+    }
+    else {
+        if([self.adminView.loginBackend.driveManager isAuthorized]){
+            NSLog(@"Incorrect User/Password");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+            //            [self showAdmin];
+        }
+        else{
+            [self alertDriveConnection];
+        }
+    }
+}
+
+/*  Alert View responses  */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonPressedName isEqualToString: @"Log In"]){
+        UITextField *promptUser = [alertView textFieldAtIndex:0];
+        UITextField *promptPass = [alertView textFieldAtIndex:1];
+        if([[[self.adminView.loginBackend.adminCredentials objectForKey:promptUser.text] objectAtIndex:1]isEqualToString:promptPass.text]){
+            [self driveLogin];
+        }
+        else{
+            [self alertDriveConnection];
+        }
+    }
+    else if([buttonPressedName isEqualToString: @"Sign In"])
+        [self driveLogin];
+    else if([buttonPressedName isEqualToString: @"Sign Out"]){
+        [self driveLogout];
+        [self driveAlert];
+    }
+}
+
+#pragma mark -
+#pragma mark Drive
 - (void)alertDriveConnection{
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
@@ -45,12 +150,6 @@
     alert.message = @"Please have the instructor enter the administrator password.";
     [alert addButtonWithTitle:@"Log In"];
     [alert show];
-}
-
-/*  Remove items on the view  */
-- (void)clearScreen{
-    for(UIView *view in subviews)
-        [view removeFromSuperview];
 }
 
 /*  Log in to Drive  */
@@ -105,94 +204,8 @@
     }
 }
 
-
-
-- (void)showAdmin{
-    [usernameField removeFromSuperview];
-    [passwordField removeFromSuperview];
-    
-    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
-    
-    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
-    
-    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
-    
-    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
-}
-
-- (IBAction)openAdminSettings{
-    [self presentViewController:self.adminView animated:YES completion:NULL];
-    [self.adminView menuAdminSettings];
-}
-
-- (IBAction)openNotebook{
-    if([self.adminView.loginBackend.driveManager isAuthorized]){
-        BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
-        [self presentViewController:bookshelf animated:NO completion:NULL];
-    }
-}
-
-- (IBAction)logoutAdmin{
-    [self clearScreen];
-    [self.view addSubview:usernameField];
-    [self.view addSubview:passwordField];
-}
-
-/*  User log in screen set up, confirm or deny user access to notebook features  */
-- (IBAction)menuLoginScreen {
-    if([[[self.adminView.loginBackend.adminCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:[passwordField.text lowercaseString]]){
-        NSLog(@"Admin logged in as %@", usernameField.text);
-        usernameField.text = @"";
-        passwordField.text = @"";
-        [self showAdmin];
-        
-    }
-    else if([[[self.adminView.loginBackend.userCredentials objectForKey:usernameField.text] objectAtIndex:1]isEqualToString:[passwordField.text lowercaseString]]){
-        NSLog(@"Student logged in as %@", usernameField.text);
-        if([self.adminView.loginBackend.driveManager isAuthorized]){
-            usernameField.text = @"";
-            passwordField.text = @"";
-            BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
-            [self presentViewController:bookshelf animated:NO completion:NULL];
-        }
-        else{
-            [self alertDriveConnection];
-        }
-    }
-    else {
-        if([self.adminView.loginBackend.driveManager isAuthorized]){
-            NSLog(@"Incorrect User/Password");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            [alert show];
-            //            [self showAdmin];
-        }
-        else{
-            [self alertDriveConnection];
-        }
-    }
-}
-
-/*  Alert View responses  */
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
-    if([buttonPressedName isEqualToString: @"Log In"]){
-        UITextField *promptUser = [alertView textFieldAtIndex:0];
-        UITextField *promptPass = [alertView textFieldAtIndex:1];
-        if([[[self.adminView.loginBackend.adminCredentials objectForKey:promptUser.text] objectAtIndex:1]isEqualToString:promptPass.text]){
-            [self driveLogin];
-        }
-        else{
-            [self alertDriveConnection];
-        }
-    }
-    else if([buttonPressedName isEqualToString: @"Sign In"])
-        [self driveLogin];
-    else if([buttonPressedName isEqualToString: @"Sign Out"]){
-        [self driveLogout];
-        [self driveAlert];
-    }
-}
-
+#pragma mark -
+#pragma mark Backend
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == passwordField) {
         [self menuLoginScreen];
@@ -204,10 +217,5 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
-
-///*  Hide keyboard when not in user  */
-//- (BOOL)disablesAutomaticKeyboardDismissal {
-//    return NO;
-//}
 
 @end
