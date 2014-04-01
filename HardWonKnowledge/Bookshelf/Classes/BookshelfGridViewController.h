@@ -46,6 +46,7 @@
 //#import "UserLoginViewController.h"
 #import "GTLDrive.h"
 #import "DriveManager.h"
+#import "ActiveUser.h"
 
 @interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>//, BookshelfGridCellChooserDelegate>
 {
@@ -65,5 +66,6 @@
 - (IBAction) openNotebookView: (GTLDriveFile *)file;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
+@property (nonatomic, retain) ActiveUser *userManager;
 @end
 
