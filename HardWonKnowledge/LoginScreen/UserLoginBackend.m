@@ -16,25 +16,19 @@
 @synthesize listFileId;
 @synthesize userTxtPath;
 
-- (void)addNewUser: (NSMutableDictionary*)dictionary array:(NSMutableArray*)array {
-    for(int i=0; i<[array count]; i++){
-        if(i==0)
-            [array setObject:[[array objectAtIndex:i] lowercaseString] atIndexedSubscript:i];
-        else if(i>1)
-            [array setObject:[[array objectAtIndex:i] capitalizedString] atIndexedSubscript:i];
-    }
-    [dictionary setObject:array forKey:[array objectAtIndex:0]];
-}
-
-- (void)findBundleData{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
-    NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+- (void)initVariables{
+    userCredentials = [[NSMutableDictionary alloc] init];
+    adminCredentials = [[NSMutableDictionary alloc] init];
+    dataSrc = [[NSMutableArray alloc] init];
+    listFileId = [[NSString alloc]init];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    userTxtPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"NOTEBOOK_USERS_LIST.txt"];
+    NSLog(@"%@", userTxtPath);
     
-    for(NSString *row in rows)
-        [self parseText:row file:0];
 }
 
+#pragma mark -
+#pragma mark Google Drive
 /*  Find the user credential files to parse  */
 - (void)findDriveData{
     self.driveManager = [DriveManager getDriveManager];
@@ -74,120 +68,6 @@
     }];
 }
 
-- (void)initVariables{
-    userCredentials = [[NSMutableDictionary alloc] init];
-    adminCredentials = [[NSMutableDictionary alloc] init];
-    dataSrc = [[NSMutableArray alloc] init];
-    listFileId = [[NSString alloc]init];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    userTxtPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"NOTEBOOK_USERS_LIST.txt"];
-    NSLog(@"%@", userTxtPath);
-    
-}
-
-/*  Search if administrator username is in keys  */
-- (BOOL)isAdminUser: (NSString *) name{
-    for (NSString *key in [adminCredentials allKeys]){
-        //        NSLog(@"Compare: %@ %@", name, key);
-        if ([name isEqualToString:key] && [adminCredentials objectForKey:name] != nil){
-            //            NSLog(@"Found: %@ %@", name, key);
-            return true;}
-    }
-    return false;
-}
-
-/*  Search if student username is in keys  */
-- (BOOL)isStudentUser: (NSString *) name{
-    for (NSString *key in [userCredentials allKeys]){
-        if ([name isEqualToString:key] && [userCredentials objectForKey:name] != nil)
-            return true;
-    }
-    return false;
-}
-
-/*  Parse the string given and add as user  */
-- (void)parseText: (NSString *)text file:(NSInteger)fileType {
-    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if([text isEqualToString:@""] || [text isEqualToString:@"new file XX XX"])
-        return;
-    
-    text = [text stringByAppendingString:@" (empty) (empty) (empty)"];
-    NSMutableArray *fields = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
-    if([self isAdminUser:[fields objectAtIndex:0]] || [self isStudentUser:[fields objectAtIndex:0]])
-        return;
-    
-    if([fields containsObject:@"#*#"])
-        [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 6)]]];
-    else
-        [self addNewUser:userCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
-    if(fileType != 0)
-        [self setUpDataSrc: [fields subarrayWithRange:NSMakeRange(0, [fields count])]];
-}
-
-- (void)resetUsers {
-    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    for(NSString *row in rows)
-        [self parseText:row file:1];
-}
-
--(void)removeSelectedUser: (NSString *)username {
-    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    contents = @"";
-    for (NSString *row in rows){
-        if([[row stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
-            continue;
-        NSArray *fields = [row componentsSeparatedByString:@" "];
-        if([username isEqualToString:[fields objectAtIndex:0]])
-            continue;
-        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",row]];
-    }
-    
-    [dataSrc removeAllObjects];
-    [userCredentials removeAllObjects];
-    [adminCredentials removeAllObjects];
-    [self saveOnDisk:[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] clearFile:YES];
-    [self uploadListFile:NO];
-    [self resetUsers];
-}
-
-/*  Save added user to file on disk  */
-- (void)saveUser: (NSString *)user{
-    [self parseText:user file:1];
-    [self saveOnDisk:user clearFile:NO];
-    [self uploadListFile:NO];
-}
-
-/*  Save the file to disk before upload  */
-- (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile{
-    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    if(clearFile || [contents isEqualToString:@"new file XX XX"])
-        text = [[NSString alloc]initWithFormat:@"%@", text];
-    else
-        text = [[NSString alloc]initWithFormat:@"%@\n%@", contents, text];
-    
-    [text writeToFile:userTxtPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    NSLog(@"Saved to disk");
-}
-
-- (void)setUpDataSrc: (NSArray *)array{
-    NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[array objectAtIndex:0] lowercaseString]];
-    for(int i=2; i<[array count]; i++){
-        if([[array objectAtIndex:i] isEqualToString:@"#*#"])
-            text = [text stringByAppendingString:@" [Administrator User]"];
-        if(![[array objectAtIndex:i] isEqualToString:@"(empty)"] && ![[array objectAtIndex:i] isEqualToString:@"#*#"] )
-            text = [text stringByAppendingFormat:@" %@", [[array objectAtIndex:i] capitalizedString]];
-    }
-    NSLog(@"%@", text);
-    [dataSrc addObject:text];
-}
-
-- (void)updateSelectedUser:(NSString *)text username:(NSString *)username {
-    [self removeSelectedUser:username];
-    [self saveUser:text];
-}
-
 /*  Upload file to Google Drive  */
 - (void)uploadListFile: (BOOL)isNewFile{
     GTLDriveFile *file = [GTLDriveFile object];
@@ -218,5 +98,136 @@
             NSLog(@"An error occurred: %@", error);
     }];
 }
+
+#pragma mark -
+#pragma mark Device
+- (void)findBundleData{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
+    NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    
+    for(NSString *row in rows)
+        [self parseText:row file:0];
+}
+
+/*  Save the file to disk before upload  */
+- (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile{
+    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
+    if(clearFile || [contents isEqualToString:@"new file XX XX"])
+        text = [[NSString alloc]initWithFormat:@"%@", text];
+    else
+        text = [[NSString alloc]initWithFormat:@"%@\n%@", contents, text];
+    
+    [text writeToFile:userTxtPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"Saved to disk");
+}
+
+/*  Save added user to file on disk  */
+- (void)saveUser: (NSString *)user{
+    [self parseText:user file:1];
+    [self saveOnDisk:user clearFile:NO];
+    [self uploadListFile:NO];
+}
+
+#pragma mark -
+#pragma mark Parsing
+/*  Parse the string given and add as user  */
+- (void)parseText: (NSString *)text file:(NSInteger)fileType {
+    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if([text isEqualToString:@""] || [text isEqualToString:@"new file XX XX"])
+        return;
+    
+    text = [text stringByAppendingString:@" (empty) (empty) (empty)"];
+    NSMutableArray *fields = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
+    if([self isAdminUser:[fields objectAtIndex:0]] || [self isStudentUser:[fields objectAtIndex:0]])
+        return;
+    
+    if([fields containsObject:@"#*#"])
+        [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 6)]]];
+    else
+        [self addNewUser:userCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
+    if(fileType != 0)
+        [self setUpDataSrc: [fields subarrayWithRange:NSMakeRange(0, [fields count])]];
+}
+
+- (void)setUpDataSrc: (NSArray *)array{
+    NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[array objectAtIndex:0] lowercaseString]];
+    for(int i=2; i<[array count]; i++){
+        if([[array objectAtIndex:i] isEqualToString:@"#*#"])
+            text = [text stringByAppendingString:@" [Administrator User]"];
+        if(![[array objectAtIndex:i] isEqualToString:@"(empty)"] && ![[array objectAtIndex:i] isEqualToString:@"#*#"] )
+            text = [text stringByAppendingFormat:@" %@", [[array objectAtIndex:i] capitalizedString]];
+    }
+    NSLog(@"%@", text);
+    [dataSrc addObject:text];
+}
+
+- (void)addNewUser: (NSMutableDictionary*)dictionary array:(NSMutableArray*)array {
+    for(int i=0; i<[array count]; i++){
+        if(i==0)
+            [array setObject:[[array objectAtIndex:i] lowercaseString] atIndexedSubscript:i];
+        else if(i>1)
+            [array setObject:[[array objectAtIndex:i] capitalizedString] atIndexedSubscript:i];
+    }
+    [dictionary setObject:array forKey:[array objectAtIndex:0]];
+}
+
+#pragma mark -
+#pragma mark Editing User
+- (void)resetUsers {
+    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    for(NSString *row in rows)
+        [self parseText:row file:1];
+}
+
+-(void)removeSelectedUser: (NSString *)username {
+    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+    contents = @"";
+    for (NSString *row in rows){
+        if([[row stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
+            continue;
+        NSArray *fields = [row componentsSeparatedByString:@" "];
+        if([username isEqualToString:[fields objectAtIndex:0]])
+            continue;
+        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",row]];
+    }
+    
+    [dataSrc removeAllObjects];
+    [userCredentials removeAllObjects];
+    [adminCredentials removeAllObjects];
+    [self saveOnDisk:[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] clearFile:YES];
+    [self uploadListFile:NO];
+    [self resetUsers];
+}
+
+- (void)updateSelectedUser:(NSString *)text username:(NSString *)username {
+    [self removeSelectedUser:username];
+    [self saveUser:text];
+}
+
+#pragma mark -
+#pragma mark Other
+/*  Search if administrator username is in keys  */
+- (BOOL)isAdminUser: (NSString *) name{
+    for (NSString *key in [adminCredentials allKeys]){
+        //        NSLog(@"Compare: %@ %@", name, key);
+        if ([name isEqualToString:key] && [adminCredentials objectForKey:name] != nil){
+            //            NSLog(@"Found: %@ %@", name, key);
+            return true;}
+    }
+    return false;
+}
+
+/*  Search if student username is in keys  */
+- (BOOL)isStudentUser: (NSString *) name{
+    for (NSString *key in [userCredentials allKeys]){
+        if ([name isEqualToString:key] && [userCredentials objectForKey:name] != nil)
+            return true;
+    }
+    return false;
+}
+
 
 @end
