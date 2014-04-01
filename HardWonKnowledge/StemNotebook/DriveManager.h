@@ -22,6 +22,7 @@
 #pragma mark -
 #pragma mark Initialization Methods
 + (DriveManager*) getDriveManager;
+- (void)initRootAppFolder;
 
 #pragma mark -
 #pragma mark Authentication Methods

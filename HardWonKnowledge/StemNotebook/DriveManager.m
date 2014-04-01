@@ -465,6 +465,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   }];
 }
 
+//callbackSel should have one input, an NSData object
+//to call, do this:
+//[driveManager downloadDriveFile:someFile withCallback:@selector(someMethod:)];
+//METHOD SHOULD HAVE VOID RETURN
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file withCallback:(SEL)callbackSel
 {
     //Get Download Path
