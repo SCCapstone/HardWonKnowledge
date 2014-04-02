@@ -15,17 +15,18 @@
 
 - (BOOL)isAdminUser: (NSString *)name;
 - (BOOL)isStudentUser: (NSString *)name;
-
-- (void)findDriveData;
-- (void)findBundleData;
+- (NSDictionary *)dataToDictionary: (NSString *)path;
+- (void)findDriveFile;
+- (void)findBundleFile;
 - (void)initVariables;
-- (void)parseText: (NSString *)text file:(NSInteger)fileType;
+//- (void)parseText: (NSString *)text file:(NSInteger)fileType;
+- (void)parseXML: (NSString *)key data:(NSDictionary *)data;
 - (void)resetUsers;
-- (void)removeSelectedUser: (NSString *)username;
-- (void)saveUser: (NSString *)user;
-- (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile;
-- (void)uploadListFile: (BOOL)isNewFile;
-- (void)updateSelectedUser: (NSString*)text username:(NSString*)username;
+- (NSDictionary*)removeSelectedUser: (NSString *)username;
+- (void)saveUser:(NSString *)username data:(NSDictionary *)data;
+- (void)saveOnDisk:(NSString*)username data:(NSDictionary *)data clearFile:(BOOL)clearFile;
+- (void)uploadListFile;
+- (void)updateSelectedUser:(NSDictionary *)data username:(NSString *)username ;
 
 @property (nonatomic,retain) GTLServiceDrive *driveService;
 @property (nonatomic,retain) DriveManager *driveManager;
@@ -34,6 +35,6 @@
 @property (nonatomic,retain) NSMutableDictionary *userCredentials;
 @property (nonatomic,retain) NSMutableArray *dataSrc;
 @property (nonatomic,retain) NSString *listFileId;
-@property (nonatomic,retain) NSString *userTxtPath;
+@property (nonatomic,retain) NSString *docPath;
 
 @end
