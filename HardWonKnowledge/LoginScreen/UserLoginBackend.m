@@ -95,15 +95,13 @@
 /*  Save the file to disk before upload  */
 - (void)saveOnDisk:(NSString*)username data:(NSDictionary *)data clearFile:(BOOL)clearFile {
     NSMutableDictionary *temp;
-    NSLog(@"Trying %@ %@", username,data);
     if(clearFile)
         temp = [NSMutableDictionary dictionaryWithDictionary:data];
     else{
         temp = [[NSMutableDictionary alloc] initWithDictionary:[self dataToDictionary:docPath]];;
         [temp setValue:data forKey:username];
     }
-    
-    NSLog(@"SAVING: %@",temp);
+
     NSData *contents = [NSPropertyListSerialization dataFromPropertyList:temp
                                                                   format:NSPropertyListXMLFormat_v1_0
                                                         errorDescription:nil];
@@ -115,7 +113,6 @@
 
 /*  Save added user to file on disk  */
 - (void)saveUser:(NSString *)username data:(NSDictionary *)data {
-    NSLog(@"username %@ data %@", username, data);
     [self parseXML:username data:data];
     [self saveOnDisk:username data:data clearFile:NO];
     [self uploadListFile];
@@ -124,7 +121,6 @@
 #pragma mark -
 #pragma mark Parsing
 - (void)parseXML: (NSString *)key data:(NSDictionary *)data {
-    NSLog(@"ParsingL user %@ data%@",key,data);
     if([data count]==0 || [key length]==0)
         return;
     if([[data objectForKey:@"isAdmin"]isEqual:@YES])
@@ -134,12 +130,10 @@
     
     if(![[data objectForKey:@"Last Name"]isEqual:@"DEFAULT_USER_ENTRY"]){
         [self setUpDataSrc:data];
-        NSLog(@"Data: %@ %@",data, dataSrc);
     }
 }
 
 - (void)setUpDataSrc: (NSDictionary*)data{
-    NSLog(@"testing %@", [data objectForKey:@"Username"]);
     NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[data objectForKey:@"Username"] lowercaseString]];
     NSMutableArray *array = [NSArray arrayWithObjects:@"First Name", @"Middle Initial", @"Last Name", nil];
     for(int i=0; i<[array count]; i++) {
@@ -185,7 +179,6 @@
     [dataSrc removeAllObjects];
     [userCredentials removeAllObjects];
     [adminCredentials removeAllObjects];
-    NSLog(@"NewData %@",newData);
     [self saveOnDisk:@"" data:newData clearFile:YES];
     [self uploadListFile];
     [self resetUsers];
@@ -194,9 +187,7 @@
 
 - (void)updateSelectedUser:(NSDictionary *)data username:(NSString *)username {
     NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:[self removeSelectedUser:username]];
-    NSLog(@"temp %@",temp);
     [temp setValue:data forKey:username];
-    NSLog(@"temp2 %@",temp);
     [self saveUser:username data:data];
 }
 
