@@ -14,76 +14,60 @@
 @synthesize userCredentials;
 @synthesize dataSrc;
 @synthesize listFileId;
-@synthesize userTxtPath;
+@synthesize docPath;
 
 - (void)initVariables{
     userCredentials = [[NSMutableDictionary alloc] init];
     adminCredentials = [[NSMutableDictionary alloc] init];
     dataSrc = [[NSMutableArray alloc] init];
-    listFileId = [[NSString alloc]init];
+    listFileId = @"Default String Data";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    userTxtPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"NOTEBOOK_USERS_LIST.txt"];
-    NSLog(@"%@", userTxtPath);
+    docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"UserList.plist"];
+    NSLog(@"%@", docPath);
     
 }
 
 #pragma mark -
 #pragma mark Google Drive
 /*  Find the user credential files to parse  */
-- (void)findDriveData{
+- (void)findDriveFile{
     self.driveManager = [DriveManager getDriveManager];
-    NSString *search = @"title contains 'NOTEBOOK_USERS_LIST'";
+    NSString *search = @"title contains 'UserList'";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         if (error == nil) {
             GTLDriveFile *file = [files.items objectAtIndex:0];
-            NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-            NSLog(@"File ID: %@",  file.identifier);
-            if(file.identifier != nil){
+            if(file.identifier != nil) {
                 listFileId = file.identifier;
                 [self.driveManager downloadDriveFile:file];
+                NSDictionary *temp = [self dataToDictionary:docPath];
+                for(id key in temp)
+                    [self parseXML:key data:[temp objectForKey:key]];
             }
-            
-            if(contents==nil){
-                NSLog(@"No File in Drive");
-                [self saveOnDisk:@"new file XX XX" clearFile:YES];
-                [self uploadListFile:YES];
-                [self findDriveData];
-            }
-            else{
-                NSLog(@"File in Drive");
-                if(listFileId == nil)
-                    [self findDriveData];
-                
-                //                [self.driveManager downloadDriveFile:file];
-                NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-                for (NSString *row in rows)
-                    [self parseText:row file:1];
-            }
-            
+            NSLog(@"ID: %@ %@",listFileId, file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
     }];
 }
 
 /*  Upload file to Google Drive  */
-- (void)uploadListFile: (BOOL)isNewFile{
+- (void)uploadListFile {
     GTLDriveFile *file = [GTLDriveFile object];
-    file.title = @"NOTEBOOK_USERS_LIST.txt";
-    file.descriptionProperty = @"Text file of STEM Notebook users.";
-    file.mimeType = @"text/plain";
+    file.title = @"UserList.plist";
+    file.descriptionProperty = @"List of STEM Notebook users.";
+    file.mimeType = @"mimeType = 'application/x-plist'";
     
     NSData *data = nil;
-    if([[NSFileManager defaultManager] fileExistsAtPath:userTxtPath])
-        data = [[NSFileManager defaultManager] contentsAtPath:userTxtPath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:docPath])
+        data = [[NSFileManager defaultManager] contentsAtPath:docPath];
     else
         NSLog(@"File does not exist");
     
     GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
     GTLQueryDrive *query;
-    if(isNewFile)
+    if([listFileId isEqualToString:@"Default String Data"])
         query = [GTLQueryDrive queryForFilesInsertWithObject:file uploadParameters:uploadParameters];
     else
         query = [GTLQueryDrive queryForFilesUpdateWithObject:file fileId:listFileId uploadParameters:uploadParameters];
@@ -101,110 +85,119 @@
 
 #pragma mark -
 #pragma mark Device
-- (void)findBundleData{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"txt"];
-    NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    
-    for(NSString *row in rows)
-        [self parseText:row file:0];
+- (void)findBundleFile{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"DefaultUserList" ofType:@"plist"];
+    NSDictionary *temp = [self dataToDictionary:path];
+    for(id key in temp)
+        [self parseXML:key data:[temp objectForKey:key]];
 }
 
 /*  Save the file to disk before upload  */
-- (void)saveOnDisk: (NSString *)text clearFile:(BOOL)clearFile{
-    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    if(clearFile || [contents isEqualToString:@"new file XX XX"])
-        text = [[NSString alloc]initWithFormat:@"%@", text];
-    else
-        text = [[NSString alloc]initWithFormat:@"%@\n%@", contents, text];
+- (void)saveOnDisk:(NSString*)username data:(NSDictionary *)data clearFile:(BOOL)clearFile {
+    NSMutableDictionary *temp;
+    NSLog(@"Trying %@ %@", username,data);
+    if(clearFile)
+        temp = [NSMutableDictionary dictionaryWithDictionary:data];
+    else{
+        temp = [[NSMutableDictionary alloc] initWithDictionary:[self dataToDictionary:docPath]];;
+        [temp setValue:data forKey:username];
+    }
     
-    [text writeToFile:userTxtPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"SAVING: %@",temp);
+    NSData *contents = [NSPropertyListSerialization dataFromPropertyList:temp
+                                                                  format:NSPropertyListXMLFormat_v1_0
+                                                        errorDescription:nil];
+    if(contents)
+        [contents writeToFile:docPath atomically:YES];
+    
     NSLog(@"Saved to disk");
 }
 
 /*  Save added user to file on disk  */
-- (void)saveUser: (NSString *)user{
-    [self parseText:user file:1];
-    [self saveOnDisk:user clearFile:NO];
-    [self uploadListFile:NO];
+- (void)saveUser:(NSString *)username data:(NSDictionary *)data {
+    NSLog(@"username %@ data %@", username, data);
+    [self parseXML:username data:data];
+    [self saveOnDisk:username data:data clearFile:NO];
+    [self uploadListFile];
 }
 
 #pragma mark -
 #pragma mark Parsing
-/*  Parse the string given and add as user  */
-- (void)parseText: (NSString *)text file:(NSInteger)fileType {
-    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if([text isEqualToString:@""] || [text isEqualToString:@"new file XX XX"])
+- (void)parseXML: (NSString *)key data:(NSDictionary *)data {
+    NSLog(@"ParsingL user %@ data%@",key,data);
+    if([data count]==0 || [key length]==0)
         return;
-    
-    text = [text stringByAppendingString:@" (empty) (empty) (empty)"];
-    NSMutableArray *fields = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
-    if([self isAdminUser:[fields objectAtIndex:0]] || [self isStudentUser:[fields objectAtIndex:0]])
-        return;
-    
-    if([fields containsObject:@"#*#"])
-        [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 6)]]];
+    if([[data objectForKey:@"isAdmin"]isEqual:@YES])
+        [adminCredentials setValue:data forKey:key];
     else
-        [self addNewUser:userCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
-    if(fileType != 0)
-        [self setUpDataSrc: [fields subarrayWithRange:NSMakeRange(0, [fields count])]];
+        [userCredentials setValue:data forKey:key];
+    
+    if(![[data objectForKey:@"Last Name"]isEqual:@"DEFAULT_USER_ENTRY"]){
+        [self setUpDataSrc:data];
+        NSLog(@"Data: %@ %@",data, dataSrc);
+    }
 }
 
-- (void)setUpDataSrc: (NSArray *)array{
-    NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[array objectAtIndex:0] lowercaseString]];
-    for(int i=2; i<[array count]; i++){
-        if([[array objectAtIndex:i] isEqualToString:@"#*#"])
-            text = [text stringByAppendingString:@" [Administrator User]"];
-        if(![[array objectAtIndex:i] isEqualToString:@"(empty)"] && ![[array objectAtIndex:i] isEqualToString:@"#*#"] )
-            text = [text stringByAppendingFormat:@" %@", [[array objectAtIndex:i] capitalizedString]];
+- (void)setUpDataSrc: (NSDictionary*)data{
+    NSLog(@"testing %@", [data objectForKey:@"Username"]);
+    NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[data objectForKey:@"Username"] lowercaseString]];
+    NSMutableArray *array = [NSArray arrayWithObjects:@"First Name", @"Middle Initial", @"Last Name", nil];
+    for(int i=0; i<[array count]; i++) {
+        if(![[data objectForKey:[array objectAtIndex:i]]isEqualToString:@"(empty)"])
+            text = [text stringByAppendingFormat:@" %@", [[data objectForKey:[array objectAtIndex:i]] capitalizedString]];
     }
-    NSLog(@"%@", text);
+    if([[data objectForKey:@"isAdmin"]isEqual:@YES])
+        text = [text stringByAppendingString:@" [Administrator User]"];
     [dataSrc addObject:text];
 }
 
-- (void)addNewUser: (NSMutableDictionary*)dictionary array:(NSMutableArray*)array {
-    for(int i=0; i<[array count]; i++){
-        if(i==0)
-            [array setObject:[[array objectAtIndex:i] lowercaseString] atIndexedSubscript:i];
-        else if(i>1)
-            [array setObject:[[array objectAtIndex:i] capitalizedString] atIndexedSubscript:i];
-    }
-    [dictionary setObject:array forKey:[array objectAtIndex:0]];
+- (NSDictionary *)dataToDictionary: (NSString *)path {
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+    NSPropertyListFormat format;
+    NSDictionary *temp = (NSMutableDictionary *)[NSPropertyListSerialization
+                                                 propertyListFromData:data
+                                                 mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                 format:&format
+                                                 errorDescription:nil];
+    if (!temp) 
+        NSLog(@"Error reading plist: %@, format: %d", nil, format);
+    
+    return temp;
 }
 
 #pragma mark -
 #pragma mark Editing User
 - (void)resetUsers {
-    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    for(NSString *row in rows)
-        [self parseText:row file:1];
+    NSDictionary *temp = [self dataToDictionary:docPath];
+    for(id key in temp){
+        [self parseXML:key data:[temp objectForKey:key]];
+    }
 }
 
--(void)removeSelectedUser: (NSString *)username {
-    NSString *contents = [NSString stringWithContentsOfFile:userTxtPath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *rows = [contents componentsSeparatedByString:@"\n"];
-    contents = @"";
-    for (NSString *row in rows){
-        if([[row stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]isEqualToString:@""])
-            continue;
-        NSArray *fields = [row componentsSeparatedByString:@" "];
-        if([username isEqualToString:[fields objectAtIndex:0]])
-            continue;
-        contents = [contents stringByAppendingString:[[NSString alloc] initWithFormat:@"%@\n",row]];
+-(NSDictionary*)removeSelectedUser: (NSString *)username {
+    NSDictionary *temp = [self dataToDictionary:docPath];
+    NSMutableDictionary *newData = [[NSMutableDictionary alloc] init];
+    for(id key in temp){
+        if(![key isEqualToString:username])
+            [newData setValue:[temp objectForKey:key] forKey:key];
     }
     
     [dataSrc removeAllObjects];
     [userCredentials removeAllObjects];
     [adminCredentials removeAllObjects];
-    [self saveOnDisk:[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] clearFile:YES];
-    [self uploadListFile:NO];
+    NSLog(@"NewData %@",newData);
+    [self saveOnDisk:@"" data:newData clearFile:YES];
+    [self uploadListFile];
     [self resetUsers];
+    return newData;
 }
 
-- (void)updateSelectedUser:(NSString *)text username:(NSString *)username {
-    [self removeSelectedUser:username];
-    [self saveUser:text];
+- (void)updateSelectedUser:(NSDictionary *)data username:(NSString *)username {
+    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:[self removeSelectedUser:username]];
+    NSLog(@"temp %@",temp);
+    [temp setValue:data forKey:username];
+    NSLog(@"temp2 %@",temp);
+    [self saveUser:username data:data];
 }
 
 #pragma mark -
@@ -212,9 +205,7 @@
 /*  Search if administrator username is in keys  */
 - (BOOL)isAdminUser: (NSString *) name{
     for (NSString *key in [adminCredentials allKeys]){
-        //        NSLog(@"Compare: %@ %@", name, key);
         if ([name isEqualToString:key] && [adminCredentials objectForKey:name] != nil){
-            //            NSLog(@"Found: %@ %@", name, key);
             return true;}
     }
     return false;
