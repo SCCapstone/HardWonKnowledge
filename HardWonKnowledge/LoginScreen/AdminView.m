@@ -35,8 +35,8 @@
         
         self.loginBackend = [[UserLoginBackend alloc]init];
         [self.loginBackend initVariables];
-        [self.loginBackend findBundleData];
-        [self.loginBackend findDriveData];
+        [self.loginBackend findBundleFile];
+        [self.loginBackend findDriveFile];
     }
     return self;
 }
@@ -52,6 +52,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
+#pragma mark Interface objects
 /*  Add button to adminView and set up properties  */
 - (void)addButton:(NSInteger)index title:(NSString*)title action:(SEL)action x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -109,8 +111,7 @@
 }
 
 /*  Add text view to adminView and set up properties */
-- (void)addTextView: (NSInteger)index text:(NSString*)text x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size {
-    //  TEXT VIEW DETAILS  //
+- (void)addTextView: (NSInteger)index text:(NSString*)text x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size editable:(BOOL)edit{
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
     [textView.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
@@ -118,7 +119,7 @@
     textView.font = [UIFont systemFontOfSize:size];
     [textView.layer setCornerRadius:10];
     [textView setClipsToBounds: YES];
-    [textView setEditable:YES];
+    [textView setEditable:edit];
     [textView setScrollEnabled:NO];
     if([[text lowercaseString]isEqualToString:@"(empty)"])
         textView.text = @"";
@@ -128,27 +129,8 @@
     [subviews setObject:textView atIndexedSubscript:index];
 }
 
-/*  Method for creating alert with a single button  */
-- (void)alertOneButton: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn {
-    UIAlertView * alert = [[UIAlertView alloc] init];
-    alert.delegate = self;
-    alert.title = title;
-    alert.message = mssg;
-    [alert addButtonWithTitle:btn];
-    [alert show];
-}
-
-/*  Method for creating alert with two buttons  */
-- (void)alertTwoButtons:(NSString *)title message:(NSString *)mssg firstButton:(NSString *)btn1 secondButton:(NSString *)btn2 {
-    UIAlertView * alert = [[UIAlertView alloc] init];
-    alert.delegate = self;
-    alert.title = title;
-    alert.message = mssg;
-    [alert addButtonWithTitle:btn1];
-    [alert addButtonWithTitle:btn2];
-    [alert show];
-}
-
+#pragma mark -
+#pragma mark Interface actions
 /*  Responder to switch manupulation  */
 - (void)changeSwitch:(id)sender{
     if([sender isOn])
@@ -168,16 +150,18 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+
+#pragma mark -
+#pragma mark User details
 /*  Review the newly added user before submit  */
 - (void)confirmUserInsertion: (NSString*)method {
     UITextField *textField;
     for(int i=1; i<=5; i++){
         textField = [subviews objectAtIndex:i];
         if(textField.text == nil)
-           [savedText setObject:@"(empty)" atIndexedSubscript:i-1];//            [savedText addObject:@"(empty)"];
+            [savedText setObject:@"(empty)" atIndexedSubscript:i-1];//            [savedText addObject:@"(empty)"];
         else
             [savedText setObject:textField.text atIndexedSubscript:i-1];//            [savedText addObject:textField.text];
-        NSLog(@"%i %@", i, [savedText objectAtIndex:i-1]);
     }
     
     if([[savedText objectAtIndex:0]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:3]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:4]isEqualToString:@"(empty)"]) {
@@ -185,7 +169,7 @@
         [savedText removeAllObjects];
         return;
     }
-    if([self.loginBackend isStudentUser:[savedText objectAtIndex:3]] || [self.loginBackend isAdminUser:[savedText objectAtIndex:3]]){
+    if(![method isEqualToString:@"Update"] && ([self.loginBackend isStudentUser:[savedText objectAtIndex:3]] || [self.loginBackend isAdminUser:[savedText objectAtIndex:3]])){
         [self alertOneButton:@"Input Error" message:@"This username is already taken" buttonTitle:@"Dismiss"];
         [savedText removeAllObjects];
         return;
@@ -194,9 +178,75 @@
     if([[savedText objectAtIndex:1] length] > 1 && ![[[savedText objectAtIndex:1] lowercaseString] isEqualToString:@"(empty)"])
         [savedText setObject:[[savedText objectAtIndex:1] substringToIndex:1] atIndexedSubscript:1];
     
-    [self alertTwoButtons:@"Insert Confirmation" message:[NSString stringWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@",[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4]] firstButton:method secondButton:@"Dismiss"];    
+    [self alertTwoButtons:@"Insert Confirmation" message:[NSString stringWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@",[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4]] firstButton:method secondButton:@"Dismiss"];
 }
 
+- (IBAction)promptAddUser {
+    [self confirmUserInsertion: @"Add"];
+}
+
+/*  The remove user prompt  */
+- (IBAction)promptRemoveUser {
+    if([[srchedData objectAtIndex:0]isEqualToString:@"nil"])
+        return;
+    
+    [self alertTwoButtons:nil message:[NSString stringWithFormat:@"Delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
+}
+
+/*  The update user prompt  */
+- (IBAction)promptUpdateUser {    
+    [self confirmUserInsertion: @"Update"];
+}
+
+/*  Setting up user details to be added into user list  */
+- (void)submitAddedUser {
+    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
+                                                     forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
+    if(isAdmin)
+       [temp setValue:@YES forKey:@"isAdmin"];
+    else
+        [temp setValue:@NO forKey:@"isAdmin"];
+//    NSDictionary *user = [NSDictionary dictionaryWithObject:temp forKey:[savedText objectAtIndex:3]];
+    [self.loginBackend saveUser:[savedText objectAtIndex:3] data:temp];
+}
+
+/*  Setting up user details to be updated in user list  */
+- (void)submitUpdatedUser {
+    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
+                                                                   forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
+    if(isAdmin)
+        
+        [temp setValue:@YES forKey:@"isAdmin"];
+    else
+        [temp setValue:@NO forKey:@"isAdmin"];
+    NSLog(@"Passing %@", temp);
+    [self.loginBackend updateSelectedUser:temp username:[srchedData objectAtIndex:0]];
+}
+
+/*  Getting user details for updating process  */
+- (void)configUpdateUser {
+    [savedText removeAllObjects];
+    NSMutableDictionary *dict;
+    
+    if([self.loginBackend isAdminUser:[srchedData objectAtIndex:0]]){
+        isAdmin = YES;
+        dict = [self.loginBackend.adminCredentials objectForKey:[srchedData objectAtIndex:0]];
+    }
+    else{
+        isAdmin = NO;
+        dict = [self.loginBackend.userCredentials objectForKey:[srchedData objectAtIndex:0]];
+    }
+    
+    [savedText addObject:[dict objectForKey:@"First Name"]];
+        [savedText addObject:[dict objectForKey:@"Middle Initial"]];
+        [savedText addObject:[dict objectForKey:@"Last Name"]];
+        [savedText addObject:[dict objectForKey:@"Username"]];
+        [savedText addObject:[dict objectForKey:@"Password"]];
+
+}
+
+#pragma mark -
+#pragma mark Interface view
 /*  The Add User Menu for adding users to the users list  */
 - (void)menuAdminAdd {
     [self openView:@"Add New User"];
@@ -247,7 +297,7 @@
     [tblData sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     [myTableView reloadData];
     
-//    [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    //    [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     [srchedData addObject:@"nil"];
     
     [self addButton:3 title:@"Update" action:@selector(menuAdminUpdate) x:10.0 y:550.0 width:150.0 height:50.0];
@@ -272,14 +322,14 @@
         NSLog(@"Nothing Selected");
         return;
     }
-
+    
     [self openView:@"Update Existing User"];
     
-    [self addTextView:1 text:[savedText objectAtIndex:2] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18];
-    [self addTextView:2 text:[savedText objectAtIndex:3] x:480 y:150.0 width:40.0 height:30.0 fontSize:18];
-    [self addTextView:3 text:[savedText objectAtIndex:4] x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18];
-    [self addTextView:4 text:[savedText objectAtIndex:0] x:120 y:275 width:400.0 height:30.0 fontSize:18];
-    [self addTextView:5 text:[savedText objectAtIndex:1] x:120 y:325 width:400.0 height:30.0 fontSize:18];
+    [self addTextView:1 text:[savedText objectAtIndex:0] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:2 text:[savedText objectAtIndex:1] x:480 y:150.0 width:40.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:3 text:[savedText objectAtIndex:2] x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:4 text:[savedText objectAtIndex:3] x:120 y:275 width:400.0 height:30.0 fontSize:18 editable:NO];
+    [self addTextView:5 text:[savedText objectAtIndex:4] x:120 y:325 width:400.0 height:30.0 fontSize:18 editable:YES];
     
     [self addButton:6 title:@"Submit" action:@selector(promptUpdateUser) x:50.0 y:550.0 width:200.0 height:50.0];
     [self addButton:7 title:@"Cancel" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250) y:550.0 width:200.0 height:50.0];
@@ -302,67 +352,27 @@
     [self addLabel:0 title:title x:0 y:50.0 width:self.view.frame.size.width height:50.0 color:[UIColor darkGrayColor] alignment:NSTextAlignmentCenter fontSize:28 isBold:YES];
 }
 
-- (IBAction)promptAddUser {
-    [self confirmUserInsertion: @"Add"];
+#pragma mark -
+#pragma mark Alert view
+/*  Method for creating alert with a single button  */
+- (void)alertOneButton: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn {
+    UIAlertView * alert = [[UIAlertView alloc] init];
+    alert.delegate = self;
+    alert.title = title;
+    alert.message = mssg;
+    [alert addButtonWithTitle:btn];
+    [alert show];
 }
 
-/*  The remove user prompt  */
-- (IBAction)promptRemoveUser {
-    if([[srchedData objectAtIndex:0]isEqualToString:@"nil"])
-        return;
-    
-    [self alertTwoButtons:nil message:[NSString stringWithFormat:@"Delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
-}
-
-/*  The update user prompt  */
-- (IBAction)promptUpdateUser {
-    if(isAdmin){
-        [self.loginBackend.adminCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
-        NSLog(@"Removed from Admin");
-    }
-    else{
-        [self.loginBackend.userCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
-                NSLog(@"Removed from Student");
-    }
-    
-    [self confirmUserInsertion: @"Update"];
-}
-
-/*  Setting up user details to be added into user list  */
-- (void)submitAddedUser {
-    if(isAdmin)
-        [savedText setObject:[[savedText objectAtIndex:2] stringByAppendingString:@" #*#"] atIndexedSubscript:2];
-    
-    NSString *text = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", [savedText objectAtIndex:3],[savedText objectAtIndex:4],[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2]];
-    [self.loginBackend saveUser:[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-}
-
-/*  Setting up user details to be updated in user list  */
-- (void)submitUpdatedUser {
-    if(isAdmin)
-        [savedText setObject:[[savedText objectAtIndex:2] stringByAppendingString:@" #*#"] atIndexedSubscript:2];
-    
-    NSString *text = [[NSString stringWithFormat:@"%@ %@ %@ %@ %@", [savedText objectAtIndex:3],[savedText objectAtIndex:4],[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [self.loginBackend updateSelectedUser:text username:[srchedData objectAtIndex:0]];
-}
-
-/*  Getting user details for updating process  */
-- (void)configUpdateUser {
-    [savedText removeAllObjects];
-    NSMutableArray *array;
-    
-    if([self.loginBackend isAdminUser:[srchedData objectAtIndex:0]]){
-        isAdmin = YES;
-        array = [[NSMutableArray alloc] initWithArray:[self.loginBackend.adminCredentials objectForKey:[srchedData objectAtIndex:0]]];
-    }
-    else{
-        isAdmin = NO;
-        array = [[NSMutableArray alloc] initWithArray:[self.loginBackend.userCredentials objectForKey:[srchedData objectAtIndex:0]]];
-    }
-    
-    for(int i=0; i<5; i++){
-        [savedText addObject:[array objectAtIndex:i]];
-    }
+/*  Method for creating alert with two buttons  */
+- (void)alertTwoButtons:(NSString *)title message:(NSString *)mssg firstButton:(NSString *)btn1 secondButton:(NSString *)btn2 {
+    UIAlertView * alert = [[UIAlertView alloc] init];
+    alert.delegate = self;
+    alert.title = title;
+    alert.message = mssg;
+    [alert addButtonWithTitle:btn1];
+    [alert addButtonWithTitle:btn2];
+    [alert show];
 }
 
 /*  Alert View responses  */
@@ -373,12 +383,18 @@
     }
     else if([buttonPressedName isEqualToString:@"Add"]){
         [self submitAddedUser];
-        [self alertOneButton:@"User Added Successfully" message:nil buttonTitle:@"Dismiss"];
         [self menuAdminAdd];
     }
     else if([buttonPressedName isEqualToString:@"Update"]){
+        if(!isAdmin){
+            [self.loginBackend.adminCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
+            NSLog(@"Removed from Admin");
+        }
+        else{
+            [self.loginBackend.userCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
+            NSLog(@"Removed from Student");
+        }
         [self submitUpdatedUser];
-        [self alertOneButton:@"User Updated Successfully" message:nil buttonTitle:@"Dismiss"];
         [myTableView reloadData];
         [self menuAdminEdit];
     }
@@ -389,6 +405,7 @@
     }
 }
 
+#pragma mark -
 /*  Hide cursor when click outside of input field.  */
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     for(UIView *view in subviews){
@@ -482,14 +499,22 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     sBar.text = cell.textLabel.text;
     
-    for(NSString *row in self.loginBackend.dataSrc){
-        NSRange r = [[row lowercaseString] rangeOfString:[cell.textLabel.text lowercaseString]];
-        if(r.location != NSNotFound){
-            NSArray *array = [row componentsSeparatedByString:@" "];
-            [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
-            [self configUpdateUser];
-        }
-    }
+    NSArray *array = [cell.textLabel.text componentsSeparatedByString:@" "];
+    [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
+    NSLog(@"srched: %@",srchedData);
+    [self configUpdateUser];
+    
+    
+//    for(NSString *row in self.loginBackend.dataSrc){
+//        NSLog(@"row: %@",row);
+//        NSRange r = [[row lowercaseString] rangeOfString:[cell.textLabel.text lowercaseString]];
+//        if(r.location != NSNotFound){
+//            NSArray *array = [row componentsSeparatedByString:@" "];
+//            [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
+//            NSLog(@"srched: %@",srchedData);
+//            [self configUpdateUser];
+//        }
+//    }
 }
 
 @end
