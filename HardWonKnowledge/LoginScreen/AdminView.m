@@ -219,7 +219,6 @@
         [temp setValue:@YES forKey:@"isAdmin"];
     else
         [temp setValue:@NO forKey:@"isAdmin"];
-    NSLog(@"Passing %@", temp);
     [self.loginBackend updateSelectedUser:temp username:[srchedData objectAtIndex:0]];
 }
 
@@ -501,20 +500,7 @@
     
     NSArray *array = [cell.textLabel.text componentsSeparatedByString:@" "];
     [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
-    NSLog(@"srched: %@",srchedData);
     [self configUpdateUser];
-    
-    
-//    for(NSString *row in self.loginBackend.dataSrc){
-//        NSLog(@"row: %@",row);
-//        NSRange r = [[row lowercaseString] rangeOfString:[cell.textLabel.text lowercaseString]];
-//        if(r.location != NSNotFound){
-//            NSArray *array = [row componentsSeparatedByString:@" "];
-//            [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
-//            NSLog(@"srched: %@",srchedData);
-//            [self configUpdateUser];
-//        }
-//    }
 }
 
 @end
