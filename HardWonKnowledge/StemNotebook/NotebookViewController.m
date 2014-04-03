@@ -26,6 +26,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize sideBarView;
 @synthesize cameraSubmenu;
 @synthesize notebookDriveFile;
+@synthesize userManager;
 
 
 
@@ -47,6 +48,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                                                                          clientID:kClientID
                                                                                      clientSecret:kClientSecret];
     self.driveManager = [DriveManager getDriveManager];
+    self.userManager = [ActiveUser userManager];
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,7 +183,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (void)backButtonClicked
 {
     BookshelfGridViewController *bookshelf = (BookshelfGridViewController*)self.presentingViewController;
-    [bookshelf loadNotebookFiles];
+    [bookshelf loadView];
     [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
