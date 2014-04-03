@@ -14,6 +14,7 @@
 @synthesize firstName;
 @synthesize midInitial;
 @synthesize lastName;
+@synthesize isAdmin;
 @synthesize folderId;
 
 #pragma mark -
@@ -34,6 +35,7 @@
         midInitial = @"Default Property Value";
         lastName = @"Default Property Value";
         folderId = @"Default Property Value";
+        isAdmin = NO;
     }
     return self;
 }
