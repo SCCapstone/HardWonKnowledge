@@ -14,7 +14,7 @@
 @interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITextFieldDelegate>
 
 - (IBAction)driveButton;
-- (IBAction)menuLoginScreen;
+- (IBAction)loginCheck;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) AdminView *adminView;

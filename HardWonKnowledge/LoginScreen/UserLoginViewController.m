@@ -42,6 +42,7 @@
         [self presentViewController:bookshelf animated:NO completion:NULL];
     }
 }
+
 #pragma mark -
 #pragma mark Interface
 - (void)addButton: (NSString*)title y:(CGFloat)y action:(SEL)target {
@@ -79,29 +80,31 @@
     [passwordField setHidden:NO];
 }
 
+- (void)notebookLoginSetup: (NSDictionary*)dict {
+    NSDictionary *temp = [dict objectForKey:[usernameField.text lowercaseString]];
+    [userManager setUsername:[temp objectForKey:@"Username"]];
+    [userManager setFirstName:[temp objectForKey:@"First Name"]];
+    [userManager setLastName:[temp objectForKey:@"Last Name"]];
+    [userManager setMidInitial:[temp objectForKey:@"Middle Initial"]];
+    usernameField.text = @"";
+    passwordField.text = @"";
+}
+
 /*  User log in screen set up, confirm or deny user access to notebook features  */
-- (IBAction)menuLoginScreen {
+- (IBAction)loginCheck {
     if([[[self.adminView.loginBackend.adminCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
-        NSDictionary *temp = [self.adminView.loginBackend.adminCredentials objectForKey:[usernameField.text lowercaseString]];
-        [userManager setUsername:[temp objectForKey:@"Username"]];
-        [userManager setFirstName:[temp objectForKey:@"First Name"]];
-        [userManager setLastName:[temp objectForKey:@"Last Name"]];
-        [userManager setMidInitial:[temp objectForKey:@"Middle Initial"]];
-        usernameField.text = @"";
-        passwordField.text = @"";
-        [self showAdmin];        
+        [self notebookLoginSetup:self.adminView.loginBackend.adminCredentials];
+        [userManager setIsAdmin:YES];
+        [self showAdmin];
     }
     else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
         if([self.adminView.loginBackend.driveManager isAuthorized]){
-            NSDictionary *temp = [self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]];
-            [userManager setUsername:[temp objectForKey:@"Username"]];
-            [userManager setFirstName:[temp objectForKey:@"First Name"]];
-            [userManager setLastName:[temp objectForKey:@"Last Name"]];
-            [userManager setMidInitial:[temp objectForKey:@"Middle Initial"]];
-            usernameField.text = @"";
-            passwordField.text = @"";
+            [self notebookLoginSetup:self.adminView.loginBackend.userCredentials];
+            [userManager setIsAdmin:NO];
+            
             BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
             [self presentViewController:bookshelf animated:NO completion:NULL];
+            [bookshelf loadUserView];
         }
         else{
             [self alertDriveConnection];
@@ -209,7 +212,7 @@
 #pragma mark Backend
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == passwordField) {
-        [self menuLoginScreen];
+        [self loginCheck];
     }
     return YES;
 }
