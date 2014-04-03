@@ -2,7 +2,7 @@
 //  DriveManager.m
 //  StemNotebook
 //
-//  Created by Colton Waters and Jacob Wood on 12/5/13.
+//  Created by Colton Waters, Jacob Wood, and Keneequa Brown on 12/5/13.
 //  Copyright (c) 2013 HardWonKnowledge. All rights reserved.
 //
 
@@ -16,6 +16,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @implementation DriveManager
 @synthesize appRoot;
 @synthesize currentUserFolder;
+@synthesize userManager;
 
 #pragma mark -
 #pragma mark Initialization Methods
@@ -71,6 +72,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
             NSLog (@"An Error has occurred: %@", error);
         }
     }];
+}
+
+- (void)viewDidLoad {
+    userManager = [ActiveUser userManager];
 }
 
 #pragma mark -
@@ -341,6 +346,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     folder.title = name;
     folder.mimeType = @"application/vnd.google-apps.folder";
     folder.parents = @[parent];
+    [userManager setFolderId:folder.identifier];
 
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
 
@@ -540,6 +546,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     folder.title = name;
     folder.mimeType = @"application/vnd.google-apps.folder";
     folder.parents = @[parent];
+    [userManager setFolderId:folder.identifier];
 
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
 
