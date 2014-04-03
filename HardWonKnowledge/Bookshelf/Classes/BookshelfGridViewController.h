@@ -54,6 +54,7 @@
 //    NSArray *_orderedFileNames;
     NSArray *_fileNames;
     NSArray *_localNames;
+    NSMutableArray *_allNotebooks;
     AQGridView * _gridView;
     NSUInteger _cellType;
 }
@@ -67,7 +68,6 @@
 - (void)loadViewForAdmin;
 - (void)loadNotebooksForQuery:(NSString*)search;
 - (IBAction) newNotebookEntry;
-- (IBAction) openNotebookView: (GTLDriveFile *)file;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
 @property (nonatomic, retain) ActiveUser *userManager;
