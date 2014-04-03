@@ -61,25 +61,60 @@ enum
 @synthesize userManager;
 
 #pragma mark -
-#pragma mark Bookshelf
+#pragma mark Bookshelf View
+- (void)loadUserView {
+    if([userManager isAdmin])
+        [self loadViewForAdmin];
+    else
+        [self loadViewForStudent];
+}
+
+- (void)loadViewForAdmin {
+    [self loadNotebooksForQuery:@"mimeType='application/octet-stream'"];
+    [self loadLocalFilesForUser:@""];
+}
+
+- (void)loadViewForStudent {
+    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@ -'", [userManager username]];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            GTLDriveFile *file = [files.items objectAtIndex:0];
+            if(file == nil)
+                [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[userManager username]]];
+            else{
+                [userManager setFolderId:file.identifier];
+            }
+            [self loadNotebooksForQuery:[NSString stringWithFormat: @"'%@' in parents",userManager.folderId]];
+            [self loadLocalFilesForUser:[userManager username]];
+            NSLog(@"ID: %@",file.identifier);
+        } else
+            NSLog (@"An Error has occurred: %@", error);
+    }];
+}
+
+#pragma mark -
+#pragma mark Bookshelf Content
 // Sign out of user account.
 - (IBAction)closeBookshelf{
     [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
-- (void)loadNotebookFiles{
+- (void)loadNotebooksForQuery: (NSString*)search{
     NSMutableArray *allFileNames = [[NSMutableArray alloc] init];
+    [allFileNames addObject:@"Create New"];
     UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading Notebooks..."];
     NSLog(@"Loading Notebooks...");
     
     // Find the existing files on Google Drive
-    NSString *search = [NSString stringWithFormat:@"'%@' in parents and mimeType = 'application/octet-stream'",userManager.username];
+    NSLog(@"%@ %@", [userManager username], [userManager folderId]);
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
         if (error == nil) {
-            [allFileNames addObject:@"Create New"];
             for (GTLDriveFile *file in files) {
                 NSLog(@"Drive File: %@",file.title);
                 [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
@@ -97,11 +132,24 @@ enum
     }];
 }
 
+-(void)loadLocalFilesForUser:(NSString*)username {
+    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] error:NULL];
+    NSMutableArray *temp = [[NSMutableArray alloc]init];
+    for(NSString *item in directoryContent){
+        if([[item substringFromIndex:[item length]-4]isEqualToString:@".nbf"] && [[item substringToIndex:[username length]]isEqualToString:username]){
+            NSLog(@"%@",[item substringFromIndex:[username length]+2]);
+            [temp addObject:[item substringFromIndex:[username length]+2]];
+            //            [localFiles addObject:item];
+        }
+    }
+_localNames = temp;
+}
+
 #pragma mark -
 #pragma mark Notebook
 -(IBAction)newNotebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
-//    [self presentViewController:notebook animated:NO completion:NULL];
+    //    [self presentViewController:notebook animated:NO completion:NULL];
     [self presentViewController:notebook animated:NO completion:NULL];
 }
 - (IBAction)openNotebookView: (GTLDriveFile *) file{
@@ -126,7 +174,7 @@ enum
     //    if ( _orderedFileNames != nil)
     //        return;
     userManager = [ActiveUser userManager];
-    [self loadNotebookFiles];
+    //    [self loadNotebookFiles];
 }
 
 // Override to allow orientations other than the default portrait orientation.

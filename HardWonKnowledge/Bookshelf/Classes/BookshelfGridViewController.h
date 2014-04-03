@@ -51,8 +51,9 @@
 @interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>//, BookshelfGridCellChooserDelegate>
 {
     GTLDriveFileList *_allFiles;
-    NSArray *_orderedFileNames;
+//    NSArray *_orderedFileNames;
     NSArray *_fileNames;
+    NSArray *_localNames;
     AQGridView * _gridView;
     NSUInteger _cellType;
 }
@@ -61,7 +62,10 @@
 @property (nonatomic, retain) IBOutlet NSString * selectedFile;
 
 - (IBAction) closeBookshelf;
-- (void)loadNotebookFiles;
+- (void)loadUserView;
+- (void)loadViewForStudent;
+- (void)loadViewForAdmin;
+- (void)loadNotebooksForQuery:(NSString*)search;
 - (IBAction) newNotebookEntry;
 - (IBAction) openNotebookView: (GTLDriveFile *)file;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
