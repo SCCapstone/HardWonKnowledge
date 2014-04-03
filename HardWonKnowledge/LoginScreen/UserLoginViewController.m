@@ -40,6 +40,7 @@
     if([self.adminView.loginBackend.driveManager isAuthorized]){
         BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
         [self presentViewController:bookshelf animated:NO completion:NULL];
+        [bookshelf loadUserView];
     }
 }
 
