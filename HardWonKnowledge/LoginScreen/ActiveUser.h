@@ -14,6 +14,7 @@
     NSString *midInitial;
     NSString *lastName;
     NSString *folderId;
+    BOOL isAdmin;
 }
 
 @property (nonatomic, retain) NSString *username;
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) NSString *midInitial;
 @property (nonatomic, retain) NSString *lastName;
 @property (nonatomic, retain) NSString *folderId;
+@property (nonatomic, assign) BOOL isAdmin;
 
 + (id)userManager;
 
