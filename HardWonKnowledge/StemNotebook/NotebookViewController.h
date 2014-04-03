@@ -18,6 +18,7 @@
 #import "NotebookViewDelegate.h"
 #import "GTLDrive.h"
 #import "DriveManager.h"
+#import "ActiveUser.h"
 
 
 @interface NotebookViewController : UIViewController <NotebookViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -35,11 +36,9 @@
 @property (nonatomic, strong) GTLDriveFile *notebookDriveFile;
 
 @property (strong,nonatomic) UIPopoverController *popoverImageViewController;
+@property (nonatomic, retain) ActiveUser *userManager;
 
 - (void) openNotebookNamed:(NSString *)name;
 - (void) openNotebookFromFile:(GTLDriveFile *)file;
-
-
-
 
 @end
