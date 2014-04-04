@@ -223,9 +223,9 @@ enum
     if(index==0)
         filledCell.image = [UIImage imageNamed:@"blank_notebook.png"];
     else if(index<=[_localNames count])
-        filledCell.image = [UIImage imageNamed:@"Green.png"];
-    else
         filledCell.image = [UIImage imageNamed:@"Black.png"];
+    else
+        filledCell.image = [UIImage imageNamed:@"Green.png"];
     
     filledCell.title = [_allNotebooks objectAtIndex:index];
     //                             addObjectsFromArray:_fileNames];
@@ -252,9 +252,8 @@ enum
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
     if(index == 0){
-        //        [self newNotebookEntry];
+        [self newNotebookEntry];
         NSLog(@"selected create %d",index);
-        return;
     }
     else if(index<=[_localNames count]){
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
