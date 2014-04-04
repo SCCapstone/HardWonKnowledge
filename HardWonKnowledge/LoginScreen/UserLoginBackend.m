@@ -18,9 +18,9 @@
 
 - (void)addNewUser: (NSMutableDictionary*)dictionary array:(NSMutableArray*)array {
     for(int i=0; i<[array count]; i++){
-        if(i==0)
+        if(i<=1)
             [array setObject:[[array objectAtIndex:i] lowercaseString] atIndexedSubscript:i];
-        else if(i>1)
+        else
             [array setObject:[[array objectAtIndex:i] capitalizedString] atIndexedSubscript:i];
     }
     [dictionary setObject:array forKey:[array objectAtIndex:0]];
@@ -113,15 +113,15 @@
     
     text = [text stringByAppendingString:@" (empty) (empty) (empty)"];
     NSMutableArray *fields = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
-    if([self isAdminUser:[fields objectAtIndex:0]] || [self isStudentUser:[fields objectAtIndex:0]])
-        return;
-    
-    if([fields containsObject:@"#*#"])
-        [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 6)]]];
-    else
-        [self addNewUser:userCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
-    if(fileType != 0)
+    if(fileType == 0)
+        [adminCredentials setObject:fields forKey:[fields objectAtIndex:0]];
+    else{
+        if([fields containsObject:@"#*#"])
+            [self addNewUser:adminCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 6)]]];
+        else
+            [self addNewUser:userCredentials array:[[NSMutableArray alloc]initWithArray:[fields subarrayWithRange:NSMakeRange(0, 5)]]];
         [self setUpDataSrc: [fields subarrayWithRange:NSMakeRange(0, [fields count])]];
+    }
 }
 
 - (void)resetUsers {
@@ -175,7 +175,7 @@
     NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[array objectAtIndex:0] lowercaseString]];
     for(int i=2; i<[array count]; i++){
         if([[array objectAtIndex:i] isEqualToString:@"#*#"])
-            text = [text stringByAppendingString:@" [Administrator User]"];
+            text = [text stringByAppendingString:@"[Administrator User]"];
         if(![[array objectAtIndex:i] isEqualToString:@"(empty)"] && ![[array objectAtIndex:i] isEqualToString:@"#*#"] )
             text = [text stringByAppendingFormat:@" %@", [[array objectAtIndex:i] capitalizedString]];
     }

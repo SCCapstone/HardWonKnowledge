@@ -59,6 +59,16 @@ enum
 @synthesize gridView=_gridView;
 @synthesize selectedFile;
 
+- (void)alertTwoButton: (NSString*)title message:(NSString*)message button1:(NSString*)button1 button2:(NSString*)button2{
+    UIAlertView * alert = [[UIAlertView alloc] init];
+    alert.delegate = self;
+    alert.title = title;
+    alert.message = message;
+    [alert addButtonWithTitle:button1];
+    [alert addButtonWithTitle:button2];
+    [alert show];
+}
+
 // Sign out of user account.
 - (IBAction)closeBookshelf{
     [self dismissViewControllerAnimated:NO completion:NULL];
@@ -176,13 +186,24 @@ enum
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
     if(index == 0){
-        [self newNotebookEntry];
+    [self alertTwoButton:@"Opening Notebook" message:@"Are you sure you want to create a new notebook entry?" button1:@"New" button2:@"Cancel"];
         return;
     }
-    
     GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
-    selectedFile = [self.driveManager downloadDriveFile:file];    
-    [self openNotebookView:selectedFile];
+    selectedFile = [self.driveManager downloadDriveFile:file];
+    NSLog(@"%i",index);
+    
+    [self alertTwoButton:@"Opening Notebook" message:[NSString stringWithFormat:@"Are you sure you want to open\n%@?", file.title] button1:@"Open" button2:@"Cancel"];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonPressedName isEqualToString: @"Open"]){
+        [self openNotebookView:selectedFile];
+    }
+    else if([buttonPressedName isEqualToString:@"New"]){
+        [self newNotebookEntry];
+    }
 }
 
 #pragma mark -
