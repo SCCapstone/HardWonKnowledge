@@ -27,6 +27,10 @@
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.delegate = self;
     userManager = [ActiveUser userManager];
+    
+    if(![self.adminView.loginBackend.driveManager isAuthorized]){
+        [self driveOfflineAlert];
+    }
 }
 
 #pragma mark -
@@ -37,11 +41,9 @@
 }
 
 - (IBAction)openNotebook{
-    if([self.adminView.loginBackend.driveManager isAuthorized]){
         BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
         [self presentViewController:bookshelf animated:NO completion:NULL];
         [bookshelf loadUserView];
-    }
 }
 
 #pragma mark -
@@ -58,8 +60,10 @@
 
 /*  Remove items on the view  */
 - (void)clearScreen{
-    for(UIView *view in subviews)
-        [view removeFromSuperview];
+    for(UIView *view in subviews){
+        if(view.tag != 99)
+            [view removeFromSuperview];
+    }
 }
 
 - (void)showAdmin{
@@ -108,7 +112,7 @@
             [bookshelf loadUserView];
         }
         else{
-            [self alertDriveConnection];
+            [self alertViewDriveConnection];
         }
     }
     else {
@@ -119,7 +123,7 @@
             //            [self showAdmin];
         }
         else{
-            [self alertDriveConnection];
+            [self alertViewDriveConnection];
         }
     }
 }
@@ -134,20 +138,26 @@
             [self driveLogin];
         }
         else{
-            [self alertDriveConnection];
+            [self alertViewDriveConnection];
         }
     }
-    else if([buttonPressedName isEqualToString: @"Sign In"])
+    else if([buttonPressedName isEqualToString: @"Sign In"]){
         [self driveLogin];
+        for(UIView *view in subviews){
+            if(view.tag == 99){
+                [view removeFromSuperview];
+            }
+        }
+    }
     else if([buttonPressedName isEqualToString: @"Sign Out"]){
         [self driveLogout];
-        [self driveAlert];
+        [self driveOfflineAlert];
     }
 }
 
 #pragma mark -
 #pragma mark Drive
-- (void)alertDriveConnection{
+- (void)alertViewDriveConnection{
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     alert.title = @"Cloud Connection Error";
@@ -189,16 +199,19 @@
     }
 }
 
-- (void)driveAlert{
-    UIView *alertview = [[UIView alloc] initWithFrame:CGRectMake(0, -999, self.view.frame.size.width, 50)];
+- (void)driveOfflineAlert{
+    UIView *alertview = [[UIView alloc] initWithFrame:CGRectMake(0, -999, self.view.frame.size.width, 75)];
     UILabel *theMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(alertview.bounds), CGRectGetHeight(alertview.bounds))];
     
+    alertview.tag = 99;
     theMessage.backgroundColor = [UIColor colorWithRed:178.0/255 green:34.0/255 blue:34.0/255 alpha:1];
     theMessage.font = [UIFont boldSystemFontOfSize:18];
     theMessage.textAlignment = NSTextAlignmentCenter;
     theMessage.textColor = [UIColor whiteColor];
-    theMessage.text = @"Please connect to a Google Drive account.";
+    theMessage.text = @"Administrator Attention Needed: You are not connected to the classroom account.\nPlease connect to allow syncing.";
+    theMessage.numberOfLines = 2;
     [alertview addSubview:theMessage];
+    [subviews addObject:alertview];
     
     if(![self.adminView.loginBackend.driveManager isAuthorized]){
         [self.view addSubview:alertview];
