@@ -40,5 +40,6 @@
 
 - (void) openNotebookNamed:(NSString *)name;
 - (void) openNotebookFromFile:(GTLDriveFile *)file;
+- (void) openNotebookFromPath:(NSString *)path title:(NSString *)title;
 
 @end
