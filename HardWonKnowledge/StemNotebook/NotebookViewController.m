@@ -58,13 +58,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     paintSubmenu = nil;
 }
 
-//Delegate method called when paint button is pressed.
-//Should later be deleted and replaced with real methods
--(void)PaintViewButtonPressed
-{
-    NSLog(@"Delegate Method Called");
-}
 
+#pragma mark -
+#pragma mark Submenu Delegate Button Methods
 //Overloaded getter to lazy load paintSubmenu\
 //That is, only create menu when accessed and not initialized
 - (PaintSubmenuView *)paintSubmenu
@@ -108,7 +104,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 }
 
 
-
+#pragma mark -
+#pragma mark Paint View Control Methods
 //Methods used for PaintView
 - (void)changeColorWithRed:(float)newRed Blue:(float)newBlue Green:(float)newGreen Alpha:(float)newAlpha
 {
@@ -146,7 +143,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView loadImageView];
 }
 
-
+#pragma mark paint view file methods
 - (void) openNotebookFromFile:(GTLDriveFile *)file {
     self.notebookDriveFile = file;
     NSString *path = [self.driveManager downloadDriveFile:file];
@@ -158,8 +155,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 }
 
 - (void) saveFileNamed:(NSString *)name {
+    GTLDriveFile *f = [[GTLDriveFile alloc]init];
+    f.identifier = userManager.folderId;
     [self.paintView saveFileNamed:name];
-    [self.driveManager uploadNotebookNamed:name];
+    [self.driveManager uploadNotebookNamed:name withParent:f];
 }
 
 
@@ -321,10 +320,12 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         return; //If cancel or 0 length string the string doesn't matter
     }
     if (buttonIndex == 1) {
+        GTLDriveFile *f = [[GTLDriveFile alloc]init];
+        f.identifier = userManager.folderId;
         NSString *fileName;
         fileName = [textField.text stringByAppendingString:@".nbf"];
         [self.paintView saveFileNamed:fileName];
-        [self.driveManager uploadNotebookNamed:fileName];
+        [self.driveManager uploadNotebookNamed:fileName withParent:f];
     }
 }
 
