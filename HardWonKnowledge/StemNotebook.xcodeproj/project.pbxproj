@@ -36,6 +36,8 @@
 		C7BA419D18EA2642001AC927 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BA419C18EA2642001AC927 /* User.m */; };
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
+		CB8666D218EB5264006D1ADD /* ActiveUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8666D118EB5264006D1ADD /* ActiveUser.m */; };
+		CB8666D418EB5E1A006D1ADD /* DefaultUserList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8666D318EB5E1A006D1ADD /* DefaultUserList.plist */; };
 		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
 		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
 		CB8B125318C9760A00DC90B0 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB8B125018C9760A00DC90B0 /* users.txt */; };
@@ -132,6 +134,9 @@
 		C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSubmenuView.xib; sourceTree = "<group>"; };
 		C7E4479018400E7F0059A65F /* MenuSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSubmenuView.h; sourceTree = "<group>"; };
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
+		CB8666D018EB5264006D1ADD /* ActiveUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveUser.h; path = LoginScreen/ActiveUser.h; sourceTree = "<group>"; };
+		CB8666D118EB5264006D1ADD /* ActiveUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveUser.m; path = LoginScreen/ActiveUser.m; sourceTree = "<group>"; };
+		CB8666D318EB5E1A006D1ADD /* DefaultUserList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultUserList.plist; sourceTree = "<group>"; };
 		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
 		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
 		CB8B125018C9760A00DC90B0 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = LoginScreen/Resources/users.txt; sourceTree = "<group>"; };
@@ -369,6 +374,7 @@
 				CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */,
 				CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */,
 				CB8B125018C9760A00DC90B0 /* users.txt */,
+				CB8666D318EB5E1A006D1ADD /* DefaultUserList.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -472,6 +478,8 @@
 				CBD848A818C8037200153587 /* UserLoginBackend.m */,
 				CBC9636B18CFE1D9007FA669 /* AdminView.h */,
 				CBC9636C18CFE1D9007FA669 /* AdminView.m */,
+				CB8666D018EB5264006D1ADD /* ActiveUser.h */,
+				CB8666D118EB5264006D1ADD /* ActiveUser.m */,
 			);
 			name = LoginScreen;
 			sourceTree = "<group>";
@@ -598,6 +606,7 @@
 				CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */,
 				CB8B125318C9760A00DC90B0 /* users.txt in Resources */,
 				B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */,
+				CB8666D418EB5E1A006D1ADD /* DefaultUserList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +670,7 @@
 				CBD848AE18C8046200153587 /* UserLoginViewController.m in Sources */,
 				CBC9636E18CFE1D9007FA669 /* AdminView.m in Sources */,
 				B4D2E38C18D7AA360081A019 /* TypeSubmenuView.m in Sources */,
+				CB8666D218EB5264006D1ADD /* ActiveUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,35 +58,70 @@ enum
 
 @synthesize gridView=_gridView;
 @synthesize selectedFile;
+@synthesize userManager;
 
+#pragma mark -
+#pragma mark Bookshelf View
+- (void)loadUserView {
+    if([userManager isAdmin])
+        [self loadViewForAdmin];
+    else
+        [self loadViewForStudent];
+}
+
+- (void)loadViewForAdmin {
+    [self loadNotebooksForQuery:@"mimeType='application/octet-stream'"];
+    [self loadLocalFilesForUser:@""];
+}
+
+- (void)loadViewForStudent {
+    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@'", [userManager username]];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            GTLDriveFile *file = [files.items objectAtIndex:0];
+            if(file == nil)
+                [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[userManager username]]];
+            else{
+                [userManager setFolderId:file.identifier];
+            }
+            [self loadNotebooksForQuery:[NSString stringWithFormat: @"'%@' in parents",userManager.folderId]];
+            [self loadLocalFilesForUser:[userManager username]];
+            NSLog(@"ID: %@",file.identifier);
+        } else
+            NSLog (@"An Error has occurred: %@", error);
+    }];
+}
+
+#pragma mark -
+#pragma mark Bookshelf Content
 // Sign out of user account.
 - (IBAction)closeBookshelf{
     [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
-- (void)loadNotebookFiles{
+- (void)loadNotebooksForQuery: (NSString*)search{
     NSMutableArray *allFileNames = [[NSMutableArray alloc] init];
     UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Loading Notebooks..."];
     NSLog(@"Loading Notebooks...");
     
     // Find the existing files on Google Drive
-    NSString *search = @"mimeType = 'application/octet-stream'";
+    NSLog(@"%@ %@", [userManager username], [userManager folderId]);
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
         if (error == nil) {
-            [allFileNames addObject:@"Create New"];
             for (GTLDriveFile *file in files) {
                 NSLog(@"Drive File: %@",file.title);
                 [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
+                [_allNotebooks addObject:file.title];
             }
             _allFiles = files;
             _fileNames = allFileNames;
-            
-            //_orderedFileNames = [[allFileNames sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)] copy];
-            // _fileNames = [_orderedFileNames copy];
-            
+            //            [_allNotebooks arrayByAddingObjectsFromArray:_fileNames];
             [self.gridView reloadData];
         } else {
             NSLog (@"An Error has occurred: %@", error);
@@ -94,17 +129,44 @@ enum
     }];
 }
 
+-(void)loadLocalFilesForUser:(NSString*)username {
+    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] error:NULL];
+    NSMutableArray *temp = [[NSMutableArray alloc]init];
+    for(NSString *item in directoryContent){
+        if([[item substringFromIndex:[item length]-4]isEqualToString:@".nbf"] && [[item substringToIndex:[username length]]isEqualToString:username]){
+            NSLog(@"Local File: %@",item);
+            [temp addObject:item];
+            [_allNotebooks addObject:item];
+            //            [temp addObject:[item substringFromIndex:[username length]+2]];
+            //            [localFiles addObject:item];
+        }
+    }
+    _localNames = temp;
+    //     [_allNotebooks arrayByAddingObjectsFromArray:_localNames];
+}
+
+#pragma mark -
+#pragma mark Notebook
 -(IBAction)newNotebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
-//    [self presentViewController:notebook animated:NO completion:NULL];
+    //    [self presentViewController:notebook animated:NO completion:NULL];
     [self presentViewController:notebook animated:NO completion:NULL];
 }
-- (IBAction)openNotebookView: (GTLDriveFile *) file{
+
+- (IBAction)openNotebookForFile: (GTLDriveFile *) file{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:notebook animated:NO completion:NULL];
     [notebook openNotebookFromFile:file];
 }
 
+- (IBAction)openNotebookForPath: (NSString *)path title:(NSString *)title{
+    NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
+    [self presentViewController:notebook animated:NO completion:NULL];
+    [notebook openNotebookFromPath:path title:title];
+}
+
+#pragma mark -
+#pragma mark Original Methods
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void) viewDidLoad
 {
@@ -118,15 +180,16 @@ enum
     
     //    if ( _orderedFileNames != nil)
     //        return;
-    
-    [self loadNotebookFiles];
+    userManager = [ActiveUser userManager];
+    _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"Create New", nil];
+    //    [self loadNotebookFiles];
 }
 
 // Override to allow orientations other than the default portrait orientation.
-- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
-{
-    return YES;
-}
+//- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+//{
+//    return YES;
+//}
 
 - (void) viewDidUnload
 {
@@ -135,11 +198,11 @@ enum
 }
 
 #pragma mark -
-#pragma mark Grid View Data Source
+#pragma mark Grid View
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
-    return ( [_fileNames count] );
+    return ( [_allNotebooks count] );
 }
 
 - (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
@@ -156,12 +219,25 @@ enum
         filledCell.selectionGlowColor = [UIColor blackColor];
     }
     
-    if(index%2==0){
-        filledCell.image = [UIImage imageNamed:@"Green.png"];
-    } else{
+    NSLog(@"drive %d local %d combined %d",_fileNames.count, _localNames.count,_allNotebooks.count);
+    if(index==0)
+        filledCell.image = [UIImage imageNamed:@"blank_notebook.png"];
+    else if(index<=[_localNames count])
         filledCell.image = [UIImage imageNamed:@"Black.png"];
-    }
-    filledCell.title = [_fileNames objectAtIndex: index];
+    else
+        filledCell.image = [UIImage imageNamed:@"Green.png"];
+    
+    filledCell.title = [_allNotebooks objectAtIndex:index];
+    //                             addObjectsFromArray:_fileNames];
+    //    array = [array arrayByAddingObjectsFromArray:[NSMutableArray arrayWithArray:_localNames]];
+    
+    //    if(index<[_fileNames count]){
+    //        filledCell.image = [UIImage imageNamed:@"Green.png"];
+    //    } else{
+    //        filledCell.image = [UIImage imageNamed:@"Black.png"];
+    //    }
+    //    filledCell.title = [_fileNames objectAtIndex: index];
+    //    filledCell.title = [_localNames objectAtIndex:index-[_fileNames count]];
     
     cell = filledCell;
     return ( cell );
@@ -170,22 +246,27 @@ enum
 
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
 {
-    return ( CGSizeMake(230.0, 345.0) );
+    return ( CGSizeMake(175, 262.5) );
 }
 
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
     if(index == 0){
         [self newNotebookEntry];
-        return;
+        NSLog(@"selected create %d",index);
     }
-    
-    GTLDriveFile *file = [_allFiles itemAtIndex:index-1];
-    [self openNotebookView:file];
+    else if(index<=[_localNames count]){
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[_localNames objectAtIndex:index-1]];
+        [self openNotebookForPath:path title:[_localNames objectAtIndex:index-1]];
+        NSLog(@"selected local %d",index-1);
+    }
+    else{
+        NSLog(@"selected drive %d",index-[_localNames count]-1);
+        GTLDriveFile *file = [_allFiles itemAtIndex:index-[_localNames count]-1];
+        [self openNotebookForFile:file];
+    }
 }
-
-#pragma mark -
-#pragma mark Grid View Delegate
 
 // nothing here yet
 

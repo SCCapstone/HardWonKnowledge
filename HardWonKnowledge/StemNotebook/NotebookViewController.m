@@ -26,6 +26,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 @synthesize sideBarView;
 @synthesize cameraSubmenu;
 @synthesize notebookDriveFile;
+@synthesize userManager;
 
 
 
@@ -47,6 +48,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                                                                                          clientID:kClientID
                                                                                      clientSecret:kClientSecret];
     self.driveManager = [DriveManager getDriveManager];
+    self.userManager = [ActiveUser userManager];
 }
 
 - (void)didReceiveMemoryWarning
@@ -151,6 +153,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.paintView loadFileNamed:file.title atPath:path];
 }
 
+- (void) openNotebookFromPath:(NSString *)path title:(NSString *)title {
+    [self.paintView loadFileNamed:title atPath:path];
+}
+
 - (void) saveFileNamed:(NSString *)name {
     [self.paintView saveFileNamed:name];
     [self.driveManager uploadNotebookNamed:name];
@@ -181,8 +187,13 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (void)backButtonClicked
 {
     BookshelfGridViewController *bookshelf = (BookshelfGridViewController*)self.presentingViewController;
-    [bookshelf loadNotebookFiles];
+    
     [self dismissViewControllerAnimated:NO completion:NULL];
+    if([userManager isAdmin]){
+        [bookshelf loadViewForAdmin];
+    }else{
+        [bookshelf loadViewForStudent];
+    }
 }
 
 
