@@ -440,7 +440,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         parentId = parent.identifier;
     
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
-    query.q = [NSString stringWithFormat:@"'%@' in parents", parentId];
+    query.q = [NSString stringWithFormat:@"'%@' in parents and trashed = false", parentId];
     [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
                                                               GTLDriveFileList *files,
                                                               NSError *error) {
