@@ -495,12 +495,15 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                           NSLog(@"Google Drive: File Saved");
                           if (callbackSel != nil)
                               [self performSelector:callbackSel withObject:insertedFile];
+                          NSError *error = nil;
+                          [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
                       }
                       else
                       {
                           NSLog(@"An Error Occured: %@", error);
                       }
                   }];
+
 }
 
 //callbackSel should have one input, a GTLDriveFile* object;
@@ -552,6 +555,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                           NSLog(@"Google Drive: File Saved");
                           if (callbackSel != nil)
                               [self performSelector:callbackSel withObject:insertedFile];
+                          NSError *error = nil;
+                          [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
+
                       }
                       else
                       {
@@ -560,7 +566,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                           NSLog(@"An Error Occured");
                       }
                   }];
-
 }
 
 //callbackSel should have one input, a GTLDriveFile* object;
@@ -592,11 +597,10 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
     NSLog(@"Uploading to Google Drive...");
     
-    
     [self.driveService executeQuery:query
                   completionHandler:^(GTLServiceTicket *ticket,
                                       GTLDriveFile *insertedFile, NSError *error) {
-                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                    [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
                       NSLog(@"Done");
                       if (error == nil)
                       {
@@ -604,7 +608,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                           NSLog(@"Google Drive: File Saved");
                           if (callbackSel != nil)
                               [self performSelector:callbackSel withObject:insertedFile];
-
+                          NSError *error = nil;
+                          [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
                       }
                       else
                       {
@@ -627,7 +632,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     //Setup HTTP Fetcher
     GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
     fetcher.downloadPath = viewPath;
-    
+
     [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
         if (error == nil) {
             //Save file to disk
@@ -638,6 +643,9 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
             NSLog(@"An error occurred: %@", error);
         }
     }];
+
+
+
     return viewPath;
 }
 

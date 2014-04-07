@@ -146,8 +146,24 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 #pragma mark paint view file methods
 - (void) openNotebookFromFile:(GTLDriveFile *)file {
     self.notebookDriveFile = file;
-    NSString *path = [self.driveManager downloadDriveFile:file];
-    [self.paintView loadFileNamed:file.title atPath:path];
+    //Get Download Path
+    NSString *viewPath = [self.driveManager.documentPath stringByAppendingPathComponent:file.title];
+
+    //Setup HTTP Fetcher
+    GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
+    fetcher.downloadPath = viewPath;
+
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error == nil) {
+            //Saved file to disk
+            NSLog(@"Retrieved file content");
+            [self.paintView loadFileNamed:file.title atPath:viewPath];
+
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+
 }
 
 - (void) openNotebookFromPath:(NSString *)path title:(NSString *)title {
@@ -297,6 +313,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     } else {
         [self.paintView saveFileNamed:self.notebookDriveFile.title];
         [self.driveManager updateNotebook:self.notebookDriveFile fromFileNamed:self.notebookDriveFile.title];
+        [self backButtonClicked];
     }
 }
 
@@ -326,6 +343,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         fileName = [textField.text stringByAppendingString:@".nbf"];
         [self.paintView saveFileNamed:fileName];
         [self.driveManager uploadNotebookNamed:fileName withParent:f];
+        [self backButtonClicked];
     }
 }
 
