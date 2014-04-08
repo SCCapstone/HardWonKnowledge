@@ -32,11 +32,11 @@
         UINavigationBar *nav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0) ];
         [self.view addSubview:nav];
         
-        
         self.loginBackend = [[UserLoginBackend alloc]init];
         [self.loginBackend initVariables];
-        [self.loginBackend findBundleFile];
-        [self.loginBackend findDriveFile];
+        [self.loginBackend findExistingDriveFile];
+        if([self.loginBackend.adminCredentials count]==0)
+            [self.loginBackend findDefaultFile];
     }
     return self;
 }
@@ -207,7 +207,7 @@
     else
         [temp setValue:@NO forKey:@"isAdmin"];
 //    NSDictionary *user = [NSDictionary dictionaryWithObject:temp forKey:[savedText objectAtIndex:3]];
-    [self.loginBackend saveUser:[savedText objectAtIndex:3] data:temp];
+    [self.loginBackend saveUser:[savedText objectAtIndex:3] withData:temp];
 }
 
 /*  Setting up user details to be updated in user list  */
@@ -219,7 +219,7 @@
         [temp setValue:@YES forKey:@"isAdmin"];
     else
         [temp setValue:@NO forKey:@"isAdmin"];
-    [self.loginBackend updateSelectedUser:temp username:[srchedData objectAtIndex:0]];
+    [self.loginBackend updateSelectedUser:[srchedData objectAtIndex:0] withData:temp];
 }
 
 /*  Getting user details for updating process  */
@@ -318,7 +318,7 @@
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (IBAction)menuAdminUpdate {
     if([[srchedData objectAtIndex:0]isEqualToString:@"nil"]){
-        NSLog(@"Nothing Selected");
+//        NSLog(@"Nothing Selected");
         return;
     }
     
@@ -382,16 +382,16 @@
     }
     else if([buttonPressedName isEqualToString:@"Add"]){
         [self submitAddedUser];
-        [self menuAdminAdd];
+        [self menuAdminSettings];
     }
     else if([buttonPressedName isEqualToString:@"Update"]){
         if(!isAdmin){
             [self.loginBackend.adminCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
-            NSLog(@"Removed from Admin");
+//            NSLog(@"Removed from Admin");
         }
         else{
             [self.loginBackend.userCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
-            NSLog(@"Removed from Student");
+//            NSLog(@"Removed from Student");
         }
         [self submitUpdatedUser];
         [myTableView reloadData];
