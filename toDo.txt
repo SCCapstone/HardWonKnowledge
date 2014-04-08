@@ -1,9 +1,9 @@
-Disable admin/12345 after downloading user list
+Disable admin/12345 after downloading user list -- Done
 Add Icon
 Delete local copy after upload
-Close "New User" window after creation
+Close "New User" window after creation -- Done
 Done button close notebook view
 Picture selection dialog window close automatically
 Track create-notebook.png
 Help shit
-Fix double listing after exiting notebookview
+Fix double listing after exiting notebookview -- Done
