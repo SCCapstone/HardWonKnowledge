@@ -15,18 +15,18 @@
 
 - (BOOL)isAdminUser: (NSString *)name;
 - (BOOL)isStudentUser: (NSString *)name;
-- (NSDictionary *)dataToDictionary: (NSString *)path;
-- (void)findDriveFile;
-- (void)findBundleFile;
+- (NSDictionary *)dataToDictionaryAtPath: (NSString *)path;
+- (void)findExistingDriveFile;
+- (void)findDefaultFile;
 - (void)initVariables;
 //- (void)parseText: (NSString *)text file:(NSInteger)fileType;
-- (void)parseXML: (NSString *)key data:(NSDictionary *)data;
+- (void)parseUser: (NSString *)user withData:(NSDictionary *)data;
 - (void)resetUsers;
 - (NSDictionary*)removeSelectedUser: (NSString *)username;
-- (void)saveUser:(NSString *)username data:(NSDictionary *)data;
-- (void)saveOnDisk:(NSString*)username data:(NSDictionary *)data clearFile:(BOOL)clearFile;
-- (void)uploadListFile;
-- (void)updateSelectedUser:(NSDictionary *)data username:(NSString *)username ;
+- (void)saveUser:(NSString *)username withData:(NSDictionary *)data;
+- (void)locallySaveUser:(NSString*)username withData:(NSDictionary *)data clearExistingFile:(BOOL)clearFile;
+- (void)uploadNewUserList;
+- (void)updateSelectedUser:(NSString *)username withData:(NSDictionary *)data;
 
 @property (nonatomic,retain) GTLServiceDrive *driveService;
 @property (nonatomic,retain) DriveManager *driveManager;

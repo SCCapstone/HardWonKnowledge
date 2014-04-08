@@ -23,14 +23,14 @@
     listFileId = @"Default String Data";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"UserList.plist"];
-    NSLog(@"%@", docPath);
+//    NSLog(@"%@", docPath);
     
 }
 
 #pragma mark -
 #pragma mark Google Drive
 /*  Find the user credential files to parse  */
-- (void)findDriveFile{
+- (void)findExistingDriveFile{
     self.driveManager = [DriveManager getDriveManager];
     NSString *search = @"title contains 'UserList'";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
@@ -42,18 +42,18 @@
             if(file.identifier != nil) {
                 listFileId = file.identifier;
                 [self.driveManager downloadDriveFile:file];
-                NSDictionary *temp = [self dataToDictionary:docPath];
+                NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
                 for(id key in temp)
-                    [self parseXML:key data:[temp objectForKey:key]];
+                    [self parseUser:key withData:[temp objectForKey:key]];
             }
-            NSLog(@"ID: %@ %@",listFileId, file.identifier);
+//            NSLog(@"ID: %@ %@",listFileId, file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
     }];
 }
 
 /*  Upload file to Google Drive  */
-- (void)uploadListFile {
+- (void)uploadNewUserList {
     GTLDriveFile *file = [GTLDriveFile object];
     file.title = @"UserList.plist";
     file.descriptionProperty = @"List of STEM Notebook users.";
@@ -84,21 +84,21 @@
 }
 
 #pragma mark -
-#pragma mark Device
-- (void)findBundleFile{
+#pragma mark Local Data
+- (void)findDefaultFile{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"DefaultUserList" ofType:@"plist"];
-    NSDictionary *temp = [self dataToDictionary:path];
+    NSDictionary *temp = [self dataToDictionaryAtPath:path];
     for(id key in temp)
-        [self parseXML:key data:[temp objectForKey:key]];
+        [self parseUser:key withData:[temp objectForKey:key]];
 }
 
 /*  Save the file to disk before upload  */
-- (void)saveOnDisk:(NSString*)username data:(NSDictionary *)data clearFile:(BOOL)clearFile {
+- (void)locallySaveUser:(NSString*)username withData:(NSDictionary *)data clearExistingFile:(BOOL)clearFile {
     NSMutableDictionary *temp;
     if(clearFile)
         temp = [NSMutableDictionary dictionaryWithDictionary:data];
     else{
-        temp = [[NSMutableDictionary alloc] initWithDictionary:[self dataToDictionary:docPath]];;
+        temp = [[NSMutableDictionary alloc] initWithDictionary:[self dataToDictionaryAtPath:docPath]];;
         [temp setValue:data forKey:username];
     }
 
@@ -108,32 +108,32 @@
     if(contents)
         [contents writeToFile:docPath atomically:YES];
     
-    NSLog(@"Saved to disk");
+//    NSLog(@"Saved to disk");
 }
 
 /*  Save added user to file on disk  */
-- (void)saveUser:(NSString *)username data:(NSDictionary *)data {
-    [self parseXML:username data:data];
-    [self saveOnDisk:username data:data clearFile:NO];
-    [self uploadListFile];
+- (void)saveUser:(NSString *)username withData:(NSDictionary *)data {
+    [self parseUser:username withData:data];
+    [self locallySaveUser:username withData:data clearExistingFile:NO];
+    [self uploadNewUserList];
 }
 
 #pragma mark -
 #pragma mark Parsing
-- (void)parseXML: (NSString *)key data:(NSDictionary *)data {
-    if([data count]==0 || [key length]==0)
+- (void)parseUser: (NSString *)user withData:(NSDictionary *)data {
+    if([data count]==0 || [user length]==0)
         return;
     if([[data objectForKey:@"isAdmin"]isEqual:@YES])
-        [adminCredentials setValue:data forKey:key];
+        [adminCredentials setValue:data forKey:user];
     else
-        [userCredentials setValue:data forKey:key];
+        [userCredentials setValue:data forKey:user];
     
     if(![[data objectForKey:@"Last Name"]isEqual:@"DEFAULT_USER_ENTRY"]){
-        [self setUpDataSrc:data];
+        [self datasrcAddEntry:data];
     }
 }
 
-- (void)setUpDataSrc: (NSDictionary*)data{
+- (void)datasrcAddEntry: (NSDictionary*)data{
     NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[data objectForKey:@"Username"] lowercaseString]];
     NSMutableArray *array = [NSArray arrayWithObjects:@"First Name", @"Middle Initial", @"Last Name", nil];
     for(int i=0; i<[array count]; i++) {
@@ -143,9 +143,10 @@
     if([[data objectForKey:@"isAdmin"]isEqual:@YES])
         text = [text stringByAppendingString:@" [Administrator User]"];
     [dataSrc addObject:text];
+//    NSLog(@"entry %@ %d",text, [adminCredentials count]);
 }
 
-- (NSDictionary *)dataToDictionary: (NSString *)path {
+- (NSDictionary *)dataToDictionaryAtPath: (NSString *)path {
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
     NSPropertyListFormat format;
     NSDictionary *temp = (NSMutableDictionary *)[NSPropertyListSerialization
@@ -162,14 +163,14 @@
 #pragma mark -
 #pragma mark Editing User
 - (void)resetUsers {
-    NSDictionary *temp = [self dataToDictionary:docPath];
+    NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
     for(id key in temp){
-        [self parseXML:key data:[temp objectForKey:key]];
+        [self parseUser:key withData:[temp objectForKey:key]];
     }
 }
 
 -(NSDictionary*)removeSelectedUser: (NSString *)username {
-    NSDictionary *temp = [self dataToDictionary:docPath];
+    NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
     NSMutableDictionary *newData = [[NSMutableDictionary alloc] init];
     for(id key in temp){
         if(![key isEqualToString:username])
@@ -179,16 +180,16 @@
     [dataSrc removeAllObjects];
     [userCredentials removeAllObjects];
     [adminCredentials removeAllObjects];
-    [self saveOnDisk:@"" data:newData clearFile:YES];
-    [self uploadListFile];
+    [self locallySaveUser:@"" withData:newData clearExistingFile:YES];
+    [self uploadNewUserList];
     [self resetUsers];
     return newData;
 }
 
-- (void)updateSelectedUser:(NSDictionary *)data username:(NSString *)username {
+- (void)updateSelectedUser:(NSString *)username withData:(NSDictionary *)data {
     NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:[self removeSelectedUser:username]];
     [temp setValue:data forKey:username];
-    [self saveUser:username data:data];
+    [self saveUser:username withData:data];
 }
 
 #pragma mark -
