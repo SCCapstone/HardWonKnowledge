@@ -29,7 +29,7 @@
     passwordField.delegate = self;
     userManager = [ActiveUser userManager];
     
-    if(![self.adminView.loginBackend.driveManager isAuthorized]){
+    if(![self.driveManager isAuthorized]){
         [self driveOfflineAlert];
     }
 }
@@ -39,6 +39,11 @@
 - (IBAction)openAdminSettings{
     [self presentViewController:self.adminView animated:YES completion:NULL];
     [self.adminView menuAdminSettings];
+}
+
+- (IBAction)openAdminOffline{
+    [self presentViewController:self.adminView animated:YES completion:NULL];
+    [self.adminView menuAdminOffline];
 }
 
 - (IBAction)openNotebook{
@@ -67,18 +72,27 @@
     }
 }
 
+- (IBAction)userSettingsButton{
+    if([self.driveManager isAuthorized]){
+        [self.adminView menuAdminSettings];
+    }
+    else{
+        [self.adminView menuAdminOffline];
+    }
+}
+
 - (void)showAdmin{
     [usernameField setHidden:YES];
     [passwordField setHidden:YES];
     [loginButton setHidden:YES];
     
-//    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
-//    
-//    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
-//    
-//    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
-//    
-//    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
+    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
+    
+    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(userSettingsButton)];
+    
+    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
+    
+    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
 }
 
 - (IBAction)logoutAdmin{
@@ -106,7 +120,7 @@
         [self showAdmin];
     }
     else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
-        if([self.adminView.loginBackend.driveManager isAuthorized]){
+        if([self.driveManager isAuthorized]){
             [self notebookLoginSetup:self.adminView.loginBackend.userCredentials];
             [userManager setIsAdmin:NO];
             
@@ -119,7 +133,7 @@
         }
     }
     else {
-//        if([self.adminView.loginBackend.driveManager isAuthorized]){
+//        if([self.driveManager isAuthorized]){
 //            NSLog(@"Incorrect User/Password");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             [alert show];
@@ -172,17 +186,17 @@
 
 /*  Log in to Drive  */
 - (IBAction)driveLogin{
-    [self.adminView.loginBackend.driveManager loginFromViewController:self];
+    [self.driveManager loginFromViewController:self];
 }
 
 /*   Log out of Drive  */
 - (IBAction)driveLogout{
 //    NSLog(@"Drive logout");
-    [self.adminView.loginBackend.driveManager logout];
+    [self.driveManager logout];
 }
 
 - (IBAction)driveButton{
-    if([self.adminView.loginBackend.driveManager isAuthorized]){
+    if([self.driveManager isAuthorized]){
         UIAlertView * alert = [[UIAlertView alloc] init];
         alert.delegate = self;
         alert.title = @"Google Drive Sign Out";
@@ -216,7 +230,7 @@
     [alertview addSubview:theMessage];
     [subviews addObject:alertview];
     
-    if(![self.adminView.loginBackend.driveManager isAuthorized]){
+    if(![self.driveManager isAuthorized]){
         [self.view addSubview:alertview];
         [subviews addObject:alertview];
         CGRect newFrm = alertview.frame;

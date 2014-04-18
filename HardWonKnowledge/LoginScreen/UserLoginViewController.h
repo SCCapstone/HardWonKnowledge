@@ -17,6 +17,8 @@
 - (IBAction)loginCheck;
 
 @property (nonatomic, retain) AdminView *adminView;
+@property (nonatomic,retain) GTLServiceDrive *driveService;
+@property (nonatomic,retain) DriveManager *driveManager;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic)  IBOutlet UITextField *usernameField;
 @property (weak, nonatomic)  IBOutlet UIButton *loginButton;
