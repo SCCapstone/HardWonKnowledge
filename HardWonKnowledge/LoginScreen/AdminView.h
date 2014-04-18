@@ -44,7 +44,7 @@
 @property (nonatomic,retain) DriveManager *driveManager;
 @property (nonatomic, retain) UserLoginBackend *loginBackend;
 @property (nonatomic,retain) NSMutableArray *subviews;
-@property (nonatomic,retain) NSMutableArray *savedText;
+@property (nonatomic,retain) NSMutableDictionary *savedText;
 @property (nonatomic,retain) NSMutableArray *srchedData;
 @property (nonatomic,retain) NSMutableArray *tblData;
 @property (nonatomic,retain) UISearchBar *sBar;

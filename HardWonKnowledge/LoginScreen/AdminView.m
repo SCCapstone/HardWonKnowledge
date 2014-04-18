@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     subviews = [[NSMutableArray alloc]init];
-    savedText = [[NSMutableArray alloc]init];
+    savedText = [[NSMutableDictionary alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -153,32 +153,36 @@
 
 #pragma mark -
 #pragma mark User details
-/*  Review the newly added user before submit  */
-- (void)confirmUserInsertion: (NSString*)method {
+- (void)mapUserInfoToDictionary{
     UITextField *textField;
+    NSArray *keys = [[NSArray alloc]initWithObjects:@"First Name", @"Middle Initial", "Last Name", "Username", "Password", nil];
     for(int i=1; i<=5; i++){
         textField = [subviews objectAtIndex:i];
-        if(textField.text == nil)
-            [savedText setObject:@"(empty)" atIndexedSubscript:i-1];//            [savedText addObject:@"(empty)"];
-        else
-            [savedText setObject:textField.text atIndexedSubscript:i-1];//            [savedText addObject:textField.text];
+        [savedText setValue:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:[keys objectAtIndex:i-1]];//            [savedText addObject:textField.text];
     }
     
-    if([[savedText objectAtIndex:0]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:3]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:4]isEqualToString:@"(empty)"]) {
+}
+
+/*  Review the newly added user before submit  */
+- (void)confirmUserInsertion: (NSString*)method {
+    if([savedText objectForKey:@"First Name"]==nil || [savedText objectForKey:@"Username"]==nil || [savedText objectForKey:@"Password"]==nil){
+//    if([[savedText objectAtIndex:0]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:3]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:4]isEqualToString:@"(empty)"]) {
         [self alertOneButton:@"Input Error" message:@"Please enter values\nin required fields." buttonTitle:@"Dismiss"];
         [savedText removeAllObjects];
         return;
     }
-    if(![method isEqualToString:@"Update"] && ([self.loginBackend isStudentUser:[savedText objectAtIndex:3]] || [self.loginBackend isAdminUser:[savedText objectAtIndex:3]])){
+    if(![method isEqualToString:@"Update"] && ([self.loginBackend isStudentUser:[savedText objectForKey:@"Username"]] || [self.loginBackend isAdminUser:[savedText objectForKey:@"Username"]])){
+//    if(![method isEqualToString:@"Update"] && ([self.loginBackend isStudentUser:[savedText objectAtIndex:3]] || [self.loginBackend isAdminUser:[savedText objectAtIndex:3]])){
         [self alertOneButton:@"Input Error" message:@"This username is already taken" buttonTitle:@"Dismiss"];
         [savedText removeAllObjects];
         return;
     }
     
-    if([[savedText objectAtIndex:1] length] > 1 && ![[[savedText objectAtIndex:1] lowercaseString] isEqualToString:@"(empty)"])
-        [savedText setObject:[[savedText objectAtIndex:1] substringToIndex:1] atIndexedSubscript:1];
+//    if([[savedText objectAtIndex:1] length] > 1 && ![[[savedText objectAtIndex:1] lowercaseString] isEqualToString:@"(empty)"])
+    if([[savedText objectForKey:@"Middle Initial"] length] > 1)
+        [savedText setValue:[[savedText objectForKey:@"Middle Initial"] substringToIndex:1] forKey:@"Middle Initial"];
     
-    [self alertTwoButtons:@"Insert Confirmation" message:[NSString stringWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@",[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4]] firstButton:method secondButton:@"Dismiss"];
+    [self alertTwoButtons:@"Insert Confirmation" message:[NSString stringWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@",[savedText objectForKey:@"First Name"],[savedText objectForKey:@"Middle Initial"],[savedText objectForKey:@"Last Name"],[savedText objectForKey:@"Username"],[savedText objectForKey:@"Password"]] firstButton:method secondButton:@"Dismiss"];
 }
 
 - (IBAction)promptAddUser {
@@ -200,55 +204,47 @@
 
 /*  Setting up user details to be added into user list  */
 - (void)submitAddedUser {
-    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
-                                                     forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
+//    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
+//                                                     forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
     if(isAdmin)
-       [temp setValue:@YES forKey:@"isAdmin"];
+       [savedText setValue:@YES forKey:@"isAdmin"];
     else
-        [temp setValue:@NO forKey:@"isAdmin"];
+        [savedText setValue:@NO forKey:@"isAdmin"];
 //    NSDictionary *user = [NSDictionary dictionaryWithObject:temp forKey:[savedText objectAtIndex:3]];
-    [self.loginBackend saveUser:[savedText objectAtIndex:3] withData:temp];
+    [self.loginBackend saveUser:[savedText objectForKey:@"Username"] withData:savedText];
 }
 
 /*  Setting up user details to be updated in user list  */
 - (void)submitUpdatedUser {
-    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
-                                                                   forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
+//    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
+//                                                                   forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
     if(isAdmin)
         
-        [temp setValue:@YES forKey:@"isAdmin"];
+        [savedText setValue:@YES forKey:@"isAdmin"];
     else
-        [temp setValue:@NO forKey:@"isAdmin"];
-    [self.loginBackend updateSelectedUser:[srchedData objectAtIndex:0] withData:temp];
+        [savedText setValue:@NO forKey:@"isAdmin"];
+    [self.loginBackend updateSelectedUser:[srchedData objectAtIndex:0] withData:savedText];
 }
 
 /*  Getting user details for updating process  */
 - (void)configUpdateUser {
     [savedText removeAllObjects];
-    NSMutableDictionary *dict;
     
     if([self.loginBackend isAdminUser:[srchedData objectAtIndex:0]]){
         isAdmin = YES;
-        dict = [self.loginBackend.adminCredentials objectForKey:[srchedData objectAtIndex:0]];
+        savedText = [self.loginBackend.adminCredentials objectForKey:[srchedData objectAtIndex:0]];
     }
     else{
         isAdmin = NO;
-        dict = [self.loginBackend.userCredentials objectForKey:[srchedData objectAtIndex:0]];
+        savedText = [self.loginBackend.userCredentials objectForKey:[srchedData objectAtIndex:0]];
     }
-    
-    [savedText addObject:[dict objectForKey:@"First Name"]];
-        [savedText addObject:[dict objectForKey:@"Middle Initial"]];
-        [savedText addObject:[dict objectForKey:@"Last Name"]];
-        [savedText addObject:[dict objectForKey:@"Username"]];
-        [savedText addObject:[dict objectForKey:@"Password"]];
-
 }
 
 #pragma mark -
 #pragma mark Interface view
 /*  The Add User Menu for adding users to the users list  */
 - (void)menuAdminAdd {
-    [self openView:@"Add New User"];
+    [self openView:@"Create New User"];
     isAdmin = NO;
     
     [self addTextField:1 placeholder:@"Required Field **" x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
@@ -348,11 +344,11 @@
     
     [self openView:@"Update Existing User"];
     
-    [self addTextView:1 text:[savedText objectAtIndex:0] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 editable:YES];
-    [self addTextView:2 text:[savedText objectAtIndex:1] x:480 y:150.0 width:40.0 height:30.0 fontSize:18 editable:YES];
-    [self addTextView:3 text:[savedText objectAtIndex:2] x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18 editable:YES];
-    [self addTextView:4 text:[savedText objectAtIndex:3] x:120 y:275 width:400.0 height:30.0 fontSize:18 editable:NO];
-    [self addTextView:5 text:[savedText objectAtIndex:4] x:120 y:325 width:400.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:1 text:[savedText objectForKey:@"First Name"] x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:2 text:[savedText objectForKey:@"Middle Initial"] x:480 y:150.0 width:40.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:3 text:[savedText objectForKey:@"Last Name"] x:120.0 y:200.0 width:400.0 height:30.0 fontSize:18 editable:YES];
+    [self addTextView:4 text:[savedText objectForKey:@"Username"] x:120 y:275 width:400.0 height:30.0 fontSize:18 editable:NO];
+    [self addTextView:5 text:[savedText objectForKey:@"Password"] x:120 y:325 width:400.0 height:30.0 fontSize:18 editable:YES];
     
     [self addButton:6 title:@"Submit" action:@selector(promptUpdateUser) x:50.0 y:550.0 width:200.0 height:50.0];
     [self addButton:7 title:@"Cancel" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250) y:550.0 width:200.0 height:50.0];
