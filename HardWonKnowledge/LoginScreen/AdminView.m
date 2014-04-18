@@ -277,7 +277,7 @@
         return;
     }
     
-    [self openView:@"Update/Remove User"];
+    [self openView:@"View/Edit Users"];
     
     sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,150,self.view.frame.size.width,50.0)];
     sBar.delegate = self;
@@ -309,10 +309,34 @@
     [self openView:@"Settings"];
     
     srchedData = [[NSMutableArray alloc] init];
+        [self addButton:1 title:@"Add New User" action:@selector(menuAdminAdd) x:(self.view.frame.size.width-250)/2 y:150.0 width:250.0 height:50.0];
+        [self addButton:2 title:@"View/Edit Users" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250)/2 y:250.0 width:250.0 height:50.0];
+        [self addButton:3 title:@"Cancel" action:@selector(closeView) x:(self.view.frame.size.width-250)/2 y:350.0 width:250.0 height:50.0];
+}
+
+- (IBAction)menuAdminOffline {  
+    [self openView:@"Offline Users"];
     
-    [self addButton:1 title:@"Add New User" action:@selector(menuAdminAdd) x:(self.view.frame.size.width-250)/2 y:150.0 width:250.0 height:50.0];
-    [self addButton:2 title:@"Update/Remove User" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250)/2 y:250.0 width:250.0 height:50.0];
-    [self addButton:3 title:@"Cancel" action:@selector(closeView) x:(self.view.frame.size.width-250)/2 y:350.0 width:250.0 height:50.0];
+    sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,150,self.view.frame.size.width,50.0)];
+    sBar.delegate = self;
+    [self.view addSubview:sBar];
+    [subviews setObject:sBar atIndexedSubscript:1];
+    
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    [self.view addSubview:myTableView];
+    [subviews setObject:myTableView atIndexedSubscript:2];
+    
+    srchedData = [[NSMutableArray alloc]init];
+    tblData = [[NSMutableArray alloc]init];
+    [tblData addObjectsFromArray:self.loginBackend.dataSrc];
+    [tblData sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [myTableView reloadData];
+    
+    [srchedData addObject:@"nil"];
+    
+    [self addButton:5 title:@"Close" action:@selector(closeView) x:self.view.frame.size.width-160 y:550.0 width:150.0 height:50.0];
 }
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
@@ -336,7 +360,7 @@
     [self addLabel:8 title:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:9 title:@"M.I.:" x:440 y:150 width:40 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:10 title:@"Last Name:" x:20 y:200 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addLabel:11 title:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+    [self addLabel:11 title:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor redColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:12 title:@"Password:" x:20 y:325 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:13 title:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     

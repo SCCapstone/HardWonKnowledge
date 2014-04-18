@@ -34,11 +34,14 @@
 - (IBAction)closeView;
 - (IBAction)menuAdminEdit;
 - (IBAction)menuAdminSettings;
+- (IBAction)menuAdminOffline;
 - (IBAction)menuAdminUpdate;
 - (IBAction)promptAddUser;
 - (IBAction)promptRemoveUser;
 - (IBAction)promptUpdateUser;
 
+@property (nonatomic,retain) GTLServiceDrive *driveService;
+@property (nonatomic,retain) DriveManager *driveManager;
 @property (nonatomic, retain) UserLoginBackend *loginBackend;
 @property (nonatomic,retain) NSMutableArray *subviews;
 @property (nonatomic,retain) NSMutableArray *savedText;
