@@ -30,11 +30,11 @@
 
 - (id)init {
     if (self = [super init]) {
-        username = @"Default Property Value";
-        firstName = @"Default Property Value";
-        midInitial = @"Default Property Value";
-        lastName = @"Default Property Value";
-        folderId = @"Default Property Value";
+        username = nil;
+        firstName = nil;
+        midInitial = nil;
+        lastName = nil;
+        folderId = nil;
         isAdmin = NO;
     }
     return self;
