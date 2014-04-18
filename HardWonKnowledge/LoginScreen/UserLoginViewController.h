@@ -16,10 +16,10 @@
 - (IBAction)driveButton;
 - (IBAction)loginCheck;
 
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) AdminView *adminView;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic)  IBOutlet UITextField *usernameField;
+@property (weak, nonatomic)  IBOutlet UIButton *loginButton;
 @property (nonatomic, retain) NSMutableArray *subviews;
 @property (nonatomic, retain) ActiveUser *userManager;
 @end

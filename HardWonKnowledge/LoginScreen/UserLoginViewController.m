@@ -17,6 +17,7 @@
 
 @synthesize passwordField;
 @synthesize usernameField;
+@synthesize loginButton;
 @synthesize subviews;
 @synthesize userManager;
 
@@ -69,20 +70,22 @@
 - (void)showAdmin{
     [usernameField setHidden:YES];
     [passwordField setHidden:YES];
+    [loginButton setHidden:YES];
     
-    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
-    
-    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
-    
-    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
-    
-    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
+//    [self addButton:@"STEM Notebook" y:self.loginButton.frame.origin.y-300 action:@selector(openNotebook)];
+//    
+//    [self addButton:@"User Settings" y:self.loginButton.frame.origin.y-200 action:@selector(openAdminSettings)];
+//    
+//    [self addButton:@"Google Drive Connectivity" y:self.loginButton.frame.origin.y-100 action:@selector(driveButton)];
+//    
+//    [self addButton:@"Notebook Log Out" y:self.loginButton.frame.origin.y action:@selector(logoutAdmin)];
 }
 
 - (IBAction)logoutAdmin{
     [self clearScreen];
     [usernameField setHidden:NO];
     [passwordField setHidden:NO];
+    [loginButton setHidden:NO];
 }
 
 - (void)notebookLoginSetup: (NSDictionary*)dict {
