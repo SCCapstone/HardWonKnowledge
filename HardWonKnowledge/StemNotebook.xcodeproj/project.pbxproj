@@ -40,7 +40,6 @@
 		CB8666D418EB5E1A006D1ADD /* DefaultUserList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8666D318EB5E1A006D1ADD /* DefaultUserList.plist */; };
 		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
 		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
-		CB8B125318C9760A00DC90B0 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB8B125018C9760A00DC90B0 /* users.txt */; };
 		CB8CBF0C18F215BB003AF562 /* blank_notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8CBF0B18F215BB003AF562 /* blank_notebook.png */; };
 		CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */; };
 		CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */; };
@@ -140,7 +139,6 @@
 		CB8666D318EB5E1A006D1ADD /* DefaultUserList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultUserList.plist; sourceTree = "<group>"; };
 		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
 		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
-		CB8B125018C9760A00DC90B0 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = LoginScreen/Resources/users.txt; sourceTree = "<group>"; };
 		CB8CBF0B18F215BB003AF562 /* blank_notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank_notebook.png; path = Bookshelf/Images/blank_notebook.png; sourceTree = "<group>"; };
 		CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
@@ -375,7 +373,6 @@
 			children = (
 				CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */,
 				CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */,
-				CB8B125018C9760A00DC90B0 /* users.txt */,
 				CB8666D318EB5E1A006D1ADD /* DefaultUserList.plist */,
 			);
 			name = Resources;
@@ -607,7 +604,6 @@
 				CBD848AF18C8046200153587 /* UserLoginViewController.xib in Resources */,
 				CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */,
 				CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */,
-				CB8B125318C9760A00DC90B0 /* users.txt in Resources */,
 				B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */,
 				CB8666D418EB5E1A006D1ADD /* DefaultUserList.plist in Resources */,
 				CB8CBF0C18F215BB003AF562 /* blank_notebook.png in Resources */,
