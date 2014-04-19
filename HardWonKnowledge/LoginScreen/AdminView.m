@@ -255,7 +255,6 @@
 /*  The Add User Menu for adding users to the users list  */
 - (void)menuAdminAdd {
     [self openView:@"Create New User"];
-    isAdmin = NO;
     
     [self addTextField:1 placeholder:@"Required Field **" x:120.0 y:150.0 width:315.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
     [self addTextField:2 placeholder:nil x:480 y:150.0 width:40.0 height:30.0 fontSize:18 secure:NO capitalize:YES];
@@ -273,7 +272,7 @@
     [self addLabel:12 title:@"Password:" x:20 y:325 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:13 title:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     
-    [self addSwitch:14 isOn:NO x:320 y:400 width:200 height:30];
+    [self addSwitch:14 isOn:isAdmin x:320 y:400 width:200 height:30];
 }
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
@@ -295,8 +294,12 @@
 
 /*  Set up the User Settings Menu for admin user  */
 - (IBAction)menuAdminSettings {
+    if([self.loginBackend.userCredentials count] > 1 && [[[self.loginBackend.adminCredentials objectForKey:@"admin"]objectForKey:@"Last Name"]isEqualToString:@"DEFAULT_USER_ENTRY"]){
+        [self alertOneButtonWithTitle:@"Administrator Error" message:@"Please add a new adminstrator user to operate this application successfully." buttonTitle:@"Add New User"];
+        return;
+    }
     [self openView:@"Settings"];
-    
+    isAdmin = NO;
     srchedData = [[NSMutableArray alloc] init];
     [self addButton:1 title:@"Add New User" action:@selector(menuAdminAdd) x:(self.view.frame.size.width-250)/2 y:150.0 width:250.0 height:50.0];
     [self addButton:2 title:@"View/Edit Users" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250)/2 y:250.0 width:250.0 height:50.0];
@@ -400,6 +403,10 @@
         [self.loginBackend removeSelectedUser:[srchedData objectAtIndex:0]];
         [myTableView reloadData];
         [self menuAdminEdit];
+    }
+    else if ([buttonPressedName isEqualToString:@"Add New User"]){
+        isAdmin = YES;
+        [self menuAdminAdd];
     }
 }
 
