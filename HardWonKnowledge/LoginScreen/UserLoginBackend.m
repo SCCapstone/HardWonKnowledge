@@ -137,13 +137,11 @@
     NSString *text = [[NSString alloc]initWithFormat:@"%@ -",[[data objectForKey:@"Username"] lowercaseString]];
     NSMutableArray *array = [NSArray arrayWithObjects:@"First Name", @"Middle Initial", @"Last Name", nil];
     for(int i=0; i<[array count]; i++) {
-        if(![[data objectForKey:[array objectAtIndex:i]]isEqualToString:@"(empty)"])
-            text = [text stringByAppendingFormat:@" %@", [[data objectForKey:[array objectAtIndex:i]] capitalizedString]];
+            text = [[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAppendingFormat:@" %@", [[data objectForKey:[array objectAtIndex:i]] capitalizedString]];
     }
     if([[data objectForKey:@"isAdmin"]isEqual:@YES])
         text = [text stringByAppendingString:@" [Administrator User]"];
     [dataSrc addObject:text];
-//    NSLog(@"entry %@ %d",text, [adminCredentials count]);
 }
 
 - (NSDictionary *)dataToDictionaryAtPath: (NSString *)path {
