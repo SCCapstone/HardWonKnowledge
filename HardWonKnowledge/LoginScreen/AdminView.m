@@ -22,6 +22,8 @@
 @synthesize sBar;
 @synthesize myTableView;
 
+#define ACCEPTABLE_CHARACTERS @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*.-_+="
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -108,12 +110,13 @@
     textField.font = [UIFont systemFontOfSize:size];
     [textField.layer setCornerRadius:10];
     [self.tabBarController setSelectedIndex:index];
+    [textField setDelegate:self];
     [self.view addSubview: textField];
     [subviews setObject:textField atIndexedSubscript:index];
 }
 
 /*  Add text view to adminView and set up properties */
-- (void)addTextView: (NSInteger)index text:(NSString*)text x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size editable:(BOOL)edit{
+- (void)addTextView: (NSInteger)index text:(NSString*)text x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height fontSize:(CGFloat)size editable:(BOOL)editable{
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
     [textView.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
@@ -121,12 +124,12 @@
     textView.font = [UIFont systemFontOfSize:size];
     [textView.layer setCornerRadius:10];
     [textView setClipsToBounds: YES];
-    [textView setEditable:edit];
+    [textView setEditable:editable];
+    if(!editable)
+        [textView setBackgroundColor:[UIColor lightGrayColor]];
     [textView setScrollEnabled:NO];
-    if([[text lowercaseString]isEqualToString:@"(empty)"])
-        textView.text = @"";
-    else
-        textView.text = text;
+    textView.text = text;
+    [textView setDelegate:self];
     [self.view addSubview:textView];
     [subviews setObject:textView atIndexedSubscript:index];
 }
@@ -155,16 +158,20 @@
 
 #pragma mark -
 #pragma mark Functions For Editing User
+- (void)correctSyntaxForDictionary{
+    [savedText setValue:[[savedText objectForKey:@"First Name"] capitalizedString] forKey:@"First Name"];
+    [savedText setValue:[[savedText objectForKey:@"Middle Initial"] capitalizedString] forKey:@"Middle Initial"];
+    [savedText setValue:[[savedText objectForKey:@"Last Name"] capitalizedString] forKey:@"Last Name"];
+}
+
 - (void)mapUserInfoToDictionary{
     UITextField *textField = nil;
     NSArray *keys = [NSArray arrayWithObjects:@"First Name", @"Middle Initial", @"Last Name", @"Username", @"Password", nil];
-    NSLog(@"array %@",keys);
     for(int i=1; i<=5; i++){
         textField = [subviews objectAtIndex:i];
-        NSLog(@"textfield %i %@",i,textField.text);
         [savedText setValue:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:[keys objectAtIndex:i-1]];
     }
-    NSLog(@"array %@",savedText);
+    [self correctSyntaxForDictionary];
 }
 
 /*  Review the newly added user before submit  */
@@ -326,7 +333,7 @@
     [self addLabel:8 title:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:9 title:@"M.I.:" x:440 y:150 width:40 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:10 title:@"Last Name:" x:20 y:200 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
-    [self addLabel:11 title:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor redColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
+    [self addLabel:11 title:@"Username:" x:20 y:275 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:12 title:@"Password:" x:20 y:325 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     [self addLabel:13 title:@"Is this an administrator account?" x:20 y:400 width:300 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
     
@@ -415,6 +422,20 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    
+    return [string isEqualToString:filtered];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  {
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+    NSString *filtered = [[text componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    
+    return [text isEqualToString:filtered];
 }
 
 #pragma mark -
