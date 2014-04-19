@@ -28,7 +28,7 @@
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.delegate = self;
     userManager = [ActiveUser userManager];
-    
+    self.driveManager = [DriveManager getDriveManager];
     if(![self.driveManager isAuthorized]){
         [self driveOfflineAlert];
     }
@@ -74,10 +74,12 @@
 
 - (IBAction)userSettingsButton{
     if([self.driveManager isAuthorized]){
-        [self.adminView menuAdminSettings];
+        NSLog(@"Settings");
+        [self openAdminSettings];
     }
     else{
-        [self.adminView menuAdminOffline];
+                NSLog(@"Offline");
+        [self openAdminOffline];
     }
 }
 
