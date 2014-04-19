@@ -125,8 +125,10 @@
     [textView.layer setCornerRadius:10];
     [textView setClipsToBounds: YES];
     [textView setEditable:editable];
-    if(!editable)
-        [textView setBackgroundColor:[UIColor lightGrayColor]];
+    if(!editable){
+        [textView.layer setBorderWidth:0.0];
+        textView.font = [UIFont systemFontOfSize:size];
+    }
     [textView setScrollEnabled:NO];
     textView.text = text;
     [textView setDelegate:self];
