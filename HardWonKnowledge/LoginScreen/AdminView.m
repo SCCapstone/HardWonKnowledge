@@ -535,8 +535,10 @@
     
     NSString *text = @"";
     NSArray *array = [cell.textLabel.text componentsSeparatedByString:@" "];
-    for(NSString *string in array){
-        text = [text stringByAppendingFormat:@"%@ ",string];
+    for(int i=2; i<[array count]; i++){
+        if([[array objectAtIndex:i]isEqualToString:@"[Adminstrator"])
+            break;
+        text = [text stringByAppendingFormat:@"%@ ",[array objectAtIndex:i]];
     }
     
     sBar.text = text;
