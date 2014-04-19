@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UserLoginBackend.h"
 #import "BookshelfGridViewController.h"
+#import "GTLDrive.h"
+#import "DriveManager.h"
+#import "ActiveUser.h"
 
 @interface AdminView : UIViewController <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UITextFieldDelegate, UITextViewDelegate>{
     BOOL isAdmin;
@@ -20,12 +23,14 @@
 
 - (void)addLabel: (NSInteger)index title:(NSString*)title x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height color:(UIColor*)color alignment:(UITextAlignment)align fontSize:(CGFloat)size isBold:(BOOL)bold;
 - (void)addSwitch: (NSInteger)index isOn:(BOOL)isOn x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
-- (void)alertOneButton: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn;
-- (void)alertTwoButtons: (NSString*)title message:(NSString*)mssg firstButton:(NSString*)btn1 secondButton:(NSString*)btn2;
+
+- (void)alertOneButtonWithTitle: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn;
+- (void)alertTwoButtonsWithTitle: (NSString*)title message:(NSString*)mssg firstButton:(NSString*)btn1 secondButton:(NSString*)btn2;
+
 - (void)changeSwitch:(id)sender;
 - (void)clearScreen;
 - (void)configUpdateUser;
-- (void)confirmUserInsertion: (NSString*)method;
+- (void)promptUserForMethod: (NSString*)method;
 - (void)menuAdminAdd;
 - (void)openView: (NSString*)title;
 - (void)submitAddedUser;
@@ -36,13 +41,14 @@
 - (IBAction)menuAdminSettings;
 - (IBAction)menuAdminOffline;
 - (IBAction)menuAdminUpdate;
-- (IBAction)promptAddUser;
-- (IBAction)promptRemoveUser;
-- (IBAction)promptUpdateUser;
+- (IBAction)addUserButton;
+- (IBAction)removeUserButton;
+- (IBAction)updateUserButton;
 
 @property (nonatomic,retain) GTLServiceDrive *driveService;
 @property (nonatomic,retain) DriveManager *driveManager;
 @property (nonatomic, retain) UserLoginBackend *loginBackend;
+@property (nonatomic, retain) ActiveUser *userManager;
 @property (nonatomic,retain) NSMutableArray *subviews;
 @property (nonatomic,retain) NSMutableDictionary *savedText;
 @property (nonatomic,retain) NSMutableArray *srchedData;

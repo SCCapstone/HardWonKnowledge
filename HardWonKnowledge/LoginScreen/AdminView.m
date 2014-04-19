@@ -32,6 +32,8 @@
         UINavigationBar *nav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0) ];
         [self.view addSubview:nav];
         
+        self.driveManager = [DriveManager getDriveManager];
+        self.userManager = [ActiveUser userManager];
         self.loginBackend = [[UserLoginBackend alloc]init];
         [self.loginBackend initVariables];
         [self.loginBackend findExistingDriveFile];
@@ -53,7 +55,7 @@
 }
 
 #pragma mark -
-#pragma mark Interface objects
+#pragma mark Interface Objects
 /*  Add button to adminView and set up properties  */
 - (void)addButton:(NSInteger)index title:(NSString*)title action:(SEL)action x:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -130,7 +132,7 @@
 }
 
 #pragma mark -
-#pragma mark Interface actions
+#pragma mark Interface Actions
 /*  Responder to switch manupulation  */
 - (void)changeSwitch:(id)sender{
     if([sender isOn])
@@ -152,72 +154,71 @@
 
 
 #pragma mark -
-#pragma mark User details
+#pragma mark Functions For Editing User
 - (void)mapUserInfoToDictionary{
-    UITextField *textField;
-    NSArray *keys = [[NSArray alloc]initWithObjects:@"First Name", @"Middle Initial", "Last Name", "Username", "Password", nil];
+    UITextField *textField = nil;
+    NSArray *keys = [NSArray arrayWithObjects:@"First Name", @"Middle Initial", @"Last Name", @"Username", @"Password", nil];
+    NSLog(@"array %@",keys);
     for(int i=1; i<=5; i++){
         textField = [subviews objectAtIndex:i];
-        [savedText setValue:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:[keys objectAtIndex:i-1]];//            [savedText addObject:textField.text];
+        NSLog(@"textfield %i %@",i,textField.text);
+        [savedText setValue:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:[keys objectAtIndex:i-1]];
     }
-    
+    NSLog(@"array %@",savedText);
 }
 
 /*  Review the newly added user before submit  */
-- (void)confirmUserInsertion: (NSString*)method {
-    if([savedText objectForKey:@"First Name"]==nil || [savedText objectForKey:@"Username"]==nil || [savedText objectForKey:@"Password"]==nil){
-//    if([[savedText objectAtIndex:0]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:3]isEqualToString:@"(empty)"] || [[savedText objectAtIndex:4]isEqualToString:@"(empty)"]) {
-        [self alertOneButton:@"Input Error" message:@"Please enter values\nin required fields." buttonTitle:@"Dismiss"];
+- (void)promptUserForMethod: (NSString*)method {
+    [self mapUserInfoToDictionary];
+    
+    if([[savedText objectForKey:@"First Name"] length] < 1 || [[savedText objectForKey:@"Username"] length] < 1 || [[savedText objectForKey:@"Password"]length] < 1){
+        [self alertOneButtonWithTitle:@"Input Error" message:@"Please enter values\nin required fields." buttonTitle:@"Dismiss"];
         [savedText removeAllObjects];
         return;
     }
     if(![method isEqualToString:@"Update"] && ([self.loginBackend isStudentUser:[savedText objectForKey:@"Username"]] || [self.loginBackend isAdminUser:[savedText objectForKey:@"Username"]])){
-//    if(![method isEqualToString:@"Update"] && ([self.loginBackend isStudentUser:[savedText objectAtIndex:3]] || [self.loginBackend isAdminUser:[savedText objectAtIndex:3]])){
-        [self alertOneButton:@"Input Error" message:@"This username is already taken" buttonTitle:@"Dismiss"];
+        [self alertOneButtonWithTitle:@"Input Error" message:@"This username is already taken" buttonTitle:@"Dismiss"];
         [savedText removeAllObjects];
         return;
     }
-    
-//    if([[savedText objectAtIndex:1] length] > 1 && ![[[savedText objectAtIndex:1] lowercaseString] isEqualToString:@"(empty)"])
     if([[savedText objectForKey:@"Middle Initial"] length] > 1)
         [savedText setValue:[[savedText objectForKey:@"Middle Initial"] substringToIndex:1] forKey:@"Middle Initial"];
     
-    [self alertTwoButtons:@"Insert Confirmation" message:[NSString stringWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@",[savedText objectForKey:@"First Name"],[savedText objectForKey:@"Middle Initial"],[savedText objectForKey:@"Last Name"],[savedText objectForKey:@"Username"],[savedText objectForKey:@"Password"]] firstButton:method secondButton:@"Dismiss"];
+    [self alertTwoButtonsWithTitle:@"Insert Confirmation" message:[NSString stringWithFormat:@"First Name: %@\nMiddle Initial: %@\nLast Name: %@\nUsername: %@\nPassword: %@",[savedText objectForKey:@"First Name"],[savedText objectForKey:@"Middle Initial"],[savedText objectForKey:@"Last Name"],[savedText objectForKey:@"Username"],[savedText objectForKey:@"Password"]] firstButton:method secondButton:@"Dismiss"];
 }
 
-- (IBAction)promptAddUser {
-    [self confirmUserInsertion: @"Add"];
+- (IBAction)addUserButton {
+    [self promptUserForMethod:@"Add"];
 }
 
 /*  The remove user prompt  */
-- (IBAction)promptRemoveUser {
+- (IBAction)removeUserButton {
     if([[srchedData objectAtIndex:0]isEqualToString:@"nil"])
         return;
+    if([[srchedData objectAtIndex:0]isEqualToString:[self.userManager username]]){
+        [self alertOneButtonWithTitle:@"Error" message:@"User cannot remove own account" buttonTitle:@"Dismiss"];
+        return;
+    }
     
-    [self alertTwoButtons:nil message:[NSString stringWithFormat:@"Delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
+    [self alertTwoButtonsWithTitle:nil message:[NSString stringWithFormat:@"Delete %@?", [srchedData objectAtIndex:0]] firstButton:@"Remove" secondButton:@"Dismiss"];
 }
 
 /*  The update user prompt  */
-- (IBAction)promptUpdateUser {    
-    [self confirmUserInsertion: @"Update"];
+- (IBAction)updateUserButton {
+    [self promptUserForMethod:@"Update"];
 }
 
 /*  Setting up user details to be added into user list  */
 - (void)submitAddedUser {
-//    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
-//                                                     forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
     if(isAdmin)
-       [savedText setValue:@YES forKey:@"isAdmin"];
+        [savedText setValue:@YES forKey:@"isAdmin"];
     else
         [savedText setValue:@NO forKey:@"isAdmin"];
-//    NSDictionary *user = [NSDictionary dictionaryWithObject:temp forKey:[savedText objectAtIndex:3]];
     [self.loginBackend saveUser:[savedText objectForKey:@"Username"] withData:savedText];
 }
 
 /*  Setting up user details to be updated in user list  */
 - (void)submitUpdatedUser {
-//    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[savedText objectAtIndex:0],[savedText objectAtIndex:1],[savedText objectAtIndex:2],[savedText objectAtIndex:3],[savedText objectAtIndex:4],nil]
-//                                                                   forKeys:[NSArray arrayWithObjects:@"First Name",@"Middle Initial", @"Last Name", @"Username",@"Password", nil]];
     if(isAdmin)
         
         [savedText setValue:@YES forKey:@"isAdmin"];
@@ -241,7 +242,7 @@
 }
 
 #pragma mark -
-#pragma mark Interface view
+#pragma mark Interface Views
 /*  The Add User Menu for adding users to the users list  */
 - (void)menuAdminAdd {
     [self openView:@"Create New User"];
@@ -253,7 +254,7 @@
     [self addTextField:4 placeholder:@"Required Field **" x:120 y:275 width:400.0 height:30.0 fontSize:18 secure:NO capitalize:NO];
     [self addTextField:5 placeholder:@"Required Field **" x:120 y:325 width:400.0 height:30.0 fontSize:18 secure:YES capitalize:NO];
     
-    [self addButton:6 title:@"Submit" action:@selector(promptAddUser) x:50.0 y:550.0 width:200.0 height:50.0];
+    [self addButton:6 title:@"Submit" action:@selector(addUserButton) x:50.0 y:550.0 width:200.0 height:50.0];
     [self addButton:7 title:@"Cancel" action:@selector(menuAdminSettings) x:(self.view.frame.size.width-250) y:550.0 width:200.0 height:50.0];
     
     [self addLabel:8 title:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
@@ -269,34 +270,17 @@
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (IBAction)menuAdminEdit {
     if([self.loginBackend.dataSrc count]==0){
-        [self alertOneButton:@"Error" message:@"You must add users before you can use this feature." buttonTitle:@"Dismiss"];
+        [self alertOneButtonWithTitle:@"Error" message:@"You must add users before you can use this feature." buttonTitle:@"Dismiss"];
         return;
     }
     
     [self openView:@"View/Edit Users"];
     
-    sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,150,self.view.frame.size.width,50.0)];
-    sBar.delegate = self;
-    [self.view addSubview:sBar];
-    [subviews setObject:sBar atIndexedSubscript:1];
-    
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
-    myTableView.delegate = self;
-    myTableView.dataSource = self;
-    [self.view addSubview:myTableView];
-    [subviews setObject:myTableView atIndexedSubscript:2];
-    
-    srchedData = [[NSMutableArray alloc]init];
-    tblData = [[NSMutableArray alloc]init];
-    [tblData addObjectsFromArray:self.loginBackend.dataSrc];
-    [tblData sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    [myTableView reloadData];
-    
+    [self generateTableAndSearchBar];
     //    [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-    [srchedData addObject:@"nil"];
     
     [self addButton:3 title:@"Update" action:@selector(menuAdminUpdate) x:10.0 y:550.0 width:150.0 height:50.0];
-    [self addButton:4 title:@"Remove" action:@selector(promptRemoveUser) x:170.0 y:550.0 width:150.0 height:50.0];
+    [self addButton:4 title:@"Remove" action:@selector(removeUserButton) x:170.0 y:550.0 width:150.0 height:50.0];
     [self addButton:5 title:@"Cancel" action:@selector(menuAdminSettings) x:self.view.frame.size.width-160 y:550.0 width:150.0 height:50.0];
 }
 
@@ -305,40 +289,26 @@
     [self openView:@"Settings"];
     
     srchedData = [[NSMutableArray alloc] init];
-        [self addButton:1 title:@"Add New User" action:@selector(menuAdminAdd) x:(self.view.frame.size.width-250)/2 y:150.0 width:250.0 height:50.0];
-        [self addButton:2 title:@"View/Edit Users" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250)/2 y:250.0 width:250.0 height:50.0];
-        [self addButton:3 title:@"Cancel" action:@selector(closeView) x:(self.view.frame.size.width-250)/2 y:350.0 width:250.0 height:50.0];
+    [self addButton:1 title:@"Add New User" action:@selector(menuAdminAdd) x:(self.view.frame.size.width-250)/2 y:150.0 width:250.0 height:50.0];
+    [self addButton:2 title:@"View/Edit Users" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250)/2 y:250.0 width:250.0 height:50.0];
+    [self addButton:3 title:@"Cancel" action:@selector(closeView) x:(self.view.frame.size.width-250)/2 y:350.0 width:250.0 height:50.0];
 }
 
-- (IBAction)menuAdminOffline {  
+- (IBAction)menuAdminOffline {
     [self openView:@"Offline Users"];
+    [self addButton:1 title:@"Close" action:@selector(closeView) x:(self.view.frame.size.width-200)/2 y:550.0 width:200.0 height:50.0];
     
-    sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,150,self.view.frame.size.width,50.0)];
-    sBar.delegate = self;
-    [self.view addSubview:sBar];
-    [subviews setObject:sBar atIndexedSubscript:1];
-    
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
-    myTableView.delegate = self;
-    myTableView.dataSource = self;
-    [self.view addSubview:myTableView];
-    [subviews setObject:myTableView atIndexedSubscript:2];
-    
-    srchedData = [[NSMutableArray alloc]init];
-    tblData = [[NSMutableArray alloc]init];
-    [tblData addObjectsFromArray:self.loginBackend.dataSrc];
-    [tblData sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    [myTableView reloadData];
-    
-    [srchedData addObject:@"nil"];
-    
-    [self addButton:5 title:@"Close" action:@selector(closeView) x:self.view.frame.size.width-160 y:550.0 width:150.0 height:50.0];
+    if([self.loginBackend.dataSrc count]==0){
+        [self alertOneButtonWithTitle:@"Error" message:@"You must add users before you can use this feature." buttonTitle:@"Dismiss"];
+        return;
+    }
+    [self generateTableAndSearchBar];
 }
 
 /*  The Edit Users Menu for updating users to or removing users from the users list  */
 - (IBAction)menuAdminUpdate {
     if([[srchedData objectAtIndex:0]isEqualToString:@"nil"]){
-//        NSLog(@"Nothing Selected");
+        //        NSLog(@"Nothing Selected");
         return;
     }
     
@@ -350,7 +320,7 @@
     [self addTextView:4 text:[savedText objectForKey:@"Username"] x:120 y:275 width:400.0 height:30.0 fontSize:18 editable:NO];
     [self addTextView:5 text:[savedText objectForKey:@"Password"] x:120 y:325 width:400.0 height:30.0 fontSize:18 editable:YES];
     
-    [self addButton:6 title:@"Submit" action:@selector(promptUpdateUser) x:50.0 y:550.0 width:200.0 height:50.0];
+    [self addButton:6 title:@"Submit" action:@selector(updateUserButton) x:50.0 y:550.0 width:200.0 height:50.0];
     [self addButton:7 title:@"Cancel" action:@selector(menuAdminEdit) x:(self.view.frame.size.width-250) y:550.0 width:200.0 height:50.0];
     
     [self addLabel:8 title:@"First Name:" x:20 y:150 width:100 height:30 color:[UIColor darkGrayColor] alignment:NSTextAlignmentLeft fontSize:18 isBold:NO];
@@ -374,7 +344,7 @@
 #pragma mark -
 #pragma mark Alert view
 /*  Method for creating alert with a single button  */
-- (void)alertOneButton: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn {
+- (void)alertOneButtonWithTitle: (NSString*)title message:(NSString*)mssg buttonTitle:(NSString*)btn {
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     alert.title = title;
@@ -384,7 +354,7 @@
 }
 
 /*  Method for creating alert with two buttons  */
-- (void)alertTwoButtons:(NSString *)title message:(NSString *)mssg firstButton:(NSString *)btn1 secondButton:(NSString *)btn2 {
+- (void)alertTwoButtonsWithTitle:(NSString *)title message:(NSString *)mssg firstButton:(NSString *)btn1 secondButton:(NSString *)btn2 {
     UIAlertView * alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     alert.title = title;
@@ -407,11 +377,11 @@
     else if([buttonPressedName isEqualToString:@"Update"]){
         if(!isAdmin){
             [self.loginBackend.adminCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
-//            NSLog(@"Removed from Admin");
+            //            NSLog(@"Removed from Admin");
         }
         else{
             [self.loginBackend.userCredentials removeObjectForKey:[srchedData objectAtIndex:0]];
-//            NSLog(@"Removed from Student");
+            //            NSLog(@"Removed from Student");
         }
         [self submitUpdatedUser];
         [myTableView reloadData];
@@ -425,6 +395,7 @@
 }
 
 #pragma mark -
+#pragma mark Backend Functions
 /*  Hide cursor when click outside of input field.  */
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     for(UIView *view in subviews){
@@ -446,6 +417,28 @@
     return 1;
 }
 
+#pragma mark -
+#pragma mark Table View
+- (void)generateTableAndSearchBar {
+    sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,150,self.view.frame.size.width,50.0)];
+    sBar.delegate = self;
+    [self.view addSubview:sBar];
+    [subviews setObject:sBar atIndexedSubscript:1];
+    
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    [self.view addSubview:myTableView];
+    [subviews setObject:myTableView atIndexedSubscript:2];
+    
+    srchedData = [[NSMutableArray alloc]init];
+    tblData = [[NSMutableArray alloc]init];
+    [tblData addObjectsFromArray:self.loginBackend.dataSrc];
+    [tblData sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [myTableView reloadData];
+    
+    [srchedData addObject:@"nil"];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //NSLog(@"contacts error in num of row");
     return [tblData count];
@@ -516,9 +509,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    sBar.text = cell.textLabel.text;
     
+    NSString *text = @"";
     NSArray *array = [cell.textLabel.text componentsSeparatedByString:@" "];
+    for(NSString *string in array){
+        text = [text stringByAppendingFormat:@"%@ ",string];
+    }
+    
+    sBar.text = text;
     [srchedData setObject:[array objectAtIndex:0] atIndexedSubscript:0];
     [self configUpdateUser];
 }
