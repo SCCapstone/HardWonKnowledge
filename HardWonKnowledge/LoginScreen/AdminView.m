@@ -39,9 +39,6 @@
         self.loginBackend = [[UserLoginBackend alloc]init];
         [self.loginBackend initVariables];
         [self.loginBackend findExistingDriveFile];
-        if([self.loginBackend.adminCredentials count]==0){
-            [self.loginBackend findDefaultFile];
-        }
     }
     return self;
 }
@@ -206,7 +203,7 @@
     if([[srchedData objectAtIndex:0]isEqualToString:@"nil"])
         return;
     if([[srchedData objectAtIndex:0]isEqualToString:[self.userManager username]]){
-        [self alertOneButtonWithTitle:@"Error" message:@"User cannot remove own account" buttonTitle:@"Dismiss"];
+        [self alertOneButtonWithTitle:@"Error" message:@"You cannot remove your own account" buttonTitle:@"Dismiss"];
         return;
     }
     
@@ -543,7 +540,7 @@
     NSString *text = @"";
     NSArray *array = [cell.textLabel.text componentsSeparatedByString:@" "];
     for(int i=2; i<[array count]; i++){
-        if([[array objectAtIndex:i]isEqualToString:@"[Adminstrator"])
+        if([[array objectAtIndex:i]rangeOfString:@"Administrator"].location != NSNotFound)
             break;
         text = [text stringByAppendingFormat:@"%@ ",[array objectAtIndex:i]];
     }
