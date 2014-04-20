@@ -74,13 +74,15 @@ enum
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         if (error == nil) {
             GTLDriveFile *file = [files.items objectAtIndex:0];
-            if(file == nil)
+            if(file == nil){
                 [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[self.userManager username]]];
+            }
             else{
                 [self.userManager setFolderId:file.identifier];
+                [self loadNotebooksForQuery:@"mimeType='application/octet-stream' and trashed = false"];
             }
-            [self loadNotebooksForQuery:@"mimeType='application/octet-stream' and trashed = false"];
             [self loadLocalFilesForUser:@""];
+            [self.gridView reloadData];
         } else
             NSLog (@"An Error has occurred: %@", error);
     }];
@@ -94,13 +96,15 @@ enum
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         if (error == nil) {
             GTLDriveFile *file = [files.items objectAtIndex:0];
-            if(file == nil)
+            if(file == nil){
                 [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[self.userManager username]]];
+            }
             else{
                 [self.userManager setFolderId:file.identifier];
+                [self loadNotebooksForQuery:[NSString stringWithFormat: @"mimeType='application/octet-stream' and '%@' in parents",self.userManager.folderId]];
             }
-            [self loadNotebooksForQuery:[NSString stringWithFormat: @"'%@' in parents",self.userManager.folderId]];
             [self loadLocalFilesForUser:[self.userManager username]];
+            [self.gridView reloadData];
             //            NSLog(@"ID: %@",file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
@@ -227,7 +231,7 @@ enum
             }
             _driveFiles = files;
             _driveTitles = allFileNames;
-            [self.gridView reloadData];
+//            [self.gridView reloadData];
         } else {
             NSLog (@"An Error has occurred: %@", error);
         }
@@ -279,7 +283,8 @@ enum
     self.driveManager = [DriveManager getDriveManager];
     
     self.userManager = [ActiveUser userManager];
-    _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"init", nil];
+    _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"Create New", nil];
+//    NSLog(@"%i %i %i", [_localTitles count], [_driveTitles count], [_allNotebooks count]);
     nav.title = [NSString stringWithFormat:@"%@'s Notebooks",[self.userManager firstName]];
     bottomToolbar.items = [[NSArray alloc]init];
 }
@@ -321,6 +326,7 @@ enum
     static NSString * FilledCellIdentifier = @"FilledCellIdentifier";
     AQGridViewCell * cell = nil;
     BookshelfGridFilledCell * filledCell = (BookshelfGridFilledCell *)[aGridView dequeueReusableCellWithIdentifier: FilledCellIdentifier];
+    NSLog(@"GRRRR");
     if ( filledCell == nil )
     {
         filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 300.0)
@@ -333,7 +339,7 @@ enum
     [_allNotebooks addObject:@"Create New"];
     [_allNotebooks addObjectsFromArray:_driveTitles];
     [_allNotebooks addObjectsFromArray:_localTitles];
-    //    NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
+    NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
     
     if(index==0)
         filledCell.image = [UIImage imageNamed:@"blank_notebook.png"];
