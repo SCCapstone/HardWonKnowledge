@@ -39,8 +39,8 @@
 - (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name;
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file;
 - (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder;
--(void) createFolderUnderAppRootNamed:(NSString *)name;
-
+- (void) createFolderUnderAppRootNamed:(NSString *)name;
+- (void) deleteNotebook:(GTLDriveFile *)file;
 
 #pragma mark -
 #pragma mark methodsWithSelectorCallbacks

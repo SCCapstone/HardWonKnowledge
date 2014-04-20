@@ -425,6 +425,21 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self createFolderNamed:name withParent:self.appRoot];
 }
 
+- (void) deleteNotebook: (GTLDriveFile *)file {
+    GTLQueryDrive *deleteQuery =[GTLQueryDrive queryForFilesDeleteWithFileId:file.identifier];
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Deleting file"];
+    [self.driveService executeQuery:deleteQuery completionHandler:^(GTLServiceTicket *ticket,
+                                                                    id object,
+                                                                    NSError *error) {
+        [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+        if (error == nil) {
+            NSLog(@"File deleted successfully");
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+}
+
 #pragma mark -
 #pragma mark methodsWithSelectorCallbacks
 //callbackSel should have one input, a GTLDriveFileList* object;
