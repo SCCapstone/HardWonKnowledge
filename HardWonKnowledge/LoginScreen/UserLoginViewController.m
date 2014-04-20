@@ -47,9 +47,10 @@
 }
 
 - (IBAction)openNotebook{
-        BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
-        [self presentViewController:bookshelf animated:NO completion:NULL];
-        [bookshelf loadViewForAdmin];
+    BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
+    [self presentViewController:bookshelf animated:NO completion:NULL];
+    [bookshelf viewDidLoad];
+    [bookshelf loadViewForAdmin];
 }
 
 #pragma mark -
@@ -74,11 +75,9 @@
 
 - (IBAction)userSettingsButton{
     if([self.driveManager isAuthorized]){
-        NSLog(@"Settings");
         [self openAdminSettings];
     }
     else{
-                NSLog(@"Offline");
         [self openAdminOffline];
     }
 }
@@ -102,6 +101,7 @@
     [usernameField setHidden:NO];
     [passwordField setHidden:NO];
     [loginButton setHidden:NO];
+    [usernameField becomeFirstResponder];
 }
 
 - (void)notebookLoginSetup: (NSDictionary*)dict {
@@ -112,6 +112,7 @@
     [userManager setMidInitial:[temp objectForKey:@"Middle Initial"]];
     usernameField.text = @"";
     passwordField.text = @"";
+    [usernameField becomeFirstResponder];
 }
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
@@ -122,28 +123,24 @@
         [self showAdmin];
     }
     else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
-        if([self.driveManager isAuthorized]){
             [self notebookLoginSetup:self.adminView.loginBackend.userCredentials];
             [userManager setIsAdmin:NO];
             
             BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
             [self presentViewController:bookshelf animated:NO completion:NULL];
+            [bookshelf viewDidLoad];
             [bookshelf loadViewForStudent];
-        }
-        else{
-            [self alertViewDriveConnection];
-        }
     }
     else {
-//        if([self.driveManager isAuthorized]){
-//            NSLog(@"Incorrect User/Password");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            [alert show];
-            //            [self showAdmin];
-//        }
-//        else{
-//            [self alertViewDriveConnection];
-//        }
+        //        if([self.driveManager isAuthorized]){
+        //            NSLog(@"Incorrect User/Password");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"Please enter a correct password/username combination." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+        //            [self showAdmin];
+        //        }
+        //        else{
+        //            [self alertViewDriveConnection];
+        //        }
     }
 }
 
@@ -193,7 +190,7 @@
 
 /*   Log out of Drive  */
 - (IBAction)driveLogout{
-//    NSLog(@"Drive logout");
+    //    NSLog(@"Drive logout");
     [self.driveManager logout];
 }
 
