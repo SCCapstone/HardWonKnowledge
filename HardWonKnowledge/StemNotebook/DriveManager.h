@@ -10,6 +10,7 @@
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "NotebookViewDelegate.h"
 #import "GTLDrive.h"
+#import "ActiveUser.h"
 
 @interface DriveManager : NSObject
 
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) NSString *documentPath;
 @property (nonatomic, strong) GTLDriveFile *appRoot;
 @property (nonatomic, strong) GTLDriveFile *currentUserFolder;
+@property (nonatomic, retain) ActiveUser *userManager;
 #pragma mark -
 #pragma mark Initialization Methods
 + (DriveManager*) getDriveManager;

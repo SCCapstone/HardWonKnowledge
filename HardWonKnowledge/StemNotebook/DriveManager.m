@@ -671,6 +671,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder withCallback:(SEL)callbackSel
 {
     NSString *parentId = parentFolder.identifier;
+    [self.userManager setFolderId:parentId];
 
     GTLDriveParentReference *parent = [GTLDriveParentReference object];
     parent.identifier = parentId;
