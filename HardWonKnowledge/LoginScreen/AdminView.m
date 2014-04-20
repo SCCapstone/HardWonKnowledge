@@ -39,8 +39,9 @@
         self.loginBackend = [[UserLoginBackend alloc]init];
         [self.loginBackend initVariables];
         [self.loginBackend findExistingDriveFile];
-        if([self.loginBackend.adminCredentials count]==0)
+        if([self.loginBackend.adminCredentials count]==0){
             [self.loginBackend findDefaultFile];
+        }
     }
     return self;
 }
@@ -229,7 +230,6 @@
 /*  Setting up user details to be updated in user list  */
 - (void)submitUpdatedUser {
     if(isAdmin)
-        
         [savedText setValue:@YES forKey:@"isAdmin"];
     else
         [savedText setValue:@NO forKey:@"isAdmin"];
@@ -294,8 +294,8 @@
 
 /*  Set up the User Settings Menu for admin user  */
 - (IBAction)menuAdminSettings {
-    if([self.loginBackend.userCredentials count] > 1 && [[[self.loginBackend.adminCredentials objectForKey:@"admin"]objectForKey:@"Last Name"]isEqualToString:@"DEFAULT_USER_ENTRY"]){
-        [self alertOneButtonWithTitle:@"Administrator Error" message:@"Please add a new adminstrator user to operate this application successfully." buttonTitle:@"Add New User"];
+    if([self.loginBackend.userCredentials count] > 1 && [self.loginBackend.adminCredentials count] == 1 && [[[self.loginBackend.adminCredentials objectForKey:@"admin"]objectForKey:@"Last Name"]isEqualToString:@"DEFAULT_USER_ENTRY"]){
+        [self alertOneButtonWithTitle:@"Administrator Error" message:@"Please add a new administrator user to operate this application successfully." buttonTitle:@"Add New User"];
         return;
     }
     [self openView:@"Settings"];
