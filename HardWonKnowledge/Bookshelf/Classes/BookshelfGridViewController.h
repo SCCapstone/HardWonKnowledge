@@ -58,12 +58,20 @@
     AQGridView * _gridView;
     NSUInteger _cellType;
     IBOutlet UINavigationItem *nav;
+    IBOutlet UIBarButtonItem *deleteButton;
+    IBOutlet UIBarButtonItem *cancelButton;
+    IBOutlet UIToolbar *bottomToolbar;
+    BOOL isDeleting;
+    NSMutableArray *_deletingNotebooks;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
 @property (nonatomic, retain) IBOutlet NSString * selectedFile;
 
-- (IBAction) closeBookshelf;
+- (IBAction)closeBookshelf;
+- (IBAction)deleteNotebookView;
+- (IBAction)deleteSelectedNotebook;
+- (IBAction)cancelDeleteView;
 - (void)loadViewForStudent;
 - (void)loadViewForAdmin;
 - (void)loadNotebooksForQuery:(NSString*)search;

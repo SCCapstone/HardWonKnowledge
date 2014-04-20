@@ -58,17 +58,18 @@ enum
 
 @synthesize gridView=_gridView;
 @synthesize selectedFile;
-@synthesize userManager;
 
 #pragma mark -
 #pragma mark Bookshelf View
 - (void)loadViewForAdmin {
+    bottomToolbar.items = [NSArray arrayWithObject:deleteButton];
     [self loadNotebooksForQuery:@"mimeType='application/octet-stream'"];
     [self loadLocalFilesForUser:@""];
 }
 
 - (void)loadViewForStudent {
-    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@'", [userManager username]];
+    deleteButton.enabled = NO;
+    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@'", [self.userManager username]];
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     
@@ -76,16 +77,66 @@ enum
         if (error == nil) {
             GTLDriveFile *file = [files.items objectAtIndex:0];
             if(file == nil)
-                [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[userManager username]]];
+                [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[self.userManager username]]];
             else{
-                [userManager setFolderId:file.identifier];
+                [self.userManager setFolderId:file.identifier];
             }
-            [self loadNotebooksForQuery:[NSString stringWithFormat: @"'%@' in parents",userManager.folderId]];
-            [self loadLocalFilesForUser:[userManager username]];
-//            NSLog(@"ID: %@",file.identifier);
+            [self loadNotebooksForQuery:[NSString stringWithFormat: @"'%@' in parents",self.userManager.folderId]];
+            [self loadLocalFilesForUser:[self.userManager username]];
+            //            NSLog(@"ID: %@",file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
     }];
+}
+
+- (IBAction)deleteNotebookView {
+    NSLog(@"Delete 1");
+    isDeleting = YES;
+    deleteButton.action = @selector(deleteSelectedNotebook);
+    deleteButton.tintColor = [UIColor darkTextColor];
+    deleteButton.style = UIBarButtonItemStyleBordered;
+    bottomToolbar.items = [NSArray arrayWithObjects:deleteButton, cancelButton, nil];
+        
+    for(int index=0; index<[_allNotebooks count]; index++)
+        [self.gridView cellForItemAtIndex:index];
+//    [self.gridView reloadData];
+}
+
+- (IBAction)deleteSelectedNotebook {
+        NSLog(@"Delete 2");
+//    for (NSNumber *number in _deletingNotebooks){
+//        NSUInteger index = [number integerValue];
+//        if(index <= [_driveTitles count]){
+//            GTLDriveFile *file = [_driveFiles itemAtIndex:index-1];
+//            [self.driveManager deleteNotebook:file];
+//        }
+//        else{
+//            NSFileManager *fileManager = [NSFileManager defaultManager];
+//            NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//            
+//            NSString *filePath = [documentsPath stringByAppendingPathComponent:[_localTitles objectAtIndex:index-[_driveTitles count]-1]];
+//            NSError *error;
+//            BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+//            if (!success) {
+//                NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+//            }            
+//        }
+//    }
+}
+
+- (IBAction)cancelDeleteView {
+    NSLog(@"Cancel");
+    isDeleting = NO;
+    deleteButton.action = @selector(deleteNotebookView);
+    deleteButton.style = UIBarButtonItemStyleDone;
+    deleteButton.tintColor = nil;
+//    deleteButton = [deleteButton initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteNotebookView)];
+    bottomToolbar.items = [NSArray arrayWithObject:deleteButton];
+//    self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+//    self.gridView.autoresizesSubviews = YES;
+//    self.gridView.delegate = self;
+//    self.gridView.dataSource = self;
+//    [self.gridView reloadData];
 }
 
 #pragma mark -
@@ -101,14 +152,14 @@ enum
     NSLog(@"Loading Notebooks...");
     
     // Find the existing files on Google Drive
-//    NSLog(@"%@ %@", [userManager username], [userManager folderId]);
+    //    NSLog(@"%@ %@", [userManager username], [userManager folderId]);
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
         if (error == nil) {
             for (GTLDriveFile *file in files) {
-//                NSLog(@"Drive File: %@",file.title);
+                //                NSLog(@"Drive File: %@",file.title);
                 [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
             }
             _driveFiles = files;
@@ -125,7 +176,7 @@ enum
     NSMutableArray *temp = [[NSMutableArray alloc]init];
     for(NSString *item in directoryContent){
         if([[item substringFromIndex:[item length]-4]isEqualToString:@".nbf"] && [[item substringToIndex:[username length]]isEqualToString:username]){
-//            NSLog(@"Local File: %@",item);
+            //            NSLog(@"Local File: %@",item);
             [temp addObject:item];
         }
     }
@@ -157,16 +208,19 @@ enum
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-   
+    
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.delegate = self;
     self.gridView.dataSource = self;
     self.driveManager = [DriveManager getDriveManager];
     
-    userManager = [ActiveUser userManager];
-    _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"l", nil];
-        nav.title = [NSString stringWithFormat:@"%@'s Notebooks",[userManager firstName]];
+    self.userManager = [ActiveUser userManager];
+    _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"init", nil];
+    _deletingNotebooks = [[NSMutableArray alloc]init];
+    nav.title = [NSString stringWithFormat:@"%@'s Notebooks",[self.userManager firstName]];
+    isDeleting = NO;
+    bottomToolbar.items = [[NSArray alloc]init];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -199,21 +253,26 @@ enum
         filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 300.0)
                                                     reuseIdentifier: FilledCellIdentifier];
         //                filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
-        filledCell.selectionGlowColor = [UIColor blackColor];
+        if(isDeleting){
+            filledCell.selectionGlowColor = nil;
+        }
+        else{
+            filledCell.selectionGlowColor = [UIColor blackColor];
+        }
     }
     
     [_allNotebooks removeAllObjects];
     [_allNotebooks addObject:@"Create New"];
     [_allNotebooks addObjectsFromArray:_driveTitles];
     [_allNotebooks addObjectsFromArray:_localTitles];
-//    NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
-
+    //    NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
+    
     if(index==0)
         filledCell.image = [UIImage imageNamed:@"blank_notebook.png"];
     else if(index<=[_driveTitles count])
-        filledCell.image = [UIImage imageNamed:@"Green.png"];
-    else 
-        filledCell.image = [UIImage imageNamed:@"Black.png"];
+        filledCell.image = [UIImage imageNamed:@"green_notebook.png"];
+    else
+        filledCell.image = [UIImage imageNamed:@"black_notebook.png"];
     
     filledCell.title = [_allNotebooks objectAtIndex:index];
     
@@ -229,12 +288,21 @@ enum
 
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
 {
+    if(index>[_allNotebooks count])
+        return;
+    if(isDeleting)
+        [self selectNotebookToDeleteAtIndex:index];
+    else
+        [self selectNotebookToOpenAtIndex:index];
+}
+
+- (void)selectNotebookToOpenAtIndex:(NSUInteger)index{
     if(index == 0){
         [self newNotebookEntry];
-//        NSLog(@"selected create %d",index);
+        //        NSLog(@"selected create %d",index);
     }
     else if(index<=[_driveTitles count] && [_driveTitles count]!=0){
-//        NSLog(@"selected drive %d",index-1);
+        //        NSLog(@"selected drive %d",index-1);
         GTLDriveFile *file = [_driveFiles itemAtIndex:index-1];
         [self openNotebookForFile:file];
     }
@@ -243,7 +311,17 @@ enum
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[_localTitles objectAtIndex:index-[_driveTitles count]-1]];
         [self openNotebookForPath:path title:[_localTitles objectAtIndex:index-[_driveTitles count]-1]];
-//        NSLog(@"selected local %d",index-[_driveTitles count]-1);
+        //        NSLog(@"selected local %d",index-[_driveTitles count]-1);
+    }
+}
+
+- (void)selectNotebookToDeleteAtIndex:(NSUInteger)index{
+    if(index == 0){
+        return;
+    }
+    else {
+        [self.gridView cellForItemAtIndex:index].selectionStyle = AQGridViewCellSelectionStyleBlueGray;
+        [_deletingNotebooks addObject:[NSNumber numberWithInt:index]];
     }
 }
 
