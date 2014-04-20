@@ -46,6 +46,9 @@
                 for(id key in temp)
                     [self parseUser:key withData:[temp objectForKey:key]];
             }
+            if([adminCredentials count] < 1){
+                [self findDefaultFile];
+            }
 //            NSLog(@"ID: %@ %@",listFileId, file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
