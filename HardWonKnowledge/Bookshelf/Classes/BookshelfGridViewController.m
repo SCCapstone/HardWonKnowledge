@@ -58,18 +58,36 @@ enum
 
 @synthesize gridView=_gridView;
 @synthesize selectedFile;
+@synthesize srchedData;
+@synthesize tblData;
+@synthesize sBar;
+@synthesize myTableView;
 
 #pragma mark -
-#pragma mark Bookshelf View
+#pragma mark Different Views of the Bookshelf
 - (void)loadViewForAdmin {
     bottomToolbar.items = [NSArray arrayWithObject:deleteButton];
-    [self loadNotebooksForQuery:@"mimeType='application/octet-stream'"];
-    [self loadLocalFilesForUser:@""];
+    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@' and trashed = false", [self.userManager username]];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = search;
+    
+    [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
+        if (error == nil) {
+            GTLDriveFile *file = [files.items objectAtIndex:0];
+            if(file == nil)
+                [self.driveManager createFolderUnderAppRootNamed:[NSString stringWithFormat:@"%@ - StemNotebooks",[self.userManager username]]];
+            else{
+                [self.userManager setFolderId:file.identifier];
+            }
+            [self loadNotebooksForQuery:@"mimeType='application/octet-stream' and trashed = false"];
+            [self loadLocalFilesForUser:@""];
+        } else
+            NSLog (@"An Error has occurred: %@", error);
+    }];
 }
 
 - (void)loadViewForStudent {
-    deleteButton.enabled = NO;
-    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@'", [self.userManager username]];
+    NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@' and trashed = false", [self.userManager username]];
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     
@@ -89,58 +107,103 @@ enum
     }];
 }
 
-- (IBAction)deleteNotebookView {
-    NSLog(@"Delete 1");
-    isDeleting = YES;
-    deleteButton.action = @selector(deleteSelectedNotebook);
-    deleteButton.tintColor = [UIColor darkTextColor];
-    deleteButton.style = UIBarButtonItemStyleBordered;
-    bottomToolbar.items = [NSArray arrayWithObjects:deleteButton, cancelButton, nil];
+- (IBAction)openDeleteNotebookView {
+    UIViewController *deleteView = [[UIViewController alloc]initWithNibName:nil bundle:nil];
+    deleteView.modalPresentationStyle = UIModalPresentationFormSheet;
+    deleteView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    deleteView.view.backgroundColor= [UIColor whiteColor];
+    deleteView.view.superview.center = self.view.center;
+    UINavigationBar *deleteNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0) ];
+    [deleteView.view addSubview:deleteNav];
+    [self presentViewController:deleteView animated:YES completion:NULL];
+    [self tableOfNotebooksInView:deleteView];
+}
+
+- (void)tableOfNotebooksInView:(UIViewController*)deleteView {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, deleteView.view.frame.size.width, 50)];
+    label.text = @"Delete Notebook";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont boldSystemFontOfSize:28];
+    [deleteView.view addSubview:label];
+    sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,150,deleteView.view.frame.size.width,50.0)];
+    sBar.delegate = self;
+    [deleteView.view addSubview:sBar];
+    
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, deleteView.view.frame.size.width, 300)];
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    [deleteView.view addSubview:myTableView];
+    
+    srchedData = [[NSMutableArray alloc]init];
+    tblData = [[NSMutableArray alloc]init];
+    [tblData addObjectsFromArray:_driveTitles];
+    [tblData addObjectsFromArray:_localTitles];
+    [myTableView reloadData];
+    [srchedData addObject:@"nil"];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"Delete" forState:UIControlStateNormal];
+    button.frame = CGRectMake(50, 550, 150, 50);
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    [button addTarget:self action:@selector(promptRemoveNotebook) forControlEvents:UIControlEventTouchUpInside];
+    [deleteView.view addSubview:button];
+    
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button2 setTitle:@"Close" forState:UIControlStateNormal];
+    button2.frame = CGRectMake(deleteView.view.frame.size.width-200, 550, 150, 50);
+    button2.titleLabel.font = [UIFont systemFontOfSize:18];
+    [button2 addTarget:self action:@selector(closeDeleteView) forControlEvents:UIControlEventTouchUpInside];
+    [deleteView.view addSubview:button2];
+    
+}
+
+- (void)promptRemoveNotebook {
+    if([[srchedData objectAtIndex:0]isEqualToString:@"nil"]){
+        return;
+    }
+    NSUInteger index = [[srchedData objectAtIndex:0] integerValue];
+    UIAlertView * alert = [[UIAlertView alloc] init];
+    alert.delegate = self;
+    alert.title = @"Delete Notebook";
+    alert.message = [NSString stringWithFormat:@"Are you sure you wish to delete %@?", [tblData objectAtIndex:index]];
+    [alert addButtonWithTitle:@"Delete"];
+    [alert addButtonWithTitle:@"Dismiss"];
+    [alert show];
+}
+
+- (void)removeNotebook {
+    NSUInteger index = [[srchedData objectAtIndex:0] integerValue];
+    if(index < [_driveTitles count]){
+        GTLDriveFile *file = [_driveFiles itemAtIndex:index];
+        [self.driveManager deleteNotebook:file];
+    }
+    else{
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
-    for(int index=0; index<[_allNotebooks count]; index++)
-        [self.gridView cellForItemAtIndex:index];
-//    [self.gridView reloadData];
+        NSString *filePath = [documentsPath stringByAppendingPathComponent:[_localTitles objectAtIndex:index-[_driveTitles count]]];
+        NSError *error;
+        BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+        if (!success) {
+            NSLog(@"Could not delete file: %@ ",[error localizedDescription]);
+        }
+    }
+    
+    [tblData removeObjectAtIndex:index];
+    [myTableView reloadData];
 }
 
-- (IBAction)deleteSelectedNotebook {
-        NSLog(@"Delete 2");
-//    for (NSNumber *number in _deletingNotebooks){
-//        NSUInteger index = [number integerValue];
-//        if(index <= [_driveTitles count]){
-//            GTLDriveFile *file = [_driveFiles itemAtIndex:index-1];
-//            [self.driveManager deleteNotebook:file];
-//        }
-//        else{
-//            NSFileManager *fileManager = [NSFileManager defaultManager];
-//            NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//            
-//            NSString *filePath = [documentsPath stringByAppendingPathComponent:[_localTitles objectAtIndex:index-[_driveTitles count]-1]];
-//            NSError *error;
-//            BOOL success = [fileManager removeItemAtPath:filePath error:&error];
-//            if (!success) {
-//                NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
-//            }            
-//        }
-//    }
-}
-
-- (IBAction)cancelDeleteView {
-    NSLog(@"Cancel");
-    isDeleting = NO;
-    deleteButton.action = @selector(deleteNotebookView);
-    deleteButton.style = UIBarButtonItemStyleDone;
-    deleteButton.tintColor = nil;
-//    deleteButton = [deleteButton initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteNotebookView)];
-    bottomToolbar.items = [NSArray arrayWithObject:deleteButton];
-//    self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-//    self.gridView.autoresizesSubviews = YES;
-//    self.gridView.delegate = self;
-//    self.gridView.dataSource = self;
-//    [self.gridView reloadData];
+- (IBAction)closeDeleteView {
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:NULL];
+    if([self.userManager isAdmin]){
+        [self loadViewForAdmin];
+    }else{
+        [self loadViewForStudent];
+    }
 }
 
 #pragma mark -
-#pragma mark Bookshelf Content
+#pragma mark Methods for Retrieving Bookshelf Content
 // Sign out of user account.
 - (IBAction)closeBookshelf{
     [self dismissViewControllerAnimated:NO completion:NULL];
@@ -184,7 +247,7 @@ enum
 }
 
 #pragma mark -
-#pragma mark Notebook
+#pragma mark Bookshelf to Notebook Methods
 -(IBAction)newNotebookEntry{
     NotebookViewController *notebook = [[NotebookViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:notebook animated:NO completion:NULL];
@@ -203,7 +266,7 @@ enum
 }
 
 #pragma mark -
-#pragma mark Original Methods
+#pragma mark Initialization and Deallocation Methods
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void) viewDidLoad
 {
@@ -217,9 +280,7 @@ enum
     
     self.userManager = [ActiveUser userManager];
     _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"init", nil];
-    _deletingNotebooks = [[NSMutableArray alloc]init];
     nav.title = [NSString stringWithFormat:@"%@'s Notebooks",[self.userManager firstName]];
-    isDeleting = NO;
     bottomToolbar.items = [[NSArray alloc]init];
 }
 
@@ -236,7 +297,19 @@ enum
 }
 
 #pragma mark -
-#pragma mark Grid View
+#pragma mark AlertView Method
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString * buttonPressedName = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonPressedName isEqualToString:@"Delete"]){
+        [self removeNotebook];
+    }
+    else if ([buttonPressedName isEqualToString:@"Dismiss"]){
+        return;
+    }
+}
+
+#pragma mark -
+#pragma mark Bookshelf GridView Methods
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
@@ -252,13 +325,8 @@ enum
     {
         filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 300.0)
                                                     reuseIdentifier: FilledCellIdentifier];
-        //                filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
-        if(isDeleting){
-            filledCell.selectionGlowColor = nil;
-        }
-        else{
-            filledCell.selectionGlowColor = [UIColor blackColor];
-        }
+        //                        filledCell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
+        filledCell.selectionGlowColor = [UIColor blackColor];
     }
     
     [_allNotebooks removeAllObjects];
@@ -290,19 +358,10 @@ enum
 {
     if(index>[_allNotebooks count])
         return;
-    if(isDeleting)
-        [self selectNotebookToDeleteAtIndex:index];
-    else
-        [self selectNotebookToOpenAtIndex:index];
-}
-
-- (void)selectNotebookToOpenAtIndex:(NSUInteger)index{
     if(index == 0){
         [self newNotebookEntry];
-        //        NSLog(@"selected create %d",index);
     }
     else if(index<=[_driveTitles count] && [_driveTitles count]!=0){
-        //        NSLog(@"selected drive %d",index-1);
         GTLDriveFile *file = [_driveFiles itemAtIndex:index-1];
         [self openNotebookForFile:file];
     }
@@ -311,18 +370,85 @@ enum
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[_localTitles objectAtIndex:index-[_driveTitles count]-1]];
         [self openNotebookForPath:path title:[_localTitles objectAtIndex:index-[_driveTitles count]-1]];
-        //        NSLog(@"selected local %d",index-[_driveTitles count]-1);
     }
+    
 }
 
-- (void)selectNotebookToDeleteAtIndex:(NSUInteger)index{
-    if(index == 0){
+#pragma mark -
+#pragma mark TableView and SearchBar Methods for Deletion
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //NSLog(@"contacts error in num of row");
+    return [tblData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *MyIdentifier = @"MyIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
+    }
+    cell.textLabel.text = [tblData objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:18];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = (indexPath.row%2)
+    ? [UIColor lightGrayColor] : [UIColor whiteColor];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    // only show the status bar's cancel button while in edit mode
+    sBar.showsCancelButton = YES;
+    sBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    // flush the previous search content
+    [tblData removeAllObjects];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    sBar.showsCancelButton = NO;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [tblData removeAllObjects];// remove all data that belongs to previous search
+    if([searchText isEqualToString:@""]||searchText==nil){
+        [myTableView reloadData];
         return;
     }
-    else {
-        [self.gridView cellForItemAtIndex:index].selectionStyle = AQGridViewCellSelectionStyleBlueGray;
-        [_deletingNotebooks addObject:[NSNumber numberWithInt:index]];
+    NSInteger counter = 0;
+    for(NSString *name in _allNotebooks){
+        NSRange r = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+        if(r.location != NSNotFound)
+            [tblData addObject:name];
+        counter++;
     }
+    [myTableView reloadData];
+    
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    // if a valid search was entered but the user wanted to cancel, bring back the main list content
+    [tblData removeAllObjects];
+    [tblData addObjectsFromArray:_allNotebooks];
+    @try{
+        [myTableView reloadData];
+    }
+    @catch(NSException *e){
+    }
+    [sBar resignFirstResponder];
+    sBar.text = @"";
+}
+
+// called when Search (in our case "Done") button pressed
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    sBar.text = cell.textLabel.text;
+    [srchedData setObject:[NSString stringWithFormat:@"%i",indexPath.row] atIndexedSubscript:0];
 }
 
 // nothing here yet

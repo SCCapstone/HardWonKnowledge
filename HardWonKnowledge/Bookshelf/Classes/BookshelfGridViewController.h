@@ -48,7 +48,7 @@
 #import "DriveManager.h"
 #import "ActiveUser.h"
 
-@interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>//, BookshelfGridCellChooserDelegate>
+@interface BookshelfGridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>//, BookshelfGridCellChooserDelegate>
 {
     GTLDriveFileList *_driveFiles;
 //    NSArray *_orderedFileNames;
@@ -59,25 +59,24 @@
     NSUInteger _cellType;
     IBOutlet UINavigationItem *nav;
     IBOutlet UIBarButtonItem *deleteButton;
-    IBOutlet UIBarButtonItem *cancelButton;
     IBOutlet UIToolbar *bottomToolbar;
-    BOOL isDeleting;
-    NSMutableArray *_deletingNotebooks;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
 @property (nonatomic, retain) IBOutlet NSString * selectedFile;
 
 - (IBAction)closeBookshelf;
-- (IBAction)deleteNotebookView;
-- (IBAction)deleteSelectedNotebook;
-- (IBAction)cancelDeleteView;
+- (IBAction)openDeleteNotebookView;
 - (void)loadViewForStudent;
 - (void)loadViewForAdmin;
-- (void)loadNotebooksForQuery:(NSString*)search;
-- (IBAction) newNotebookEntry;
+//- (void)loadNotebooksForQuery:(NSString*)search;
+//- (IBAction) newNotebookEntry;
 @property (nonatomic, retain) GTLServiceDrive *driveService;
 @property (nonatomic, retain) DriveManager *driveManager;
 @property (nonatomic, retain) ActiveUser *userManager;
+@property (nonatomic,retain) NSMutableArray *srchedData;
+@property (nonatomic,retain) NSMutableArray *tblData;
+@property (nonatomic,retain) UISearchBar *sBar;
+@property (nonatomic,retain) UITableView *myTableView;
 @end
 
