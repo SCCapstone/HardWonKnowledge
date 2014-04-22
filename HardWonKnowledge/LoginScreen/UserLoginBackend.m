@@ -46,12 +46,12 @@
                 for(id key in temp)
                     [self parseUser:key withData:[temp objectForKey:key]];
             }
-            if([adminCredentials count] < 1){
-                [self findDefaultFile];
-            }
 //            NSLog(@"ID: %@ %@",listFileId, file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
+        if([adminCredentials count] < 1){
+            [self findDefaultFile];
+        }
     }];
 }
 
@@ -134,6 +134,7 @@
     if(![[data objectForKey:@"Last Name"]isEqual:@"DEFAULT_USER_ENTRY"]){
         [self datasrcAddEntry:data];
     }
+    NSLog(@"%@",data);
 }
 
 - (void)datasrcAddEntry: (NSDictionary*)data{
