@@ -394,9 +394,6 @@ footer {
   	font-size:100%;
 	line-height:1.8em;
 }
-  div.mytext img {
-	height:150px;	
-}
 }
 
 @media print, screen and (max-width: 720px) {
@@ -439,9 +436,6 @@ footer {
   	line-height:1.8em;
   	font-size:90%;
   }
-    div.mytext img {
-	height:150px;	
-}
 }
 
 @media print, screen and (max-width: 480px) {
@@ -477,7 +471,6 @@ footer {
   }
   div.mytext img {
   	float:none;
-	height:150px;	
 }
 
 }
