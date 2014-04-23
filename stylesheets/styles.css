@@ -415,7 +415,7 @@ footer {
   	width:200px;
   }
     p, section iframe {
-    	  	width:480px;
+    	width:480px;
   	height:360px;
     }
   iframe {
@@ -438,12 +438,15 @@ footer {
 		display:block;
 	}
    p, section img {
-  	width:180px;
+  	width:200px;
   }
   img {
-  	width:180px;
+  	width:200px;
   }
-
+  p, section iframe {
+  	width:240px;
+  	height:180px;
+  }
   iframe {
   	width:240px;
   	height:180px;
