@@ -313,6 +313,10 @@ a.buttons:hover {
 	text-decoration: none;
 }
 
+mytext {
+	line-height:1.8em;
+}
+
 
 /* Section - for main page content */
 
@@ -422,6 +426,10 @@ footer {
   	width:480px;
   	height:360px;
   }
+  mytext {
+  	line-height:1.5em;
+  	font-size:90%;
+  }
 }
 
 @media print, screen and (max-width: 480px) {
@@ -450,6 +458,10 @@ footer {
   iframe {
   	width:240px;
   	height:180px;
+  }
+    mytext {
+  	line-height:1.3em;
+  	font-size:80%;
   }
 
 }
