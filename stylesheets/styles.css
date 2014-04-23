@@ -390,11 +390,11 @@ footer {
   	width:640px;
   	height:480px;
   }
-  #mytext {
+  div.mytext {
   	font-size:100%;
 	line-height:1.8em;
 }
-  mytext img {
+  div.mytext img {
 	height:150px;	
 }
 }
@@ -435,11 +435,11 @@ footer {
   	width:480px;
   	height:360px;
   }
-  #mytext {
+  div.mytext {
   	line-height:1.8em;
   	font-size:90%;
   }
-    mytext img {
+    div.mytext img {
 	height:150px;	
 }
 }
@@ -471,11 +471,11 @@ footer {
   	width:240px;
   	height:180px;
   }
-    #mytext {
+    div.mytext {
   	line-height:1.8em;
   	font-size:80%;
   }
-  mytext img {
+  div.mytext img {
 	height:150px;	
 }
 
