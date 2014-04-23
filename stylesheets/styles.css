@@ -404,7 +404,10 @@ footer {
   header ul, header p.view {
     position:static;
   }
-    img {
+   p, section img {
+  	width:auto;
+  }
+  img {
   	width:auto;
   }
   iframe {
@@ -426,12 +429,15 @@ footer {
 	footer a{
 		display:block;
 	}
-	  img {
+   p, section img {
+  	width:auto;
+  }
+  img {
   	width:auto;
   }
   iframe {
-  	width:360;
-  	height:270;
+  	width:240;
+  	height:180;
   }
 
 }
