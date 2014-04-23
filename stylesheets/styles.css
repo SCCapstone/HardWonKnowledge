@@ -370,6 +370,12 @@ footer {
     right:130px;
     top:84px;
   }
+  img {
+  	width:auto;
+  }
+  iframe {
+  	width:auto;
+  }
 }
 
 @media print, screen and (max-width: 720px) {
@@ -394,6 +400,12 @@ footer {
   header ul, header p.view {
     position:static;
   }
+    img {
+  	width:auto;
+  }
+  iframe {
+  	width:auto;
+  }
 }
 
 @media print, screen and (max-width: 480px) {
@@ -409,6 +421,12 @@ footer {
 	footer a{
 		display:block;
 	}
+	  img {
+  	width:auto;
+  }
+  iframe {
+  	width:auto;
+  }
 
 }
 
@@ -417,5 +435,11 @@ footer {
     padding:0.4in;
     font-size:12pt;
     color:#444;
+  }
+    img {
+  	display:none;
+  }
+  iframe {
+  	display:none;
   }
 }
