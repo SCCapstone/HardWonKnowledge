@@ -316,7 +316,9 @@ a.buttons:hover {
 #mytext {
 	line-height:1.8em;
 }
-
+  mytext img {
+	height:150px;	
+}
 
 /* Section - for main page content */
 
@@ -388,6 +390,13 @@ footer {
   	width:640px;
   	height:480px;
   }
+  #mytext {
+  	font-size:100%;
+	line-height:1.8em;
+}
+  mytext img {
+	height:150px;	
+}
 }
 
 @media print, screen and (max-width: 720px) {
@@ -426,10 +435,13 @@ footer {
   	width:480px;
   	height:360px;
   }
-  mytext {
+  #mytext {
   	line-height:1.8em;
   	font-size:90%;
   }
+    mytext img {
+	height:150px;	
+}
 }
 
 @media print, screen and (max-width: 480px) {
@@ -459,10 +471,13 @@ footer {
   	width:240px;
   	height:180px;
   }
-    mytext {
+    #mytext {
   	line-height:1.8em;
   	font-size:80%;
   }
+  mytext img {
+	height:150px;	
+}
 
 }
 
