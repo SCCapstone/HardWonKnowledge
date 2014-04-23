@@ -374,11 +374,11 @@ footer {
   	width:auto;
   }
   img {
-  	width:auto;
+  	width:640px;
   }
   iframe {
-  	width:640;
-  	height:480;
+  	width:640px;
+  	height:480px;
   }
 }
 
@@ -408,11 +408,11 @@ footer {
   	width:auto;
   }
   img {
-  	width:auto;
+  	width:480px;
   }
   iframe {
-  	width:480;
-  	height:360;
+  	width:480px;
+  	height:360px;
   }
 }
 
@@ -433,11 +433,11 @@ footer {
   	width:auto;
   }
   img {
-  	width:auto;
+  	width:180px;
   }
   iframe {
-  	width:240;
-  	height:180;
+  	width:180px;
+  	height:135px;
   }
 
 }
