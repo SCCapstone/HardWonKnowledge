@@ -370,11 +370,15 @@ footer {
     right:130px;
     top:84px;
   }
+   p, section img {
+  	width:auto;
+  }
   img {
   	width:auto;
   }
   iframe {
-  	width:auto;
+  	width:640;
+  	height:480;
   }
 }
 
@@ -404,7 +408,8 @@ footer {
   	width:auto;
   }
   iframe {
-  	width:auto;
+  	width:480;
+  	height:360;
   }
 }
 
@@ -425,7 +430,8 @@ footer {
   	width:auto;
   }
   iframe {
-  	width:auto;
+  	width:360;
+  	height:270;
   }
 
 }
