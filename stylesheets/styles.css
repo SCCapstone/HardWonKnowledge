@@ -372,13 +372,15 @@ footer {
   }
    p, section img {
   	width:350px;
+  	display:block;
   }
   img {
   	width:350px;
+  	display:block;
   }
     p, section iframe {
-    	width:480px;
-  	height:360px;
+    	width:640px;
+  	height:480px;
 }
   iframe {
   	width:640px;
@@ -443,13 +445,10 @@ footer {
   img {
   	width:180px;
   }
-  p, section iframe {
-  	width:180px;
-  	height:135px;
-  }
+
   iframe {
-  	width:180px;
-  	height:135px;
+  	width:240px;
+  	height:180px;
   }
 
 }
