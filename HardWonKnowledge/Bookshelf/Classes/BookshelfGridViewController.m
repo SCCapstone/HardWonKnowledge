@@ -72,7 +72,7 @@ enum
     _localTitles = [[NSArray alloc]initWithObjects:@"All Local Files", nil];
     [self loadNotebooksForQuery:[NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and '%@' in parents and trashed = false", [self.driveManager.appRoot identifier]]];
     //mimeType='application/vnd.google-apps.folder'
-//    [self loadLocalFilesForUser:@""];
+    //    [self loadLocalFilesForUser:@""];
     NSString *search = [NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and title contains '%@' and trashed = false", [self.userManager username]];
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
@@ -106,7 +106,7 @@ enum
                 [self loadNotebooksForQuery:[NSString stringWithFormat: @"mimeType='application/octet-stream' and '%@' in parents and trashed = false",self.userManager.folderId]];
             }
             [self loadLocalFilesForUser:[self.userManager username]];
-//            [self.gridView reloadData];
+            //            [self.gridView reloadData];
             //            NSLog(@"ID: %@",file.identifier);
         } else
             NSLog (@"An Error has occurred: %@", error);
@@ -132,16 +132,18 @@ enum
     [self.driveManager.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
         [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
         if (error == nil) {
-            for (GTLDriveFile *file in files) {
-                //                NSLog(@"Drive File: %@",file.title);
-                if(viewingAdmin == 1)
-                    [allFileNames addObject:[file.title substringToIndex:(file.title.length - 16)]];
-                else
-                    [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
+            if([[files items]count]>0){
+                for (GTLDriveFile *file in files) {
+                                    NSLog(@"Drive File: %@",file.title);
+                    if(viewingAdmin == 1 && file.title.length > 16)
+                        [allFileNames addObject:[file.title substringToIndex:(file.title.length - 16)]];
+                    else if(viewingAdmin != 1 && file.title.length > 4)
+                        [allFileNames addObject:[file.title substringToIndex:(file.title.length - 4)]];
+                }
             }
             _driveFiles = files;
             _driveTitles = allFileNames;
-//            [self.gridView reloadData];
+            //            [self.gridView reloadData];
         } else {
             NSLog (@"An Error has occurred: %@", error);
         }
@@ -153,7 +155,7 @@ enum
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] error:NULL];
     NSMutableArray *temp = [[NSMutableArray alloc]init];
     for(NSString *item in directoryContent){
-        if([[item substringFromIndex:[item length]-4]isEqualToString:@".nbf"] && [[item substringToIndex:[username length]]isEqualToString:username]){
+        if(item.length >=[username length]+4 && [[item substringFromIndex:[item length]-4]isEqualToString:@".nbf"] && [[item substringToIndex:[username length]]isEqualToString:username]){
             //            NSLog(@"Local File: %@",item);
             [temp addObject:item];
         }
@@ -196,7 +198,7 @@ enum
     
     self.userManager = [ActiveUser userManager];
     _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"Create New", nil];
-//    NSLog(@"%i %i %i", [_localTitles count], [_driveTitles count], [_allNotebooks count]);
+    //    NSLog(@"%i %i %i", [_localTitles count], [_driveTitles count], [_allNotebooks count]);
     NSString *name = [NSString stringWithFormat:@"%@ %@", [self.userManager firstName],[self.userManager lastName] ];
     nav.title = [NSString stringWithFormat:@"%@'s Bookshelf",[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 }
@@ -230,8 +232,6 @@ enum
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
-    if(viewingAdmin == 2)
-        return ( [_localTitles count]+[_driveTitles count]+2 );
     return ( [_localTitles count]+[_driveTitles count]+1 );
 }
 
@@ -240,7 +240,7 @@ enum
     static NSString * FilledCellIdentifier = @"FilledCellIdentifier";
     AQGridViewCell * cell = nil;
     BookshelfGridFilledCell * filledCell = (BookshelfGridFilledCell *)[aGridView dequeueReusableCellWithIdentifier: FilledCellIdentifier];
-
+    
     if ( filledCell == nil )
     {
         filledCell = [[BookshelfGridFilledCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 200.0, 300.0)
@@ -256,7 +256,7 @@ enum
         [_allNotebooks addObject:@"Create New"];
     [_allNotebooks addObjectsFromArray:_driveTitles];
     [_allNotebooks addObjectsFromArray:_localTitles];
-
+    
     NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
     
     if(index==0)
@@ -297,7 +297,7 @@ enum
             [self loadNotebooksForQuery:[NSString stringWithFormat:@"mimeType='application/octet-stream' and '%@' in parents and trashed = false", file.identifier]];
             [self loadLocalFilesForUser:[NSString stringWithFormat:@"%@",[_driveTitles objectAtIndex:index-1]]];
         }
-        else{
+        else if(index>[_driveTitles count] && index<[_allNotebooks count]){
             [_allNotebooks removeAllObjects];
             _driveTitles = [[NSArray alloc]init];
             viewingAdmin = 2;
@@ -440,8 +440,8 @@ enum
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    cell.backgroundColor = (indexPath.row%2)
-//    ? [UIColor lightGrayColor] : [UIColor whiteColor];
+    //    cell.backgroundColor = (indexPath.row%2)
+    //    ? [UIColor lightGrayColor] : [UIColor whiteColor];
     if(indexPath.row <= [_driveTitles count] && [_driveTitles count] != 0)
         cell.backgroundColor = [UIColor whiteColor];
     else
