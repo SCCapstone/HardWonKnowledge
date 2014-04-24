@@ -67,7 +67,7 @@
 						<reference key="NSNextKeyView" ref="39300706"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSMutableArray" key="IBUIItems">
+						<object class="NSArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUINavigationItem" id="365602854">
 								<reference key="IBUINavigationBar" ref="526980078"/>
@@ -149,22 +149,6 @@
 						<reference key="destination" ref="365602854"/>
 					</object>
 					<int key="connectionID">28</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">deleteButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="929378931"/>
-					</object>
-					<int key="connectionID">46</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">bottomToolbar</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="985127971"/>
-					</object>
-					<int key="connectionID">49</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -381,15 +365,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>closeBookshelf</string>
 							<string>openDeleteNotebookView</string>
-							<string>openNotebookForFile:</string>
-							<string>openNotebookForPath:title:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>id</string>
-							<string>GTLDriveFile</string>
-							<string>NSString</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
@@ -398,8 +378,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>closeBookshelf</string>
 							<string>openDeleteNotebookView</string>
-							<string>openNotebookForFile:</string>
-							<string>openNotebookForPath:title:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -411,30 +389,18 @@
 								<string key="name">openDeleteNotebookView</string>
 								<string key="candidateClassName">id</string>
 							</object>
-							<object class="IBActionInfo">
-								<string key="name">openNotebookForFile:</string>
-								<string key="candidateClassName">GTLDriveFile</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">openNotebookForPath:title:</string>
-								<string key="candidateClassName">NSString</string>
-							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>bottomToolbar</string>
-							<string>deleteButton</string>
 							<string>gridView</string>
 							<string>nav</string>
 							<string>selectedFile</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIToolbar</string>
-							<string>UIBarButtonItem</string>
 							<string>AQGridView</string>
 							<string>UINavigationItem</string>
 							<string>NSString</string>
@@ -444,22 +410,12 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>bottomToolbar</string>
-							<string>deleteButton</string>
 							<string>gridView</string>
 							<string>nav</string>
 							<string>selectedFile</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">bottomToolbar</string>
-								<string key="candidateClassName">UIToolbar</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">deleteButton</string>
-								<string key="candidateClassName">UIBarButtonItem</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">gridView</string>
 								<string key="candidateClassName">AQGridView</string>
