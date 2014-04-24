@@ -141,10 +141,11 @@ enum
             }
             _driveFiles = files;
             _driveTitles = allFileNames;
-            [self.gridView reloadData];
+//            [self.gridView reloadData];
         } else {
             NSLog (@"An Error has occurred: %@", error);
         }
+        [self.gridView reloadData];
     }];
 }
 
