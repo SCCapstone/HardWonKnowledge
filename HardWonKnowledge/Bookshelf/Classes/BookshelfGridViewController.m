@@ -117,6 +117,8 @@ enum
 #pragma mark Methods for Retrieving Bookshelf Content
 // Sign out of user account.
 - (IBAction)closeBookshelf{
+    if(![self.userManager isAdmin])
+       [self.userManager reset];
     [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
@@ -134,7 +136,7 @@ enum
         if (error == nil) {
             if([[files items]count]>0){
                 for (GTLDriveFile *file in files) {
-                                    NSLog(@"Drive File: %@",file.title);
+//                                    NSLog(@"Drive File: %@",file.title);
                     if(viewingAdmin == 1 && file.title.length > 16)
                         [allFileNames addObject:[file.title substringToIndex:(file.title.length - 16)]];
                     else if(viewingAdmin != 1 && file.title.length > 4)
@@ -257,7 +259,7 @@ enum
     [_allNotebooks addObjectsFromArray:_driveTitles];
     [_allNotebooks addObjectsFromArray:_localTitles];
     
-    NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
+//    NSLog(@"index %i drive %d local %d combined %d",index, _driveTitles.count, _localTitles.count,_allNotebooks.count);
     
     if(index==0)
         filledCell.image = [UIImage imageNamed:@"blank_notebook.png"];
@@ -287,6 +289,7 @@ enum
     }
     else if(index == 0){
         [self newNotebookEntry];
+        NSLog(@"Folder Id: %@",[self.userManager folderId]);
     }
     else if(viewingAdmin == 1){
         if(index<=[_driveTitles count] && [_driveTitles count]!=0){
