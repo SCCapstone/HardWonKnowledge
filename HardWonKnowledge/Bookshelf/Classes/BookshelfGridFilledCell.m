@@ -53,10 +53,10 @@
     _imageView = [[UIImageView alloc] initWithFrame: CGRectZero];
     _title = [[UILabel alloc] initWithFrame: CGRectZero];
     //    _title.highlightedTextColor = [UIColor whiteColor];
-    //    _title.backgroundColor = [UIColor clearColor];
-    [_title setBackgroundColor:[UIColor whiteColor]];
-    [_title setAlpha:0.95f];
-    _title.font = [UIFont boldSystemFontOfSize: 16.0];
+    _title.backgroundColor = [UIColor clearColor];
+//    [_title setBackgroundColor:[UIColor whiteColor]];
+//    [_title setAlpha:0.95f];
+    _title.font = [UIFont boldSystemFontOfSize: 20.0];
     _title.numberOfLines = 4;
     _title.textAlignment = NSTextAlignmentCenter;
     //    _title.lineBreakMode = UILineBreakModeWordWrap;
