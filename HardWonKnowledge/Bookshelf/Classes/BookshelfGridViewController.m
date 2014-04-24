@@ -68,7 +68,7 @@ enum
 - (void)loadViewForAdmin {
     viewingAdmin = 1;
     NSString *name = [NSString stringWithFormat:@"%@ %@", [self.userManager firstName],[self.userManager lastName] ];
-    nav.title = [NSString stringWithFormat:@"%@'s Notebooks",[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+    nav.title = [NSString stringWithFormat:@"%@'s Bookshelf",[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     _localTitles = [[NSArray alloc]initWithObjects:@"All Local Files", nil];
     [self loadNotebooksForQuery:[NSString stringWithFormat:@"mimeType='application/vnd.google-apps.folder' and '%@' in parents and trashed = false", [self.driveManager.appRoot identifier]]];
     //mimeType='application/vnd.google-apps.folder'
@@ -197,7 +197,7 @@ enum
     _allNotebooks = [[NSMutableArray alloc]initWithObjects:@"Create New", nil];
 //    NSLog(@"%i %i %i", [_localTitles count], [_driveTitles count], [_allNotebooks count]);
     NSString *name = [NSString stringWithFormat:@"%@ %@", [self.userManager firstName],[self.userManager lastName] ];
-    nav.title = [NSString stringWithFormat:@"%@'s Notebooks",[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+    nav.title = [NSString stringWithFormat:@"%@'s Bookshelf",[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -291,7 +291,7 @@ enum
         if(index<=[_driveTitles count] && [_driveTitles count]!=0){
             [_allNotebooks removeAllObjects];
             viewingAdmin = 2;
-            nav.title = [NSString stringWithFormat:@"Inside %@'s Notebooks", [[_driveTitles objectAtIndex:index-1] capitalizedString]];
+            nav.title = [NSString stringWithFormat:@"Inside %@'s Bookshelf", [[_driveTitles objectAtIndex:index-1] capitalizedString]];
             GTLDriveFile *file = [_driveFiles itemAtIndex:index-1];
             [self loadNotebooksForQuery:[NSString stringWithFormat:@"mimeType='application/octet-stream' and '%@' in parents and trashed = false", file.identifier]];
             [self loadLocalFilesForUser:[NSString stringWithFormat:@"%@",[_driveTitles objectAtIndex:index-1]]];
@@ -441,7 +441,7 @@ enum
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 //    cell.backgroundColor = (indexPath.row%2)
 //    ? [UIColor lightGrayColor] : [UIColor whiteColor];
-    if(indexPath.row <= [_driveTitles count])
+    if(indexPath.row <= [_driveTitles count] && [_driveTitles count] != 0)
         cell.backgroundColor = [UIColor whiteColor];
     else
         cell.backgroundColor = [UIColor lightGrayColor];
