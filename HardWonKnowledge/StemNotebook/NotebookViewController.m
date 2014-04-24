@@ -386,7 +386,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         NSString *filepath = [self.driveManager.documentPath stringByAppendingPathComponent:fileName];
         
         GTLDriveParentReference *parent = [GTLDriveParentReference object];
-        parent.identifier = self.userManager.folderId;
+        parent.identifier = [self.userManager folderId];
+        NSLog(@"Parent ID: %@", parent.identifier);
 
         GTLDriveFile *file = [GTLDriveFile object];
         file.title = fileName;
