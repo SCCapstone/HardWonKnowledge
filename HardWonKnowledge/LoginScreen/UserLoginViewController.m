@@ -108,6 +108,7 @@
     [passwordField setHidden:NO];
     [loginButton setHidden:NO];
     [usernameField becomeFirstResponder];
+    [userManager reset];
 }
 
 - (void)notebookLoginSetup: (NSDictionary*)dict {
@@ -123,15 +124,18 @@
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
 - (IBAction)loginCheck {
+    NSLog(@"Username %@\nPassword %@",usernameField.text, passwordField.text);
     if([[[self.adminView.loginBackend.adminCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
         passwordEntry = passwordField.text;
         [self notebookLoginSetup:self.adminView.loginBackend.adminCredentials];
+        NSLog(@"Username2 %@", [userManager username]);
         [userManager setIsAdmin:YES];
         [self showAdmin];
     }
     else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
         passwordEntry = passwordField.text;
         [self notebookLoginSetup:self.adminView.loginBackend.userCredentials];
+        NSLog(@"Username2 %@", [userManager username]);
         [userManager setIsAdmin:NO];
         
         BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
