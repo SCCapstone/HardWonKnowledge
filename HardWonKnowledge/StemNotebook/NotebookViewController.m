@@ -380,18 +380,13 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         return; //If cancel or 0 length string the string doesn't matter
     }
     if (buttonIndex == 1) {
-        GTLDriveFile *f = [[GTLDriveFile alloc]init];
-        f.identifier = userManager.folderId;
         NSString *fileName;
         fileName = [textField.text stringByAppendingString:@".nbf"];
         [self.paintView saveFileNamed:fileName];
-//        [self.driveManager uploadNotebookNamed:fileName withParent:f];
-        //setup path for file
         NSString *filepath = [self.driveManager.documentPath stringByAppendingPathComponent:fileName];
-
-        NSString *parentID = f.identifier;
+        
         GTLDriveParentReference *parent = [GTLDriveParentReference object];
-        parent.identifier = parentID;
+        parent.identifier = self.userManager.folderId;
 
         GTLDriveFile *file = [GTLDriveFile object];
         file.title = fileName;
