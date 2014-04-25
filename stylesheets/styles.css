@@ -141,12 +141,13 @@ hr {
 /* Images */
 
 img {
-  position: relative;
-  margin: 0 auto;
-  max-width: 650px;
-  padding: 5px;
-  margin: 10px 0 32px 0;
-  border: 1px solid #ccc;
+	position: relative;
+	margin: 0 auto;
+	max-width: 650px;
+	padding: 5px;
+	margin: 10px 0 32px 0;
+	border: 1px solid #ccc;
+	height: 200;
 }
 
 p img {
@@ -313,13 +314,6 @@ a.buttons:hover {
 	text-decoration: none;
 }
 
-div.mytext {
-	line-height:1.8em;
-}
-  div.mytext img {
-	height:150px;	
-}
-
 /* Section - for main page content */
 
 section {
@@ -376,12 +370,6 @@ footer {
     right:130px;
     top:84px;
   }
-   p, section img {
-  	width:350px;
-  }
-  img {
-  	width:350px;
-  }
     p, section iframe {
     	width:640px;
   	height:480px;
@@ -390,10 +378,10 @@ footer {
   	width:640px;
   	height:480px;
   }
-  div.mytext {
-  	font-size:100%;
-	line-height:1.8em;
-}
+	img {
+		max-width:350px;
+		display:inline;
+	}
 }
 
 @media print, screen and (max-width: 720px) {
@@ -418,12 +406,6 @@ footer {
   header ul, header p.view {
     position:static;
   }
-   p, section img {
-  	width:200px;
-  }
-  img {
-  	width:200px;
-  }
     p, section iframe {
     	width:480px;
   	height:360px;
@@ -432,10 +414,10 @@ footer {
   	width:480px;
   	height:360px;
   }
-  div.mytext {
-  	line-height:1.8em;
-  	font-size:90%;
-  }
+	img {
+		max-width:200px;
+		display:inline;
+	}
 }
 
 @media print, screen and (max-width: 480px) {
@@ -451,12 +433,6 @@ footer {
 	footer a{
 		display:none;
 	}
-   p, section img {
-  	width:200px;
-  }
-  img {
-  	width:200px;
-  }
   p, section iframe {
   	width:240px;
   	height:180px;
@@ -465,14 +441,10 @@ footer {
   	width:240px;
   	height:180px;
   }
-    div.mytext {
-  	line-height:1.8em;
-  	font-size:80%;
-  }
-  div.mytext img {
-  	float:none;
-}
-
+	img {
+		max-width:200px;
+		display:inline;
+	}
 }
 
 @media print {
