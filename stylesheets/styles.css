@@ -121,6 +121,7 @@ blockquote {
 
 ul a:hover{
 	color:#232323;
+	background-color:none;
 }
 
 dl, dt, dd, dl p {
