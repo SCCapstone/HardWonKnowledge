@@ -108,6 +108,11 @@ ul {
   padding-left: 25px;
 }
 
+ul a:hover{
+	color:#232323;
+	background-color:transparent;
+}
+
 ol {
   list-style: decimal inside;
   padding-left: 20px;
