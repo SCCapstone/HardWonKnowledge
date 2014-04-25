@@ -43,6 +43,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (void)initRootAppFolder
 {
     NSString *search = @"title = 'StemNotebook'";
+    self.userManager = [ActiveUser userManager];
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
@@ -670,17 +671,13 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 //METHOD SHOULD HAVE VOID RETURN
 - (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder withCallback:(SEL)callbackSel
 {
-    NSString *parentId = parentFolder.identifier;
-    [self.userManager setFolderId:parentId];
-
     GTLDriveParentReference *parent = [GTLDriveParentReference object];
-    parent.identifier = parentId;
-
+    parent.identifier = parentFolder.identifier;
+    
     GTLDriveFile *folder = [GTLDriveFile object];
     folder.title = name;
     folder.mimeType = @"application/vnd.google-apps.folder";
     folder.parents = @[parent];
-    //[userManager setFolderId:folder.identifier];
 
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
 
@@ -693,7 +690,8 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                       NSLog(@"Done");
                       if (error == nil)
                       {
-                          NSLog(@"Folder ID: %@", insertedFile.identifier);
+                          [self.userManager setFolderId:insertedFile.identifier];
+                          NSLog(@"Folder ID: %@", [self.userManager folderId]);
                           NSLog(@"Google Drive: Folder Saved");
                           if (callbackSel != nil)
                               [self performSelector:callbackSel withObject:insertedFile];

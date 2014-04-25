@@ -44,4 +44,13 @@
     // Should never be called, but just here for clarity really.
 }
 
+- (void)reset {
+        username = nil;
+        firstName = nil;
+        midInitial = nil;
+        lastName = nil;
+        folderId = nil;
+        isAdmin = NO;
+}
+
 @end

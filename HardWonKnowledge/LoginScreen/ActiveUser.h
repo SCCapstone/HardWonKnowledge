@@ -25,5 +25,6 @@
 @property (nonatomic, assign) BOOL isAdmin;
 
 + (id)userManager;
+- (void) reset;
 
 @end

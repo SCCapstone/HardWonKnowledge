@@ -47,6 +47,10 @@
 }
 
 - (IBAction)openNotebook{
+    if(![self.adminView.loginBackend isAdminUser:[userManager username]] && ![self.adminView.loginBackend isStudentUser:[userManager username]] && ![[userManager lastName]isEqualToString:@"DEFAULT_USER_ENTRY"]){
+        NSDictionary *temp = [NSDictionary dictionaryWithObjects:@[[userManager firstName], [userManager midInitial], [userManager lastName], [userManager username], passwordEntry, [NSNumber numberWithBool:[userManager isAdmin]]] forKeys:@[@"First Name", @"Middle Initial", @"Last Name", @"Username", @"Password", @"isAdmin"]];
+        [self.adminView.loginBackend parseUser:[userManager username] withData:temp];
+    }
     BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:bookshelf animated:NO completion:NULL];
     [bookshelf viewDidLoad];
@@ -75,6 +79,8 @@
 
 - (IBAction)userSettingsButton{
     if([self.driveManager isAuthorized]){
+        [self.adminView.loginBackend initVariables];
+        [self.adminView.loginBackend findExistingDriveFile];
         [self openAdminSettings];
     }
     else{
@@ -102,6 +108,7 @@
     [passwordField setHidden:NO];
     [loginButton setHidden:NO];
     [usernameField becomeFirstResponder];
+    [userManager reset];
 }
 
 - (void)notebookLoginSetup: (NSDictionary*)dict {
@@ -117,19 +124,24 @@
 
 /*  User log in screen set up, confirm or deny user access to notebook features  */
 - (IBAction)loginCheck {
+    NSLog(@"Username %@\nPassword %@",usernameField.text, passwordField.text);
     if([[[self.adminView.loginBackend.adminCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
+        passwordEntry = passwordField.text;
         [self notebookLoginSetup:self.adminView.loginBackend.adminCredentials];
+        NSLog(@"Username2 %@", [userManager username]);
         [userManager setIsAdmin:YES];
         [self showAdmin];
     }
     else if([[[self.adminView.loginBackend.userCredentials objectForKey:[usernameField.text lowercaseString]] objectForKey:@"Password"]isEqualToString:passwordField.text]){
-            [self notebookLoginSetup:self.adminView.loginBackend.userCredentials];
-            [userManager setIsAdmin:NO];
-            
-            BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
-            [self presentViewController:bookshelf animated:NO completion:NULL];
-            [bookshelf viewDidLoad];
-            [bookshelf loadViewForStudent];
+        passwordEntry = passwordField.text;
+        [self notebookLoginSetup:self.adminView.loginBackend.userCredentials];
+        NSLog(@"Username2 %@", [userManager username]);
+        [userManager setIsAdmin:NO];
+        
+        BookshelfGridViewController *bookshelf = [[BookshelfGridViewController alloc] initWithNibName:nil bundle:nil];
+        [self presentViewController:bookshelf animated:NO completion:NULL];
+        [bookshelf viewDidLoad];
+        [bookshelf loadViewForStudent];
     }
     else {
         //        if([self.driveManager isAuthorized]){

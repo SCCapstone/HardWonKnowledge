@@ -32,7 +32,7 @@
 /*  Find the user credential files to parse  */
 - (void)findExistingDriveFile{
     self.driveManager = [DriveManager getDriveManager];
-    NSString *search = @"title contains 'UserList'";
+    NSString *search = [NSString stringWithFormat:@"title contains 'UserList' and '%@' in parents", [self.driveManager.appRoot identifier]];
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     
@@ -45,13 +45,21 @@
                 NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
                 for(id key in temp)
                     [self parseUser:key withData:[temp objectForKey:key]];
-            }
-            if([adminCredentials count] < 1){
-                [self findDefaultFile];
+                if([adminCredentials count] == 0){
+                    [self findDefaultFile];
+                }
             }
 //            NSLog(@"ID: %@ %@",listFileId, file.identifier);
-        } else
+        } else{
             NSLog (@"An Error has occurred: %@", error);
+        
+        NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
+        for(id key in temp)
+            [self parseUser:key withData:[temp objectForKey:key]];
+        if([adminCredentials count] == 0){
+            [self findDefaultFile];
+        }
+        }
     }];
 }
 
@@ -61,12 +69,17 @@
     file.title = @"UserList.plist";
     file.descriptionProperty = @"List of STEM Notebook users.";
     file.mimeType = @"mimeType = 'application/x-plist'";
-    
+    GTLDriveParentReference *parent = [GTLDriveParentReference object];
+    parent.identifier = [self.driveManager.appRoot identifier];
+    file.parents=@[parent];
+        
     NSData *data = nil;
     if([[NSFileManager defaultManager] fileExistsAtPath:docPath])
         data = [[NSFileManager defaultManager] contentsAtPath:docPath];
-    else
+    else{
         NSLog(@"File does not exist");
+        return;
+    }
     
     GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
     GTLQueryDrive *query;
@@ -134,6 +147,7 @@
     if(![[data objectForKey:@"Last Name"]isEqual:@"DEFAULT_USER_ENTRY"]){
         [self datasrcAddEntry:data];
     }
+    NSLog(@"%@",data);
 }
 
 - (void)datasrcAddEntry: (NSDictionary*)data{

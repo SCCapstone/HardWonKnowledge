@@ -13,10 +13,13 @@
 #import "GTLDrive.h"
 #import "DriveManager.h"
 
-@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITextFieldDelegate>
+@interface UserLoginViewController : UIViewController<UIAlertViewDelegate, UITextFieldDelegate>{
+    NSString *passwordEntry;
+}
 
 - (IBAction)driveButton;
 - (IBAction)loginCheck;
+- (IBAction)logoutAdmin;
 
 @property (nonatomic, retain) AdminView *adminView;
 @property (nonatomic,retain) GTLServiceDrive *driveService;

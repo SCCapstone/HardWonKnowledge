@@ -58,8 +58,7 @@
     AQGridView * _gridView;
     NSUInteger _cellType;
     IBOutlet UINavigationItem *nav;
-    IBOutlet UIBarButtonItem *deleteButton;
-    IBOutlet UIToolbar *bottomToolbar;
+    NSInteger viewingAdmin;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
