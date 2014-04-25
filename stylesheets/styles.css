@@ -86,10 +86,6 @@ a {
 }
 
 a:hover {
-	background-color:#FBFAF7;
-}
-
-p a:hover {
 	text-decoration: none;
 	background-color:#232323;
 	color:#FBFAF7;
@@ -121,11 +117,6 @@ blockquote {
   margin: 0;
   padding: 0 0 0 20px;
   font-style: italic;
-}
-
-ul a:hover{
-	color:#232323;
-	background-color:none;
 }
 
 dl, dt, dd, dl p {
@@ -325,7 +316,7 @@ a.github {
 }
 
 a.buttons:hover {
-	color: #fff;
+	color: #232323;
 	text-decoration: none;
 }
 
