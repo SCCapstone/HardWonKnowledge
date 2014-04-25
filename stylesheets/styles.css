@@ -318,6 +318,7 @@ a.github {
 a.buttons:hover {
 	color: #232323;
 	text-decoration: none;
+	background-color:transparent;
 }
 
 p {
