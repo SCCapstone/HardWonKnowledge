@@ -714,6 +714,77 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 }
 
 #pragma mark -
+#pragma mark Block Parameter Drive Methods
+- (void)listFilesUnderFolder:(GTLDriveFile *)parent completionHandler:(void (^)(GTLServiceTicket*, GTLDriveFileList*, NSError*))handler
+{
+    NSString *parentId = nil;
+    if (parent == nil)
+        parentId = @"root";
+    else
+        parentId = parent.identifier;
+
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+    query.q = [NSString stringWithFormat:@"'%@' in parents and trashed = false", parentId];
+    [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
+                                                              GTLDriveFileList *files,
+                                                              NSError *error) {
+        if (error == nil) {
+            handler(ticket,files,error);
+        } else {
+            NSLog(@"An error occurred: %@", error);
+        }
+    }];
+}
+
+- (void)uploadNotebookNamed:(NSString*)name completionhandler:(void (^)(GTLServiceTicket*, GTLDriveFile*, NSError*))handler
+{
+    //setup path for file
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
+
+    //instantiate GTLDriveFile object
+    GTLDriveFile *file = [GTLDriveFile object];
+    file.title = name;
+    file.descriptionProperty = @"Uploaded from StemNotebook App";
+    file.mimeType = @"application/octet-stream";
+
+    //Get data From File
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"Local File Does Not Exist");
+        return;
+    }
+
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
+                                                       uploadParameters:uploadParameters];
+
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      if (error == nil)
+                      {
+                          NSLog(@"File ID: %@", insertedFile.identifier);
+                          NSLog(@"Google Drive: File Saved");
+                          NSError *error = nil;
+                          [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
+                          handler(ticket,insertedFile,error);
+                      }
+                      else
+                      {
+                          NSLog(@"An Error Occured: %@", error);
+                      }
+                  }];
+
+}
+
+#pragma mark -
 #pragma mark NonDriveSupportMethods
 - (UIAlertView*)showWaitIndicator:(NSString *)title
 {
