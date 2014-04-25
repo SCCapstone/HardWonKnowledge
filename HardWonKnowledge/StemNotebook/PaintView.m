@@ -194,7 +194,6 @@ const int menuMode = 3;
     {
         
             [self mergeLabel:self.drawLabel];
-            [self changeText:@""];
         
     }
     else if(submenuMode == cameraMode)

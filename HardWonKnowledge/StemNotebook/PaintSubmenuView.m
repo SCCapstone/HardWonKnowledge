@@ -21,6 +21,10 @@
 @synthesize brownBtn;
 @synthesize eraseBtn;
 @synthesize buttons;
+@synthesize small;
+@synthesize medium;
+@synthesize large;
+@synthesize sizes;
 
 
 //initialized in code, so initWithFrame is used
@@ -33,6 +37,8 @@
         
         buttons = [NSArray arrayWithObjects:redBtn, blueBtn, yellowBtn, blackBtn, greenBtn, purpleBtn, orangeBtn, brownBtn, eraseBtn, nil];
         blackBtn.selected = YES;
+        sizes = [NSArray arrayWithObjects:small, medium, large, nil];
+        medium.selected = YES;
     }
     return self;
 }
@@ -184,13 +190,46 @@
 
 - (IBAction)Small:(id)sender {
     [self.delegate changeBrushWithNumber:2.5];
+    
+    for(UIButton *button in sizes)
+    {
+        if(button == sender)
+        {
+            button.selected = YES;
+        }
+        else{
+            button.selected = NO;
+        }
+    }
 }
 - (IBAction)Normal:(id)sender {
     [self.delegate changeBrushWithNumber:10];
+    
+    for(UIButton *button in sizes)
+    {
+        if(button == sender)
+        {
+            button.selected = YES;
+        }
+        else{
+            button.selected = NO;
+        }
+    }
 }
 
 - (IBAction)Large:(id)sender {
     [self.delegate changeBrushWithNumber:30];
+    
+    for(UIButton *button in sizes)
+    {
+        if(button == sender)
+        {
+            button.selected = YES;
+        }
+        else{
+            button.selected = NO;
+        }
+    }
 }
 
 

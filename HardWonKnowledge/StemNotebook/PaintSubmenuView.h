@@ -24,6 +24,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *eraseBtn;
 @property (strong, nonatomic) NSArray *buttons;
 
+@property (weak, nonatomic) IBOutlet UIButton *small;
+@property (weak, nonatomic) IBOutlet UIButton *medium;
+@property (weak, nonatomic) IBOutlet UIButton *large;
+@property (strong, nonatomic) NSArray *sizes;
+
+
 
 
 @end
