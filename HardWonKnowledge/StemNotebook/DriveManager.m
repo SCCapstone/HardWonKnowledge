@@ -727,8 +727,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     
     UIActivityIndicatorView *activityView;
     activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    activityView.center = CGPointMake(progressAlert.bounds.size.width / 2,
-                                      progressAlert.bounds.size.height - 45);
+    activityView.center = CGPointMake(139.5,75.5);
     
     [progressAlert addSubview:activityView];
     [activityView startAnimating];
