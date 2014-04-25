@@ -119,6 +119,10 @@ blockquote {
   font-style: italic;
 }
 
+ul a:hover{
+	color:#232323;
+}
+
 dl, dt, dd, dl p {
 	font-color: #444;
 }
