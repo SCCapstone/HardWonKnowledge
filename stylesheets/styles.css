@@ -86,6 +86,10 @@ a {
 }
 
 a:hover {
+	background-color:#FBFAF7;
+}
+
+p a:hover {
 	text-decoration: none;
 	background-color:#232323;
 	color:#FBFAF7;
