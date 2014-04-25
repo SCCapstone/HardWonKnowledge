@@ -64,9 +64,9 @@ h1 {
 
 h2 {
 	font-size: 24px;
-	color:#FBFAF7;
+	color:#C30000;
   	margin:36px 0 10px;
-  	background-color:#232323;
+  	font-weight:bold;
 }
 
 h3 {
@@ -85,7 +85,10 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
+	text-decoration: none;
+	font-weight:bold;
+	background-color:#232323;
+	color:#FBFAF7;
 }
 
 a small {
