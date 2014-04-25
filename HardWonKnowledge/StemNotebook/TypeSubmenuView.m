@@ -27,9 +27,7 @@
  
 
 
-
-
-- (IBAction)textMerged:(id)sender {
+- (IBAction)mergeTextTest:(id)sender {
     NSString *input = tempField.text;
     [self.delegate changeText:input];
 }
