@@ -34,6 +34,7 @@
 - (void)pasteButtonClicked;
 - (void)saveFileNamed:(NSString *)name;
 - (void)doneButtonPressed;
+- (void)cancelButtonPressed;
 - (void)changePageNumber:(NSString *) newNumber;
 
 @end

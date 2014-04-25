@@ -307,7 +307,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 - (void)doneButtonPressed
 {
     if (self.notebookDriveFile.title == nil) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Notebook Name" message:@"What is the name of this notebook?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Okay",nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Notebook Name" message:@"What is the name of this notebook?" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Cancel",nil];
         alert.alertViewStyle = UIAlertViewStylePlainTextInput;
         [alert show];
     } else {
@@ -360,6 +360,14 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     }
 }
 
+- (void)cancelButtonPressed
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel?" message:@"Your notebook will not be saved!" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
+    [alert show];
+
+    //[self backButtonClicked];
+}
+
 - (void)nextPage
 {
     [self.paintView nextPage];
@@ -375,68 +383,77 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    if ([textField.text length] <= 0 || buttonIndex == 0){
-        return; //If cancel or 0 length string the string doesn't matter
-    }
-    if (buttonIndex == 1) {
-        NSString *fileName;
-        fileName = [textField.text stringByAppendingString:@".nbf"];
-        [self.paintView saveFileNamed:fileName];
-        NSString *filepath = [self.driveManager.documentPath stringByAppendingPathComponent:fileName];
+    if ([alertView.title compare:@"Are you sure you want to cancel?"] == 0) {
+        if (buttonIndex == 0) {
+            [self backButtonClicked];
+        } else {
+            return;
+        }
+
+    } else if ([alertView.title compare:@"Notebook Name"] == 0) {
+        UITextField *textField = [alertView textFieldAtIndex:0];
+        if ([textField.text length] <= 0 || buttonIndex == 1){
+            return; //If cancel or 0 length string the string doesn't matter
+        }
+        if (buttonIndex == 0) {
+            NSString *fileName;
+            fileName = [textField.text stringByAppendingString:@".nbf"];
+            [self.paintView saveFileNamed:fileName];
+            NSString *filepath = [self.driveManager.documentPath stringByAppendingPathComponent:fileName];
         
-        GTLDriveParentReference *parent = [GTLDriveParentReference object];
-        parent.identifier = [self.userManager folderId];
-        NSLog(@"Parent ID: %@", parent.identifier);
+            GTLDriveParentReference *parent = [GTLDriveParentReference object];
+            parent.identifier = [self.userManager folderId];
+            NSLog(@"Parent ID: %@", parent.identifier);
 
-        GTLDriveFile *file = [GTLDriveFile object];
-        file.title = fileName;
-        file.descriptionProperty = @"Uploaded from StemNotebook App";
-        file.mimeType = @"application/octet-stream";
-        file.parents=@[parent];
+            GTLDriveFile *file = [GTLDriveFile object];
+            file.title = fileName;
+            file.descriptionProperty = @"Uploaded from StemNotebook App";
+            file.mimeType = @"application/octet-stream";
+            file.parents=@[parent];
 
-        NSData *data = nil;
-        if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
-        {
-            data = [[NSFileManager defaultManager] contentsAtPath:filepath];
-        }
-        else
-        {
-            NSLog(@"File not exits");
-        }
+            NSData *data = nil;
+            if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+            {
+                data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+            }
+            else
+            {
+                NSLog(@"File not exits");
+            }
 
-        GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
-        GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
+            GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+            GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
                                                            uploadParameters:uploadParameters];
 
-        UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Uploading to Google Drive"];
-        NSLog(@"Uploading to Google Drive...");
+            UIAlertView *waitIndicator = [self.driveManager showWaitIndicator:@"Uploading to Google Drive"];
+            NSLog(@"Uploading to Google Drive...");
 
 
-        [self.driveService executeQuery:query
+            [self.driveService executeQuery:query
                       completionHandler:^(GTLServiceTicket *ticket,
                                           GTLDriveFile *insertedFile, NSError *error) {
-                          [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
-                          NSLog(@"Done");
-                          if (error == nil)
-                          {
-                              NSLog(@"File ID: %@", insertedFile.identifier);
-                              //[self showAlert:@"Google Drive" message:@"File saved!"];
-                              NSLog(@"Google Drive: File Saved");
-                              NSError *error = nil;
-                              [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
+                            [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                            NSLog(@"Done");
+                            if (error == nil)
+                            {
+                                NSLog(@"File ID: %@", insertedFile.identifier);
+                                //[self showAlert:@"Google Drive" message:@"File saved!"];
+                                NSLog(@"Google Drive: File Saved");
+                                NSError *error = nil;
+                                [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error    ];
 
-                          }
-                          else
-                          {
-                              NSLog(@"An error occurred: %@", error);
-                              //[self showAlert:@"Google Drive" message:@"Sorry, an error occurred!"];
-                              NSLog(@"An Error Occured");
-                          }
-                          [self backButtonClicked];
-                      }];
+                            }
+                            else
+                            {
+                                NSLog(@"An error occurred: %@", error);
+                                //[self showAlert:@"Google Drive" message:@"Sorry, an error occurred!"];
+                                NSLog(@"An Error Occured");
+                            }
+                            [self backButtonClicked];
+                        }];
 
 //        [self backButtonClicked];
+        }
     }
 }
 
