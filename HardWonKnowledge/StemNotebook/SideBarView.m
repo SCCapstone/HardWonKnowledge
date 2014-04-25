@@ -44,6 +44,9 @@
 - (IBAction)doneButtonClicked:(id)sender {
     [self.delegate doneButtonPressed];
 }
+- (IBAction)cancelButtonClicked:(id)sender {
+    [self.delegate cancelButtonPressed];
+}
 
 -(void)changePageNumber:(NSString *) newNumber
 {

@@ -40,8 +40,8 @@
 		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
 		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
 		CB8B63F11903767200D2E7C0 /* DefaultUserList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F01903767200D2E7C0 /* DefaultUserList.plist */; };
-		CB8B63F41903D83500D2E7C0 /* black_notebook-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F21903D83500D2E7C0 /* black_notebook-2.png */; };
-		CB8B63F51903D83500D2E7C0 /* green_notebook-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F31903D83500D2E7C0 /* green_notebook-2.png */; };
+		CB8B63F41903D83500D2E7C0 /* black_notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F21903D83500D2E7C0 /* black_notebook.png */; };
+		CB8B63F51903D83500D2E7C0 /* green_notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F31903D83500D2E7C0 /* green_notebook.png */; };
 		CB8B63FB1903DB0D00D2E7C0 /* notebook-icon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63FA1903DB0C00D2E7C0 /* notebook-icon_72x72.png */; };
 		CB8B63FD1903DB6E00D2E7C0 /* notebook-icon_144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63FC1903DB6D00D2E7C0 /* notebook-icon_144x144.png */; };
 		CB8C178E1908A69D00356320 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8C178D1908A69C00356320 /* folder.png */; };
@@ -142,8 +142,8 @@
 		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
 		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
 		CB8B63F01903767200D2E7C0 /* DefaultUserList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultUserList.plist; path = LoginScreen/Resources/DefaultUserList.plist; sourceTree = "<group>"; };
-		CB8B63F21903D83500D2E7C0 /* black_notebook-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "black_notebook-2.png"; path = "Bookshelf/Images/black_notebook-2.png"; sourceTree = "<group>"; };
-		CB8B63F31903D83500D2E7C0 /* green_notebook-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "green_notebook-2.png"; path = "Bookshelf/Images/green_notebook-2.png"; sourceTree = "<group>"; };
+		CB8B63F21903D83500D2E7C0 /* black_notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_notebook.png; path = Bookshelf/Images/black_notebook.png; sourceTree = "<group>"; };
+		CB8B63F31903D83500D2E7C0 /* green_notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green_notebook.png; path = Bookshelf/Images/green_notebook.png; sourceTree = "<group>"; };
 		CB8B63FA1903DB0C00D2E7C0 /* notebook-icon_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notebook-icon_72x72.png"; path = "../notebook-icon_72x72.png"; sourceTree = "<group>"; };
 		CB8B63FC1903DB6D00D2E7C0 /* notebook-icon_144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notebook-icon_144x144.png"; path = "../notebook-icon_144x144.png"; sourceTree = "<group>"; };
 		CB8C178D1908A69C00356320 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = folder.png; path = Bookshelf/Images/folder.png; sourceTree = "<group>"; };
@@ -430,8 +430,8 @@
 			isa = PBXGroup;
 			children = (
 				CB8C178D1908A69C00356320 /* folder.png */,
-				CB8B63F21903D83500D2E7C0 /* black_notebook-2.png */,
-				CB8B63F31903D83500D2E7C0 /* green_notebook-2.png */,
+				CB8B63F21903D83500D2E7C0 /* black_notebook.png */,
+				CB8B63F31903D83500D2E7C0 /* green_notebook.png */,
 				CB8CBF0B18F215BB003AF562 /* blank_notebook.png */,
 			);
 			name = Images;
@@ -614,8 +614,8 @@
 				B4D2E38A18D7AA2A0081A019 /* TypeSubmenuView.xib in Resources */,
 				CB8CBF0C18F215BB003AF562 /* blank_notebook.png in Resources */,
 				CB8B63F11903767200D2E7C0 /* DefaultUserList.plist in Resources */,
-				CB8B63F41903D83500D2E7C0 /* black_notebook-2.png in Resources */,
-				CB8B63F51903D83500D2E7C0 /* green_notebook-2.png in Resources */,
+				CB8B63F41903D83500D2E7C0 /* black_notebook.png in Resources */,
+				CB8B63F51903D83500D2E7C0 /* green_notebook.png in Resources */,
 				CB8B63FB1903DB0D00D2E7C0 /* notebook-icon_72x72.png in Resources */,
 				CB8B63FD1903DB6E00D2E7C0 /* notebook-icon_144x144.png in Resources */,
 				CB8C178E1908A69D00356320 /* folder.png in Resources */,

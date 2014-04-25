@@ -360,6 +360,11 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     }
 }
 
+- (void)cancelButtonPressed
+{
+    [self backButtonClicked];
+}
+
 - (void)nextPage
 {
     [self.paintView nextPage];
