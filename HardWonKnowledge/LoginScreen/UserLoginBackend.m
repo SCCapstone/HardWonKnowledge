@@ -32,7 +32,8 @@
 /*  Find the user credential files to parse  */
 - (void)findExistingDriveFile{
     self.driveManager = [DriveManager getDriveManager];
-    NSString *search = [NSString stringWithFormat:@"title contains 'UserList' and '%@' in parents", [self.driveManager.appRoot identifier]];
+//    NSString *search = [NSString stringWithFormat:@"title contains 'UserList' and '%@' in parents", [self.driveManager.appRoot identifier]];
+    NSString *search = @"title contains 'UserList' and trashed = false";
     GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
     query.q = search;
     
@@ -51,7 +52,7 @@
             }
 //            NSLog(@"ID: %@ %@",listFileId, file.identifier);
         } else{
-            NSLog (@"An Error has occurred: %@", error);
+            NSLog (@"An Error has occurred in findExistingDriveFiles: %@", error);
         
         NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
         for(id key in temp)
@@ -95,7 +96,7 @@
             NSLog(@"Google Drive: File Saved");
         }
         else
-            NSLog(@"An error occurred: %@", error);
+            NSLog(@"An error occurred in uploadNewUserList: %@", error);
     }];
 }
 
@@ -170,7 +171,7 @@
                                                  format:&format
                                                  errorDescription:nil];
     if (!temp) 
-        NSLog(@"Error reading plist: %@, format: %d", nil, format);
+        NSLog(@"Error in dataToDictionaryAtPath reading plist: %@, format: %d", nil, format);
     
     return temp;
 }
