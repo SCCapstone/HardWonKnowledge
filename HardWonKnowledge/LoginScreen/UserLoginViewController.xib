@@ -51,7 +51,7 @@
 						<array key="IBUIItems">
 							<object class="IBUINavigationItem" id="91857605">
 								<reference key="IBUINavigationBar" ref="478496856"/>
-								<string key="IBUITitle">Stem Notebook</string>
+								<string key="IBUITitle">STEM Notebook</string>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 						</array>
@@ -62,6 +62,7 @@
 						<string key="NSFrame">{{350, 565}, {69, 44}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -4995,6 +4996,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="driveButton">id</string>
 						<string key="loginCheck">id</string>
+						<string key="logoutAdmin">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="driveButton">
@@ -5003,6 +5005,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						</object>
 						<object class="IBActionInfo" key="loginCheck">
 							<string key="name">loginCheck</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="logoutAdmin">
+							<string key="name">logoutAdmin</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
