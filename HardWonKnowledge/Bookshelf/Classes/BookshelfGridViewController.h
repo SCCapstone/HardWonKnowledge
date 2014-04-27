@@ -55,6 +55,7 @@
     NSArray *_driveTitles;
     NSArray *_localTitles;
     NSMutableArray *_allNotebooks;
+    NSMutableArray *_notebookIndexes;
     AQGridView * _gridView;
     NSUInteger _cellType;
     IBOutlet UINavigationItem *nav;

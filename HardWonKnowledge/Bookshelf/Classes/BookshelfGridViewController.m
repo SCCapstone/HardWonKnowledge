@@ -159,7 +159,7 @@ enum
     for(NSString *item in directoryContent){
         if(item.length >=[username length]+4 && [[item substringFromIndex:[item length]-4]isEqualToString:@".nbf"] && [[item substringToIndex:[username length]]isEqualToString:username]){
             //            NSLog(@"Local File: %@",item);
-            [temp addObject:item];
+            [temp addObject:[item substringToIndex:(item.length - 4)]];
         }
     }
     _localTitles = temp;
@@ -303,6 +303,7 @@ enum
         else if(index>[_driveTitles count] && index<[_allNotebooks count]){
             [_allNotebooks removeAllObjects];
             _driveTitles = [[NSArray alloc]init];
+            _driveFiles= [[GTLDriveFileList alloc]init];
             viewingAdmin = 2;
             nav.title = @"Local Notebooks";
             [self loadLocalFilesForUser:@""];
@@ -349,6 +350,7 @@ enum
     sBar.delegate = self;
     [deleteView.view addSubview:sBar];
     
+    
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 200, deleteView.view.frame.size.width, 300)];
     myTableView.delegate = self;
     myTableView.dataSource = self;
@@ -357,8 +359,23 @@ enum
     srchedData = [[NSMutableArray alloc]init];
     tblData = [[NSMutableArray alloc]init];
     [tblData addObjectsFromArray:_driveTitles];
-    if(viewingAdmin != 1)
+    _notebookIndexes = [[NSMutableArray alloc]init];
+    NSUInteger index = 0;
+    if(viewingAdmin != 1){
         [tblData addObjectsFromArray:_localTitles];
+        index = [_allNotebooks count]-1;
+         //[[NSMutableIndexSet alloc] initWithIndexSet:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_driveTitles count])]];
+        NSLog(@"%@",_notebookIndexes);
+    }
+    else{
+        //_notebookIndexes// = [[NSMutableIndexSet alloc] initWithIndexSet:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_allNotebooks count]-1)]];
+        index = [_driveTitles count];
+        NSLog(@"%i %@",[_allNotebooks count],_notebookIndexes);
+    }
+    for(int i=0; i<index; i++){
+        [_notebookIndexes addObject:[NSNumber numberWithInt:i]];
+    }
+    NSLog(@"notebookindexes %@",_notebookIndexes);
     [myTableView reloadData];
     [srchedData addObject:@"nil"];
     
@@ -393,8 +410,16 @@ enum
 }
 
 - (void)removeNotebook {
-    NSUInteger index = [[srchedData objectAtIndex:0] integerValue];
-    if(index < [_driveTitles count]){
+    NSUInteger tableIndex = [[srchedData objectAtIndex:0] integerValue];
+    NSUInteger index = [[_notebookIndexes objectAtIndex:tableIndex] integerValue];
+    NSUInteger deletedFiles;
+    if(viewingAdmin == 1)
+        deletedFiles = [_driveTitles count]-[tblData count];
+    else
+        deletedFiles = [_allNotebooks count]-1-[tblData count];
+    
+    NSLog(@"deleted files %i deleting index %i",deletedFiles, tableIndex);
+    if(index < [_driveTitles count]-deletedFiles && [_driveTitles count]!=0){
         GTLDriveFile *file = [_driveFiles itemAtIndex:index];
         [self.driveManager deleteNotebook:file];
     }
@@ -409,9 +434,11 @@ enum
             NSLog(@"Could not delete file: %@ ",[error localizedDescription]);
         }
     }
-    
-    [tblData removeObjectAtIndex:index];
+    [tblData removeObjectAtIndex:tableIndex];
+    [_notebookIndexes removeObjectAtIndex:tableIndex];
     [myTableView reloadData];
+    
+        NSLog(@"my array %@",_notebookIndexes);
 }
 
 - (IBAction)closeDeleteView {
