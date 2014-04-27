@@ -289,7 +289,7 @@ enum
     }
     else if(index == 0){
         [self newNotebookEntry];
-        NSLog(@"Folder Id: %@",[self.userManager folderId]);
+//        NSLog(@"Folder Id: %@",[self.userManager folderId]);
     }
     else if(viewingAdmin == 1){
         if(index<=[_driveTitles count] && [_driveTitles count]!=0){
@@ -364,18 +364,16 @@ enum
     if(viewingAdmin != 1){
         [tblData addObjectsFromArray:_localTitles];
         index = [_allNotebooks count]-1;
-         //[[NSMutableIndexSet alloc] initWithIndexSet:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_driveTitles count])]];
-        NSLog(@"%@",_notebookIndexes);
+//        NSLog(@"%@",_notebookIndexes);
     }
     else{
-        //_notebookIndexes// = [[NSMutableIndexSet alloc] initWithIndexSet:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_allNotebooks count]-1)]];
         index = [_driveTitles count];
-        NSLog(@"%i %@",[_allNotebooks count],_notebookIndexes);
+//        NSLog(@"%i %@",[_allNotebooks count],_notebookIndexes);
     }
     for(int i=0; i<index; i++){
         [_notebookIndexes addObject:[NSNumber numberWithInt:i]];
     }
-    NSLog(@"notebookindexes %@",_notebookIndexes);
+//    NSLog(@"notebookindexes %@",_notebookIndexes);
     [myTableView reloadData];
     [srchedData addObject:@"nil"];
     
@@ -418,7 +416,7 @@ enum
     else
         deletedFiles = [_allNotebooks count]-1-[tblData count];
     
-    NSLog(@"deleted files %i deleting index %i",deletedFiles, tableIndex);
+//    NSLog(@"deleted files %i deleting index %i",deletedFiles, tableIndex);
     if(index < [_driveTitles count]-deletedFiles && [_driveTitles count]!=0){
         GTLDriveFile *file = [_driveFiles itemAtIndex:index];
         [self.driveManager deleteNotebook:file];
@@ -437,8 +435,6 @@ enum
     [tblData removeObjectAtIndex:tableIndex];
     [_notebookIndexes removeObjectAtIndex:tableIndex];
     [myTableView reloadData];
-    
-        NSLog(@"my array %@",_notebookIndexes);
 }
 
 - (IBAction)closeDeleteView {
