@@ -313,6 +313,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     } else {
         [self.paintView saveFileNamed:self.notebookDriveFile.title];
 //        [self.driveManager updateNotebook:self.notebookDriveFile fromFileNamed:self.notebookDriveFile.title];
+
         //setup path for file
         NSString *filepath = [self.driveManager.documentPath stringByAppendingPathComponent:self.notebookDriveFile.title];
 
