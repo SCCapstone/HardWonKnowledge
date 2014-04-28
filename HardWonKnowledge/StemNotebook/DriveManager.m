@@ -660,8 +660,6 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
         }
     }];
 
-
-
     return viewPath;
 }
 
@@ -728,11 +726,7 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
     [self.driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
                                                               GTLDriveFileList *files,
                                                               NSError *error) {
-        if (error == nil) {
-            handler(ticket,files,error);
-        } else {
-            NSLog(@"An error occurred: %@", error);
-        }
+        handler(ticket,files,error);
     }];
 }
 
@@ -768,21 +762,129 @@ static NSString *const kClientSecret = @"nZP3QMG9DIfcnHvpnOnnXrdY";
                   completionHandler:^(GTLServiceTicket *ticket,
                                       GTLDriveFile *insertedFile, NSError *error) {
                       [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
-                      if (error == nil)
-                      {
-                          NSLog(@"File ID: %@", insertedFile.identifier);
-                          NSLog(@"Google Drive: File Saved");
-                          NSError *error = nil;
-                          [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
-                          handler(ticket,insertedFile,error);
-                      }
-                      else
-                      {
-                          NSLog(@"An Error Occured: %@", error);
-                      }
+                      handler(ticket,insertedFile,error);
                   }];
 
 }
+
+- (void)uploadNotebookNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder completionhandler:(void (^)(GTLServiceTicket*, GTLDriveFile*, NSError*))handler
+{
+    //setup path for file
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
+
+    NSString *parentID = parentFolder.identifier;
+    GTLDriveParentReference *parent = [GTLDriveParentReference object];
+    parent.identifier = parentID;
+
+    GTLDriveFile *file = [GTLDriveFile object];
+    file.title = name;
+    file.descriptionProperty = @"Uploaded from StemNotebook App";
+    file.mimeType = @"application/octet-stream";
+    file.parents=@[parent];
+
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"File not exits");
+    }
+
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:file
+                                                       uploadParameters:uploadParameters];
+
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    NSLog(@"Uploading to Google Drive...");
+
+
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      handler(ticket,insertedFile,error);
+                  }];
+}
+
+- (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name completionhandler:(void (^)(GTLServiceTicket*, GTLDriveFile*, NSError*))handler
+{
+    //setup path for file
+    NSString *filepath = [self.documentPath stringByAppendingPathComponent:name];
+
+    //Get data from file
+    NSData *data = nil;
+    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
+    {
+        data = [[NSFileManager defaultManager] contentsAtPath:filepath];
+    }
+    else
+    {
+        NSLog(@"File not exits");
+        return;
+    }
+
+    GTLUploadParameters *uploadParameters = [GTLUploadParameters uploadParametersWithData:data MIMEType:file.mimeType];
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesUpdateWithObject:file
+                                                                 fileId:file.identifier
+                                                       uploadParameters:uploadParameters];
+
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Uploading to Google Drive"];
+    NSLog(@"Uploading to Google Drive...");
+
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      handler(ticket,insertedFile,error);
+                  }];
+}
+
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file completionHandler:(void (^)(NSData *data, NSError *error))handler
+{
+    //Get Download Path
+    NSString *viewPath = [self.documentPath stringByAppendingPathComponent:file.title];
+
+    //Setup HTTP Fetcher
+    GTMHTTPFetcher *fetcher = [self.driveService.fetcherService fetcherWithURLString:file.downloadUrl];
+    fetcher.downloadPath = viewPath;
+
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        handler(data,error);
+    }];
+
+    return viewPath;
+}
+
+- (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder completionHandler:(void (^)(GTLServiceTicket *ticket, GTLDriveFile *insertedFile, NSError *error)) handler
+{
+    GTLDriveParentReference *parent = [GTLDriveParentReference object];
+    parent.identifier = parentFolder.identifier;
+
+    GTLDriveFile *folder = [GTLDriveFile object];
+    folder.title = name;
+    folder.mimeType = @"application/vnd.google-apps.folder";
+    folder.parents = @[parent];
+
+    GTLQueryDrive *query = [GTLQueryDrive queryForFilesInsertWithObject:folder uploadParameters:nil];
+
+    UIAlertView *waitIndicator = [self showWaitIndicator:@"Creating Student Folder"];
+    NSLog(@"Creating Student Folder...");
+    [self.driveService executeQuery:query
+                  completionHandler:^(GTLServiceTicket *ticket,
+                                      GTLDriveFile *insertedFile, NSError *error) {
+                      [waitIndicator dismissWithClickedButtonIndex:0 animated:YES];
+                      handler(ticket,insertedFile,error);
+                  }];
+    
+}
+
+- (void) createFolderUnderAppRootNamed:(NSString *)name completionHandler:(void (^)(GTLServiceTicket *ticket, GTLDriveFile *insertedFile, NSError *error)) handler
+{
+    [self createFolderNamed:name withParent:self.appRoot completionHandler:handler];
+}
+
 
 #pragma mark -
 #pragma mark NonDriveSupportMethods

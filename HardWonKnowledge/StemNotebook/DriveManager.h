@@ -53,6 +53,16 @@
 - (NSString *) downloadDriveFile:(GTLDriveFile *)file withCallback:(SEL)callbackSel;
 - (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder withCallback:(SEL)callbackSel;
 -(void) createFolderUnderAppRootNamed:(NSString *)name withCallback:(SEL)callbackSel;
+- (void) createFolderUnderAppRootNamed:(NSString *)name completionHandler:(void (^)(GTLServiceTicket *ticket, GTLDriveFile *insertedFile, NSError *error)) handler;
+
+#pragma mark -
+#pragma mark Block Parameter Drive Methods
+- (void)listFilesUnderFolder:(GTLDriveFile *)parent completionHandler:(void (^)(GTLServiceTicket*, GTLDriveFileList*, NSError*))handler;
+- (void)uploadNotebookNamed:(NSString*)name completionhandler:(void (^)(GTLServiceTicket*, GTLDriveFile*, NSError*))handler;
+- (void)uploadNotebookNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder completionhandler:(void (^)(GTLServiceTicket*, GTLDriveFile*, NSError*))handler;
+- (void)updateNotebook:(GTLDriveFile *)file fromFileNamed: (NSString *)name completionhandler:(void (^)(GTLServiceTicket*, GTLDriveFile*, NSError*))handler;
+- (NSString *) downloadDriveFile:(GTLDriveFile *)file completionHandler:(void (^)(NSData *data, NSError *error))handler;
+- (void) createFolderNamed:(NSString *)name withParent:(GTLDriveFile *)parentFolder completionHandler:(void (^)(GTLServiceTicket *ticket, GTLDriveFile *insertedFile, NSError *error)) handler;
 
 #pragma mark -
 #pragma mark NonDriveSupportMethods
