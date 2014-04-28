@@ -266,9 +266,9 @@ enum
     else if(viewingAdmin == 1)
         filledCell.image = [UIImage imageNamed:@"folder.png"];
     else if(index<=[_driveTitles count])
-        filledCell.image = [UIImage imageNamed:@"green_notebook-2.png"];
+        filledCell.image = [UIImage imageNamed:@"green_notebook_wide.png"];
     else
-        filledCell.image = [UIImage imageNamed:@"black_notebook-2.png"];
+        filledCell.image = [UIImage imageNamed:@"black_notebook_wide.png"];
     
     filledCell.title = [_allNotebooks objectAtIndex:index];
     
