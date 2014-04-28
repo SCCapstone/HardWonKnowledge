@@ -42,6 +42,8 @@
 		CB8789BF190F0D2400D31503 /* AdminViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789BE190F0D2400D31503 /* AdminViewTest.m */; };
 		CB8789C2190F0D5300D31503 /* LoginBackendTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789C1190F0D5300D31503 /* LoginBackendTest.m */; };
 		CB8789C5190F0D6E00D31503 /* BookshelfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789C4190F0D6E00D31503 /* BookshelfTest.m */; };
+		CB8789CB190F1CDB00D31503 /* green_notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8789CA190F1CDB00D31503 /* green_notebook.png */; };
+		CB8789CD190F1D9B00D31503 /* black_notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8789CC190F1D9B00D31503 /* black_notebook.png */; };
 		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
 		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
 		CB8B63F11903767200D2E7C0 /* DefaultUserList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F01903767200D2E7C0 /* DefaultUserList.plist */; };
@@ -152,6 +154,8 @@
 		CB8789C1190F0D5300D31503 /* LoginBackendTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBackendTest.m; sourceTree = "<group>"; };
 		CB8789C3190F0D6E00D31503 /* BookshelfTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookshelfTest.h; sourceTree = "<group>"; };
 		CB8789C4190F0D6E00D31503 /* BookshelfTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookshelfTest.m; sourceTree = "<group>"; };
+		CB8789CA190F1CDB00D31503 /* green_notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green_notebook.png; path = Bookshelf/Images/green_notebook.png; sourceTree = "<group>"; };
+		CB8789CC190F1D9B00D31503 /* black_notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_notebook.png; path = Bookshelf/Images/black_notebook.png; sourceTree = "<group>"; };
 		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
 		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
 		CB8B63F01903767200D2E7C0 /* DefaultUserList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultUserList.plist; path = LoginScreen/Resources/DefaultUserList.plist; sourceTree = "<group>"; };
@@ -440,6 +444,8 @@
 		CB9CD33218BA9C5900DF6754 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CB8789CC190F1D9B00D31503 /* black_notebook.png */,
+				CB8789CA190F1CDB00D31503 /* green_notebook.png */,
 				CB8C178D1908A69C00356320 /* folder.png */,
 				CB8CBF0B18F215BB003AF562 /* blank_notebook.png */,
 			);
@@ -636,6 +642,8 @@
 				CB8B63FB1903DB0D00D2E7C0 /* notebook-icon_72x72.png in Resources */,
 				CB8B63FD1903DB6E00D2E7C0 /* notebook-icon_144x144.png in Resources */,
 				CB8C178E1908A69D00356320 /* folder.png in Resources */,
+				CB8789CB190F1CDB00D31503 /* green_notebook.png in Resources */,
+				CB8789CD190F1D9B00D31503 /* black_notebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
