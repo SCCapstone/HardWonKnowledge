@@ -19,43 +19,43 @@
     
 }
 
-- (ActiveUser *)getSharedInstance {
+- (ActiveUser *)getUserManager {
     
-    return [ActiveUser sharedInstance];
+    return [ActiveUser userManager];
     
 }
 
 #pragma mark - tests
 
-- (void)testSingletonSharedInstanceCreated {
+- (void)testSingletonUserManagerCreated {
     
-    XCTAssertNotNil([self getSharedInstance]);
+    STAssertNotNil([self getUserManager],@"User Manager created is Nil");
     
 }
 
 - (void)testSingletonUniqueInstanceCreated {
     
-    XCTAssertNotNil([self createUniqueInstance]);
+   STAssertNotNil([self createUniqueInstance],@"Unique Instance of User Manager is Nil");
     
 }
 
-- (void)testSingletonReturnsSameSharedInstanceTwice {
+- (void)testSingletonReturnsSameUserManagerTwice {
     
-    ActiveUser *s1 = [self getSharedInstance];
-    XCTAssertEqual(s1, [self getSharedInstance]);
+    ActiveUser *s1 = [self getUserManager];
+    STAssertEquals(s1, [self getUserManager],@"Same User returned twice");
     
 }
 
-- (void)testSingletonSharedInstanceSeparateFromUniqueInstance {
+- (void)testSingletonUserManagerSeparateFromUniqueInstance {
     
-    ActiveUser *s1 = [self getSharedInstance];
-    XCTAssertNotEqual(s1, [self createUniqueInstance]);
+    ActiveUser *s1 = [self getUserManager];
+    STAssertEquals(s1, [self createUniqueInstance],@"User Manager not separate from Unique Instance");
 }
 
 - (void)testSingletonReturnsSeparateUniqueInstances {
     
     ActiveUser *s1 = [self createUniqueInstance];
-    XCTAssertNotEqual(s1, [self createUniqueInstance]);
+    STAssertEquals(s1, [self createUniqueInstance],@"Does not return separate Unique Instance");
 }
 
 @end
