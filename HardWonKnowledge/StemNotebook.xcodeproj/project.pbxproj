@@ -37,6 +37,13 @@
 		C7E4478F18400DA20059A65F /* MenuSubmenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E4478E18400DA20059A65F /* MenuSubmenuView.xib */; };
 		C7E4479218400E7F0059A65F /* MenuSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E4479118400E7F0059A65F /* MenuSubmenuView.m */; };
 		CB8666D218EB5264006D1ADD /* ActiveUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8666D118EB5264006D1ADD /* ActiveUser.m */; };
+		CB8789B9190EFF1100D31503 /* ActiveUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789B8190EFF1100D31503 /* ActiveUserTest.m */; };
+		CB8789BC190F02CC00D31503 /* UserLoginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789BB190F02CC00D31503 /* UserLoginTest.m */; };
+		CB8789BF190F0D2400D31503 /* AdminViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789BE190F0D2400D31503 /* AdminViewTest.m */; };
+		CB8789C2190F0D5300D31503 /* LoginBackendTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789C1190F0D5300D31503 /* LoginBackendTest.m */; };
+		CB8789C5190F0D6E00D31503 /* BookshelfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8789C4190F0D6E00D31503 /* BookshelfTest.m */; };
+		CB8789C8190F14C100D31503 /* black_notebook_wide.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8789C6190F14C100D31503 /* black_notebook_wide.png */; };
+		CB8789C9190F14C100D31503 /* green_notebook_wide.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8789C7190F14C100D31503 /* green_notebook_wide.png */; };
 		CB8B125118C9760A00DC90B0 /* UISwitch-No.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */; };
 		CB8B125218C9760A00DC90B0 /* UISwitch-Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */; };
 		CB8B63F11903767200D2E7C0 /* DefaultUserList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8B63F01903767200D2E7C0 /* DefaultUserList.plist */; };
@@ -139,6 +146,18 @@
 		C7E4479118400E7F0059A65F /* MenuSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSubmenuView.m; sourceTree = "<group>"; };
 		CB8666D018EB5264006D1ADD /* ActiveUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveUser.h; path = LoginScreen/ActiveUser.h; sourceTree = "<group>"; };
 		CB8666D118EB5264006D1ADD /* ActiveUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveUser.m; path = LoginScreen/ActiveUser.m; sourceTree = "<group>"; };
+		CB8789B7190EFF1100D31503 /* ActiveUserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveUserTest.h; sourceTree = "<group>"; };
+		CB8789B8190EFF1100D31503 /* ActiveUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserTest.m; sourceTree = "<group>"; };
+		CB8789BA190F02CB00D31503 /* UserLoginTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTest.h; sourceTree = "<group>"; };
+		CB8789BB190F02CC00D31503 /* UserLoginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTest.m; sourceTree = "<group>"; };
+		CB8789BD190F0D2300D31503 /* AdminViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminViewTest.h; sourceTree = "<group>"; };
+		CB8789BE190F0D2400D31503 /* AdminViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminViewTest.m; sourceTree = "<group>"; };
+		CB8789C0190F0D5200D31503 /* LoginBackendTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBackendTest.h; sourceTree = "<group>"; };
+		CB8789C1190F0D5300D31503 /* LoginBackendTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBackendTest.m; sourceTree = "<group>"; };
+		CB8789C3190F0D6E00D31503 /* BookshelfTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookshelfTest.h; sourceTree = "<group>"; };
+		CB8789C4190F0D6E00D31503 /* BookshelfTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookshelfTest.m; sourceTree = "<group>"; };
+		CB8789C6190F14C100D31503 /* black_notebook_wide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_notebook_wide.png; path = Bookshelf/Images/black_notebook_wide.png; sourceTree = "<group>"; };
+		CB8789C7190F14C100D31503 /* green_notebook_wide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green_notebook_wide.png; path = Bookshelf/Images/green_notebook_wide.png; sourceTree = "<group>"; };
 		CB8B124E18C9760A00DC90B0 /* UISwitch-No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-No.png"; path = "LoginScreen/Resources/UISwitch-No.png"; sourceTree = "<group>"; };
 		CB8B124F18C9760A00DC90B0 /* UISwitch-Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UISwitch-Yes.png"; path = "LoginScreen/Resources/UISwitch-Yes.png"; sourceTree = "<group>"; };
 		CB8B63F01903767200D2E7C0 /* DefaultUserList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultUserList.plist; path = LoginScreen/Resources/DefaultUserList.plist; sourceTree = "<group>"; };
@@ -429,6 +448,8 @@
 		CB9CD33218BA9C5900DF6754 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CB8789C6190F14C100D31503 /* black_notebook_wide.png */,
+				CB8789C7190F14C100D31503 /* green_notebook_wide.png */,
 				CB8C178D1908A69C00356320 /* folder.png */,
 				CB8B63F21903D83500D2E7C0 /* black_notebook-2.png */,
 				CB8B63F31903D83500D2E7C0 /* green_notebook-2.png */,
@@ -496,11 +517,21 @@
 		E1115B6118E0D39A0087DC02 /* StemNotebookUnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				CB8789BA190F02CB00D31503 /* UserLoginTest.h */,
+				CB8789BB190F02CC00D31503 /* UserLoginTest.m */,
 				E1115B6718E0D39A0087DC02 /* StemNotebookUnitTest.h */,
 				E1115B6818E0D39A0087DC02 /* StemNotebookUnitTest.m */,
 				E1115B6218E0D39A0087DC02 /* Supporting Files */,
 				E1115B7018E0D9D30087DC02 /* PaintViewTest.h */,
 				E1115B7118E0D9D30087DC02 /* PaintViewTest.m */,
+				CB8789B7190EFF1100D31503 /* ActiveUserTest.h */,
+				CB8789B8190EFF1100D31503 /* ActiveUserTest.m */,
+				CB8789BD190F0D2300D31503 /* AdminViewTest.h */,
+				CB8789BE190F0D2400D31503 /* AdminViewTest.m */,
+				CB8789C0190F0D5200D31503 /* LoginBackendTest.h */,
+				CB8789C1190F0D5300D31503 /* LoginBackendTest.m */,
+				CB8789C3190F0D6E00D31503 /* BookshelfTest.h */,
+				CB8789C4190F0D6E00D31503 /* BookshelfTest.m */,
 			);
 			path = StemNotebookUnitTest;
 			sourceTree = "<group>";
@@ -627,6 +658,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1115B6618E0D39A0087DC02 /* InfoPlist.strings in Resources */,
+				CB8789C8190F14C100D31503 /* black_notebook_wide.png in Resources */,
+				CB8789C9190F14C100D31503 /* green_notebook_wide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +725,11 @@
 			files = (
 				E1115B6918E0D39A0087DC02 /* StemNotebookUnitTest.m in Sources */,
 				E1115B7218E0D9D30087DC02 /* PaintViewTest.m in Sources */,
+				CB8789B9190EFF1100D31503 /* ActiveUserTest.m in Sources */,
+				CB8789BC190F02CC00D31503 /* UserLoginTest.m in Sources */,
+				CB8789BF190F0D2400D31503 /* AdminViewTest.m in Sources */,
+				CB8789C2190F0D5300D31503 /* LoginBackendTest.m in Sources */,
+				CB8789C5190F0D6E00D31503 /* BookshelfTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
