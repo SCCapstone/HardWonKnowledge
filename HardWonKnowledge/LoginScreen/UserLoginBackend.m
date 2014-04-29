@@ -23,6 +23,7 @@
     listFileId = @"Default String Data";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"UserList.plist"];
+    NSLog(@"%@",docPath);
 //    NSLog(@"%@", docPath);
     
 }
@@ -46,21 +47,13 @@
                 NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
                 for(id key in temp)
                     [self parseUser:key withData:[temp objectForKey:key]];
-                if([adminCredentials count] == 0){
-                    [self findDefaultFile];
-                }
+            }
+            if([adminCredentials count] == 0){
+                [self findDefaultFile];
             }
 //            NSLog(@"ID: %@ %@",listFileId, file.identifier);
-        } else{
+        } else
             NSLog (@"An Error has occurred in findExistingDriveFiles: %@", error);
-        
-        NSDictionary *temp = [self dataToDictionaryAtPath:docPath];
-        for(id key in temp)
-            [self parseUser:key withData:[temp objectForKey:key]];
-        if([adminCredentials count] == 0){
-            [self findDefaultFile];
-        }
-        }
     }];
 }
 
