@@ -1201,7 +1201,7 @@
 		4F1C6E101027B3CF00B46459 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DGTL_IPHONE=1",
@@ -1215,7 +1215,7 @@
 		4F1C6E111027B3CF00B46459 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DGTL_IPHONE=1",
@@ -1246,7 +1246,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = GTL;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
@@ -1271,7 +1271,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = GTL;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				STRIP_STYLE = "non-global";
 			};
 			name = Release;
