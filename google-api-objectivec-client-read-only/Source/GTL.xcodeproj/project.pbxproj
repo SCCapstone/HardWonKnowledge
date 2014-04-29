@@ -1208,6 +1208,7 @@
 				);
 				PRODUCT_NAME = GTLTouchStaticLib;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1221,6 +1222,7 @@
 				);
 				PRODUCT_NAME = GTLTouchStaticLib;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -1244,6 +1246,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = GTL;
+				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
@@ -1268,6 +1271,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = GTL;
+				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
 			};
 			name = Release;
