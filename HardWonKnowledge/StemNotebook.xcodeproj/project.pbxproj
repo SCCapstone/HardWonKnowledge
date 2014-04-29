@@ -17,6 +17,7 @@
 		C71981AD1850138E00D502E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71981A91850138E00D502E3 /* SystemConfiguration.framework */; };
 		C71981AF185014B300D502E3 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = C71981AE185014B300D502E3 /* GTMOAuth2ViewTouch.xib */; };
 		C71981B2185015C800D502E3 /* GTLDrive_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = C71981B0185015C800D502E3 /* GTLDrive_Sources.m */; };
+		C7456103190F45DB00B88219 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7456102190F45DB00B88219 /* libGTLTouchStaticLib.a */; };
 		C74921E4182DB5AA0041F997 /* PaintSubmenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74921E3182DB5AA0041F997 /* PaintSubmenuView.m */; };
 		C75EF9F518246AAE00C9A725 /* SideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C75EF9F418246AAE00C9A725 /* SideBarView.xib */; };
 		C75EF9F818246B3D00C9A725 /* SideBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C75EF9F718246B3D00C9A725 /* SideBarView.m */; };
@@ -52,7 +53,6 @@
 		CB8C178E1908A69D00356320 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8C178D1908A69C00356320 /* folder.png */; };
 		CB8CBF0C18F215BB003AF562 /* blank_notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8CBF0B18F215BB003AF562 /* blank_notebook.png */; };
 		CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */; };
-		CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */; };
 		CB9CD3C118BA9FF000DF6754 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3AB18BA9FF000DF6754 /* AQGridView.m */; };
 		CB9CD3C218BA9FF000DF6754 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3AF18BA9FF000DF6754 /* AQGridViewAnimatorItem.m */; };
 		CB9CD3C318BA9FF000DF6754 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CD3B118BA9FF000DF6754 /* AQGridViewCell.m */; };
@@ -104,7 +104,6 @@
 		B4D2E38918D7AA2A0081A019 /* TypeSubmenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeSubmenuView.xib; sourceTree = "<group>"; };
 		B4D2E38B18D7AA360081A019 /* TypeSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSubmenuView.m; sourceTree = "<group>"; };
 		B4D2E38D18D7AA400081A019 /* TypeSubmenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSubmenuView.h; sourceTree = "<group>"; };
-		C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		C71981A71850138E00D502E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C71981A81850138E00D502E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C71981A91850138E00D502E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -112,6 +111,7 @@
 		C71981B0185015C800D502E3 /* GTLDrive_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLDrive_Sources.m; sourceTree = "<group>"; };
 		C71981B1185015C800D502E3 /* GTLDrive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLDrive.h; sourceTree = "<group>"; };
 		C7233B4A182DB4E200CFE9B9 /* NotebookViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookViewDelegate.h; sourceTree = "<group>"; };
+		C7456102190F45DB00B88219 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/build/Debug-iphoneos/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		C74921E2182DB5AA0041F997 /* PaintSubmenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintSubmenuView.h; sourceTree = "<group>"; };
 		C74921E3182DB5AA0041F997 /* PaintSubmenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintSubmenuView.m; sourceTree = "<group>"; };
 		C75EF9F418246AAE00C9A725 /* SideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarView.xib; sourceTree = "<group>"; };
@@ -164,7 +164,6 @@
 		CB8C178D1908A69C00356320 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = folder.png; path = Bookshelf/Images/folder.png; sourceTree = "<group>"; };
 		CB8CBF0B18F215BB003AF562 /* blank_notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank_notebook.png; path = Bookshelf/Images/blank_notebook.png; sourceTree = "<group>"; };
 		CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTLTouchStaticLib.a; path = "../google-api-objectivec-client-read-only/Source/libGTLTouchStaticLib.a"; sourceTree = "<group>"; };
 		CB9CD3AA18BA9FF000DF6754 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Bookshelf/AQGridViewClasses/AQGridView.h; sourceTree = "<group>"; };
 		CB9CD3AB18BA9FF000DF6754 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQGridView.m; path = Bookshelf/AQGridViewClasses/AQGridView.m; sourceTree = "<group>"; };
 		CB9CD3AC18BA9FF000DF6754 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AQGridView+CellLayout.h"; path = "Bookshelf/AQGridViewClasses/AQGridView+CellLayout.h"; sourceTree = "<group>"; };
@@ -227,7 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB9CD32E18BA9BFD00DF6754 /* libGTLTouchStaticLib.a in Frameworks */,
+				C7456103190F45DB00B88219 /* libGTLTouchStaticLib.a in Frameworks */,
 				CB9CD32C18BA9B1700DF6754 /* QuartzCore.framework in Frameworks */,
 				C71981AB1850138E00D502E3 /* MobileCoreServices.framework in Frameworks */,
 				C71981AC1850138E00D502E3 /* Security.framework in Frameworks */,
@@ -316,8 +315,7 @@
 		C762B69D181DB7B500EB3674 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C71981A61850138E00D502E3 /* libGTLTouchStaticLib.a */,
-				CB9CD32D18BA9BFD00DF6754 /* libGTLTouchStaticLib.a */,
+				C7456102190F45DB00B88219 /* libGTLTouchStaticLib.a */,
 				CB9CD32B18BA9B1700DF6754 /* QuartzCore.framework */,
 				C71981A71850138E00D502E3 /* MobileCoreServices.framework */,
 				C71981A81850138E00D502E3 /* Security.framework */,
@@ -824,6 +822,7 @@
 		C762B6BF181DB7B500EB3674 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -849,6 +848,7 @@
 		C762B6C0181DB7B500EB3674 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
