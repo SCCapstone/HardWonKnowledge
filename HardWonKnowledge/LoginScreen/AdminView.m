@@ -291,10 +291,6 @@
 
 /*  Set up the User Settings Menu for admin user  */
 - (IBAction)menuAdminSettings {
-    if([self.loginBackend.userCredentials count] > 1 && [self.loginBackend.adminCredentials count] == 1 && [[[self.loginBackend.adminCredentials objectForKey:@"admin"]objectForKey:@"Last Name"]isEqualToString:@"DEFAULT_USER_ENTRY"]){
-        [self alertOneButtonWithTitle:@"Administrator Error" message:@"Please add a new administrator user to operate this application successfully." buttonTitle:@"Add New User"];
-        return;
-    }
     [self openView:@"Settings"];
     isAdmin = NO;
     srchedData = [[NSMutableArray alloc] init];
