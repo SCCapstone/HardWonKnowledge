@@ -1,13 +1,14 @@
 //
-//  UserLoginTest.h
+//  LoginBackendTest.h
 //  StemNotebook
 //
-//  Created by KENEEQUA BROWN on 3/24/14.
+//  Created by Keneequa Brown on 4/28/14.
 //  Copyright (c) 2014 HardWonKnowledge. All rights reserved.
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "UserLoginBackend.h"
 
-@interface UserLoginTest : SenTestCase
+@interface LoginBackendTest : SenTestCase
 
 @end
